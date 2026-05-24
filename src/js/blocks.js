@@ -305,6 +305,7 @@ const InteractiveBlocks = (function () {
       svg.appendChild(txt);
     }
 
+    // Support up to 15 columns without overlaps via auto-rotation!
     labels.forEach((lbl, gIdx) => {
       const groupX = padding + gIdx * groupWidth;
       const centerX = groupX + groupWidth / 2;
@@ -312,9 +313,18 @@ const InteractiveBlocks = (function () {
       const txt = document.createElementNS('http://www.w3.org/2000/svg', 'text');
       txt.setAttribute('x', centerX);
       txt.setAttribute('y', H - padding + 24);
-      txt.setAttribute('text-anchor', 'middle');
       txt.setAttribute('fill', 'var(--color-text-muted)');
-      txt.setAttribute('font-size', '12');
+      
+      if (labels.length > 5) {
+        // Rotate labels to fit dense columns nicely
+        txt.setAttribute('transform', `rotate(-30, ${centerX}, ${H - padding + 22})`);
+        txt.setAttribute('text-anchor', 'end');
+        txt.setAttribute('font-size', '10');
+      } else {
+        txt.setAttribute('text-anchor', 'middle');
+        txt.setAttribute('font-size', '12');
+      }
+      
       txt.textContent = lbl;
       svg.appendChild(txt);
 
@@ -400,14 +410,24 @@ const InteractiveBlocks = (function () {
 
     const stepX = chartW / (labels.length - 1 || 1);
 
+    // Support up to 20 labels without overlaps via auto-rotation!
     labels.forEach((lbl, idx) => {
       const x = padding + idx * stepX;
       const txt = document.createElementNS('http://www.w3.org/2000/svg', 'text');
       txt.setAttribute('x', x);
       txt.setAttribute('y', H - padding + 24);
-      txt.setAttribute('text-anchor', 'middle');
       txt.setAttribute('fill', 'var(--color-text-muted)');
-      txt.setAttribute('font-size', '12');
+      
+      if (labels.length > 5) {
+        // Rotate labels to fit dense datasets nicely
+        txt.setAttribute('transform', `rotate(-30, ${x}, ${H - padding + 22})`);
+        txt.setAttribute('text-anchor', 'end');
+        txt.setAttribute('font-size', '10');
+      } else {
+        txt.setAttribute('text-anchor', 'middle');
+        txt.setAttribute('font-size', '12');
+      }
+      
       txt.textContent = lbl;
       svg.appendChild(txt);
     });
@@ -505,13 +525,25 @@ const InteractiveBlocks = (function () {
 
     const chartLegendGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
 
+    // Support up to 10+ slices with dynamic colors & clean dual-column legends!
+    const isDualColumn = data.length > 5;
+    const itemsPerCol = isDualColumn ? Math.ceil(data.length / 2) : data.length;
+    const lineSpacing = isDualColumn ? 22 : 24;
+
     data.forEach((val, idx) => {
       const percentage = val / total;
       const strokeLength = percentage * circumference;
       const strokeOffset = circumference - strokeLength;
       
+      // Dynamic OKLCH color engine for infinite distinct hues
       const colors = ['primary', 'success', 'accent', 'error', 'warning'];
-      const colorName = colors[idx % colors.length];
+      let strokeColor;
+      if (data.length <= 5) {
+        strokeColor = `var(--color-${colors[idx % colors.length]})`;
+      } else {
+        const hue = Math.round(30 + (idx * 300) / data.length);
+        strokeColor = `oklch(68% 0.16 ${hue})`;
+      }
 
       const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
       circle.setAttribute('class', `dataset-group-0`);
@@ -519,7 +551,7 @@ const InteractiveBlocks = (function () {
       circle.setAttribute('cy', cy);
       circle.setAttribute('r', r);
       circle.setAttribute('fill', 'none');
-      circle.setAttribute('stroke', `var(--color-${colorName})`);
+      circle.setAttribute('stroke', strokeColor);
       circle.setAttribute('stroke-width', strokeW);
       circle.setAttribute('stroke-dasharray', circumference);
       circle.setAttribute('stroke-dashoffset', circumference);
@@ -548,34 +580,48 @@ const InteractiveBlocks = (function () {
         circle.setAttribute('stroke-dashoffset', strokeOffset);
       }, 100);
 
-      const legendX = cx + r + 50;
-      const legendY = cy - (data.length * 24) / 2 + idx * 24 + 8;
+      // Dual-column legend positioning
+      const colIdx = isDualColumn ? idx % 2 : 0;
+      const rowIdx = isDualColumn ? Math.floor(idx / 2) : idx;
+      
+      const legendX = isDualColumn 
+        ? (cx + r + 25 + colIdx * 125) 
+        : (cx + r + 45);
+      const legendY = cy - (itemsPerCol * lineSpacing) / 2 + rowIdx * lineSpacing + 8;
 
       const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
       dot.setAttribute('cx', legendX);
       dot.setAttribute('cy', legendY - 4);
-      dot.setAttribute('r', '6');
-      dot.setAttribute('fill', `var(--color-${colorName})`);
+      dot.setAttribute('r', isDualColumn ? '5' : '6');
+      dot.setAttribute('fill', strokeColor);
       chartLegendGroup.appendChild(dot);
 
       const labelTxt = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-      labelTxt.setAttribute('x', legendX + 16);
+      labelTxt.setAttribute('x', legendX + 14);
       labelTxt.setAttribute('y', legendY);
       labelTxt.setAttribute('fill', 'var(--color-text)');
-      labelTxt.setAttribute('font-size', '13');
+      labelTxt.setAttribute('font-size', isDualColumn ? '10.5' : '13');
       labelTxt.setAttribute('font-weight', '500');
-      labelTxt.textContent = `${labels[idx] || 'Item'}`;
+      
+      if (isDualColumn) {
+        // Combine label and percentage for compact dual-column display
+        labelTxt.textContent = `${labels[idx] || 'Item'} (${Math.round(percentage * 100)}%)`;
+      } else {
+        labelTxt.textContent = `${labels[idx] || 'Item'}`;
+      }
       chartLegendGroup.appendChild(labelTxt);
 
-      const valTxt = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-      valTxt.setAttribute('x', legendX + 210);
-      valTxt.setAttribute('y', legendY);
-      valTxt.setAttribute('fill', 'var(--color-text-muted)');
-      valTxt.setAttribute('font-size', '13');
-      valTxt.setAttribute('font-family', 'var(--font-mono)');
-      valTxt.setAttribute('text-anchor', 'end');
-      valTxt.textContent = `${val} (${Math.round(percentage * 100)}%)`;
-      chartLegendGroup.appendChild(valTxt);
+      if (!isDualColumn) {
+        const valTxt = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        valTxt.setAttribute('x', legendX + 210);
+        valTxt.setAttribute('y', legendY);
+        valTxt.setAttribute('fill', 'var(--color-text-muted)');
+        valTxt.setAttribute('font-size', '13');
+        valTxt.setAttribute('font-family', 'var(--font-mono)');
+        valTxt.setAttribute('text-anchor', 'end');
+        valTxt.textContent = `${val} (${Math.round(percentage * 100)}%)`;
+        chartLegendGroup.appendChild(valTxt);
+      }
     });
 
     svg.appendChild(chartLegendGroup);
@@ -694,7 +740,14 @@ const InteractiveBlocks = (function () {
 
       const defs = svg.querySelector('defs');
       svg.innerHTML = '';
-      if (defs) svg.appendChild(defs);
+      if (defs) {
+        svg.appendChild(defs);
+        const marker = defs.querySelector('#arrow');
+        if (marker) {
+          // Position arrow tip exactly on the dynamic border of the node!
+          marker.setAttribute('refX', Math.round(nodeWidth / 2 + 8));
+        }
+      }
 
       connections.forEach(conn => {
         const fromNode = nodes.find(n => n.id === conn.from);
@@ -743,10 +796,21 @@ const InteractiveBlocks = (function () {
         text.setAttribute('y', node.y + nodeHeight / 2 + 5);
         text.setAttribute('text-anchor', 'middle');
         text.setAttribute('fill', 'var(--color-text)');
-        text.setAttribute('font-size', '12');
         text.setAttribute('font-weight', '600');
-        text.textContent = node.label;
         text.style.pointerEvents = 'none';
+        
+        // Dynamic font scaling & auto-ellipses based on dynamic nodeWidth!
+        // Capacity: Fits long labels perfectly even when N=10 (width=60px)
+        const fontSize = nodeWidth < 110 ? 9 : (nodeWidth < 135 ? 10 : 12);
+        text.setAttribute('font-size', fontSize);
+        
+        let labelText = node.label || '';
+        const charRatio = fontSize === 9 ? 5.5 : (fontSize === 10 ? 6.5 : 7.5);
+        const maxChars = Math.floor(nodeWidth / charRatio);
+        if (labelText.length > maxChars && maxChars > 5) {
+          labelText = labelText.substring(0, maxChars - 2) + '..';
+        }
+        text.textContent = labelText;
 
         group.appendChild(rect);
         group.appendChild(text);
