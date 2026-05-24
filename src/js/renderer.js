@@ -193,6 +193,113 @@ function renderSlideHTML(slide) {
   </div>
 </section>`;
 
+    case 'chart':
+      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '📊'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="chart-block-container stagger" data-chart-type="${esc(d.chartType || 'bar')}" data-labels="${esc(JSON.stringify(d.labels || [])).replace(/"/g, '&quot;')}" data-datasets="${esc(JSON.stringify(d.datasets || [])).replace(/"/g, '&quot;')}">
+      <div class="chart-canvas-wrapper">
+        <svg class="svg-chart" viewBox="0 0 600 320" preserveAspectRatio="xMidYMid meet"></svg>
+      </div>
+      <div class="chart-legend"></div>
+    </div>
+  </div>
+</section>`;
+
+    case 'table':
+      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🧮'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="table-block-container stagger">
+      <div class="table-actions">
+        <input type="text" class="table-search-input" placeholder="Search rows..." />
+      </div>
+      <div class="table-responsive-wrapper">
+        <table class="glass-table">
+          <thead>
+            <tr>
+              ${(d.columns || []).map(col => `<th data-col-key="${esc(col.key)}" class="sortable-th">
+                ${esc(col.label)}
+                <span class="sort-indicator">↕</span>
+              </th>`).join('')}
+            </tr>
+          </thead>
+          <tbody>
+            ${(d.rows || []).map(row => `<tr>
+              ${(d.columns || []).map(col => {
+                const val = row[col.key];
+                if (col.type === 'progress') {
+                  const percent = Math.min(100, Math.max(0, parseInt(val, 10) || 0));
+                  return `<td data-label="${esc(col.label)}">
+                    <div class="progress-cell-wrapper">
+                      <div class="progress-cell-bar"><div class="progress-cell-fill" style="width: ${percent}%"></div></div>
+                      <span class="progress-cell-text">${percent}%</span>
+                    </div>
+                  </td>`;
+                } else if (col.type === 'badge') {
+                  const parts = String(val || '').split('·');
+                  const text = (parts[0] || '').trim();
+                  const type = (parts[1] || 'primary').trim();
+                  return `<td data-label="${esc(col.label)}"><span class="badge-pill pill-${type}">${esc(text)}</span></td>`;
+                } else if (col.type === 'code') {
+                  return `<td data-label="${esc(col.label)}"><code class="code-cell">${esc(val)}</code></td>`;
+                }
+                return `<td data-label="${esc(col.label)}">${esc(val)}</td>`;
+              }).join('')}
+            </tr>`).join('\n            ')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+    case 'bento':
+      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🍱'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="bento-grid stagger" style="--grid-template: ${esc(d.gridTemplate || 'auto')}">
+      ${(d.items || []).map(item => {
+        const bgStyle = item.bgGradient ? `background: linear-gradient(135deg, ${item.bgGradient.split(' to ')[0]}, ${item.bgGradient.split(' to ')[1] || 'transparent'}); border: none;` : '';
+        const sizeClass = `bento-size-${item.size || 'small'}`;
+        return `<div class="bento-card ${sizeClass}" style="${bgStyle}">
+          ${item.badge ? `<span class="bento-badge">${esc(item.badge)}</span>` : ''}
+          ${item.icon ? `<div class="bento-icon">${esc(item.icon)}</div>` : ''}
+          <div class="bento-card-content">
+            <h3>${esc(item.title)}</h3>
+            <p>${esc(item.content)}</p>
+          </div>
+        </div>`;
+      }).join('\n      ')}
+    </div>
+  </div>
+</section>`;
+
+    case 'flow':
+      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🌿'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="flow-block-container stagger" data-nodes="${esc(JSON.stringify(d.nodes || [])).replace(/"/g, '&quot;')}" data-connections="${esc(JSON.stringify(d.connections || [])).replace(/"/g, '&quot;')}">
+      <div class="flow-layout-wrapper">
+        <svg class="flow-svg-canvas" viewBox="0 0 800 350">
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="22" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--color-primary)" />
+            </marker>
+          </defs>
+        </svg>
+      </div>
+      <div class="flow-detail-panel glassmorphic-panel">
+        <div class="flow-detail-default-msg">💡 Click on any step in the flowchart to view deep insights.</div>
+        <div class="flow-detail-content" style="display: none;">
+          <h4 class="flow-detail-title"></h4>
+          <p class="flow-detail-desc"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>`;
+
     default:
       return `<section class="slide" id="${slide.id}"><div class="slide-inner"><p>Unknown block type: ${slide.type}</p></div></section>`;
   }
