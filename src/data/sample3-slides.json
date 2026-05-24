@@ -1,0 +1,155 @@
+{
+  "meta": {
+    "title": "Interactive Technical Dashboards",
+    "subtitle": "Leveraging native SVGs and Glassmorphic data blocks to visualize microservices metrics in real-time.",
+    "author": "Lecta AI Academy",
+    "date": "2026",
+    "theme": "midnight",
+    "duration": 30
+  },
+  "slides": [
+    {
+      "id": "slide-s3-1",
+      "type": "title",
+      "data": {
+        "heading": "Interactive Technical Dashboards",
+        "subtitle": "Leveraging native SVGs and Glassmorphic data blocks to visualize microservices metrics in real-time.",
+        "badge": "Lecta Analytics Suite",
+        "speakerNotes": "Welcome everyone! Today we are showcasing the dynamic, low-latency static analytics block rendering."
+      }
+    },
+    {
+      "id": "slide-s3-2",
+      "type": "bento",
+      "data": {
+        "heading": "Bento Grid Dashboard Overview",
+        "icon": "🍱",
+        "gridTemplate": "large | small small",
+        "items": [
+          {
+            "size": "large",
+            "title": "Asymmetric Dashboard Performance",
+            "content": "A high-fidelity layout representing cluster efficiency. Native SVG charts fit directly into custom glass cards to optimize visible screen real estate.",
+            "badge": "Active Status",
+            "bgGradient": "oklch(55% 0.15 250) to oklch(40% 0.12 200)"
+          },
+          {
+            "size": "small",
+            "title": "Avg Response Time",
+            "content": "12.4ms (99th percentile across all nodes)",
+            "icon": "⚡"
+          },
+          {
+            "size": "small",
+            "title": "Global Uptime",
+            "content": "99.98% across 12 zones",
+            "icon": "🌐"
+          }
+        ],
+        "speakerNotes": "Show students the Bento layout. Point out how the main card sets the theme and small cards show quick stats."
+      }
+    },
+    {
+      "id": "slide-s3-3",
+      "type": "chart",
+      "data": {
+        "heading": "Server Cluster Capacity & Idle Rates",
+        "icon": "📊",
+        "chartType": "bar",
+        "labels": ["Node A", "Node B", "Node C", "Node D", "Node E"],
+        "datasets": [
+          {
+            "label": "Active CPU Thread Utilization (%)",
+            "data": [85, 45, 92, 60, 75],
+            "color": "primary"
+          },
+          {
+            "label": "Idle Capacity Reserve (%)",
+            "data": [15, 55, 8, 40, 25],
+            "color": "success"
+          }
+        ],
+        "speakerNotes": "Explain the interactive bar chart. Point out that clicking on the legend items will hide/show datasets dynamically."
+      }
+    },
+    {
+      "id": "slide-s3-4",
+      "type": "chart",
+      "data": {
+        "heading": "Cloud Infrastructure Footprint",
+        "icon": "📊",
+        "chartType": "donut",
+        "labels": ["S3 Media Assets", "Postgres Core DB", "Redis Cache", "Elastic Logs Index"],
+        "datasets": [
+          {
+            "label": "Data Allocation (TB)",
+            "data": [45, 18, 12, 25],
+            "color": "primary"
+          }
+        ],
+        "speakerNotes": "Showcase the donut chart representing TB storage allocation. Hover segments to view interactive tooltips."
+      }
+    },
+    {
+      "id": "slide-s3-5",
+      "type": "table",
+      "data": {
+        "heading": "Microservices Node Directory",
+        "icon": "🧮",
+        "columns": [
+          { "key": "nodeName", "label": "Node Name", "type": "text" },
+          { "key": "runtime", "label": "Runtime Engine", "type": "code" },
+          { "key": "load", "label": "System Load", "type": "progress" },
+          { "key": "status", "label": "Service Health", "type": "badge" }
+        ],
+        "rows": [
+          { "nodeName": "auth-microservice-v2", "runtime": "Node 20 · ESM", "load": 42, "status": "Stable · success" },
+          { "nodeName": "ingestion-pipeline-stream", "runtime": "Go 1.22 · Native", "load": 88, "status": "Load High · warning" },
+          { "nodeName": "caching-gateway-redis", "runtime": "C++ · Clang", "load": 15, "status": "Stable · success" },
+          { "nodeName": "neural-search-indexer", "runtime": "Python 3.12 · PyTorch", "load": 95, "status": "Degraded · danger" }
+        ],
+        "speakerNotes": "The table has full sorting. Click on Node Name or Load columns to sort, or type in the input box to instantly filter rows."
+      }
+    },
+    {
+      "id": "slide-s3-6",
+      "type": "flow",
+      "data": {
+        "heading": "Analytical Data Pipeline Architecture",
+        "icon": "🌿",
+        "nodes": [
+          { "id": "n1", "label": "1. Event Ingestion", "details": "Real-time user event streams are captured via WebSocket gateways and piped straight into memory buffers." },
+          { "id": "n2", "label": "2. Stream Processing", "details": "High-performance streaming engine cleanses, maps schemas, and calculates rolling statistics." },
+          { "id": "n3", "label": "3. Analytical Warehouse", "details": "Aggregated time-series chunks are persisted inside highly optimized, queryable columns." },
+          { "id": "n4", "label": "4. Lecta Dashboard", "details": "The presentation layer renders the charts with millisecond latency, without external databases." }
+        ],
+        "connections": [
+          { "from": "n1", "to": "n2" },
+          { "from": "n2", "to": "n3" },
+          { "from": "n3", "to": "n4" }
+        ],
+        "speakerNotes": "Select nodes on the flowchart to deep-dive into each pipeline stage. A gorgeous visual sequence!"
+      }
+    },
+    {
+      "id": "slide-s3-7",
+      "type": "summary",
+      "data": {
+        "heading": "Technical Dashboard Takeaways",
+        "icon": "🎓",
+        "items": [
+          "Native SVGs provide high-performance chart animations without bulky heavy JS frameworks.",
+          "OKLCH color mapping scales cleanly across dark themes like Midnight without clipping.",
+          "Live search/filtering and sorting makes static tables feel premium and interactive.",
+          "Flowcharts keep presentation audiences engaged by enabling deep-dives on demand."
+        ],
+        "callToAction": "Build highly interactive dashboards for your slides now!",
+        "resources": [
+          { "label": "Lecta Components Reference", "url": "all-designs.html" },
+          { "label": "SVG Styling Guidelines", "url": "https://developer.mozilla.org/en-US/docs/Web/SVG" }
+        ],
+        "speakerNotes": "Conclude the dashboard visualization training. Invite questions from the audience."
+      }
+    }
+  ]
+}
