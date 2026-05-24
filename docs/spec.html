@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecta AI — Extended Specification</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#0f1117;color:#c8cdd8;line-height:1.7;padding:2rem;max-width:960px;margin:0 auto}
+h1{font-family:'Outfit',sans-serif;font-size:2.2rem;background:linear-gradient(135deg,#7c6bf5,#4fc3f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:0.5rem}
+h2{font-size:1.4rem;color:#e0e4ec;margin-top:2.5rem;padding-bottom:0.5rem;border-bottom:2px solid #2a2d3a}
+h3{font-size:1.1rem;color:#a8b0c0;margin-top:1.5rem}
+p,li{font-size:0.95rem;margin-bottom:0.5rem}
+ul{margin-left:1.5rem;margin-bottom:1rem}
+li::marker{color:#7c6bf5}
+code{background:#1a1d28;padding:0.15em 0.4em;border-radius:4px;font-size:0.85em;color:#4fc3f7}
+.subtitle{color:#6b7280;font-size:1.05rem;margin-bottom:2rem}
+.card{background:#16181f;border:1px solid #2a2d3a;border-radius:12px;padding:1.25rem;margin-bottom:1rem}
+.card h3{margin-top:0;color:#e0e4ec}
+.tag{display:inline-block;padding:0.15em 0.5em;border-radius:999px;font-size:0.75rem;font-weight:600;margin-right:0.3rem}
+.tag-idea{background:#7c6bf520;color:#a78bfa}
+.tag-high{background:#ef444420;color:#f87171}
+.tag-med{background:#f59e0b20;color:#fbbf24}
+.tag-low{background:#10b98120;color:#34d399}
+.tag-ux{background:#3b82f620;color:#60a5fa}
+.tag-ai{background:#8b5cf620;color:#a78bfa}
+.tag-export{background:#06b6d420;color:#22d3ee}
+.divider{border:none;border-top:1px solid #2a2d3a;margin:2rem 0}
+footer{text-align:center;color:#4b5563;font-size:0.8rem;margin-top:3rem;padding-top:1rem;border-top:1px solid #2a2d3a}
+</style>
+</head>
+<body>
+
+<h1>Lecta AI — Extended Specification</h1>
+<p class="subtitle">Ideas and features not explicitly mentioned in the user requirements but highly valuable for the product vision.</p>
+
+<h2>1. Future Block Types</h2>
+
+<div class="card">
+<h3>Image + Hotspot Block <span class="tag tag-idea">Idea</span> <span class="tag tag-high">High Priority</span></h3>
+<p>An image with clickable regions (hotspots). Each hotspot opens a tooltip or popup with explanatory text. Ideal for anatomy diagrams, architecture diagrams, and UI walkthroughs.</p>
+<ul>
+<li>JSON schema: <code>{ "type": "hotspot", "image": "SAMPLE_PICTURE", "spots": [{ "x": 30, "y": 50, "label": "...", "detail": "..." }] }</code></li>
+<li>CSS: absolute-positioned dots on a relative container, with tooltip on click</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Code Playground Block <span class="tag tag-idea">Idea</span> <span class="tag tag-med">Medium Priority</span></h3>
+<p>Embedded editable code editor with live preview (like CodePen). Uses a <code>&lt;textarea&gt;</code> + <code>&lt;iframe&gt;</code> for HTML/CSS demos. No external dependencies needed.</p>
+</div>
+
+<div class="card">
+<h3>Branching / Decision Tree Block <span class="tag tag-idea">Idea</span> <span class="tag tag-med">Medium Priority</span></h3>
+<p>User selects Option A or B, which navigates to different follow-up content. Useful for case studies, "choose your own adventure" learning, and debugging exercises.</p>
+</div>
+
+<div class="card">
+<h3>Drag-and-Drop Sorting Block <span class="tag tag-idea">Idea</span> <span class="tag tag-low">Low Priority</span></h3>
+<p>Students reorder items (e.g., steps in a process) to test comprehension. Uses HTML5 drag events — no library needed.</p>
+</div>
+
+<div class="card">
+<h3>Fill-in-the-Blank Block <span class="tag tag-idea">Idea</span> <span class="tag tag-med">Medium Priority</span></h3>
+<p>Sentence with blanks that students type into. Instant feedback on submit. Good for vocabulary and concept reinforcement.</p>
+</div>
+
+<hr class="divider">
+
+<h2>2. AI Enhancement Ideas</h2>
+
+<div class="card">
+<h3>Automatic Difficulty Scaling <span class="tag tag-ai">AI</span> <span class="tag tag-high">High Priority</span></h3>
+<p>Given a slide deck, generate 3 variants: <strong>beginner</strong> (simple language, more visuals), <strong>intermediate</strong> (standard), <strong>advanced</strong> (technical depth, fewer explanations). The JSON structure stays the same — only content depth changes.</p>
+</div>
+
+<div class="card">
+<h3>Auto-Detect Slide Issues <span class="tag tag-ai">AI</span> <span class="tag tag-high">High Priority</span></h3>
+<p>AI scans each slide and flags: too much text (>150 words), no visual elements, no interactivity, missing speaker notes, duplicated content between slides.</p>
+</div>
+
+<div class="card">
+<h3>Tone Adaptation <span class="tag tag-ai">AI</span> <span class="tag tag-med">Medium Priority</span></h3>
+<p>Transform the same content into different voices: academic, casual, corporate, playful. Especially useful when the same material is presented to different audiences.</p>
+</div>
+
+<div class="card">
+<h3>Smart Slide Splitting <span class="tag tag-ai">AI</span> <span class="tag tag-med">Medium Priority</span></h3>
+<p>When a slide has too many bullet points or concepts, AI suggests splitting it into 2-3 slides with smooth transitions and connecting phrases.</p>
+</div>
+
+<hr class="divider">
+
+<h2>3. UX Improvements</h2>
+
+<div class="card">
+<h3>Slide Minimap / Outline Sidebar <span class="tag tag-ux">UX</span> <span class="tag tag-high">High Priority</span></h3>
+<p>A collapsible left sidebar showing thumbnail previews of all slides. Clicking a thumbnail jumps to that slide. Keyboard shortcut: <code>Ctrl+M</code>.</p>
+</div>
+
+<div class="card">
+<h3>Keyboard Shortcut Overlay <span class="tag tag-ux">UX</span> <span class="tag tag-low">Low Priority</span></h3>
+<p>Press <code>?</code> to show a modal listing all keyboard shortcuts. Common in presentation tools.</p>
+</div>
+
+<div class="card">
+<h3>Fullscreen Mode <span class="tag tag-ux">UX</span> <span class="tag tag-high">High Priority</span></h3>
+<p>A button to enter browser fullscreen (<code>document.documentElement.requestFullscreen()</code>). Hides browser chrome for a cleaner presentation experience.</p>
+</div>
+
+<div class="card">
+<h3>Print-Optimized CSS <span class="tag tag-ux">UX</span> <span class="tag tag-med">Medium Priority</span></h3>
+<p>A <code>@media print</code> stylesheet that renders each slide on a separate page, hides navigation, and expands all accordion/tab content for a complete printout.</p>
+</div>
+
+<div class="card">
+<h3>Slide Transition Animations <span class="tag tag-ux">UX</span> <span class="tag tag-low">Low Priority</span></h3>
+<p>Beyond the current horizontal slide, add options: fade, zoom, flip, cube rotation. Configurable per-slide or globally in the JSON meta.</p>
+</div>
+
+<hr class="divider">
+
+<h2>4. Export & Integration</h2>
+
+<div class="card">
+<h3>JSON Import/Export <span class="tag tag-export">Export</span> <span class="tag tag-high">High Priority</span></h3>
+<p>A button in the presentation that downloads the slide data as JSON. Another tool/page that imports JSON and re-renders. This enables sharing, version control, and AI-based editing workflows.</p>
+</div>
+
+<div class="card">
+<h3>Embed Mode (iframe-friendly) <span class="tag tag-export">Export</span> <span class="tag tag-med">Medium Priority</span></h3>
+<p>A URL parameter <code>?embed=true</code> that hides the nav bar, theme switcher, and speaker notes — making the deck embeddable in LMS platforms, blogs, and documentation sites.</p>
+</div>
+
+<div class="card">
+<h3>QR Code Slide <span class="tag tag-idea">Idea</span> <span class="tag tag-low">Low Priority</span></h3>
+<p>Auto-generate a QR code on the last slide linking to the hosted version, so audience members can access the deck on their phones immediately.</p>
+</div>
+
+<hr class="divider">
+
+<h2>5. Teacher-First Features</h2>
+
+<div class="card">
+<h3>Hidden Teacher Notes Layer <span class="tag tag-ux">UX</span> <span class="tag tag-high">High Priority</span></h3>
+<p>Beyond speaker notes, a "teacher-only" layer with: timing suggestions, common student questions, answer keys, and follow-up prompts. Toggled with a password or button combination.</p>
+</div>
+
+<div class="card">
+<h3>Auto-Generated Recap Slide <span class="tag tag-ai">AI</span> <span class="tag tag-med">Medium Priority</span></h3>
+<p>At the end of a deck, automatically generate a "What We Covered" slide by extracting headings from all previous slides.</p>
+</div>
+
+<div class="card">
+<h3>Random Student Selector <span class="tag tag-idea">Idea</span> <span class="tag tag-low">Low Priority</span></h3>
+<p>A widget in presenter mode that randomly picks a student name from a pre-loaded list. Fun for participation and engagement.</p>
+</div>
+
+<div class="card">
+<h3>Lesson Timer with Pacing Alerts <span class="tag tag-ux">UX</span> <span class="tag tag-med">Medium Priority</span></h3>
+<p>Set expected time per slide. Timer changes color when you're behind schedule. Helps teachers stay on track during live sessions.</p>
+</div>
+
+<hr class="divider">
+
+<h2>6. Design System Notes</h2>
+
+<div class="card">
+<h3>Why OKLCH Colors</h3>
+<ul>
+<li><strong>Perceptual uniformity</strong>: Equal lightness values actually look equally bright (unlike HSL)</li>
+<li><strong>Predictable palettes</strong>: Changing hue while keeping L and C constant produces harmonious variants</li>
+<li><strong>Wide gamut</strong>: Access to colors beyond sRGB on modern displays</li>
+<li><strong>CSS-native</strong>: Supported in all modern browsers since 2023</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>3-Layer Token Architecture</h3>
+<ul>
+<li><strong>Base tokens</strong>: Raw OKLCH values (<code>oklch(55% 0.12 250)</code>)</li>
+<li><strong>Semantic tokens</strong>: <code>--color-primary</code>, <code>--color-success</code>, <code>--color-bg</code></li>
+<li><strong>Component tokens</strong>: <code>--btn-bg</code>, <code>--card-border</code> (not yet implemented, planned)</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Responsive Strategy</h3>
+<ul>
+<li>Slides use <code>clamp()</code> for fluid typography</li>
+<li>Block layouts switch from multi-column to single column at 768px</li>
+<li>Touch swipe enabled for mobile navigation</li>
+<li>Nav bar fixed at bottom for thumb-friendly mobile use</li>
+</ul>
+</div>
+
+<footer>
+Lecta AI Specification v1.0 · Last updated: 2026-05-24
+</footer>
+
+</body>
+</html>
