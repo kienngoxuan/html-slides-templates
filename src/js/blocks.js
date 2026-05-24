@@ -14,6 +14,10 @@ const InteractiveBlocks = (function () {
     initTimeline();
     initBullets();
     initInteractiveImages();
+    initCharts();
+    initTables();
+    initBento();
+    initFlows();
   }
 
   /* === Interactive Image URL Customizer === */
@@ -176,6 +180,599 @@ const InteractiveBlocks = (function () {
     document.querySelectorAll('.bullet-item').forEach(item => {
       item.addEventListener('click', () => {
         item.classList.toggle('expanded');
+      });
+    });
+  }
+
+  /* === Charts === */
+  function initCharts() {
+    document.querySelectorAll('.chart-block-container').forEach(container => {
+      const svg = container.querySelector('.svg-chart');
+      if (!svg) return;
+
+      const type = container.dataset.chartType || 'bar';
+      let labels = [];
+      let datasets = [];
+
+      try {
+        labels = JSON.parse(container.dataset.labels || '[]');
+        datasets = JSON.parse(container.dataset.datasets || '[]');
+      } catch (e) {
+        console.error('Error parsing chart data:', e);
+        return;
+      }
+
+      svg.innerHTML = ''; // Clear preview
+
+      if (datasets.length === 0) return;
+
+      // Setup theme gradients
+      const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+      defs.innerHTML = `
+        <linearGradient id="primary-grad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="var(--color-primary)" />
+          <stop offset="100%" stop-color="color-mix(in oklch, var(--color-primary) 30%, transparent)" />
+        </linearGradient>
+        <linearGradient id="success-grad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="var(--color-success)" />
+          <stop offset="100%" stop-color="color-mix(in oklch, var(--color-success) 30%, transparent)" />
+        </linearGradient>
+        <linearGradient id="accent-grad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="var(--color-accent)" />
+          <stop offset="100%" stop-color="color-mix(in oklch, var(--color-accent) 30%, transparent)" />
+        </linearGradient>
+      `;
+      svg.appendChild(defs);
+
+      if (type === 'bar') {
+        renderBarChart(svg, labels, datasets);
+      } else if (type === 'line') {
+        renderLineChart(svg, labels, datasets);
+      } else if (type === 'donut') {
+        renderDonutChart(svg, labels, datasets);
+      }
+
+      // Render legend
+      const legend = container.querySelector('.chart-legend');
+      if (legend) {
+        legend.innerHTML = datasets.map((ds, dsi) => `
+          <div class="legend-item" data-dataset-index="${dsi}">
+            <span class="legend-color" style="background: var(--color-${ds.color || 'primary'})"></span>
+            <span class="legend-label">${ds.label}</span>
+          </div>
+        `).join('');
+
+        legend.querySelectorAll('.legend-item').forEach(item => {
+          item.addEventListener('click', () => {
+            const idx = parseInt(item.dataset.datasetIndex, 10);
+            const elements = svg.querySelectorAll(`.dataset-group-${idx}`);
+            const isActive = !item.classList.contains('inactive');
+
+            item.classList.toggle('inactive');
+            elements.forEach(el => {
+              el.style.opacity = isActive ? '0.1' : '1';
+              el.style.transition = 'opacity var(--transition-base)';
+            });
+          });
+        });
+      }
+    });
+  }
+
+  function renderBarChart(svg, labels, datasets) {
+    const W = 600;
+    const H = 320;
+    const padding = 50;
+    const chartW = W - padding * 2;
+    const chartH = H - padding * 2;
+
+    let maxVal = 0;
+    datasets.forEach(ds => {
+      ds.data.forEach(val => { if (val > maxVal) maxVal = val; });
+    });
+    maxVal = maxVal * 1.15 || 100;
+
+    const groupCount = labels.length;
+    const dsCount = datasets.length;
+    const groupWidth = chartW / groupCount;
+    const barSpacing = 4;
+    const totalBarsWidth = groupWidth * 0.65;
+    const singleBarWidth = totalBarsWidth / dsCount - barSpacing;
+
+    const ticks = 4;
+    for (let i = 0; i <= ticks; i++) {
+      const y = padding + chartH - (i / ticks) * chartH;
+      const val = Math.round((i / ticks) * maxVal);
+
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('x1', padding);
+      line.setAttribute('y1', y);
+      line.setAttribute('x2', W - padding);
+      line.setAttribute('y2', y);
+      line.setAttribute('stroke', 'var(--color-border-light)');
+      line.setAttribute('stroke-width', '1');
+      if (i > 0) line.setAttribute('stroke-dasharray', '4 4');
+      svg.appendChild(line);
+
+      const txt = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      txt.setAttribute('x', padding - 10);
+      txt.setAttribute('y', y + 4);
+      txt.setAttribute('text-anchor', 'end');
+      txt.setAttribute('fill', 'var(--color-text-muted)');
+      txt.setAttribute('font-size', '11');
+      txt.setAttribute('font-family', 'var(--font-mono)');
+      txt.textContent = val;
+      svg.appendChild(txt);
+    }
+
+    labels.forEach((lbl, gIdx) => {
+      const groupX = padding + gIdx * groupWidth;
+      const centerX = groupX + groupWidth / 2;
+
+      const txt = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      txt.setAttribute('x', centerX);
+      txt.setAttribute('y', H - padding + 24);
+      txt.setAttribute('text-anchor', 'middle');
+      txt.setAttribute('fill', 'var(--color-text-muted)');
+      txt.setAttribute('font-size', '12');
+      txt.textContent = lbl;
+      svg.appendChild(txt);
+
+      datasets.forEach((ds, dsIdx) => {
+        const val = ds.data[gIdx] || 0;
+        const barH = (val / maxVal) * chartH;
+        const barX = centerX - totalBarsWidth / 2 + dsIdx * (singleBarWidth + barSpacing);
+        const barY = H - padding - barH;
+
+        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rect.setAttribute('class', `dataset-group-${dsIdx}`);
+        rect.setAttribute('x', barX);
+        rect.setAttribute('y', H - padding);
+        rect.setAttribute('width', singleBarWidth);
+        rect.setAttribute('height', 0);
+        rect.setAttribute('rx', 4);
+        rect.setAttribute('fill', `url(#${ds.color || 'primary'}-grad)`);
+
+        rect.style.cursor = 'pointer';
+        rect.style.transition = 'y 0.8s cubic-bezier(0.25, 1, 0.5, 1), height 0.8s cubic-bezier(0.25, 1, 0.5, 1)';
+        
+        const title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+        title.textContent = `${ds.label}: ${val}`;
+        rect.appendChild(title);
+
+        svg.appendChild(rect);
+
+        setTimeout(() => {
+          rect.setAttribute('y', barY);
+          rect.setAttribute('height', Math.max(2, barH));
+        }, 50 + gIdx * 30);
+      });
+    });
+
+    const baseline = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    baseline.setAttribute('x1', padding);
+    baseline.setAttribute('y1', H - padding);
+    baseline.setAttribute('x2', W - padding);
+    baseline.setAttribute('y2', H - padding);
+    baseline.setAttribute('stroke', 'var(--color-border)');
+    baseline.setAttribute('stroke-width', '1.5');
+    svg.appendChild(baseline);
+  }
+
+  function renderLineChart(svg, labels, datasets) {
+    const W = 600;
+    const H = 320;
+    const padding = 50;
+    const chartW = W - padding * 2;
+    const chartH = H - padding * 2;
+
+    let maxVal = 0;
+    datasets.forEach(ds => {
+      ds.data.forEach(val => { if (val > maxVal) maxVal = val; });
+    });
+    maxVal = maxVal * 1.15 || 100;
+
+    const ticks = 4;
+    for (let i = 0; i <= ticks; i++) {
+      const y = padding + chartH - (i / ticks) * chartH;
+      const val = Math.round((i / ticks) * maxVal);
+
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('x1', padding);
+      line.setAttribute('y1', y);
+      line.setAttribute('x2', W - padding);
+      line.setAttribute('y2', y);
+      line.setAttribute('stroke', 'var(--color-border-light)');
+      line.setAttribute('stroke-width', '1');
+      if (i > 0) line.setAttribute('stroke-dasharray', '4 4');
+      svg.appendChild(line);
+
+      const txt = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      txt.setAttribute('x', padding - 10);
+      txt.setAttribute('y', y + 4);
+      txt.setAttribute('text-anchor', 'end');
+      txt.setAttribute('fill', 'var(--color-text-muted)');
+      txt.setAttribute('font-size', '11');
+      txt.setAttribute('font-family', 'var(--font-mono)');
+      txt.textContent = val;
+      svg.appendChild(txt);
+    }
+
+    const stepX = chartW / (labels.length - 1 || 1);
+
+    labels.forEach((lbl, idx) => {
+      const x = padding + idx * stepX;
+      const txt = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      txt.setAttribute('x', x);
+      txt.setAttribute('y', H - padding + 24);
+      txt.setAttribute('text-anchor', 'middle');
+      txt.setAttribute('fill', 'var(--color-text-muted)');
+      txt.setAttribute('font-size', '12');
+      txt.textContent = lbl;
+      svg.appendChild(txt);
+    });
+
+    datasets.forEach((ds, dsIdx) => {
+      let pathD = '';
+      const points = [];
+
+      ds.data.forEach((val, idx) => {
+        const x = padding + idx * stepX;
+        const y = H - padding - (val / maxVal) * chartH;
+        points.push({ x, y });
+        if (idx === 0) {
+          pathD += `M ${x} ${y}`;
+        } else {
+          const prev = points[idx - 1];
+          const cp1x = prev.x + stepX / 3;
+          const cp1y = prev.y;
+          const cp2x = x - stepX / 3;
+          const cp2y = y;
+          pathD += ` C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${x} ${y}`;
+        }
+      });
+
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('class', `dataset-group-${dsIdx}`);
+      path.setAttribute('d', pathD);
+      path.setAttribute('fill', 'none');
+      path.setAttribute('stroke', `var(--color-${ds.color || 'primary'})`);
+      path.setAttribute('stroke-width', '3');
+      path.setAttribute('stroke-linecap', 'round');
+      
+      const pathLength = 1500;
+      path.setAttribute('stroke-dasharray', pathLength);
+      path.setAttribute('stroke-dashoffset', pathLength);
+      path.style.transition = 'stroke-dashoffset 1.5s ease-out';
+      svg.appendChild(path);
+
+      setTimeout(() => {
+        path.setAttribute('stroke-dashoffset', '0');
+      }, 100);
+
+      points.forEach((pt, idx) => {
+        const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        dot.setAttribute('class', `dataset-group-${dsIdx}`);
+        dot.setAttribute('cx', pt.x);
+        dot.setAttribute('cy', pt.y);
+        dot.setAttribute('r', '5');
+        dot.setAttribute('fill', 'var(--color-bg)');
+        dot.setAttribute('stroke', `var(--color-${ds.color || 'primary'})`);
+        dot.setAttribute('stroke-width', '3');
+        dot.style.cursor = 'pointer';
+        dot.style.transition = 'transform 0.2s ease, r 0.2s ease';
+
+        const title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+        title.textContent = `${ds.label}: ${ds.data[idx]}`;
+        dot.appendChild(title);
+
+        dot.addEventListener('mouseenter', () => {
+          dot.setAttribute('r', '7');
+          dot.style.transform = 'scale(1.2)';
+        });
+        dot.addEventListener('mouseleave', () => {
+          dot.setAttribute('r', '5');
+          dot.style.transform = 'none';
+        });
+
+        svg.appendChild(dot);
+      });
+    });
+
+    const baseline = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    baseline.setAttribute('x1', padding);
+    baseline.setAttribute('y1', H - padding);
+    baseline.setAttribute('x2', W - padding);
+    baseline.setAttribute('y2', H - padding);
+    baseline.setAttribute('stroke', 'var(--color-border)');
+    baseline.setAttribute('stroke-width', '1.5');
+    svg.appendChild(baseline);
+  }
+
+  function renderDonutChart(svg, labels, datasets) {
+    const W = 600;
+    const H = 320;
+    const cx = W / 2 - 80;
+    const cy = H / 2;
+    const r = 70;
+    const strokeW = 20;
+    const circumference = 2 * Math.PI * r;
+
+    const data = datasets[0].data || [];
+    const total = data.reduce((a, b) => a + b, 0) || 1;
+
+    let accumulatedAngle = -Math.PI / 2;
+
+    const chartLegendGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+
+    data.forEach((val, idx) => {
+      const percentage = val / total;
+      const strokeLength = percentage * circumference;
+      const strokeOffset = circumference - strokeLength;
+      
+      const colors = ['primary', 'success', 'accent', 'error', 'warning'];
+      const colorName = colors[idx % colors.length];
+
+      const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      circle.setAttribute('class', `dataset-group-0`);
+      circle.setAttribute('cx', cx);
+      circle.setAttribute('cy', cy);
+      circle.setAttribute('r', r);
+      circle.setAttribute('fill', 'none');
+      circle.setAttribute('stroke', `var(--color-${colorName})`);
+      circle.setAttribute('stroke-width', strokeW);
+      circle.setAttribute('stroke-dasharray', circumference);
+      circle.setAttribute('stroke-dashoffset', circumference);
+      
+      const rotAngle = (accumulatedAngle + Math.PI / 2) * (180 / Math.PI);
+      circle.setAttribute('transform', `rotate(${rotAngle} ${cx} ${cy})`);
+      accumulatedAngle += percentage * 2 * Math.PI;
+
+      circle.style.cursor = 'pointer';
+      circle.style.transition = 'stroke-dashoffset 1s ease-out, stroke-width 0.2s ease';
+
+      const title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+      title.textContent = `${labels[idx] || 'Item'}: ${val} (${Math.round(percentage * 100)}%)`;
+      circle.appendChild(title);
+
+      circle.addEventListener('mouseenter', () => {
+        circle.setAttribute('stroke-width', strokeW + 4);
+      });
+      circle.addEventListener('mouseleave', () => {
+        circle.setAttribute('stroke-width', strokeW);
+      });
+
+      svg.appendChild(circle);
+
+      setTimeout(() => {
+        circle.setAttribute('stroke-dashoffset', strokeOffset);
+      }, 100);
+
+      const legendX = cx + r + 50;
+      const legendY = cy - (data.length * 24) / 2 + idx * 24 + 8;
+
+      const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      dot.setAttribute('cx', legendX);
+      dot.setAttribute('cy', legendY - 4);
+      dot.setAttribute('r', '6');
+      dot.setAttribute('fill', `var(--color-${colorName})`);
+      chartLegendGroup.appendChild(dot);
+
+      const labelTxt = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      labelTxt.setAttribute('x', legendX + 16);
+      labelTxt.setAttribute('y', legendY);
+      labelTxt.setAttribute('fill', 'var(--color-text)');
+      labelTxt.setAttribute('font-size', '13');
+      labelTxt.setAttribute('font-weight', '500');
+      labelTxt.textContent = `${labels[idx] || 'Item'}`;
+      chartLegendGroup.appendChild(labelTxt);
+
+      const valTxt = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      valTxt.setAttribute('x', legendX + 210);
+      valTxt.setAttribute('y', legendY);
+      valTxt.setAttribute('fill', 'var(--color-text-muted)');
+      valTxt.setAttribute('font-size', '13');
+      valTxt.setAttribute('font-family', 'var(--font-mono)');
+      valTxt.setAttribute('text-anchor', 'end');
+      valTxt.textContent = `${val} (${Math.round(percentage * 100)}%)`;
+      chartLegendGroup.appendChild(valTxt);
+    });
+
+    svg.appendChild(chartLegendGroup);
+
+    const centerTotal = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    centerTotal.setAttribute('x', cx);
+    centerTotal.setAttribute('y', cy - 5);
+    centerTotal.setAttribute('text-anchor', 'middle');
+    centerTotal.setAttribute('fill', 'var(--color-text-muted)');
+    centerTotal.setAttribute('font-size', '11');
+    centerTotal.setAttribute('font-weight', '600');
+    centerTotal.textContent = 'TOTAL';
+    svg.appendChild(centerTotal);
+
+    const centerVal = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    centerVal.setAttribute('x', cx);
+    centerVal.setAttribute('y', cy + 14);
+    centerVal.setAttribute('text-anchor', 'middle');
+    centerVal.setAttribute('fill', 'var(--color-text)');
+    centerVal.setAttribute('font-size', '18');
+    centerVal.setAttribute('font-weight', '700');
+    centerVal.setAttribute('font-family', 'var(--font-mono)');
+    centerVal.textContent = total;
+    svg.appendChild(centerVal);
+  }
+
+  /* === Tables === */
+  function initTables() {
+    document.querySelectorAll('.table-search-input').forEach(input => {
+      input.addEventListener('input', () => {
+        const query = input.value.toLowerCase().trim();
+        const container = input.closest('.table-block-container');
+        const rows = container.querySelectorAll('tbody tr');
+
+        rows.forEach(row => {
+          const cells = Array.from(row.querySelectorAll('td'));
+          const matches = cells.some(cell => cell.textContent.toLowerCase().includes(query));
+          row.style.display = matches ? '' : 'none';
+        });
+      });
+    });
+
+    document.querySelectorAll('.sortable-th').forEach(th => {
+      let isAsc = true;
+      th.addEventListener('click', () => {
+        const container = th.closest('.table-block-container');
+        const table = container.querySelector('table');
+        const tbody = table.querySelector('tbody');
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+        const index = Array.from(th.parentNode.children).indexOf(th);
+        
+        th.parentNode.querySelectorAll('.sort-indicator').forEach(ind => ind.textContent = '↕');
+        isAsc = !th.classList.contains('asc-sort');
+        th.parentNode.querySelectorAll('th').forEach(h => h.classList.remove('asc-sort', 'desc-sort'));
+
+        th.classList.add(isAsc ? 'asc-sort' : 'desc-sort');
+        th.querySelector('.sort-indicator').textContent = isAsc ? '▲' : '▼';
+
+        rows.sort((a, b) => {
+          const aText = a.children[index].textContent.trim();
+          const bText = b.children[index].textContent.trim();
+
+          const aNum = parseFloat(aText.replace(/[^0-9.-]/g, ''));
+          const bNum = parseFloat(bText.replace(/[^0-9.-]/g, ''));
+
+          if (!isNaN(aNum) && !isNaN(bNum)) {
+            return isAsc ? aNum - bNum : bNum - aNum;
+          }
+
+          return isAsc 
+            ? aText.localeCompare(bText) 
+            : bText.localeCompare(aText);
+        });
+
+        rows.forEach(row => tbody.appendChild(row));
+      });
+    });
+  }
+
+  /* === Bento Grid === */
+  function initBento() {
+    // Premium css hover interactions only
+  }
+
+  /* === Flow / Mindmap === */
+  function initFlows() {
+    document.querySelectorAll('.flow-block-container').forEach(container => {
+      const svg = container.querySelector('.flow-svg-canvas');
+      if (!svg) return;
+
+      let nodes = [];
+      let connections = [];
+
+      try {
+        nodes = JSON.parse(container.dataset.nodes || '[]');
+        connections = JSON.parse(container.dataset.connections || '[]');
+      } catch (e) {
+        console.error('Error parsing flow data:', e);
+        return;
+      }
+
+      const nodeWidth = 160;
+      const nodeHeight = 50;
+      const paddingX = 50;
+      const spreadWidth = 800 - paddingX * 2 - nodeWidth;
+
+      const N = nodes.length;
+      nodes.forEach((node, idx) => {
+        if (node.x === undefined) {
+          node.x = paddingX + idx * (spreadWidth / Math.max(1, N - 1));
+        }
+        if (node.y === undefined) {
+          node.y = 100 + (idx % 2 === 0 ? 0 : 80);
+        }
+      });
+
+      const defs = svg.querySelector('defs');
+      svg.innerHTML = '';
+      if (defs) svg.appendChild(defs);
+
+      connections.forEach(conn => {
+        const fromNode = nodes.find(n => n.id === conn.from);
+        const toNode = nodes.find(n => n.id === conn.to);
+        if (!fromNode || !toNode) return;
+
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        const startX = fromNode.x + nodeWidth / 2;
+        const startY = fromNode.y + nodeHeight / 2;
+        const endX = toNode.x + nodeWidth / 2;
+        const endY = toNode.y + nodeHeight / 2;
+
+        const dx = endX - startX;
+        const cp1x = startX + dx * 0.4;
+        const cp1y = startY;
+        const cp2x = startX + dx * 0.6;
+        const cp2y = endY;
+
+        path.setAttribute('d', `M ${startX} ${startY} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${endX} ${endY}`);
+        path.setAttribute('fill', 'none');
+        path.setAttribute('stroke', 'var(--color-primary-alpha)');
+        path.setAttribute('stroke-width', '2.5');
+        path.setAttribute('marker-end', 'url(#arrow)');
+        svg.appendChild(path);
+      });
+
+      nodes.forEach(node => {
+        const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        group.setAttribute('class', 'flow-node-group');
+        group.setAttribute('data-id', node.id);
+        group.style.cursor = 'pointer';
+
+        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rect.setAttribute('x', node.x);
+        rect.setAttribute('y', node.y);
+        rect.setAttribute('width', nodeWidth);
+        rect.setAttribute('height', nodeHeight);
+        rect.setAttribute('rx', 12);
+        rect.setAttribute('fill', 'var(--color-surface)');
+        rect.setAttribute('stroke', 'var(--color-border)');
+        rect.setAttribute('stroke-width', '2');
+        rect.style.transition = 'all var(--transition-base)';
+
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', node.x + nodeWidth / 2);
+        text.setAttribute('y', node.y + nodeHeight / 2 + 5);
+        text.setAttribute('text-anchor', 'middle');
+        text.setAttribute('fill', 'var(--color-text)');
+        text.setAttribute('font-size', '12');
+        text.setAttribute('font-weight', '600');
+        text.textContent = node.label;
+        text.style.pointerEvents = 'none';
+
+        group.appendChild(rect);
+        group.appendChild(text);
+        svg.appendChild(group);
+
+        group.addEventListener('click', () => {
+          svg.querySelectorAll('rect').forEach(r => {
+            r.setAttribute('fill', 'var(--color-surface)');
+            r.setAttribute('stroke', 'var(--color-border)');
+          });
+
+          rect.setAttribute('fill', 'var(--color-primary-alpha)');
+          rect.setAttribute('stroke', 'var(--color-primary)');
+
+          const defaultMsg = container.querySelector('.flow-detail-default-msg');
+          const content = container.querySelector('.flow-detail-content');
+          const title = container.querySelector('.flow-detail-title');
+          const desc = container.querySelector('.flow-detail-desc');
+
+          if (defaultMsg && content && title && desc) {
+            defaultMsg.style.display = 'none';
+            content.style.display = 'block';
+            title.textContent = node.label;
+            desc.textContent = node.details || 'No details specified for this step.';
+          }
+        });
       });
     });
   }
