@@ -1,0 +1,252 @@
+{
+  "meta": {
+    "title": "Introduction to Modern Web Development",
+    "subtitle": "A Comprehensive Workshop for Beginners",
+    "author": "Lecta AI",
+    "date": "2026",
+    "theme": "ocean",
+    "duration": 45
+  },
+  "slides": [
+    {
+      "id": "slide-1",
+      "type": "title",
+      "data": {
+        "heading": "Introduction to Modern Web Development",
+        "subtitle": "From Zero to Hero — Interactive Workshop",
+        "badge": "Workshop · 45 min",
+        "speakerNotes": "Welcome everyone! Today we'll explore the fundamentals of modern web development. This workshop is designed for complete beginners. Let's make this interactive and fun!"
+      }
+    },
+    {
+      "id": "slide-2",
+      "type": "bullets",
+      "data": {
+        "heading": "Learning Objectives",
+        "icon": "🎯",
+        "items": [
+          { "text": "Understand HTML structure and semantic elements", "detail": "HTML is the skeleton of every webpage. Semantic elements like <header>, <nav>, <main>, and <footer> give meaning to your content." },
+          { "text": "Master CSS styling and modern layout techniques", "detail": "CSS controls visual presentation. Flexbox and Grid are the two modern layout systems every developer needs to know." },
+          { "text": "Write interactive JavaScript for dynamic behavior", "detail": "JavaScript brings pages to life with event handling, DOM manipulation, and asynchronous operations." },
+          { "text": "Build responsive designs for all devices", "detail": "Media queries and fluid layouts ensure your website looks great on phones, tablets, and desktops." },
+          { "text": "Deploy your first project to the web", "detail": "Services like Netlify, Vercel, and GitHub Pages make deployment free and instant." }
+        ],
+        "speakerNotes": "Walk through each objective. Click each bullet to reveal the detailed explanation. Ask the audience which topic they're most excited about."
+      }
+    },
+    {
+      "id": "slide-3",
+      "type": "accordion",
+      "data": {
+        "heading": "The Web Technology Stack",
+        "icon": "📚",
+        "items": [
+          {
+            "title": "HTML — The Structure",
+            "content": "HTML (HyperText Markup Language) defines the structure and content of web pages. Think of it as the blueprint of a building — it determines what rooms exist and where they are, but not how they look.",
+            "example": "<article>\n  <h1>My First Blog Post</h1>\n  <p>Hello, world!</p>\n</article>"
+          },
+          {
+            "title": "CSS — The Style",
+            "content": "CSS (Cascading Style Sheets) controls the visual presentation. Colors, fonts, spacing, animations — everything visual is CSS. Modern CSS includes powerful features like Grid, Custom Properties, and Container Queries.",
+            "example": ".card {\n  background: linear-gradient(135deg, #667eea, #764ba2);\n  border-radius: 16px;\n  padding: 2rem;\n}"
+          },
+          {
+            "title": "JavaScript — The Behavior",
+            "content": "JavaScript makes pages interactive and dynamic. From simple button clicks to complex single-page applications, JS is the programming language of the web. Modern JS (ES2024+) is powerful and expressive.",
+            "example": "document.querySelector('.btn')\n  .addEventListener('click', () => {\n    alert('You clicked me!');\n  });"
+          },
+          {
+            "title": "DevTools — Your Best Friend",
+            "content": "Every modern browser includes Developer Tools (F12). The Elements panel lets you inspect HTML/CSS live. The Console lets you run JavaScript. The Network panel shows all HTTP requests. Master these tools early!"
+          }
+        ],
+        "speakerNotes": "Open each accordion section one by one. For the code examples, consider showing a live demo in VS Code. Ask students: 'Which layer do you think is the hardest to learn?'"
+      }
+    },
+    {
+      "id": "slide-4",
+      "type": "tabs",
+      "data": {
+        "heading": "CSS Layout Methods Compared",
+        "icon": "🎨",
+        "tabs": [
+          {
+            "label": "Flexbox",
+            "content": "Flexbox is a one-dimensional layout method for arranging items in rows OR columns. It excels at distributing space and aligning items within a container. Perfect for navigation bars, card rows, and centering content.",
+            "features": ["One-dimensional (row or column)", "Easy vertical centering", "Flexible item sizing with flex-grow/shrink", "Great for component-level layouts"],
+            "code": "display: flex;\njustify-content: space-between;\nalign-items: center;\ngap: 1rem;"
+          },
+          {
+            "label": "CSS Grid",
+            "content": "CSS Grid is a two-dimensional layout system for rows AND columns simultaneously. It's ideal for page-level layouts, complex dashboards, and any design requiring precise placement in both dimensions.",
+            "features": ["Two-dimensional (rows and columns)", "Named grid areas", "Explicit track sizing", "Great for page-level layouts"],
+            "code": "display: grid;\ngrid-template-columns: repeat(3, 1fr);\ngrid-template-rows: auto 1fr auto;\ngap: 1.5rem;"
+          },
+          {
+            "label": "Container Queries",
+            "content": "Container Queries let components adapt based on their parent container's size, not the viewport. This is a game-changer for reusable components that need to work in different contexts.",
+            "features": ["Component-level responsiveness", "Based on parent size, not viewport", "Supported in all modern browsers", "Perfect for design systems"],
+            "code": ".card-container {\n  container-type: inline-size;\n}\n@container (min-width: 400px) {\n  .card { flex-direction: row; }\n}"
+          }
+        ],
+        "speakerNotes": "Switch between tabs to compare the three layout methods. Emphasize that Flexbox and Grid are complementary, not competing. Container Queries are the newest and most exciting addition."
+      }
+    },
+    {
+      "id": "slide-5",
+      "type": "stepper",
+      "data": {
+        "heading": "Building Your First Webpage",
+        "icon": "🚀",
+        "steps": [
+          {
+            "title": "Step 1: Create the HTML file",
+            "content": "Create a new file called index.html. Add the basic HTML5 boilerplate with <!DOCTYPE html>, <html>, <head>, and <body> tags. This is the foundation of every web page.",
+            "tip": "Use the '!' shortcut in VS Code to generate boilerplate instantly."
+          },
+          {
+            "title": "Step 2: Add your content",
+            "content": "Inside the <body> tag, add semantic HTML elements: a <header> with your site title, a <main> section with an <article> containing your content, and a <footer> with copyright info.",
+            "tip": "Always use semantic elements instead of generic <div> tags — it improves accessibility and SEO."
+          },
+          {
+            "title": "Step 3: Style with CSS",
+            "content": "Create a styles.css file and link it in your <head>. Start with a CSS reset, then add your custom styles using modern features like custom properties, flexbox, and gradients.",
+            "tip": "Set box-sizing: border-box on everything first — it makes sizing much more intuitive."
+          },
+          {
+            "title": "Step 4: Add interactivity",
+            "content": "Create a script.js file and link it before the closing </body> tag. Add event listeners for user interactions like clicks, hover effects, and form submissions.",
+            "tip": "Use 'defer' attribute on your <script> tag so it doesn't block page rendering."
+          },
+          {
+            "title": "Step 5: Deploy to the web",
+            "content": "Push your code to GitHub, then connect the repository to Netlify or Vercel for instant, free deployment. Every push to main will automatically update your live site.",
+            "tip": "Add a custom domain later — most registrars offer .dev domains for around $12/year."
+          }
+        ],
+        "speakerNotes": "Walk through each step one at a time. At each step, show the corresponding code on screen. Give students 2 minutes per step to follow along on their own laptops."
+      }
+    },
+    {
+      "id": "slide-6",
+      "type": "cards",
+      "data": {
+        "heading": "Key Concepts — Flip to Learn",
+        "icon": "🃏",
+        "cards": [
+          { "front": "DOM", "back": "Document Object Model — the tree-like representation of your HTML that JavaScript can read and modify in real time." },
+          { "front": "API", "back": "Application Programming Interface — a contract that allows two software systems to communicate. REST and GraphQL are the most common web API patterns." },
+          { "front": "SPA", "back": "Single Page Application — a web app that loads once and dynamically updates content without full page reloads. React, Vue, and Angular build SPAs." },
+          { "front": "SSR", "back": "Server-Side Rendering — HTML is generated on the server for each request. Improves SEO and initial load time. Next.js and Nuxt.js support SSR." },
+          { "front": "PWA", "back": "Progressive Web App — a website that can be installed like a native app, works offline, and sends push notifications. Uses Service Workers and Web Manifests." },
+          { "front": "a11y", "back": "Accessibility — designing websites usable by everyone, including people with disabilities. Use semantic HTML, ARIA labels, and keyboard navigation." }
+        ],
+        "speakerNotes": "Have students click each card to flip it. After revealing all definitions, ask them to close their eyes and quiz them: 'What does SPA stand for?'"
+      }
+    },
+    {
+      "id": "slide-7",
+      "type": "quiz",
+      "data": {
+        "heading": "Quick Check — Test Your Knowledge",
+        "icon": "❓",
+        "questions": [
+          {
+            "question": "Which language is used to define the STRUCTURE of a web page?",
+            "options": ["CSS", "JavaScript", "HTML", "Python"],
+            "correct": 2,
+            "explanation": "HTML (HyperText Markup Language) defines the structure and content of web pages. CSS handles styling, and JavaScript handles behavior."
+          },
+          {
+            "question": "What CSS property creates a two-dimensional layout?",
+            "options": ["display: flex", "display: grid", "display: block", "display: table"],
+            "correct": 1,
+            "explanation": "CSS Grid (display: grid) is the two-dimensional layout system. Flexbox is one-dimensional (row OR column)."
+          },
+          {
+            "question": "What does 'responsive design' mean?",
+            "options": ["Fast loading speed", "Adapts to different screen sizes", "Uses animations", "Works without JavaScript"],
+            "correct": 1,
+            "explanation": "Responsive design means the layout adapts to different viewport sizes — from mobile phones to wide desktop monitors — using media queries and fluid layouts."
+          }
+        ],
+        "speakerNotes": "Run through the quiz interactively. Have students vote by raising hands before revealing answers. Celebrate correct answers!"
+      }
+    },
+    {
+      "id": "slide-8",
+      "type": "compare",
+      "data": {
+        "heading": "React vs. Vue — Framework Comparison",
+        "icon": "⚔️",
+        "left": {
+          "title": "React",
+          "items": [
+            "Library (UI layer only)",
+            "JSX syntax",
+            "Massive ecosystem",
+            "Backed by Meta",
+            "Steep learning curve",
+            "One-way data flow"
+          ],
+          "color": "blue"
+        },
+        "right": {
+          "title": "Vue",
+          "items": [
+            "Progressive framework",
+            "Template syntax",
+            "Curated ecosystem",
+            "Community-driven",
+            "Gentle learning curve",
+            "Two-way data binding"
+          ],
+          "color": "green"
+        },
+        "verdict": "Both are excellent choices. React offers more flexibility and job opportunities. Vue offers a smoother learning experience and better documentation.",
+        "speakerNotes": "Present this as a friendly comparison, not a competition. Emphasize that the best framework is the one you enjoy using. Ask students which they'd like to try first."
+      }
+    },
+    {
+      "id": "slide-9",
+      "type": "timeline",
+      "data": {
+        "heading": "Web Development Evolution",
+        "icon": "📅",
+        "events": [
+          { "year": "1991", "title": "The First Website", "description": "Tim Berners-Lee publishes the first-ever website at CERN. It was a simple text page explaining the World Wide Web project." },
+          { "year": "1996", "title": "CSS Is Born", "description": "CSS1 is released, finally separating content (HTML) from presentation (CSS). Web design becomes a real discipline." },
+          { "year": "2006", "title": "jQuery Revolution", "description": "jQuery simplifies DOM manipulation and AJAX. 'Write less, do more' becomes the mantra. It dominated for a decade." },
+          { "year": "2013", "title": "React Changes Everything", "description": "Facebook releases React with its virtual DOM and component model. The era of modern SPA frameworks begins." },
+          { "year": "2020", "title": "Jamstack & Edge", "description": "Static site generators, serverless functions, and edge computing reshape how we build and deploy web applications." },
+          { "year": "2025", "title": "AI-Powered Development", "description": "AI coding assistants, automated testing, and intelligent design tools transform the developer experience." }
+        ],
+        "speakerNotes": "Scroll through the timeline slowly. At each milestone, share a fun fact or personal anecdote about that era. Ask senior developers in the audience to share their experiences."
+      }
+    },
+    {
+      "id": "slide-10",
+      "type": "summary",
+      "data": {
+        "heading": "Key Takeaways",
+        "icon": "🎓",
+        "items": [
+          "HTML, CSS, and JavaScript form the core web technology stack",
+          "Modern layout uses Flexbox (1D) and Grid (2D)",
+          "Semantic HTML improves accessibility and SEO",
+          "Start simple, deploy early, iterate often",
+          "The web platform is more powerful than ever"
+        ],
+        "callToAction": "Start building today — your first website is just 3 files away!",
+        "resources": [
+          { "label": "MDN Web Docs", "url": "https://developer.mozilla.org" },
+          { "label": "freeCodeCamp", "url": "https://freecodecamp.org" },
+          { "label": "CSS-Tricks", "url": "https://css-tricks.com" }
+        ],
+        "speakerNotes": "Recap the key points. Encourage students to start a personal project this week. Share the resource links. Open the floor for Q&A."
+      }
+    }
+  ]
+}
