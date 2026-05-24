@@ -22,6 +22,8 @@ function buildSlideDeck(dataFile, outputFile) {
     read('src/css/blocks.css'),
     read('src/css/animations.css'),
     read('src/css/sidebar.css'),
+    read('src/emulator/emulator.css'),
+    read('src/emulator/emulator-layouts.css'),
   ].join('\n\n');
 
   // JS
@@ -29,6 +31,7 @@ function buildSlideDeck(dataFile, outputFile) {
   const jsBlocks  = read('src/js/blocks.js');
   const jsThemes  = read('src/js/themes.js');
   const jsSidebar = read('src/js/sidebar.js');
+  const jsEmulator = read('src/emulator/emulator.js');
 
   // Slides HTML
   const { renderSlideHTML } = require('./src/js/renderer.js');
@@ -113,6 +116,13 @@ function buildSlideDeck(dataFile, outputFile) {
     <div class="settings-section">
       <div class="settings-label">View</div>
       <button class="fullscreen-btn">⛶ Fullscreen</button>
+    </div>
+    <div class="settings-section">
+      <div class="settings-label">Viewport Mode</div>
+      <div class="viewport-toggle">
+        <button class="viewport-btn active" data-viewport="desktop">🖥️ Desktop</button>
+        <button class="viewport-btn" data-viewport="mobile">📱 Mobile Preview</button>
+      </div>
     </div>
     <div class="settings-section">
       <div class="settings-label">Teaching Panel</div>
@@ -251,6 +261,7 @@ ${jsEngine}
 ${jsBlocks}
 ${jsThemes}
 ${jsSidebar}
+${jsEmulator}
 
 document.addEventListener('DOMContentLoaded', () => {
   SidebarModule.init();
