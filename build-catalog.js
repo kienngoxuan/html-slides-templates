@@ -12,9 +12,39 @@ const cssVars = read('src/css/variables.css');
 const cssBase = read('src/css/base.css');
 const cssBlocks = read('src/css/blocks.css');
 const cssAnim = read('src/css/animations.css');
+const cssSidebar = read('src/css/sidebar.css');
 const cssCatalog = read('src/catalog/catalog-css.css');
+
 const jsBlocks = read('src/js/blocks.js');
-const jsThemes = read('src/js/themes.js');
+const jsSidebar = read('src/js/sidebar.js');
+
+// Create theme dot lists
+const LIGHT_THEMES = [
+  { id:'ocean', label:'Ocean' },
+  { id:'forest', label:'Forest' },
+  { id:'berry', label:'Berry' },
+  { id:'slate', label:'Slate' },
+  { id:'paper', label:'Paper' },
+  { id:'nordic', label:'Nordic' },
+  { id:'sunset', label:'Sunset' },
+];
+const lightThemeDotItems = LIGHT_THEMES.map(t =>
+  `<div class="theme-dot-item${t.id === 'ocean' ? ' active' : ''}" data-theme="${t.id}">
+    <div class="dot" data-theme="${t.id}"></div>
+    <span>${t.label}</span>
+  </div>`).join('');
+
+const DARK_THEMES = [
+  { id:'neon', label:'Neon' },
+  { id:'midnight', label:'Midnight' },
+  { id:'evergreen', label:'Evergreen' },
+  { id:'volcano', label:'Volcano' },
+];
+const darkThemeDotItems = DARK_THEMES.map(t =>
+  `<div class="theme-dot-item" data-theme="${t.id}">
+    <div class="dot" data-theme="${t.id}"></div>
+    <span>${t.label}</span>
+  </div>`).join('');
 
 const html = `<!DOCTYPE html>
 <html lang="en" data-theme="ocean">
@@ -28,21 +58,122 @@ ${cssVars}
 ${cssBase}
 ${cssBlocks}
 ${cssAnim}
+${cssSidebar}
 ${cssCatalog}
 </style>
 </head>
 <body class="catalog">
 
-<!-- Theme Switcher -->
-<div class="theme-switcher" style="position:fixed;top:1rem;right:1rem;z-index:9999">
-  <div class="theme-dot active" data-theme="ocean" title="Ocean"></div>
-  <div class="theme-dot" data-theme="forest" title="Forest"></div>
-  <div class="theme-dot" data-theme="berry" title="Berry"></div>
-  <div class="theme-dot" data-theme="slate" title="Slate"></div>
-  <div class="theme-dot" data-theme="neon" title="Neon"></div>
-  <div class="theme-dot" data-theme="paper" title="Paper"></div>
-  <div class="theme-dot" data-theme="nordic" title="Nordic"></div>
-  <div class="theme-dot" data-theme="sunset" title="Sunset"></div>
+<!-- ⚙️ GEAR BUTTON -->
+<button class="gear-btn" style="position: fixed; top: 1rem; right: 1rem; z-index: 2000;">⚙️</button>
+
+<!-- SETTINGS PANEL -->
+<div class="settings-panel">
+  <div class="settings-section">
+    <div class="settings-label">Appearance</div>
+    <div class="mode-toggle">
+      <button class="mode-btn active" data-mode="light">☀️ Light</button>
+      <button class="mode-btn" data-mode="dark">🌙 Dark</button>
+    </div>
+  </div>
+  <div class="settings-section light-theme-dots">
+    <div class="settings-label">Light Theme</div>
+    <div class="theme-dots-grid">${lightThemeDotItems}</div>
+  </div>
+  <div class="settings-section dark-theme-dots" style="display: none;">
+    <div class="settings-label">Dark Theme</div>
+    <div class="theme-dots-grid">${darkThemeDotItems}</div>
+  </div>
+  <div class="settings-section">
+    <div class="settings-label">View</div>
+    <button class="fullscreen-btn">⛶ Fullscreen</button>
+  </div>
+  <div class="settings-section">
+    <div class="settings-label">Teaching Panel</div>
+    <button class="sidebar-toggle-btn">▶ Teaching Panel</button>
+  </div>
+</div>
+
+<!-- RIGHT SIDEBAR (TEACHING PANEL) -->
+<aside class="right-sidebar">
+  <div class="sidebar-header">
+    <button class="sidebar-close">◀ Back</button>
+    <h3>🧑‍🏫 Teaching Panel</h3>
+  </div>
+  
+  <nav class="sidebar-tabs">
+    <button class="sidebar-tab active" data-tab="overview">📋 Overview</button>
+    <button class="sidebar-tab" data-tab="timer">⏱️ Timer</button>
+    <button class="sidebar-tab" data-tab="notes">📝 Notes</button>
+    <button class="sidebar-tab" data-tab="tools">🛠️ Tools</button>
+  </nav>
+
+  <div class="sidebar-content">
+    <!-- OVERVIEW TAB -->
+    <div class="sidebar-panel active" data-panel="overview">
+      <div class="slide-thumbnails">
+        <div class="slide-thumb active" data-slide="0">
+          <span class="slide-thumb-num">1</span>
+          <div class="slide-thumb-info">
+            <div class="slide-thumb-title">Components Catalog</div>
+            <div class="slide-thumb-type">🎨 Catalog Reference</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIMER TAB -->
+    <div class="sidebar-panel" data-panel="timer">
+      <div class="timer-display">
+        <div class="timer-clock">00:00</div>
+        <div class="timer-status">Ready to start</div>
+        <div class="timer-controls">
+          <button class="timer-btn" data-timer="start">Start</button>
+          <button class="timer-btn" data-timer="pause">Pause</button>
+          <button class="timer-btn danger" data-timer="reset">Reset</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOTES TAB -->
+    <div class="sidebar-panel" data-panel="notes">
+      <div class="notes-area">
+        <label>Speaker Notes (Auto-saved)</label>
+        <textarea class="notes-textarea" placeholder="Type presentation outline here..."></textarea>
+      </div>
+      <button class="notes-save-btn">💾 Save Notes</button>
+      <div class="notes-saved-msg">Notes saved successfully!</div>
+    </div>
+
+    <!-- TOOLS TAB -->
+    <div class="sidebar-panel" data-panel="tools">
+      <div class="tool-grid">
+        <div class="tool-card" data-tool="spotlight"><span class="tool-icon">🔦</span><span class="tool-name">Spotlight</span></div>
+        <div class="tool-card" data-tool="pointer"><span class="tool-icon">🎯</span><span class="tool-name">Laser Pointer</span></div>
+        <div class="tool-card" data-tool="freeze"><span class="tool-icon">🔒</span><span class="tool-name">Freeze Screen</span></div>
+      </div>
+
+      <div class="sidebar-divider">Random Picker</div>
+      <div class="random-picker">
+        <div class="random-name">---</div>
+        <button class="random-btn">🎯 Spin Name</button>
+      </div>
+
+      <div class="sidebar-divider">Live Q&A</div>
+      <div class="qa-box">
+        <input type="text" class="qa-input" placeholder="Ask a question..." />
+        <button class="qa-submit">Submit</button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- Spotlight Overlay -->
+<div class="spotlight-overlay">
+  <div class="spotlight-content">
+    <p>Spotlight Active</p>
+    <div class="spotlight-close-hint">Click anywhere to dismiss</div>
+  </div>
 </div>
 
 <div class="catalog-header">
@@ -219,6 +350,18 @@ ${cssCatalog}
 <h2 class="section-title"><span class="sec-icon">🧩</span> Interactive Slide Blocks <span class="sec-id">SEC-08</span></h2>
 
 <div class="component-grid full-width">
+  <!-- Interactive Image URL Customizer -->
+  <div class="comp-card"><div class="comp-card-header">Interactive Image Block <span class="card-type">image</span></div>
+    <div class="comp-card-body">
+      <div class="image-block-container" style="max-width: 100%;">
+        <div class="image-box-wrapper" style="height: 240px;">
+          <img class="interactive-image" src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80" alt="Sample Image" />
+          <button class="edit-image-overlay-btn">✏️ Change Image URL</button>
+        </div>
+        <p class="image-caption">Interactive Image — Click the edit button to paste a custom URL dynamically!</p>
+      </div>
+    </div></div>
+
   <!-- Accordion -->
   <div class="comp-card"><div class="comp-card-header">Accordion Block <span class="card-type">accordion</span></div>
     <div class="comp-card-body">
@@ -367,14 +510,14 @@ console.log(greeting); // JetBrains Mono</code></pre>
 </div>
 
 <div style="text-align:center;padding:3rem 1rem;color:var(--color-text-muted);font-size:0.85rem;border-top:1px solid var(--color-border-light);margin-top:3rem">
-  <p>Lecta AI Component Catalog · Built with vanilla HTML/CSS/JS · Switch themes with dots above →</p>
+  <p>Lecta AI Component Catalog · Built with vanilla HTML/CSS/JS · Switch themes with settings gear above →</p>
 </div>
 
 <script>
-${jsThemes}
 ${jsBlocks}
+${jsSidebar}
 document.addEventListener('DOMContentLoaded', () => {
-  ThemeSwitcher.init();
+  SidebarModule.init();
   InteractiveBlocks.init();
 });
 </script>
