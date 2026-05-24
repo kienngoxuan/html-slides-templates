@@ -1302,4 +1302,30 @@
   fill: var(--color-surface-hover);
 }
 
+/* === Canva-style Chart Tooltips === */
+.chart-tooltip {
+  position: fixed;
+  pointer-events: none;
+  background: color-mix(in oklch, var(--color-surface) 85%, black);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-xs) var(--space-sm);
+  font-size: 0.8rem;
+  font-family: var(--font-body);
+  color: var(--color-text);
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(12px);
+  z-index: 100050;
+  opacity: 0;
+  transform: scale(0.9) translate(-50%, -100%);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  margin-top: -12px;
+  white-space: nowrap;
+}
+
+.chart-tooltip.visible {
+  opacity: 1;
+  transform: scale(1) translate(-50%, -100%);
+}
+
 

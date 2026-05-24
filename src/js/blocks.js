@@ -184,78 +184,162 @@ const InteractiveBlocks = (function () {
     });
   }
 
-  /* === Charts === */
-  function initCharts() {
-    document.querySelectorAll('.chart-block-container').forEach(container => {
-      const svg = container.querySelector('.svg-chart');
-      if (!svg) return;
+    /* === Canva-style Chart Tooltips === */
+  function bindTooltipEvents(el, text) {
+    const showTooltip = (clientX, clientY) => {
+      const tooltip = document.querySelector('.chart-tooltip');
+      if (!tooltip) return;
+      tooltip.innerHTML = text;
+      tooltip.style.left = `${clientX}px`;
+      tooltip.style.top = `${clientY}px`;
+      tooltip.classList.add('visible');
+    };
 
-      const type = container.dataset.chartType || 'bar';
-      let labels = [];
-      let datasets = [];
+    const hideTooltip = () => {
+      const tooltip = document.querySelector('.chart-tooltip');
+      if (tooltip) tooltip.classList.remove('visible');
+    };
 
-      try {
-        labels = JSON.parse(container.dataset.labels || '[]');
-        datasets = JSON.parse(container.dataset.datasets || '[]');
-      } catch (e) {
-        console.error('Error parsing chart data:', e);
-        return;
+    // Mouse events
+    el.addEventListener('mouseenter', (e) => {
+      showTooltip(e.clientX, e.clientY);
+      el.style.filter = 'brightness(1.15) saturate(1.1)';
+    });
+
+    el.addEventListener('mousemove', (e) => {
+      const tooltip = document.querySelector('.chart-tooltip');
+      if (tooltip) {
+        tooltip.style.left = `${e.clientX}px`;
+        tooltip.style.top = `${e.clientY}px`;
       }
+    });
 
-      svg.innerHTML = ''; // Clear preview
+    el.addEventListener('mouseleave', () => {
+      hideTooltip();
+      el.style.filter = 'none';
+    });
 
-      if (datasets.length === 0) return;
-
-      // Setup theme gradients
-      const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
-      defs.innerHTML = `
-        <linearGradient id="primary-grad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="var(--color-primary)" />
-          <stop offset="100%" stop-color="color-mix(in oklch, var(--color-primary) 30%, transparent)" />
-        </linearGradient>
-        <linearGradient id="success-grad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="var(--color-success)" />
-          <stop offset="100%" stop-color="color-mix(in oklch, var(--color-success) 30%, transparent)" />
-        </linearGradient>
-        <linearGradient id="accent-grad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="var(--color-accent)" />
-          <stop offset="100%" stop-color="color-mix(in oklch, var(--color-accent) 30%, transparent)" />
-        </linearGradient>
-      `;
-      svg.appendChild(defs);
-
-      if (type === 'bar') {
-        renderBarChart(svg, labels, datasets);
-      } else if (type === 'line') {
-        renderLineChart(svg, labels, datasets);
-      } else if (type === 'donut') {
-        renderDonutChart(svg, labels, datasets);
+    // Touch events for mobile screens and simulated devices
+    el.addEventListener('touchstart', (e) => {
+      if (e.touches && e.touches[0]) {
+        showTooltip(e.touches[0].clientX, e.touches[0].clientY);
+        el.style.filter = 'brightness(1.15) saturate(1.1)';
       }
+    });
 
-      // Render legend
-      const legend = container.querySelector('.chart-legend');
-      if (legend) {
-        legend.innerHTML = datasets.map((ds, dsi) => `
-          <div class="legend-item" data-dataset-index="${dsi}">
-            <span class="legend-color" style="background: var(--color-${ds.color || 'primary'})"></span>
-            <span class="legend-label">${ds.label}</span>
-          </div>
-        `).join('');
+    el.addEventListener('touchmove', (e) => {
+      if (e.touches && e.touches[0]) {
+        const tooltip = document.querySelector('.chart-tooltip');
+        if (tooltip) {
+          tooltip.style.left = `${e.touches[0].clientX}px`;
+          tooltip.style.top = `${e.touches[0].clientY}px`;
+        }
+      }
+    });
 
-        legend.querySelectorAll('.legend-item').forEach(item => {
-          item.addEventListener('click', () => {
-            const idx = parseInt(item.dataset.datasetIndex, 10);
-            const elements = svg.querySelectorAll(`.dataset-group-${idx}`);
-            const isActive = !item.classList.contains('inactive');
+    el.addEventListener('touchend', () => {
+      hideTooltip();
+      el.style.filter = 'none';
+    });
+  }
 
-            item.classList.toggle('inactive');
-            elements.forEach(el => {
-              el.style.opacity = isActive ? '0.1' : '1';
-              el.style.transition = 'opacity var(--transition-base)';
-            });
+  function renderChartContainer(container) {
+    const svg = container.querySelector('.svg-chart');
+    if (!svg) return;
+
+    const type = container.dataset.chartType || 'bar';
+    let labels = [];
+    let datasets = [];
+
+    try {
+      labels = JSON.parse(container.dataset.labels || '[]');
+      datasets = JSON.parse(container.dataset.datasets || '[]');
+    } catch (e) {
+      console.error('Error parsing chart data:', e);
+      return;
+    }
+
+    svg.innerHTML = ''; // Clear preview
+
+    if (datasets.length === 0) return;
+
+    // Setup theme gradients
+    const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+    defs.innerHTML = `
+      <linearGradient id="primary-grad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="var(--color-primary)" />
+        <stop offset="100%" stop-color="color-mix(in oklch, var(--color-primary) 30%, transparent)" />
+      </linearGradient>
+      <linearGradient id="success-grad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="var(--color-success)" />
+        <stop offset="100%" stop-color="color-mix(in oklch, var(--color-success) 30%, transparent)" />
+      </linearGradient>
+      <linearGradient id="accent-grad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="var(--color-accent)" />
+        <stop offset="100%" stop-color="color-mix(in oklch, var(--color-accent) 30%, transparent)" />
+      </linearGradient>
+    `;
+    svg.appendChild(defs);
+
+    if (type === 'bar') {
+      renderBarChart(svg, labels, datasets);
+    } else if (type === 'line') {
+      renderLineChart(svg, labels, datasets);
+    } else if (type === 'donut') {
+      renderDonutChart(svg, labels, datasets);
+    }
+
+    // Render legend
+    const legend = container.querySelector('.chart-legend');
+    if (legend) {
+      legend.innerHTML = datasets.map((ds, dsi) => `
+        <div class="legend-item" data-dataset-index="${dsi}">
+          <span class="legend-color" style="background: var(--color-${ds.color || 'primary'})"></span>
+          <span class="legend-label">${ds.label}</span>
+        </div>
+      `).join('');
+
+      legend.querySelectorAll('.legend-item').forEach(item => {
+        item.addEventListener('click', () => {
+          const idx = parseInt(item.dataset.datasetIndex, 10);
+          const elements = svg.querySelectorAll(`.dataset-group-${idx}`);
+          const isActive = !item.classList.contains('inactive');
+
+          item.classList.toggle('inactive');
+          elements.forEach(el => {
+            el.style.opacity = isActive ? '0.1' : '1';
+            el.style.transition = 'opacity var(--transition-base)';
           });
         });
-      }
+      });
+    }
+  }
+
+  /* === Charts === */
+  function initCharts() {
+    // Create tooltip container if it doesn't exist
+    let tooltip = document.querySelector('.chart-tooltip');
+    if (!tooltip) {
+      tooltip = document.createElement('div');
+      tooltip.className = 'chart-tooltip';
+      document.body.appendChild(tooltip);
+    }
+
+    document.querySelectorAll('.chart-block-container').forEach(container => {
+      renderChartContainer(container);
+    });
+
+    // Re-render and trigger entrance animations on slide switch
+    document.addEventListener('slideChanged', (e) => {
+      const activeSlideIndex = e.detail.index;
+      const slides = document.querySelectorAll('.slide');
+      const activeSlide = slides[activeSlideIndex];
+      if (!activeSlide) return;
+
+      const chartContainers = activeSlide.querySelectorAll('.chart-block-container');
+      chartContainers.forEach(container => {
+        renderChartContainer(container);
+      });
     });
   }
 
@@ -344,11 +428,10 @@ const InteractiveBlocks = (function () {
         rect.setAttribute('fill', `url(#${ds.color || 'primary'}-grad)`);
 
         rect.style.cursor = 'pointer';
-        rect.style.transition = 'y 0.8s cubic-bezier(0.25, 1, 0.5, 1), height 0.8s cubic-bezier(0.25, 1, 0.5, 1)';
+        rect.style.transition = 'y 0.8s cubic-bezier(0.25, 1, 0.5, 1), height 0.8s cubic-bezier(0.25, 1, 0.5, 1), filter 0.2s ease';
         
-        const title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
-        title.textContent = `${ds.label}: ${val}`;
-        rect.appendChild(title);
+        // Canva-style high fidelity tooltip
+        bindTooltipEvents(rect, `<strong>${ds.label}</strong><br><span>${lbl}</span>: <strong style="color: var(--color-${ds.color || 'primary'})">${val}</strong>`);
 
         svg.appendChild(rect);
 
@@ -480,17 +563,24 @@ const InteractiveBlocks = (function () {
         dot.setAttribute('stroke', `var(--color-${ds.color || 'primary'})`);
         dot.setAttribute('stroke-width', '3');
         dot.style.cursor = 'pointer';
-        dot.style.transition = 'transform 0.2s ease, r 0.2s ease';
+        dot.style.transition = 'transform 0.2s ease, r 0.2s ease, filter 0.2s ease';
 
-        const title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
-        title.textContent = `${ds.label}: ${ds.data[idx]}`;
-        dot.appendChild(title);
+        // Canva-style high fidelity tooltip
+        bindTooltipEvents(dot, `<strong>${ds.label}</strong><br><span>${labels[idx]}</span>: <strong style="color: var(--color-${ds.color || 'primary'})">${ds.data[idx]}</strong>`);
 
         dot.addEventListener('mouseenter', () => {
           dot.setAttribute('r', '7');
           dot.style.transform = 'scale(1.2)';
         });
         dot.addEventListener('mouseleave', () => {
+          dot.setAttribute('r', '5');
+          dot.style.transform = 'none';
+        });
+        dot.addEventListener('touchstart', () => {
+          dot.setAttribute('r', '7');
+          dot.style.transform = 'scale(1.2)';
+        });
+        dot.addEventListener('touchend', () => {
           dot.setAttribute('r', '5');
           dot.style.transform = 'none';
         });
@@ -561,16 +651,21 @@ const InteractiveBlocks = (function () {
       accumulatedAngle += percentage * 2 * Math.PI;
 
       circle.style.cursor = 'pointer';
-      circle.style.transition = 'stroke-dashoffset 1s ease-out, stroke-width 0.2s ease';
+      circle.style.transition = 'stroke-dashoffset 1s ease-out, stroke-width 0.2s ease, filter 0.2s ease';
 
-      const title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
-      title.textContent = `${labels[idx] || 'Item'}: ${val} (${Math.round(percentage * 100)}%)`;
-      circle.appendChild(title);
+      // Canva-style high fidelity tooltip
+      bindTooltipEvents(circle, `<strong>${labels[idx] || 'Item'}</strong><br><span style="font-size: 1.1rem; font-weight: 700; color: ${strokeColor}">${val}</span> (${Math.round(percentage * 100)}%)`);
 
       circle.addEventListener('mouseenter', () => {
         circle.setAttribute('stroke-width', strokeW + 4);
       });
       circle.addEventListener('mouseleave', () => {
+        circle.setAttribute('stroke-width', strokeW);
+      });
+      circle.addEventListener('touchstart', () => {
+        circle.setAttribute('stroke-width', strokeW + 4);
+      });
+      circle.addEventListener('touchend', () => {
         circle.setAttribute('stroke-width', strokeW);
       });
 
