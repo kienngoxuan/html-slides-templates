@@ -179,6 +179,20 @@ function renderSlideHTML(slide) {
   </div>
 </section>`;
 
+    case 'image':
+      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🖼️'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="image-block-container stagger">
+      <div class="image-box-wrapper">
+        <img class="interactive-image" src="${esc(d.url || 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80')}" alt="${esc(d.caption || 'Slide Image')}" />
+        <button class="edit-image-overlay-btn">✏️ Change Image URL</button>
+      </div>
+      ${d.caption ? `<p class="image-caption">${esc(d.caption)}</p>` : ''}
+    </div>
+  </div>
+</section>`;
+
     default:
       return `<section class="slide" id="${slide.id}"><div class="slide-inner"><p>Unknown block type: ${slide.type}</p></div></section>`;
   }
