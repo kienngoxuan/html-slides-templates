@@ -1,279 +1,153 @@
 /* ==========================================================================
    LECTA AI — Viewport Emulator Layout Adaptive Styles
-   Combines media queries and emulator class to prevent layouts from breaking.
    ========================================================================== */
 
-/* Dual-targeting selectors for real mobile browsers AND simulated desktop viewport */
-@media (max-width: 768px), .viewport-mobile {
-  
-  /* Global Slide Layout Optimization */
-  .slide {
-    padding: var(--space-lg) var(--space-md) 80px var(--space-md) !important;
-    overflow-y: auto !important;
-    height: 100% !important;
-  }
-  
-  .slide-inner {
-    padding-top: var(--space-md) !important;
-    padding-bottom: var(--space-md) !important;
-  }
-  
-  /* Typography Scaling */
+/* --- MOBILE PREVIEW & MEDIA QUERY ADAPTIVE RULES --- */
+
+/* 1. Slide Global & Typography */
+@media (max-width: 768px) {
+  .slide { padding: var(--space-lg) var(--space-md) 80px var(--space-md) !important; overflow-y: auto !important; height: 100% !important; }
+  .slide-inner { padding-top: var(--space-md) !important; padding-bottom: var(--space-md) !important; }
   h1 { font-size: 1.8rem !important; }
   h2 { font-size: 1.4rem !important; }
   h3 { font-size: 1.2rem !important; }
   p { font-size: 0.9rem !important; line-height: 1.5 !important; }
-  
-  /* Bento Grid Mobile Collapse */
-  .bento-grid {
-    grid-template-columns: 1fr !important;
-    gap: var(--space-md) !important;
-  }
-  
-  .bento-card {
-    grid-column: span 1 !important;
-    grid-row: span 1 !important;
-    min-height: 130px !important;
-    padding: var(--space-md) !important;
-  }
-  
-  .bento-card.bento-size-large {
-    min-height: 200px !important;
-  }
-
-  /* Compare Block Columns Collapse (Bug 2 Fix) */
-  .compare-container {
-    grid-template-columns: 1fr !important;
-    gap: var(--space-md) !important;
-  }
-  
-  .compare-side {
-    width: 100% !important;
-    padding: var(--space-md) !important;
-  }
-  
-  .compare-side h3 {
-    font-size: 1.1rem !important;
-    margin-bottom: var(--space-sm) !important;
-    padding-bottom: 6px !important;
-  }
-  
-  .compare-list li {
-    font-size: 0.8rem !important;
-  }
-
-  /* Stepper / Timeline Adjustments */
-  .stepper-steps, .timeline-events {
-    flex-direction: column !important;
-    gap: var(--space-lg) !important;
-  }
-  
-  .step-card, .timeline-card {
-    width: 100% !important;
-    padding: var(--space-md) !important;
-  }
-
-  /* SVG Charts Responsive Fitting */
-  .chart-wrapper {
-    padding: var(--space-xs) !important;
-    border-radius: var(--radius-md) !important;
-  }
-  
-  .chart-wrapper svg {
-    width: 100% !important;
-    height: auto !important;
-    max-height: 260px !important;
-  }
-
-  /* Code Sandbox Tabs Responsive Scrolling */
-  .tabs-nav {
-    display: flex !important;
-    overflow-x: auto !important;
-    white-space: nowrap !important;
-    padding-bottom: var(--space-xs) !important;
-    -webkit-overflow-scrolling: touch !important;
-    justify-content: flex-start !important;
-    gap: var(--space-xs) !important;
-    scrollbar-width: none !important; /* Hide scrollbars for absolute clean look */
-  }
-
-  .tabs-nav::-webkit-scrollbar {
-    display: none !important;
-  }
-
-  .tab-btn {
-    flex: 0 0 auto !important;
-    padding: var(--space-xs) var(--space-sm) !important;
-    font-size: 0.75rem !important;
-  }
-
-  .tab-panel pre {
-    padding: var(--space-sm) !important;
-    max-height: 240px !important;
-  }
-
-  /* Flowchart Section Grid Stacking */
-  .flow-container {
-    flex-direction: column !important;
-    gap: var(--space-md) !important;
-  }
-
-  .flow-canvas-wrapper {
-    width: 100% !important;
-    max-height: 280px !important;
-  }
-
-  .flow-canvas-wrapper svg {
-    width: 100% !important;
-    height: auto !important;
-  }
-
-  .flow-detail-panel {
-    width: 100% !important;
-    padding: var(--space-md) !important;
-    min-height: 120px !important;
-  }
-
-  /* Header structure adjustments for slides & text centering (Bug 5 Fix) */
-  .slide-header, .slide-title {
-    text-align: center !important;
-    margin-bottom: var(--space-md) !important;
-  }
-
-  .slide-header h2, .slide-title h1 {
-    font-size: 1.3rem !important;
-    text-align: center !important;
-  }
-
-  .slide-header .badge, .slide-title .badge {
-    font-size: 0.65rem !important;
-    padding: 2px 8px !important;
-    margin: 0 auto 10px auto !important;
-    display: inline-flex !important;
-    justify-content: center !important;
-    text-align: center !important;
-  }
-
-  .badge, .tag, .card-type, .tab-feature-tag {
-    justify-content: center !important;
-    text-align: center !important;
-    display: inline-flex !important;
-  }
-
-  /* Quiz Stacking & Size Tuning (Bug 3 Fix) */
-  .quiz-options {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 8px !important;
-  }
-  
-  .quiz-option {
-    padding: 8px 10px !important;
-    font-size: 0.78rem !important;
-    border-width: 1.5px !important;
-    min-height: 40px !important;
-    gap: 6px !important;
-  }
-  
-  .quiz-option .option-letter {
-    width: 20px !important;
-    height: 20px !important;
-    font-size: 0.7rem !important;
-  }
-  
-  .quiz-question h4 {
-    font-size: 0.9rem !important;
-    margin-bottom: var(--space-xs) !important;
-  }
-
-  /* Flip Cards Grid 2 per row (Bug 4 Fix) */
-  .cards-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 10px !important;
-  }
-  
-  .flip-card {
-    min-height: 110px !important;
-  }
-  
-  .flip-card-front, .flip-card-back {
-    padding: 8px !important;
-    font-size: 0.72rem !important;
-    line-height: 1.4 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    text-align: center !important;
-  }
-
-  /* Accordion Scroll & Size Tuning (Bug 6 Fix) */
-  .accordion-header {
-    padding: 10px 14px !important;
-    font-size: 0.82rem !important;
-  }
-  
-  .accordion-chevron {
-    width: 14px !important;
-    height: 14px !important;
-  }
-  
-  .accordion-content {
-    padding: 0 14px 10px 14px !important;
-    font-size: 0.78rem !important;
-    line-height: 1.4 !important;
-  }
-  
-  .accordion-content pre {
-    margin-top: 6px !important;
-    padding: 6px 8px !important;
-  }
-  
-  .accordion-content pre code {
-    font-size: 0.7rem !important;
-  }
-  
-  .accordion-item.open .accordion-body {
-    max-height: 220px !important;
-    overflow-y: auto !important;
-  }
-
-  /* Catalog Specific Responsive Overrides */
-  body.catalog.viewport-mode-mobile {
-    padding: 0 !important;
-  }
-  
-  .catalog-viewport {
-    width: 100% !important;
-    height: 100% !important;
-    overflow-y: auto !important;
-    padding: var(--space-md) !important;
-  }
-
-  .catalog-viewport .catalog-header {
-    padding: 1.5rem 0.5rem 1rem !important;
-    margin-bottom: 1rem !important;
-  }
-
-  .catalog-viewport .catalog-header h1 {
-    font-size: 1.6rem !important;
-  }
-
-  .catalog-viewport .catalog-header p {
-    font-size: 0.85rem !important;
-  }
-
-  .catalog-viewport .section-title {
-    margin: 1.5rem 0 1rem !important;
-    font-size: 1.1rem !important;
-  }
-
-  .catalog-viewport .component-grid,
-  .catalog-viewport .component-grid.two-col {
-    grid-template-columns: 1fr !important;
-    gap: var(--space-md) !important;
-  }
-
-  .catalog-viewport .comp-card-body {
-    padding: var(--space-md) !important;
-  }
 }
+body.viewport-mode-mobile .slide { padding: var(--space-lg) var(--space-md) 80px var(--space-md) !important; overflow-y: auto !important; height: 100% !important; }
+body.viewport-mode-mobile .slide-inner { padding-top: var(--space-md) !important; padding-bottom: var(--space-md) !important; }
+body.viewport-mode-mobile h1 { font-size: 1.8rem !important; }
+body.viewport-mode-mobile h2 { font-size: 1.4rem !important; }
+body.viewport-mode-mobile h3 { font-size: 1.2rem !important; }
+body.viewport-mode-mobile p { font-size: 0.9rem !important; line-height: 1.5 !important; }
+
+/* 2. Slide Header & Centering */
+@media (max-width: 768px) {
+  .slide-header, .slide-title { text-align: center !important; margin-bottom: var(--space-md) !important; }
+  .slide-header h2, .slide-title h1 { font-size: 1.3rem !important; text-align: center !important; }
+  .slide-header .badge, .slide-title .badge { font-size: 0.65rem !important; padding: 2px 8px !important; margin: 0 auto 10px auto !important; display: inline-flex !important; justify-content: center !important; text-align: center !important; }
+  .badge, .tag, .card-type, .tab-feature-tag { justify-content: center !important; text-align: center !important; display: inline-flex !important; }
+}
+body.viewport-mode-mobile .slide-header, body.viewport-mode-mobile .slide-title { text-align: center !important; margin-bottom: var(--space-md) !important; }
+body.viewport-mode-mobile .slide-header h2, body.viewport-mode-mobile .slide-title h1 { font-size: 1.3rem !important; text-align: center !important; }
+body.viewport-mode-mobile .slide-header .badge, body.viewport-mode-mobile .slide-title .badge { font-size: 0.65rem !important; padding: 2px 8px !important; margin: 0 auto 10px auto !important; display: inline-flex !important; justify-content: center !important; text-align: center !important; }
+body.viewport-mode-mobile .badge, body.viewport-mode-mobile .tag, body.viewport-mode-mobile .card-type, body.viewport-mode-mobile .tab-feature-tag { justify-content: center !important; text-align: center !important; display: inline-flex !important; }
+
+/* 3. Bento Grid */
+@media (max-width: 768px) {
+  .bento-grid { grid-template-columns: 1fr !important; gap: var(--space-md) !important; }
+  .bento-card { grid-column: span 1 !important; grid-row: span 1 !important; min-height: 130px !important; padding: var(--space-md) !important; }
+  .bento-card.bento-size-large { min-height: 200px !important; }
+}
+body.viewport-mode-mobile .bento-grid { grid-template-columns: 1fr !important; gap: var(--space-md) !important; }
+body.viewport-mode-mobile .bento-card { grid-column: span 1 !important; grid-row: span 1 !important; min-height: 130px !important; padding: var(--space-md) !important; }
+body.viewport-mode-mobile .bento-card.bento-size-large { min-height: 200px !important; }
+
+/* 4. Compare Container (React vs Vue 1:1 Stacking) */
+@media (max-width: 768px) {
+  .compare-container { grid-template-columns: 1fr !important; gap: var(--space-md) !important; }
+  .compare-side { width: 100% !important; padding: var(--space-md) !important; }
+  .compare-side h3 { font-size: 1.1rem !important; margin-bottom: var(--space-sm) !important; padding-bottom: 6px !important; }
+  .compare-list li { font-size: 0.8rem !important; }
+}
+body.viewport-mode-mobile .compare-container { grid-template-columns: 1fr !important; gap: var(--space-md) !important; }
+body.viewport-mode-mobile .compare-side { width: 100% !important; padding: var(--space-md) !important; }
+body.viewport-mode-mobile .compare-side h3 { font-size: 1.1rem !important; margin-bottom: var(--space-sm) !important; padding-bottom: 6px !important; }
+body.viewport-mode-mobile .compare-list li { font-size: 0.8rem !important; }
+
+/* 5. Stepper & Timeline */
+@media (max-width: 768px) {
+  .stepper-steps, .timeline-events { flex-direction: column !important; gap: var(--space-lg) !important; }
+  .step-card, .timeline-card { width: 100% !important; padding: var(--space-md) !important; }
+}
+body.viewport-mode-mobile .stepper-steps, body.viewport-mode-mobile .timeline-events { flex-direction: column !important; gap: var(--space-lg) !important; }
+body.viewport-mode-mobile .step-card, body.viewport-mode-mobile .timeline-card { width: 100% !important; padding: var(--space-md) !important; }
+
+/* 6. Charts & SVG */
+@media (max-width: 768px) {
+  .chart-wrapper { padding: var(--space-xs) !important; border-radius: var(--radius-md) !important; }
+  .chart-wrapper svg { width: 100% !important; height: auto !important; max-height: 260px !important; }
+}
+body.viewport-mode-mobile .chart-wrapper { padding: var(--space-xs) !important; border-radius: var(--radius-md) !important; }
+body.viewport-mode-mobile .chart-wrapper svg { width: 100% !important; height: auto !important; max-height: 260px !important; }
+
+/* 7. Tabs Navigation */
+@media (max-width: 768px) {
+  .tabs-nav { display: flex !important; overflow-x: auto !important; white-space: nowrap !important; padding-bottom: var(--space-xs) !important; -webkit-overflow-scrolling: touch !important; justify-content: flex-start !important; gap: var(--space-xs) !important; scrollbar-width: none !important; }
+  .tabs-nav::-webkit-scrollbar { display: none !important; }
+  .tab-btn { flex: 0 0 auto !important; padding: var(--space-xs) var(--space-sm) !important; font-size: 0.75rem !important; }
+  .tab-panel pre { padding: var(--space-sm) !important; max-height: 240px !important; }
+}
+body.viewport-mode-mobile .tabs-nav { display: flex !important; overflow-x: auto !important; white-space: nowrap !important; padding-bottom: var(--space-xs) !important; -webkit-overflow-scrolling: touch !important; justify-content: flex-start !important; gap: var(--space-xs) !important; scrollbar-width: none !important; }
+body.viewport-mode-mobile .tabs-nav::-webkit-scrollbar { display: none !important; }
+body.viewport-mode-mobile .tab-btn { flex: 0 0 auto !important; padding: var(--space-xs) var(--space-sm) !important; font-size: 0.75rem !important; }
+body.viewport-mode-mobile .tab-panel pre { padding: var(--space-sm) !important; max-height: 240px !important; }
+
+/* 8. Flowcharts */
+@media (max-width: 768px) {
+  .flow-container { flex-direction: column !important; gap: var(--space-md) !important; }
+  .flow-canvas-wrapper { width: 100% !important; max-height: 280px !important; }
+  .flow-canvas-wrapper svg { width: 100% !important; height: auto !important; }
+  .flow-detail-panel { width: 100% !important; padding: var(--space-md) !important; min-height: 120px !important; }
+}
+body.viewport-mode-mobile .flow-container { flex-direction: column !important; gap: var(--space-md) !important; }
+body.viewport-mode-mobile .flow-canvas-wrapper { width: 100% !important; max-height: 280px !important; }
+body.viewport-mode-mobile .flow-canvas-wrapper svg { width: 100% !important; height: auto !important; }
+body.viewport-mode-mobile .flow-detail-panel { width: 100% !important; padding: var(--space-md) !important; min-height: 120px !important; }
+
+/* 9. Quiz Block Grid */
+@media (max-width: 768px) {
+  .quiz-options { display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; }
+  .quiz-option { padding: 8px 10px !important; font-size: 0.78rem !important; border-width: 1.5px !important; min-height: 40px !important; gap: 6px !important; }
+  .quiz-option .option-letter { width: 20px !important; height: 20px !important; font-size: 0.7rem !important; }
+  .quiz-question h4 { font-size: 0.9rem !important; margin-bottom: var(--space-xs) !important; }
+}
+body.viewport-mode-mobile .quiz-options { display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; }
+body.viewport-mode-mobile .quiz-option { padding: 8px 10px !important; font-size: 0.78rem !important; border-width: 1.5px !important; min-height: 40px !important; gap: 6px !important; }
+body.viewport-mode-mobile .quiz-option .option-letter { width: 20px !important; height: 20px !important; font-size: 0.7rem !important; }
+body.viewport-mode-mobile .quiz-question h4 { font-size: 0.9rem !important; margin-bottom: var(--space-xs) !important; }
+
+/* 10. Flip Cards 2 per row */
+@media (max-width: 768px) {
+  .cards-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
+  .flip-card { min-height: 110px !important; }
+  .flip-card-front, .flip-card-back { padding: 8px !important; font-size: 0.72rem !important; line-height: 1.4 !important; display: flex !important; align-items: center !important; justify-content: center !important; text-align: center !important; }
+}
+body.viewport-mode-mobile .cards-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
+body.viewport-mode-mobile .flip-card { min-height: 110px !important; }
+body.viewport-mode-mobile .flip-card-front, body.viewport-mode-mobile .flip-card-back { padding: 8px !important; font-size: 0.72rem !important; line-height: 1.4 !important; display: flex !important; align-items: center !important; justify-content: center !important; text-align: center !important; }
+
+/* 11. Accordions */
+@media (max-width: 768px) {
+  .accordion-header { padding: 10px 14px !important; font-size: 0.82rem !important; }
+  .accordion-chevron { width: 14px !important; height: 14px !important; }
+  .accordion-content { padding: 0 14px 10px 14px !important; font-size: 0.78rem !important; line-height: 1.4 !important; }
+  .accordion-content pre { margin-top: 6px !important; padding: 6px 8px !important; }
+  .accordion-content pre code { font-size: 0.7rem !important; }
+  .accordion-item.open .accordion-body { max-height: 220px !important; overflow-y: auto !important; }
+}
+body.viewport-mode-mobile .accordion-header { padding: 10px 14px !important; font-size: 0.82rem !important; }
+body.viewport-mode-mobile .accordion-chevron { width: 14px !important; height: 14px !important; }
+body.viewport-mode-mobile .accordion-content { padding: 0 14px 10px 14px !important; font-size: 0.78rem !important; line-height: 1.4 !important; }
+body.viewport-mode-mobile .accordion-content pre { margin-top: 6px !important; padding: 6px 8px !important; }
+body.viewport-mode-mobile .accordion-content pre code { font-size: 0.7rem !important; }
+body.viewport-mode-mobile .accordion-item.open .accordion-body { max-height: 220px !important; overflow-y: auto !important; }
+
+/* 12. Catalog Specific Rules */
+@media (max-width: 768px) {
+  body.catalog { padding: 0 !important; }
+  .catalog-viewport { width: 100% !important; height: 100% !important; overflow-y: auto !important; padding: var(--space-md) !important; }
+  .catalog-viewport .catalog-header { padding: 1.5rem 0.5rem 1rem !important; margin-bottom: 1rem !important; }
+  .catalog-viewport .catalog-header h1 { font-size: 1.6rem !important; }
+  .catalog-viewport .catalog-header p { font-size: 0.85rem !important; }
+  .catalog-viewport .section-title { margin: 1.5rem 0 1rem !important; font-size: 1.1rem !important; }
+  .catalog-viewport .component-grid, .catalog-viewport .component-grid.two-col { grid-template-columns: 1fr !important; gap: var(--space-md) !important; }
+  .catalog-viewport .comp-card-body { padding: var(--space-md) !important; }
+}
+body.catalog.viewport-mode-mobile { padding: 0 !important; }
+body.catalog.viewport-mode-mobile .catalog-viewport { width: 100% !important; height: 100% !important; overflow-y: auto !important; padding: var(--space-md) !important; }
+body.catalog.viewport-mode-mobile .catalog-header { padding: 1.5rem 0.5rem 1rem !important; margin-bottom: 1rem !important; }
+body.catalog.viewport-mode-mobile .catalog-header h1 { font-size: 1.6rem !important; }
+body.catalog.viewport-mode-mobile .catalog-header p { font-size: 0.85rem !important; }
+body.catalog.viewport-mode-mobile .section-title { margin: 1.5rem 0 1rem !important; font-size: 1.1rem !important; }
+body.catalog.viewport-mode-mobile .component-grid, body.catalog.viewport-mode-mobile .component-grid.two-col { grid-template-columns: 1fr !important; gap: var(--space-md) !important; }
+body.catalog.viewport-mode-mobile .comp-card-body { padding: var(--space-md) !important; }
