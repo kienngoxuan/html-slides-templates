@@ -136,4 +136,44 @@
     font-size: 0.65rem !important;
     padding: 2px 8px !important;
   }
+
+  /* Catalog Specific Responsive Overrides */
+  body.catalog.viewport-mode-mobile {
+    padding: 0 !important;
+  }
+  
+  .catalog-viewport {
+    width: 100% !important;
+    height: 100% !important;
+    overflow-y: auto !important;
+    padding: var(--space-md) !important;
+  }
+
+  .catalog-viewport .catalog-header {
+    padding: 1.5rem 0.5rem 1rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .catalog-viewport .catalog-header h1 {
+    font-size: 1.6rem !important;
+  }
+
+  .catalog-viewport .catalog-header p {
+    font-size: 0.85rem !important;
+  }
+
+  .catalog-viewport .section-title {
+    margin: 1.5rem 0 1rem !important;
+    font-size: 1.1rem !important;
+  }
+
+  .catalog-viewport .component-grid,
+  .catalog-viewport .component-grid.two-col {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-md) !important;
+  }
+
+  .catalog-viewport .comp-card-body {
+    padding: var(--space-md) !important;
+  }
 }

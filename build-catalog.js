@@ -14,9 +14,12 @@ const cssBlocks = read('src/css/blocks.css');
 const cssAnim = read('src/css/animations.css');
 const cssSidebar = read('src/css/sidebar.css');
 const cssCatalog = read('src/catalog/catalog-css.css');
+const cssEmulator = read('src/emulator/emulator.css');
+const cssEmulatorLayouts = read('src/emulator/emulator-layouts.css');
 
 const jsBlocks = read('src/js/blocks.js');
 const jsSidebar = read('src/js/sidebar.js');
+const jsEmulator = read('src/emulator/emulator.js');
 
 // Create theme dot lists
 const LIGHT_THEMES = [
@@ -60,6 +63,8 @@ ${cssBlocks}
 ${cssAnim}
 ${cssSidebar}
 ${cssCatalog}
+${cssEmulator}
+${cssEmulatorLayouts}
 </style>
 </head>
 <body class="catalog">
@@ -87,6 +92,13 @@ ${cssCatalog}
   <div class="settings-section">
     <div class="settings-label">View</div>
     <button class="fullscreen-btn">⛶ Fullscreen</button>
+  </div>
+  <div class="settings-section">
+    <div class="settings-label">Viewport Mode</div>
+    <div class="viewport-toggle">
+      <button class="viewport-btn active" data-viewport="desktop">🖥️ Desktop</button>
+      <button class="viewport-btn" data-viewport="mobile">📱 Mobile Preview</button>
+    </div>
   </div>
   <div class="settings-section">
     <div class="settings-label">Teaching Panel</div>
@@ -176,10 +188,12 @@ ${cssCatalog}
   </div>
 </div>
 
-<div class="catalog-header">
-  <h1>Lecta AI — Component Catalog</h1>
-  <p>All available design blocks, UI elements, and interactive patterns. Pick any component, modify it, and use it in your slides.</p>
-</div>
+<!-- CATALOG CONTENT VIEWPORT -->
+<div class="catalog-viewport">
+  <div class="catalog-header">
+    <h1>Lecta AI — Component Catalog</h1>
+    <p>All available design blocks, UI elements, and interactive patterns. Pick any component, modify it, and use it in your slides.</p>
+  </div>
 
 <!-- ===== 1. BUTTONS ===== -->
 <h2 class="section-title"><span class="sec-icon">🔘</span> Buttons <span class="sec-id">SEC-01</span></h2>
@@ -509,6 +523,8 @@ console.log(greeting); // JetBrains Mono</code></pre>
     </div></div>
 </div>
 
+</div> <!-- Close .catalog-viewport -->
+
 <div style="text-align:center;padding:3rem 1rem;color:var(--color-text-muted);font-size:0.85rem;border-top:1px solid var(--color-border-light);margin-top:3rem">
   <p>Lecta AI Component Catalog · Built with vanilla HTML/CSS/JS · Switch themes with settings gear above →</p>
 </div>
@@ -516,6 +532,7 @@ console.log(greeting); // JetBrains Mono</code></pre>
 <script>
 ${jsBlocks}
 ${jsSidebar}
+${jsEmulator}
 document.addEventListener('DOMContentLoaded', () => {
   SidebarModule.init();
   InteractiveBlocks.init();
