@@ -169,6 +169,84 @@
   --gradient-bg: linear-gradient(180deg, oklch(18% 0.015 270), oklch(14% 0.02 270));
 }
 
+/* === THEME: Midnight Tech (Dark) === */
+[data-theme="midnight"] {
+  --color-primary: oklch(65% 0.20 250);
+  --color-primary-light: oklch(75% 0.15 250);
+  --color-primary-dark: oklch(50% 0.22 250);
+  --color-primary-alpha: oklch(65% 0.20 250 / 0.2);
+  --color-secondary: oklch(70% 0.16 200);
+  --color-accent: oklch(80% 0.15 190);
+  --color-accent-light: oklch(88% 0.10 190);
+  --color-bg: oklch(14% 0.02 250);
+  --color-bg-alt: oklch(18% 0.025 250);
+  --color-surface: oklch(22% 0.03 250);
+  --color-surface-hover: oklch(26% 0.035 250);
+  --color-text: oklch(95% 0.005 250);
+  --color-text-secondary: oklch(82% 0.015 250);
+  --color-text-muted: oklch(65% 0.02 250);
+  --color-border: oklch(32% 0.03 250);
+  --color-border-light: oklch(27% 0.025 250);
+  --color-success: oklch(75% 0.16 145);
+  --color-warning: oklch(80% 0.16 80);
+  --color-error: oklch(70% 0.20 25);
+  --gradient-primary: linear-gradient(135deg, oklch(65% 0.20 250), oklch(68% 0.18 280));
+  --gradient-accent: linear-gradient(135deg, oklch(80% 0.15 190), oklch(85% 0.12 210));
+  --gradient-bg: linear-gradient(180deg, oklch(14% 0.02 250), oklch(10% 0.025 250));
+}
+
+/* === THEME: Evergreen Nature (Dark) === */
+[data-theme="evergreen"] {
+  --color-primary: oklch(70% 0.18 150);
+  --color-primary-light: oklch(78% 0.14 150);
+  --color-primary-dark: oklch(55% 0.22 150);
+  --color-primary-alpha: oklch(70% 0.18 150 / 0.2);
+  --color-secondary: oklch(75% 0.15 110);
+  --color-accent: oklch(82% 0.14 90);
+  --color-accent-light: oklch(88% 0.10 90);
+  --color-bg: oklch(14% 0.02 150);
+  --color-bg-alt: oklch(18% 0.025 150);
+  --color-surface: oklch(22% 0.03 150);
+  --color-surface-hover: oklch(26% 0.035 150);
+  --color-text: oklch(95% 0.005 150);
+  --color-text-secondary: oklch(82% 0.015 150);
+  --color-text-muted: oklch(65% 0.02 150);
+  --color-border: oklch(32% 0.03 150);
+  --color-border-light: oklch(27% 0.025 150);
+  --color-success: oklch(75% 0.16 145);
+  --color-warning: oklch(80% 0.16 80);
+  --color-error: oklch(70% 0.20 25);
+  --gradient-primary: linear-gradient(135deg, oklch(70% 0.18 150), oklch(72% 0.15 120));
+  --gradient-accent: linear-gradient(135deg, oklch(82% 0.14 90), oklch(86% 0.10 70));
+  --gradient-bg: linear-gradient(180deg, oklch(14% 0.02 150), oklch(10% 0.025 150));
+}
+
+/* === THEME: Volcano Ignite (Dark) === */
+[data-theme="volcano"] {
+  --color-primary: oklch(68% 0.22 35);
+  --color-primary-light: oklch(76% 0.16 35);
+  --color-primary-dark: oklch(52% 0.25 35);
+  --color-primary-alpha: oklch(68% 0.22 35 / 0.2);
+  --color-secondary: oklch(74% 0.18 55);
+  --color-accent: oklch(82% 0.16 75);
+  --color-accent-light: oklch(88% 0.10 75);
+  --color-bg: oklch(14% 0.015 35);
+  --color-bg-alt: oklch(18% 0.02 35);
+  --color-surface: oklch(22% 0.025 35);
+  --color-surface-hover: oklch(26% 0.03 35);
+  --color-text: oklch(95% 0.005 35);
+  --color-text-secondary: oklch(82% 0.015 35);
+  --color-text-muted: oklch(65% 0.02 35);
+  --color-border: oklch(32% 0.025 35);
+  --color-border-light: oklch(27% 0.02 35);
+  --color-success: oklch(75% 0.16 145);
+  --color-warning: oklch(80% 0.16 80);
+  --color-error: oklch(70% 0.22 25);
+  --gradient-primary: linear-gradient(135deg, oklch(68% 0.22 35), oklch(70% 0.18 55));
+  --gradient-accent: linear-gradient(135deg, oklch(82% 0.16 75), oklch(86% 0.12 90));
+  --gradient-bg: linear-gradient(180deg, oklch(14% 0.015 35), oklch(10% 0.02 35));
+}
+
 /* === THEME: Warm Paper === */
 [data-theme="paper"] {
   --color-primary: oklch(50% 0.12 45);
