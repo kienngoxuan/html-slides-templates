@@ -182,6 +182,100 @@
       }
     },
     {
+      "id": "slide-bento-demo",
+      "type": "bento",
+      "data": {
+        "heading": "Thiết kế Bento Grid Đột phá",
+        "icon": "🍱",
+        "gridTemplate": "large | small small",
+        "items": [
+          {
+            "size": "large",
+            "title": "Bố cục bất đối xứng cao cấp",
+            "content": "Sắp xếp thông tin linh hoạt dưới dạng các ô lưới kính mờ Glassmorphism. Mỗi ô đại diện cho một chủ thể khác nhau, giúp tối ưu diện tích hiển thị và thu hút ánh nhìn.",
+            "badge": "Xu Hướng Thiết Kế",
+            "bgGradient": "oklch(60% 0.15 320) to oklch(50% 0.15 250)"
+          },
+          {
+            "size": "small",
+            "title": "Hiệu ứng Neon Glow",
+            "content": "Tự động phát sáng mờ khi di chuột, nâng cấp trải nghiệm tương tác trực giác.",
+            "icon": "⚡"
+          },
+          {
+            "size": "small",
+            "title": "Màu sắc OKLCH",
+            "content": "Đảm bảo độ tương phản hoàn hảo và chuyển màu mượt mà trên mọi màn hình rộng.",
+            "icon": "🎨"
+          }
+        ],
+        "speakerNotes": "Giới thiệu xu hướng Bento Grid trong thiết kế hiện đại. Chỉ ra cách sắp xếp các ô có kích thước linh hoạt."
+      }
+    },
+    {
+      "id": "slide-chart-demo",
+      "type": "chart",
+      "data": {
+        "heading": "Trực quan hóa Dữ liệu Tương tác",
+        "icon": "📊",
+        "chartType": "line",
+        "labels": ["Q1", "Q2", "Q3", "Q4"],
+        "datasets": [
+          {
+            "label": "Độ phổ biến OKLCH (%)",
+            "data": [12, 38, 70, 95],
+            "color": "primary"
+          },
+          {
+            "label": "Học viên hài lòng (%)",
+            "data": [45, 68, 85, 98],
+            "color": "success"
+          }
+        ],
+        "speakerNotes": "Di chuột vào các điểm mốc trên đường để xem giá trị tooltip, hoặc nhấp vào chú thích (Legend) để ẩn/hiện dữ liệu tương ứng."
+      }
+    },
+    {
+      "id": "slide-table-demo",
+      "type": "table",
+      "data": {
+        "heading": "Bảng Số Liệu Kính Mờ Đa Năng",
+        "icon": "🧮",
+        "columns": [
+          { "key": "framework", "label": "Thư viện", "type": "text" },
+          { "key": "colors", "label": "Không gian màu", "type": "badge" },
+          { "key": "renderSpeed", "label": "Tốc độ", "type": "code" },
+          { "key": "satisfaction", "label": "Độ hài lòng", "type": "progress" }
+        ],
+        "rows": [
+          { "framework": "Lecta AI Engine", "colors": "OKLCH · success", "renderSpeed": "12ms", "satisfaction": 98 },
+          { "framework": "Legacy CSS Core", "colors": "HSL · warning", "renderSpeed": "48ms", "satisfaction": 72 },
+          { "framework": "Basic HTML Deck", "colors": "RGB · danger", "renderSpeed": "110ms", "satisfaction": 35 }
+        ],
+        "speakerNotes": "Trình bày cách sử dụng bảng số liệu: Bạn có thể gõ vào ô tìm kiếm nhanh hoặc nhấp vào tiêu đề để sắp xếp các cột."
+      }
+    },
+    {
+      "id": "slide-flow-demo",
+      "type": "flow",
+      "data": {
+        "heading": "Sơ đồ Quy trình Hoạt động",
+        "icon": "🌿",
+        "nodes": [
+          { "id": "n1", "label": "1. slide.json", "details": "Định nghĩa nội dung slide tối giản dưới dạng cấu trúc dữ liệu JSON." },
+          { "id": "n2", "label": "2. build.js", "details": "Compiler đóng gói các thành phần CSS/JS thành một tệp HTML duy nhất." },
+          { "id": "n3", "label": "3. renderer.js", "details": "Chuyển các khối dữ liệu JSON thành cấu trúc HTML ngữ nghĩa." },
+          { "id": "n4", "label": "4. Slide Deck", "details": "Tệp slide HTML hoàn thiện, chạy offline với đầy đủ hiệu ứng tương tác." }
+        ],
+        "connections": [
+          { "from": "n1", "to": "n2" },
+          { "from": "n2", "to": "n3" },
+          { "from": "n3", "to": "n4" }
+        ],
+        "speakerNotes": "Nhấp chuột vào từng node trên sơ đồ để hiển thị chi tiết các bước vận hành của hệ thống."
+      }
+    },
+    {
       "id": "slide-10",
       "type": "summary",
       "data": {
