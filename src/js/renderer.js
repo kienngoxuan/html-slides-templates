@@ -1,0 +1,195 @@
+/**
+ * LECTA AI — HTML Renderer
+ * Converts slide JSON data into semantic HTML blocks
+ */
+
+function renderSlideHTML(slide) {
+  const d = slide.data;
+  const notes = (d.speakerNotes || '').replace(/"/g, '&quot;');
+
+  switch (slide.type) {
+    case 'title':
+      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+  <div class="slide-inner slide-title">
+    <span class="badge">${esc(d.badge || '')}</span>
+    <h1>${esc(d.heading)}</h1>
+    <p class="subtitle">${esc(d.subtitle)}</p>
+  </div>
+</section>`;
+
+    case 'bullets':
+      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <ul class="bullet-list stagger">
+      ${d.items.map(item => `<li class="bullet-item">
+        <div class="bullet-text">${esc(item.text)}</div>
+        <div class="bullet-detail"><p>${esc(item.detail || '')}</p></div>
+      </li>`).join('\n      ')}
+    </ul>
+  </div>
+</section>`;
+
+    case 'accordion':
+      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="accordion stagger">
+      ${d.items.map(item => `<div class="accordion-item">
+        <button class="accordion-header">
+          ${esc(item.title)}
+          <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-content">
+            <p>${esc(item.content)}</p>
+            ${item.example ? `<pre><code>${esc(item.example)}</code></pre>` : ''}
+          </div>
+        </div>
+      </div>`).join('\n      ')}
+    </div>
+  </div>
+</section>`;
+
+    case 'tabs':
+      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="tabs-container">
+      <div class="tabs-header">
+        ${d.tabs.map((t, i) => `<button class="tab-btn${i === 0 ? ' active' : ''}">${esc(t.label)}</button>`).join('')}
+      </div>
+      ${d.tabs.map((t, i) => `<div class="tab-panel${i === 0 ? ' active' : ''}">
+        <p>${esc(t.content)}</p>
+        ${t.features ? `<div class="tab-features">${t.features.map(f => `<span class="tab-feature-tag">${esc(f)}</span>`).join('')}</div>` : ''}
+        ${t.code ? `<pre><code>${esc(t.code)}</code></pre>` : ''}
+      </div>`).join('\n      ')}
+    </div>
+  </div>
+</section>`;
+
+    case 'stepper':
+      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="stepper">
+      <div class="stepper-progress">
+        ${d.steps.map((s, i) => {
+          let html = `<div class="step-dot${i === 0 ? ' active' : ''}">${i + 1}</div>`;
+          if (i < d.steps.length - 1) html += `<div class="step-line"></div>`;
+          return html;
+        }).join('')}
+      </div>
+      ${d.steps.map((s, i) => `<div class="step-content${i === 0 ? ' active' : ''}">
+        <h4>${esc(s.title)}</h4>
+        <p>${esc(s.content)}</p>
+        ${s.tip ? `<div class="step-tip">${esc(s.tip)}</div>` : ''}
+      </div>`).join('\n      ')}
+      <div class="stepper-nav">
+        <button class="nav-btn step-prev" disabled>← Previous</button>
+        <button class="nav-btn step-next">Next →</button>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+    case 'cards':
+      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="cards-grid stagger">
+      ${d.cards.map(c => `<div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">${esc(c.front)}</div>
+          <div class="flip-card-back">${esc(c.back)}</div>
+        </div>
+      </div>`).join('\n      ')}
+    </div>
+    <p class="flip-hint">Click any card to flip it</p>
+  </div>
+</section>`;
+
+    case 'quiz':
+      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="quiz-container stagger">
+      ${d.questions.map((q, qi) => `<div class="quiz-question" data-correct="${q.correct}">
+        <h4>${qi + 1}. ${esc(q.question)}</h4>
+        <div class="quiz-options">
+          ${q.options.map((o, oi) => `<button class="quiz-option">
+            <span class="option-letter">${String.fromCharCode(65 + oi)}</span>
+            ${esc(o)}
+          </button>`).join('\n          ')}
+        </div>
+        <div class="quiz-explanation">${esc(q.explanation)}</div>
+      </div>`).join('\n      ')}
+    </div>
+  </div>
+</section>`;
+
+    case 'compare':
+      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="compare-container">
+      <div class="compare-side side-${d.left.color || 'blue'}">
+        <h3>${esc(d.left.title)}</h3>
+        <ul class="compare-list">
+          ${d.left.items.map(i => `<li>${esc(i)}</li>`).join('\n          ')}
+        </ul>
+      </div>
+      <div class="compare-side side-${d.right.color || 'green'}">
+        <h3>${esc(d.right.title)}</h3>
+        <ul class="compare-list">
+          ${d.right.items.map(i => `<li>${esc(i)}</li>`).join('\n          ')}
+        </ul>
+      </div>
+      ${d.verdict ? `<div class="compare-verdict">${esc(d.verdict)}</div>` : ''}
+    </div>
+  </div>
+</section>`;
+
+    case 'timeline':
+      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="timeline stagger">
+      ${d.events.map(e => `<div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">${esc(e.year)}</div>
+        <div class="timeline-title">${esc(e.title)}</div>
+        <div class="timeline-desc">${esc(e.description)}</div>
+      </div>`).join('\n      ')}
+    </div>
+  </div>
+</section>`;
+
+    case 'summary':
+      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <ul class="summary-items stagger">
+      ${d.items.map(i => `<li>${esc(i)}</li>`).join('\n      ')}
+    </ul>
+    ${d.callToAction ? `<div class="summary-cta"><p>${esc(d.callToAction)}</p></div>` : ''}
+    ${d.resources ? `<div class="summary-resources">
+      ${d.resources.map(r => `<a href="${esc(r.url)}" class="resource-link" target="_blank">🔗 ${esc(r.label)}</a>`).join('')}
+    </div>` : ''}
+  </div>
+</section>`;
+
+    default:
+      return `<section class="slide" id="${slide.id}"><div class="slide-inner"><p>Unknown block type: ${slide.type}</p></div></section>`;
+  }
+}
+
+function esc(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+module.exports = { renderSlideHTML };
