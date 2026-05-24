@@ -6,14 +6,14 @@
 
 /* 1. Slide Global & Typography */
 @media (max-width: 768px) {
-  .slide { padding: var(--space-lg) var(--space-md) 80px var(--space-md) !important; overflow-y: auto !important; height: 100% !important; }
+  .slide { padding: 72px var(--space-md) 80px var(--space-md) !important; overflow-y: auto !important; height: 100% !important; }
   .slide-inner { padding-top: var(--space-md) !important; padding-bottom: var(--space-md) !important; }
   h1 { font-size: 1.8rem !important; }
   h2 { font-size: 1.4rem !important; }
   h3 { font-size: 1.2rem !important; }
   p { font-size: 0.9rem !important; line-height: 1.5 !important; }
 }
-body.viewport-mode-mobile .slide { padding: var(--space-lg) var(--space-md) 80px var(--space-md) !important; overflow-y: auto !important; height: 100% !important; }
+body.viewport-mode-mobile .slide { padding: 72px var(--space-md) 80px var(--space-md) !important; overflow-y: auto !important; height: 100% !important; }
 body.viewport-mode-mobile .slide-inner { padding-top: var(--space-md) !important; padding-bottom: var(--space-md) !important; }
 body.viewport-mode-mobile h1 { font-size: 1.8rem !important; }
 body.viewport-mode-mobile h2 { font-size: 1.4rem !important; }
@@ -151,3 +151,118 @@ body.catalog.viewport-mode-mobile .catalog-header p { font-size: 0.85rem !import
 body.catalog.viewport-mode-mobile .section-title { margin: 1.5rem 0 1rem !important; font-size: 1.1rem !important; }
 body.catalog.viewport-mode-mobile .component-grid, body.catalog.viewport-mode-mobile .component-grid.two-col { grid-template-columns: 1fr !important; gap: var(--space-md) !important; }
 body.catalog.viewport-mode-mobile .comp-card-body { padding: var(--space-md) !important; }
+
+/* 13. Responsive Table to Card Collapse for Mobile Viewports */
+@media (max-width: 768px) {
+  .glass-table, .data-table {
+    display: block !important;
+    width: 100% !important;
+    border: none !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+  }
+  .glass-table thead, .data-table thead {
+    display: none !important;
+  }
+  .glass-table tbody, .data-table tbody {
+    display: block !important;
+    width: 100% !important;
+  }
+  .glass-table tr, .data-table tr {
+    display: block !important;
+    background: var(--color-surface) !important;
+    border: 1px solid var(--color-border-light) !important;
+    border-radius: var(--radius-md) !important;
+    padding: var(--space-md) !important;
+    margin-bottom: var(--space-md) !important;
+    box-shadow: var(--shadow-sm) !important;
+  }
+  .glass-table td, .data-table td {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: var(--space-xs) 0 !important;
+    border: none !important;
+    border-bottom: 1px solid color-mix(in oklch, var(--color-border-light) 50%, transparent) !important;
+    font-size: 0.82rem !important;
+    text-align: right !important;
+    min-height: 40px !important;
+  }
+  .glass-table td:last-child, .data-table td:last-child {
+    border-bottom: none !important;
+  }
+  .glass-table td::before, .data-table td::before {
+    content: attr(data-label) !important;
+    font-weight: 600 !important;
+    color: var(--color-text-muted) !important;
+    text-align: left !important;
+    margin-right: var(--space-md) !important;
+    font-size: 0.78rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    flex-shrink: 0 !important;
+  }
+  .progress-cell-wrapper {
+    justify-content: flex-end !important;
+    width: 120px !important;
+  }
+  .table-actions {
+    margin-bottom: var(--space-sm) !important;
+  }
+}
+
+body.viewport-mode-mobile .glass-table, body.viewport-mode-mobile .data-table {
+  display: block !important;
+  width: 100% !important;
+  border: none !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+}
+body.viewport-mode-mobile .glass-table thead, body.viewport-mode-mobile .data-table thead {
+  display: none !important;
+}
+body.viewport-mode-mobile .glass-table tbody, body.viewport-mode-mobile .data-table tbody {
+  display: block !important;
+  width: 100% !important;
+}
+body.viewport-mode-mobile .glass-table tr, body.viewport-mode-mobile .data-table tr {
+  display: block !important;
+  background: var(--color-surface) !important;
+  border: 1px solid var(--color-border-light) !important;
+  border-radius: var(--radius-md) !important;
+  padding: var(--space-md) !important;
+  margin-bottom: var(--space-md) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+body.viewport-mode-mobile .glass-table td, body.viewport-mode-mobile .data-table td {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: var(--space-xs) 0 !important;
+  border: none !important;
+  border-bottom: 1px solid color-mix(in oklch, var(--color-border-light) 50%, transparent) !important;
+  font-size: 0.82rem !important;
+  text-align: right !important;
+  min-height: 40px !important;
+}
+body.viewport-mode-mobile .glass-table td:last-child, body.viewport-mode-mobile .data-table td:last-child {
+  border-bottom: none !important;
+}
+body.viewport-mode-mobile .glass-table td::before, body.viewport-mode-mobile .data-table td::before {
+  content: attr(data-label) !important;
+  font-weight: 600 !important;
+  color: var(--color-text-muted) !important;
+  text-align: left !important;
+  margin-right: var(--space-md) !important;
+  font-size: 0.78rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  flex-shrink: 0 !important;
+}
+body.viewport-mode-mobile .progress-cell-wrapper {
+  justify-content: flex-end !important;
+  width: 120px !important;
+}
+body.viewport-mode-mobile .table-actions {
+  margin-bottom: var(--space-sm) !important;
+}

@@ -1203,6 +1203,24 @@
   display: block;
 }
 
+/* Auto Contrast Overrides for Bento Cards with Custom Background Gradients */
+.bento-card[style] {
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+.bento-card[style] .bento-card-content h3 {
+  color: #ffffff !important;
+}
+.bento-card[style] .bento-card-content p {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+.bento-card[style] .bento-icon {
+  color: #ffffff !important;
+}
+.bento-card[style]::before {
+  background: linear-gradient(180deg, transparent 30%, rgba(0, 0, 0, 0.65)) !important;
+}
+
 /* Bento size variants based on templates */
 .bento-card.bento-size-large {
   grid-column: span 2;

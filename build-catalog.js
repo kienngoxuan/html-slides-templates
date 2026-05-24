@@ -308,18 +308,39 @@ ${cssEmulatorLayouts}
 </div>
 
 <div class="component-grid two-col">
-  <div class="comp-card"><div class="comp-card-header">Bar Chart <span class="card-type">chart</span></div>
+  <!-- Interactive Bar Chart -->
+  <div class="comp-card"><div class="comp-card-header">Interactive Bar Chart <span class="card-type">chart</span></div>
     <div class="comp-card-body">
-      <div class="chart-placeholder">
-        <div class="chart-bar" style="height:40%" data-value="40"></div>
-        <div class="chart-bar" style="height:65%" data-value="65"></div>
-        <div class="chart-bar" style="height:85%" data-value="85"></div>
-        <div class="chart-bar" style="height:55%" data-value="55"></div>
-        <div class="chart-bar" style="height:70%" data-value="70"></div>
-        <div class="chart-bar" style="height:90%" data-value="90"></div>
-        <div class="chart-bar" style="height:45%" data-value="45"></div>
+      <div class="chart-block-container" data-chart-type="bar" data-labels='["Jan","Feb","Mar","Apr","May"]' data-datasets='[{"label":"Revenue","data":[35,55,80,60,95],"color":"primary"},{"label":"Cost","data":[20,30,45,40,50],"color":"accent"}]'>
+        <div class="chart-canvas-wrapper">
+          <svg class="svg-chart" viewBox="0 0 600 320" preserveAspectRatio="xMidYMid meet"></svg>
+        </div>
+        <div class="chart-legend"></div>
       </div>
     </div></div>
+
+  <!-- Interactive Line Chart -->
+  <div class="comp-card"><div class="comp-card-header">Interactive Line Chart <span class="card-type">chart</span></div>
+    <div class="comp-card-body">
+      <div class="chart-block-container" data-chart-type="line" data-labels='["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]' data-datasets='[{"label":"Active Users","data":[120,150,220,180,310,270,390],"color":"success"}]'>
+        <div class="chart-canvas-wrapper">
+          <svg class="svg-chart" viewBox="0 0 600 320" preserveAspectRatio="xMidYMid meet"></svg>
+        </div>
+        <div class="chart-legend"></div>
+      </div>
+    </div></div>
+
+  <!-- Interactive Donut Chart -->
+  <div class="comp-card"><div class="comp-card-header">Interactive Donut Chart <span class="card-type">chart</span></div>
+    <div class="comp-card-body">
+      <div class="chart-block-container" data-chart-type="donut" data-labels='["React","Vue","Angular","Svelte"]' data-datasets='[{"label":"Market Share","data":[55,25,12,8],"color":"primary"}]'>
+        <div class="chart-canvas-wrapper">
+          <svg class="svg-chart" viewBox="0 0 600 320" preserveAspectRatio="xMidYMid meet"></svg>
+        </div>
+        <div class="chart-legend"></div>
+      </div>
+    </div></div>
+
   <div class="comp-card"><div class="comp-card-header">Tooltip Demo <span class="card-type">tooltip</span></div>
     <div class="comp-card-body"><div class="btn-row" style="justify-content:center;padding:2rem 0">
       <span class="tooltip-trigger">Hover me<span class="tooltip-text">This is a tooltip!</span></span>
@@ -331,17 +352,71 @@ ${cssEmulatorLayouts}
 <!-- ===== 6. DATA TABLE ===== -->
 <h2 class="section-title"><span class="sec-icon">📋</span> Tables <span class="sec-id">SEC-06</span></h2>
 <div class="component-grid full-width">
-  <div class="comp-card"><div class="comp-card-header">Data Table <span class="card-type">table</span></div>
+  <div class="comp-card"><div class="comp-card-header">Interactive Data Table <span class="card-type">table</span></div>
     <div class="comp-card-body">
-      <table class="data-table">
-        <thead><tr><th>Technology</th><th>Type</th><th>Year</th><th>Status</th></tr></thead>
-        <tbody>
-          <tr><td>HTML5</td><td>Markup</td><td>2014</td><td><span class="tag tag-success">Stable</span></td></tr>
-          <tr><td>CSS Grid</td><td>Layout</td><td>2017</td><td><span class="tag tag-success">Stable</span></td></tr>
-          <tr><td>React 19</td><td>Framework</td><td>2024</td><td><span class="tag tag-primary">Current</span></td></tr>
-          <tr><td>Container Queries</td><td>CSS</td><td>2023</td><td><span class="tag tag-warning">Evolving</span></td></tr>
-        </tbody>
-      </table>
+      <div class="table-block-container">
+        <div class="table-actions">
+          <input type="text" class="table-search-input" placeholder="Search rows..." />
+        </div>
+        <div class="table-responsive-wrapper">
+          <table class="glass-table">
+            <thead>
+              <tr>
+                <th data-col-key="tech" class="sortable-th">Technology <span class="sort-indicator">↕</span></th>
+                <th data-col-key="type" class="sortable-th">Type <span class="sort-indicator">↕</span></th>
+                <th data-col-key="year" class="sortable-th">Year <span class="sort-indicator">↕</span></th>
+                <th data-col-key="status" class="sortable-th">Status <span class="sort-indicator">↕</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Technology">HTML5</td>
+                <td data-label="Type">Markup</td>
+                <td data-label="Year">2014</td>
+                <td data-label="Status"><span class="badge-pill pill-success">Stable</span></td>
+              </tr>
+              <tr>
+                <td data-label="Technology">CSS Grid</td>
+                <td data-label="Type">Layout</td>
+                <td data-label="Year">2017</td>
+                <td data-label="Status"><span class="badge-pill pill-success">Stable</span></td>
+              </tr>
+              <tr>
+                <td data-label="Technology">React 19</td>
+                <td data-label="Type">Framework</td>
+                <td data-label="Year">2024</td>
+                <td data-label="Status"><span class="badge-pill pill-primary">Current</span></td>
+              </tr>
+              <tr>
+                <td data-label="Technology">Container Queries</td>
+                <td data-label="Type">CSS</td>
+                <td data-label="Year">2023</td>
+                <td data-label="Status"><span class="badge-pill pill-warning">Evolving</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div></div>
+</div>
+
+<!-- ===== 6b. FLOWCHART / MINDMAP ===== -->
+<h2 class="section-title"><span class="sec-icon">🌿</span> Mindmaps & Flowcharts <span class="sec-id">SEC-06b</span></h2>
+<div class="component-grid full-width">
+  <div class="comp-card"><div class="comp-card-header">Interactive Flowchart / Mindmap <span class="card-type">flow</span></div>
+    <div class="comp-card-body">
+      <div class="flow-block-container" data-nodes='[{"id":"1","label":"1. Event Ingestion","x":50,"y":100,"details":"Ingest events with sub-millisecond latencies."},{"id":"2","label":"2. Stream Processing","x":250,"y":180,"details":"Cleanse, transform, and aggregate streaming data."},{"id":"3","label":"3. Analytical Warehouse","x":450,"y":100,"details":"Store historical analytical records optimized for speed."},{"id":"4","label":"4. Lecta Dashboard","x":650,"y":180,"details":"Visualize real-time business metrics."}]' data-connections='[{"from":"1","to":"2"},{"from":"2","to":"3"},{"from":"3","to":"4"}]'>
+        <div class="flow-layout-wrapper">
+          <svg class="flow-svg-canvas" viewBox="0 0 800 350"></svg>
+        </div>
+        <div class="flow-detail-panel glassmorphic-panel">
+          <div class="flow-detail-default-msg">💡 Click on any step in the flowchart to view deep insights.</div>
+          <div class="flow-detail-content" style="display: none;">
+            <h4 class="flow-detail-title"></h4>
+            <p class="flow-detail-desc"></p>
+          </div>
+        </div>
+      </div>
     </div></div>
 </div>
 
