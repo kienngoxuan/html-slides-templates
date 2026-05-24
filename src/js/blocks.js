@@ -770,7 +770,6 @@ const InteractiveBlocks = (function () {
         path.setAttribute('fill', 'none');
         path.setAttribute('stroke', 'var(--color-primary-alpha)');
         path.setAttribute('stroke-width', '2.5');
-        path.setAttribute('marker-end', 'url(#arrow)');
         svg.appendChild(path);
       });
 
