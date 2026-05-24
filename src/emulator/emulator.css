@@ -116,11 +116,23 @@ body.viewport-mode-mobile .sidebar-toggle-btn {
 }
 
 body.viewport-mode-mobile .presenter-toggle {
-  top: auto !important;
-  bottom: 68px !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  z-index: 10002 !important;
+  position: absolute !important;
+  top: 12px !important;
+  left: 16px !important;
+  bottom: auto !important;
+  transform: none !important;
+  z-index: 100020 !important;
+}
+
+body.viewport-mode-mobile .presenter-toggle .toggle-btn {
+  padding: 4px 8px !important;
+  font-size: 0.65rem !important;
+  border-radius: var(--radius-full) !important;
+  background: color-mix(in oklch, var(--color-surface) 40%, transparent) !important;
+  border: 1px solid var(--color-border-light) !important;
+  color: var(--color-text) !important;
+  backdrop-filter: blur(8px) !important;
+  box-shadow: var(--shadow-sm) !important;
 }
 
 /* Adjust Settings button position in Mobile Mode */

@@ -26,10 +26,11 @@ const ViewportEmulator = (function () {
     localStorage.setItem('lecta-viewport-mode', mode);
 
     const body = document.body;
-    const viewport = document.querySelector('.slides-viewport');
+    const viewport = document.querySelector('.slides-viewport') || document.querySelector('.catalog-viewport');
     const navBar = document.querySelector('.nav-bar');
+    const presenterToggle = document.querySelector('.presenter-toggle');
 
-    if (!viewport || !navBar) return;
+    if (!viewport) return;
 
     if (mode === 'mobile') {
       // 1. Create phone chassis DOM elements if they don't exist
@@ -58,12 +59,14 @@ const ViewportEmulator = (function () {
       // 2. Perform DOM Parent Swapping
       // Moves original nodes preserving all event listeners and state
       screen.appendChild(viewport);
-      screen.appendChild(navBar);
+      if (navBar) screen.appendChild(navBar);
+      if (presenterToggle) screen.appendChild(presenterToggle);
 
       // 3. Add classes to trigger styles
       body.classList.add('viewport-mode-mobile');
       viewport.classList.add('viewport-mobile');
-      navBar.classList.add('viewport-mobile');
+      if (navBar) navBar.classList.add('viewport-mobile');
+      if (presenterToggle) presenterToggle.classList.add('viewport-mobile');
 
     } else {
       // 1. Swap DOM nodes back to the root body
@@ -71,16 +74,19 @@ const ViewportEmulator = (function () {
       const sidebar = document.querySelector('.right-sidebar');
       if (sidebar) {
         body.insertBefore(viewport, sidebar);
-        body.insertBefore(navBar, sidebar);
+        if (navBar) body.insertBefore(navBar, sidebar);
+        if (presenterToggle) body.insertBefore(presenterToggle, sidebar);
       } else {
         body.appendChild(viewport);
-        body.appendChild(navBar);
+        if (navBar) body.appendChild(navBar);
+        if (presenterToggle) body.appendChild(presenterToggle);
       }
 
       // 2. Remove classes to restore standard rules
       body.classList.remove('viewport-mode-mobile');
       viewport.classList.remove('viewport-mobile');
-      navBar.classList.remove('viewport-mobile');
+      if (navBar) navBar.classList.remove('viewport-mobile');
+      if (presenterToggle) presenterToggle.classList.remove('viewport-mobile');
     }
 
     // 4. Update the settings UI button states

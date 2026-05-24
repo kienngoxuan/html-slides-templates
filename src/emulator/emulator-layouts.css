@@ -41,14 +41,25 @@
     min-height: 200px !important;
   }
 
-  /* Compare Block Columns Collapse */
+  /* Compare Block Columns Collapse (Bug 2 Fix) */
   .compare-container {
-    flex-direction: column !important;
+    grid-template-columns: 1fr !important;
     gap: var(--space-md) !important;
   }
   
-  .compare-column {
+  .compare-side {
     width: 100% !important;
+    padding: var(--space-md) !important;
+  }
+  
+  .compare-side h3 {
+    font-size: 1.1rem !important;
+    margin-bottom: var(--space-sm) !important;
+    padding-bottom: 6px !important;
+  }
+  
+  .compare-list li {
+    font-size: 0.8rem !important;
   }
 
   /* Stepper / Timeline Adjustments */
@@ -123,18 +134,107 @@
     min-height: 120px !important;
   }
 
-  /* Header structure adjustments for slides */
-  .slide-header {
+  /* Header structure adjustments for slides & text centering (Bug 5 Fix) */
+  .slide-header, .slide-title {
+    text-align: center !important;
     margin-bottom: var(--space-md) !important;
   }
 
-  .slide-header h2 {
+  .slide-header h2, .slide-title h1 {
     font-size: 1.3rem !important;
+    text-align: center !important;
   }
 
-  .slide-header .badge {
+  .slide-header .badge, .slide-title .badge {
     font-size: 0.65rem !important;
     padding: 2px 8px !important;
+    margin: 0 auto 10px auto !important;
+    display: inline-flex !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  .badge, .tag, .card-type, .tab-feature-tag {
+    justify-content: center !important;
+    text-align: center !important;
+    display: inline-flex !important;
+  }
+
+  /* Quiz Stacking & Size Tuning (Bug 3 Fix) */
+  .quiz-options {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+  
+  .quiz-option {
+    padding: 8px 10px !important;
+    font-size: 0.78rem !important;
+    border-width: 1.5px !important;
+    min-height: 40px !important;
+    gap: 6px !important;
+  }
+  
+  .quiz-option .option-letter {
+    width: 20px !important;
+    height: 20px !important;
+    font-size: 0.7rem !important;
+  }
+  
+  .quiz-question h4 {
+    font-size: 0.9rem !important;
+    margin-bottom: var(--space-xs) !important;
+  }
+
+  /* Flip Cards Grid 2 per row (Bug 4 Fix) */
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+  
+  .flip-card {
+    min-height: 110px !important;
+  }
+  
+  .flip-card-front, .flip-card-back {
+    padding: 8px !important;
+    font-size: 0.72rem !important;
+    line-height: 1.4 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  /* Accordion Scroll & Size Tuning (Bug 6 Fix) */
+  .accordion-header {
+    padding: 10px 14px !important;
+    font-size: 0.82rem !important;
+  }
+  
+  .accordion-chevron {
+    width: 14px !important;
+    height: 14px !important;
+  }
+  
+  .accordion-content {
+    padding: 0 14px 10px 14px !important;
+    font-size: 0.78rem !important;
+    line-height: 1.4 !important;
+  }
+  
+  .accordion-content pre {
+    margin-top: 6px !important;
+    padding: 6px 8px !important;
+  }
+  
+  .accordion-content pre code {
+    font-size: 0.7rem !important;
+  }
+  
+  .accordion-item.open .accordion-body {
+    max-height: 220px !important;
+    overflow-y: auto !important;
   }
 
   /* Catalog Specific Responsive Overrides */
