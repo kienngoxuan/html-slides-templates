@@ -35,7 +35,7 @@ function buildSlideDeck(dataFile, outputFile) {
   const slidesHTML = slideData.slides.map(s => renderSlideHTML(s)).join('\n');
 
   // Build overview thumbnails for sidebar
-  const TYPES = { title:'🎬', bullets:'📌', accordion:'📚', tabs:'🗂', stepper:'🚶', cards:'🃏', quiz:'❓', compare:'⚔️', timeline:'📅', summary:'🎓', image:'🖼️' };
+  const TYPES = { title:'🎬', bullets:'📌', accordion:'📚', tabs:'🗂', stepper:'🚶', cards:'🃏', quiz:'❓', compare:'⚔️', timeline:'📅', summary:'🎓', image:'🖼️', chart:'📊', table:'🧮', bento:'🍱', flow:'🌿' };
   const thumbsHTML = slideData.slides.map((s, i) => `
     <div class="slide-thumb${i === 0 ? ' active' : ''}" data-slide="${i}">
       <span class="slide-thumb-num">${i + 1}</span>
@@ -292,6 +292,14 @@ if (process.argv[2] && process.argv[3]) {
   buildSlideDeck(
     path.join(ROOT, 'src/data/sample2-slides.json'),
     path.join(ROOT, 'output/templates/sample2.html')
+  );
+  buildSlideDeck(
+    path.join(ROOT, 'src/data/sample3-slides.json'),
+    path.join(ROOT, 'output/templates/sample3.html')
+  );
+  buildSlideDeck(
+    path.join(ROOT, 'src/data/sample4-slides.json'),
+    path.join(ROOT, 'output/templates/sample4.html')
   );
 
   // Build catalog programmatic fallback
