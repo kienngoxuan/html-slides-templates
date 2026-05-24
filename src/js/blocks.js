@@ -13,6 +13,36 @@ const InteractiveBlocks = (function () {
     initQuiz();
     initTimeline();
     initBullets();
+    initInteractiveImages();
+  }
+
+  /* === Interactive Image URL Customizer === */
+  function initInteractiveImages() {
+    // Load persisted images
+    document.querySelectorAll('.interactive-image').forEach((img, index) => {
+      const slide = img.closest('.slide');
+      const key = 'lecta-img-' + (slide ? slide.id : ('index-' + index));
+      const savedUrl = localStorage.getItem(key);
+      if (savedUrl) {
+        img.src = savedUrl;
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.edit-image-overlay-btn');
+      if (!btn) return;
+      const img = btn.parentNode.querySelector('.interactive-image');
+      if (!img) return;
+
+      const slide = btn.closest('.slide');
+      const key = 'lecta-img-' + (slide ? slide.id : 'index-0');
+
+      const newUrl = prompt('Enter a new Image URL (Unsplash or any web link):', img.src);
+      if (newUrl !== null && newUrl.trim() !== '') {
+        img.src = newUrl.trim();
+        localStorage.setItem(key, newUrl.trim());
+      }
+    });
   }
 
   /* === Accordion === */
