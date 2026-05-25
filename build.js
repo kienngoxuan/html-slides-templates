@@ -359,6 +359,39 @@ function buildSlideDeck(dataFile, outputFile) {
     </div>
   </div>
 
+  <!-- 🖌️ Global Drawing Canvas Annotation Overlay -->
+  <canvas class="drawing-canvas-overlay" width="1920" height="1080"></canvas>
+
+  <!-- 🖌️ Drawing Annotation Toolbar -->
+  <div class="drawing-toolbar">
+    <button class="draw-tool-btn active" data-tool="pen" title="Pen">✏️</button>
+    <button class="draw-tool-btn" data-tool="highlighter" title="Highlighter">🖍️</button>
+    <button class="draw-tool-btn" data-tool="eraser" title="Eraser">🧹</button>
+    <div class="draw-divider"></div>
+    <div class="draw-color-dot draw-color-red active" data-color="#ef4444" title="Red"></div>
+    <div class="draw-color-dot draw-color-blue" data-color="#3b82f6" title="Blue"></div>
+    <div class="draw-color-dot draw-color-yellow" data-color="#eab308" title="Yellow"></div>
+    <div class="draw-color-dot draw-color-green" data-color="#10b981" title="Green"></div>
+    <div class="draw-divider"></div>
+    <span class="draw-brush-indicator">Size: 4px</span>
+    <input type="range" class="draw-brush-size" min="2" max="20" value="4" style="width: 60px;" />
+    <div class="draw-divider"></div>
+    <button class="draw-tool-btn draw-clear" title="Clear Canvas">🗑️</button>
+  </div>
+
+  <!-- 🔍 Spotlight Command Search Palette -->
+  <div class="search-palette-backdrop">
+    <div class="search-palette">
+      <div class="search-input-wrapper">
+        <span>🔍</span>
+        <input type="text" class="search-input" placeholder="Type slide title, content, or block name..." />
+      </div>
+      <div class="search-results-list">
+        <!-- Results rendered dynamically via JS -->
+      </div>
+    </div>
+  </div>
+
   <script>
 ${jsEngine}
 ${jsBlocks}
@@ -414,6 +447,10 @@ if (process.argv[2] && process.argv[3]) {
   buildSlideDeck(
     path.join(ROOT, 'src/data/sample4-slides.json'),
     path.join(ROOT, 'output/templates/sample4.html')
+  );
+  buildSlideDeck(
+    path.join(ROOT, 'src/data/sample5-slides.json'),
+    path.join(ROOT, 'output/templates/sample5.html')
   );
 
   // Build catalog programmatic fallback
