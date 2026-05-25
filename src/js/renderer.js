@@ -35,12 +35,12 @@ function renderSlideHTML(slide) {
   <div class="slide-inner">
     <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
     <div class="accordion stagger">
-      ${d.items.map(item => `<div class="accordion-item">
-        <button class="accordion-header">
+      ${d.items.map((item, i) => `<div class="accordion-item">
+        <button class="accordion-header" role="button" aria-expanded="false" aria-controls="accordion-content-${slide.id}-${i}" id="accordion-header-${slide.id}-${i}">
           ${esc(item.title)}
           <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="accordion-body">
+        <div class="accordion-body" role="region" aria-labelledby="accordion-header-${slide.id}-${i}" id="accordion-content-${slide.id}-${i}">
           <div class="accordion-content">
             <p>${esc(item.content)}</p>
             ${item.example ? `<pre><code>${esc(item.example)}</code></pre>` : ''}
@@ -56,10 +56,10 @@ function renderSlideHTML(slide) {
   <div class="slide-inner">
     <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
     <div class="tabs-container">
-      <div class="tabs-header">
-        ${d.tabs.map((t, i) => `<button class="tab-btn${i === 0 ? ' active' : ''}">${esc(t.label)}</button>`).join('')}
+      <div class="tabs-header" role="tablist">
+        ${d.tabs.map((t, i) => `<button class="tab-btn${i === 0 ? ' active' : ''}" role="tab" aria-selected="${i === 0 ? 'true' : 'false'}" aria-controls="panel-${slide.id}-${i}" id="tab-${slide.id}-${i}">${esc(t.label)}</button>`).join('')}
       </div>
-      ${d.tabs.map((t, i) => `<div class="tab-panel${i === 0 ? ' active' : ''}">
+      ${d.tabs.map((t, i) => `<div class="tab-panel${i === 0 ? ' active' : ''}" role="tabpanel" aria-labelledby="tab-${slide.id}-${i}" id="panel-${slide.id}-${i}">
         <p>${esc(t.content)}</p>
         ${t.features ? `<div class="tab-features">${t.features.map(f => `<span class="tab-feature-tag">${esc(f)}</span>`).join('')}</div>` : ''}
         ${t.code ? `<pre><code>${esc(t.code)}</code></pre>` : ''}
@@ -261,8 +261,9 @@ function renderSlideHTML(slide) {
     <div class="bento-grid stagger" style="--grid-template: ${esc(d.gridTemplate || 'auto')}">
       ${(d.items || []).map(item => {
         const bgStyle = item.bgGradient ? `background: linear-gradient(135deg, ${item.bgGradient.split(' to ')[0]}, ${item.bgGradient.split(' to ')[1] || 'transparent'}); border: none;` : '';
+        const hasBg = item.bgGradient ? ' bento-card-gradient' : '';
         const sizeClass = `bento-size-${item.size || 'small'}`;
-        return `<div class="bento-card ${sizeClass}" style="${bgStyle}">
+        return `<div class="bento-card ${sizeClass}${hasBg}" style="${bgStyle}">
           ${item.badge ? `<span class="bento-badge">${esc(item.badge)}</span>` : ''}
           ${item.icon ? `<div class="bento-icon">${esc(item.icon)}</div>` : ''}
           <div class="bento-card-content">
@@ -310,7 +311,9 @@ function esc(str) {
   return String(str)
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 
 module.exports = { renderSlideHTML };
