@@ -63,26 +63,26 @@ Export clean offline handouts of your presentations effortlessly! Standard CSS p
 
 ---
 
-## 🔮 Future Roadmap (Features mới có thể thêm)
+## 🔮 Future Roadmap (Features that can be added)
 
-### 🎯 Tính năng Giảng dạy / Presenter
-| Feature | Mô tả | Độ phức tạp |
+### 🎯 Classroom Presenter Features
+| Feature | Description | Complexity |
 | :--- | :--- | :--- |
-| **Drawing/Annotation Overlay** | Canvas layer để vẽ bút, bút highlight, tẩy trực tiếp lên slide (như PowerPoint). | Medium |
-| **Presenter View trên màn hình thứ 2** | Mở cửa sổ `/presenter.html` hoặc dual-monitor mode: 1 cửa sổ hiển thị slide, 1 cửa sổ hiển thị notes + timer + next slide. | High |
-| **QR Code cho Q&A** | Sinh QR code trong sidebar để audience trên điện thoại submit câu hỏi vào danh sách (không cần server, có thể dùng polling hoặc WebRTC). | Medium |
-| **Laser Pointer nâng cao** | Hiện tại chỉ là CSS class. Có thể thêm trail effect, đổi màu, hoặc spotlight theo cursor. | Low |
-| **Auto-play / Rehearse Timer** | Set duration cho từng slide trong JSON, tự động advance hoặc báo đỏ khi quá giờ. | Medium |
-| **Slide Search (Ctrl+K)** | Tìm kiếm full-text trong toàn bộ presentation, jump đến slide. | Low |
+| **Drawing/Annotation Overlay** | Canvas drawing layer to draw with pens, highlighters, and erasers directly onto slides (like PowerPoint). | Medium |
+| **Presenter View on 2nd Screen** | Opens a separate dual-monitor panel: one window displays the presentation, and the other shows speaker notes + timer + next slide. | High |
+| **QR Code for Live Q&A** | Generates a QR code in the sidebar so audience members can submit questions from their phones (serverless, using polling or WebRTC). | Medium |
+| **Advanced Laser Pointer** | Enhanced cursor trailing particles, color switching, and spotlight follow effect. | Low |
+| **Auto-play / Rehearse Timer** | Set slide duration in JSON, automatically advancing or flashing warning indicators when overtime. | Medium |
+| **Full-text Slide Search (Ctrl+K)** | Search through the text content of the entire presentation and jump directly to slides. | Low |
 
-### 🎨 Tính năng Content Blocks mới
-| Feature | Mô tả |
+### 🎨 New Content Block Features
+| Feature | Description |
 | :--- | :--- |
-| **MathJax / KaTeX Block** | Render công thức toán học từ JSON `{"type": "math", "data": {"latex": "E=mc^2"}}`. |
-| **Mermaid Diagram Block** | Nhúng Mermaid.js để vẽ flowchart/sequence/Gantt từ text. |
-| **Video Embed Block** | Support YouTube/Vimeo/local MP4 với custom poster. |
-| **Syntax Highlighting** | Tích hợp Shiki hoặc Prism cho code blocks (hiện tại chỉ là `<pre><code>` plain text). |
-| **Two-Column Layout Block** | `type: "split"` để chia slide làm 2 cột (text + image/code). |
+| **MathJax / KaTeX Block** | Renders mathematical equations from JSON format. |
+| **Mermaid Diagram Block** | Embeds Mermaid.js diagrams (flowcharts, sequence flows, Gantt charts) via markdown text. |
+| **Video Embed Block** | Native support for YouTube, Vimeo, and local MP4 players with custom posters. |
+| **Syntax Highlighting** | Integrated code colorization libraries (Prism.js / Shiki). |
+| **Two-Column Layout Block** | Split-screen structures dividing slides into two parallel content columns (text + media/code). |
 
 ---
 
@@ -107,7 +107,8 @@ html-slides-templates/
 │   │   ├── sample-slides.json # Interactive Introduction to Web Development data
 │   │   ├── sample2-slides.json# Visual Aesthetics & OKLCH color lesson data
 │   │   ├── sample3-slides.json# Advanced System Performance & Caching data
-│   │   └── sample4-slides.json# Comprehensive Interactive Block showcase data
+│   │   ├── sample4-slides.json# Comprehensive Interactive Block showcase data
+│   │   └── sample5-slides.json# Next-Gen Advanced Block & P2P Presentation keynote data
 │   ├── favicon.JPG            # Local JPEG logo compiled as base64 asset
 │   └── emulator/              # Device simulations, layout containers, responsive overlays
 ├── output/
@@ -116,6 +117,7 @@ html-slides-templates/
 │       ├── sample2.html       # Standalone output slide deck 2
 │       ├── sample3.html       # Standalone output slide deck 3
 │       ├── sample4.html       # Standalone output slide deck 4
+│       ├── sample5.html       # Standalone output slide deck 5 (Next-Gen Keynote)
 │       └── all-designs.html   # Complete UI Catalog containing all interactive blocks
 ├── build.js                   # Programmatic compiler with schema validation
 ├── build-catalog.js           # Reference catalog builder
@@ -140,6 +142,7 @@ This generates the following production-ready files inside `output/templates/`:
 - **`sample2.html`:** The visual design masterclass with the custom interactive Sunset theme and Image Paste blocks.
 - **`sample3.html`:** The performance and system caching deck.
 - **`sample4.html`:** The interactive block showcase presentation.
+- **`sample5.html`:** The next-gen keynote showcase featuring math equations, Mermaid.js flowcharts, YouTube media embedding, split layouts, and offline presenter view channels.
 - **`all-designs.html`:** The master component catalog containing interactive previews of all buttons, forms, tables, badging, and blocks in a fully reactive grid.
 
 ### ⚙️ Step 2: Compile a Custom Slide Deck
@@ -161,7 +164,7 @@ Every presentation consists of a `meta` configuration block and a list of `slide
     "subtitle": "Accessible Visual Aesthetics",
     "theme": "sunset",
     "duration": 45,
-    "students": ["An", "Bình", "Châu", "Dương", "Giang", "Hương"]
+    "students": ["Alex", "Ben", "Charlie", "Diana", "Emily", "Frank"]
   },
   "slides": [
     {
@@ -199,9 +202,12 @@ Every presentation consists of a `meta` configuration block and a list of `slide
 ## ⌨️ Presentation Keyboard Shortcuts
 
 While presenting, use these built-in hotkeys to navigate effortlessly:
-- `Right Arrow` or `Space` or `Page Down` ➔ **Next Slide**
-- `Left Arrow` or `Page Up` ➔ **Previous Slide**
-- `T` ➔ Toggle the **Teaching Sidebar Panel**
+- `Right Arrow` or `Space` ➔ **Next Slide**
+- `Left Arrow` ➔ **Previous Slide**
+- `D` ➔ Toggle **Scribble Drawing Annotation Overlay**
+- `Ctrl+K` ➔ Toggle **Spotlight Search Command Palette**
+- `P` ➔ Launch **Dual-Monitor Offline Presenter Console Window**
+- `T` ➔ Toggle the **Teaching Sidebar Panel** (Inside sidebar mode)
 - `N` ➔ Toggle **Live Speaker Notes Popup**
 - `F` ➔ Toggle **Fullscreen Mode**
 
