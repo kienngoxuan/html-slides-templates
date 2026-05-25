@@ -2050,6 +2050,117 @@ pre code {
   transform: scale(1) translate(-50%, -100%);
 }
 
+/* === ADVANCED QUIZ === */
+.advanced-quiz-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.adv-question {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.adv-question h4 {
+  margin-bottom: var(--space-md);
+  font-size: 1.05rem;
+}
+
+.adv-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.adv-option {
+  padding: var(--space-md);
+  background: var(--color-bg-alt);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--color-text);
+  text-align: left;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+}
+
+.adv-option:hover:not(.correct):not(.wrong) {
+  border-color: var(--color-primary-alpha);
+  background: var(--color-surface-hover);
+}
+
+.adv-option.selected {
+  border-color: var(--color-primary);
+  background: color-mix(in oklch, var(--color-primary) 8%, var(--color-bg));
+}
+
+.adv-option.selected .option-letter {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.adv-option.correct {
+  border-color: var(--color-success);
+  background: color-mix(in oklch, var(--color-success) 12%, var(--color-bg));
+}
+
+.adv-option.correct .option-letter {
+  background: var(--color-success);
+  color: white;
+  border-color: var(--color-success);
+}
+
+.adv-option.wrong {
+  border-color: var(--color-error);
+  background: color-mix(in oklch, var(--color-error) 12%, var(--color-bg));
+}
+
+.adv-option.wrong .option-letter {
+  background: var(--color-error);
+  color: white;
+  border-color: var(--color-error);
+}
+
+.adv-quiz-action-row {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-md);
+}
+
+.adv-quiz-result-card {
+  text-align: center;
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+  margin-top: var(--space-lg);
+  border: 2px solid var(--color-primary-alpha);
+  animation: fadeSlideUp 400ms ease;
+}
+
+.adv-result-score {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.adv-result-feedback {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
 
 
 
@@ -3160,7 +3271,7 @@ body.viewport-mode-mobile .table-actions {
 </head>
 <body>
   <!-- Progress Bar -->
-  <div class="nav-progress" style="width:13%"></div>
+  <div class="nav-progress" style="width:11%"></div>
 
   <!-- ⚙️ GEAR BUTTON -->
   <button class="gear-btn" aria-label="Settings">⚙️</button>
@@ -3445,13 +3556,93 @@ body.viewport-mode-mobile .table-actions {
     </div>
   </div>
 </section>
+<section class="slide" id="slide-s4-9" data-speaker-notes="Assess the audience's mastery of the lesson material. Have them select choices and submit to calculate their final score.">
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">🏆</span><h2>Final Skill Assessment</h2></div>
+    <div class="advanced-quiz-container stagger" data-total-questions="3">
+      <div class="adv-question" data-question-index="0" data-correct="2">
+        <h4>1. Which CSS function creates high-fidelity opacity overlays without clipping?</h4>
+        <div class="adv-options">
+          <button class="adv-option" data-option-index="0">
+            <span class="option-letter">A</span>
+            rgba()
+          </button>
+          <button class="adv-option" data-option-index="1">
+            <span class="option-letter">B</span>
+            hsla()
+          </button>
+          <button class="adv-option" data-option-index="2">
+            <span class="option-letter">C</span>
+            color-mix()
+          </button>
+          <button class="adv-option" data-option-index="3">
+            <span class="option-letter">D</span>
+            opacity()
+          </button>
+        </div>
+      </div>
+      <div class="adv-question" data-question-index="1" data-correct="0">
+        <h4>2. Which layout component is best suited for visual, asymmetric dashboards?</h4>
+        <div class="adv-options">
+          <button class="adv-option" data-option-index="0">
+            <span class="option-letter">A</span>
+            Bento Grid Layout
+          </button>
+          <button class="adv-option" data-option-index="1">
+            <span class="option-letter">B</span>
+            Flexible Box Layout
+          </button>
+          <button class="adv-option" data-option-index="2">
+            <span class="option-letter">C</span>
+            Standard Data Table
+          </button>
+          <button class="adv-option" data-option-index="3">
+            <span class="option-letter">D</span>
+            Horizontal Timeline
+          </button>
+        </div>
+      </div>
+      <div class="adv-question" data-question-index="2" data-correct="1">
+        <h4>3. Which design pattern is optimized for fast mobile interactions in interactive presentation decks?</h4>
+        <div class="adv-options">
+          <button class="adv-option" data-option-index="0">
+            <span class="option-letter">A</span>
+            Dynamic inline frame imports
+          </button>
+          <button class="adv-option" data-option-index="1">
+            <span class="option-letter">B</span>
+            High-performance event delegation
+          </button>
+          <button class="adv-option" data-option-index="2">
+            <span class="option-letter">C</span>
+            Heavy client-side database queries
+          </button>
+          <button class="adv-option" data-option-index="3">
+            <span class="option-letter">D</span>
+            Linear array loop handlers
+          </button>
+        </div>
+      </div>
+      
+      <div class="adv-quiz-action-row">
+        <button class="btn btn-primary adv-submit-btn">📥 Submit Assessment</button>
+      </div>
+      
+      <div class="adv-quiz-result-card glassmorphic-panel" style="display: none;">
+        <div class="adv-result-score">Score: <span class="score-fraction">0/0</span></div>
+        <div class="adv-result-feedback"></div>
+        <button class="btn btn-outline adv-retry-btn" style="margin-top: 1rem;">🔄 Try Again</button>
+      </div>
+    </div>
+  </div>
+</section>
     </div>
   </div>
 
   <!-- SLIDES NAVIGATION -->
   <div class="nav-bar">
     <button class="nav-btn prev" aria-label="Previous slide" disabled>←</button>
-    <span class="nav-counter">1 / 8</span>
+    <span class="nav-counter">1 / 9</span>
     <button class="nav-btn next" aria-label="Next slide">→</button>
   </div>
 
@@ -3531,6 +3722,13 @@ body.viewport-mode-mobile .table-actions {
         <div class="slide-thumb-type">🎓 summary</div>
       </div>
     </div>
+    <div class="slide-thumb" data-slide="8">
+      <span class="slide-thumb-num">9</span>
+      <div class="slide-thumb-info">
+        <div class="slide-thumb-title">Final Skill Assessment</div>
+        <div class="slide-thumb-type">📄 advanced-quiz</div>
+      </div>
+    </div>
         </div>
       </div>
 
@@ -3548,7 +3746,7 @@ body.viewport-mode-mobile .table-actions {
         <div class="per-slide-timing">
           <h4>💡 Recommended Pacing</h4>
           <div class="timing-row"><span>Total Duration</span><span>45 mins</span></div>
-          <div class="timing-row"><span>Per Slide Avg</span><span>5.6 mins</span></div>
+          <div class="timing-row"><span>Per Slide Avg</span><span>5.0 mins</span></div>
         </div>
       </div>
 
@@ -3777,6 +3975,7 @@ const InteractiveBlocks = (function () {
     initSteppers();
     initFlipCards();
     initQuiz();
+    initAdvancedQuiz();
     initTimeline();
     initBullets();
     initInteractiveImages();
@@ -4012,6 +4211,141 @@ const InteractiveBlocks = (function () {
         if (explanation) {
           explanation.classList.remove('visible');
         }
+      });
+    });
+  }
+
+  /* === Advanced Quiz (Submit Assessment) === */
+  function initAdvancedQuiz() {
+    document.addEventListener('click', (e) => {
+      // 1. Option selection
+      const option = e.target.closest('.adv-option');
+      if (option) {
+        const question = option.closest('.adv-question');
+        const container = option.closest('.advanced-quiz-container');
+        if (!container || container.dataset.submitted === 'true') return;
+
+        question.querySelectorAll('.adv-option').forEach(o => o.classList.remove('selected'));
+        option.classList.add('selected');
+        return;
+      }
+
+      // 2. Submit assessment
+      const submitBtn = e.target.closest('.adv-submit-btn');
+      if (submitBtn) {
+        const container = submitBtn.closest('.advanced-quiz-container');
+        if (!container || container.dataset.submitted === 'true') return;
+
+        const questions = container.querySelectorAll('.adv-question');
+        let unanswered = 0;
+        questions.forEach(q => {
+          if (!q.querySelector('.adv-option.selected')) {
+            unanswered++;
+          }
+        });
+
+        if (unanswered > 0) {
+          alert(`Please answer all ${unanswered} remaining question(s) before submitting!`);
+          return;
+        }
+
+        container.dataset.submitted = 'true';
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = '0.5';
+
+        let score = 0;
+        questions.forEach(q => {
+          const correctIdx = parseInt(q.dataset.correct, 10);
+          const options = q.querySelectorAll('.adv-option');
+          let selectedIdx = -1;
+          
+          options.forEach((opt, idx) => {
+            if (opt.classList.contains('selected')) {
+              selectedIdx = idx;
+            }
+          });
+
+          options.forEach((opt, idx) => {
+            if (idx === correctIdx) {
+              opt.classList.add('correct');
+            } else if (idx === selectedIdx) {
+              opt.classList.add('wrong');
+            }
+          });
+
+          if (selectedIdx === correctIdx) {
+            score++;
+          }
+        });
+
+        const resultCard = container.querySelector('.adv-quiz-result-card');
+        const scoreFraction = container.querySelector('.score-fraction');
+        const feedback = container.querySelector('.adv-result-feedback');
+
+        if (resultCard && scoreFraction && feedback) {
+          const total = questions.length;
+          scoreFraction.textContent = `${score}/${total}`;
+          
+          let msg = '';
+          const ratio = score / total;
+          if (ratio === 1) {
+            msg = '🏆 Perfect Score! You master these concepts completely!';
+          } else if (ratio >= 0.7) {
+            msg = '✨ Great job! You passed the assessment with honors.';
+          } else {
+            msg = '📚 Good attempt. Review the slides and try again to improve your score!';
+          }
+          feedback.textContent = msg;
+          resultCard.style.display = 'block';
+          resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        return;
+      }
+
+      // 3. Retry quiz
+      const retryBtn = e.target.closest('.adv-retry-btn');
+      if (retryBtn) {
+        const container = retryBtn.closest('.advanced-quiz-container');
+        if (!container) return;
+
+        container.dataset.submitted = 'false';
+        const submitBtn = container.querySelector('.adv-submit-btn');
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.style.opacity = '1';
+        }
+
+        const resultCard = container.querySelector('.adv-quiz-result-card');
+        if (resultCard) {
+          resultCard.style.display = 'none';
+        }
+
+        container.querySelectorAll('.adv-option').forEach(opt => {
+          opt.classList.remove('selected', 'correct', 'wrong');
+        });
+      }
+    });
+
+    // Reset advanced quiz states when slides transition
+    document.addEventListener('slideChanged', (e) => {
+      const activeSlideIndex = e.detail.index;
+      const slides = document.querySelectorAll('.slide');
+      const activeSlide = slides[activeSlideIndex];
+      if (!activeSlide) return;
+
+      activeSlide.querySelectorAll('.advanced-quiz-container').forEach(container => {
+        container.dataset.submitted = 'false';
+        const submitBtn = container.querySelector('.adv-submit-btn');
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.style.opacity = '1';
+        }
+        const resultCard = container.querySelector('.adv-quiz-result-card');
+        if (resultCard) resultCard.style.display = 'none';
+
+        container.querySelectorAll('.adv-option').forEach(opt => {
+          opt.classList.remove('selected', 'correct', 'wrong');
+        });
       });
     });
   }
@@ -4425,26 +4759,22 @@ const InteractiveBlocks = (function () {
         dot.setAttribute('stroke', `var(--color-${ds.color || 'primary'})`);
         dot.setAttribute('stroke-width', '3');
         dot.style.cursor = 'pointer';
-        dot.style.transition = 'transform 0.2s ease, r 0.2s ease, filter 0.2s ease';
+        dot.style.transition = 'r 0.2s ease, filter 0.2s ease';
 
         // Canva-style high fidelity tooltip
         bindTooltipEvents(dot, `<strong>${ds.label}</strong><br><span>${labels[idx]}</span>: <strong style="color: var(--color-${ds.color || 'primary'})">${ds.data[idx]}</strong>`);
 
         dot.addEventListener('mouseenter', () => {
-          dot.setAttribute('r', '7');
-          dot.style.transform = 'scale(1.2)';
+          dot.setAttribute('r', '8');
         });
         dot.addEventListener('mouseleave', () => {
           dot.setAttribute('r', '5');
-          dot.style.transform = 'none';
         });
         dot.addEventListener('touchstart', () => {
-          dot.setAttribute('r', '7');
-          dot.style.transform = 'scale(1.2)';
+          dot.setAttribute('r', '8');
         });
         dot.addEventListener('touchend', () => {
           dot.setAttribute('r', '5');
-          dot.style.transform = 'none';
         });
 
         svg.appendChild(dot);
@@ -4682,8 +5012,9 @@ const InteractiveBlocks = (function () {
 
       const nodeWidth = 160;
       const nodeHeight = 50;
-      const paddingX = 50;
-      const spreadWidth = 800 - paddingX * 2 - nodeWidth;
+      const paddingX = 40;
+      const rightSafety = 40;
+      const spreadWidth = 800 - paddingX - rightSafety - nodeWidth;
 
       const N = nodes.length;
       nodes.forEach((node, idx) => {
