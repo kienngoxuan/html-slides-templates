@@ -313,7 +313,6 @@ const InteractiveBlocks = (function () {
             score++;
           }
         });
-
         const backdrop = container.querySelector('.adv-quiz-modal-backdrop');
         const scoreFraction = container.querySelector('.score-fraction');
         const feedback = container.querySelector('.adv-result-feedback');
@@ -333,6 +332,7 @@ const InteractiveBlocks = (function () {
           }
           feedback.textContent = msg;
           backdrop.style.display = 'flex';
+          document.body.classList.add('adv-quiz-modal-open');
         }
         return;
       }
@@ -354,6 +354,7 @@ const InteractiveBlocks = (function () {
         if (backdrop) {
           backdrop.style.display = 'none';
         }
+        document.body.classList.remove('adv-quiz-modal-open');
 
         container.querySelectorAll('.adv-option').forEach(opt => {
           opt.classList.remove('selected', 'correct', 'wrong');
@@ -368,6 +369,7 @@ const InteractiveBlocks = (function () {
         if (backdrop) {
           backdrop.style.display = 'none';
         }
+        document.body.classList.remove('adv-quiz-modal-open');
         return;
       }
     });
@@ -393,6 +395,7 @@ const InteractiveBlocks = (function () {
           opt.classList.remove('selected', 'correct', 'wrong');
         });
       });
+      document.body.classList.remove('adv-quiz-modal-open');
     });
   }
 
