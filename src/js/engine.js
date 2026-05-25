@@ -10,6 +10,8 @@ const SlideEngine = (function () {
   let totalSlides = 0;
   let touchStartX = 0;
   let touchEndX = 0;
+  let touchStartY = 0;
+  let touchEndY = 0;
   let slides = []; // Caching slide elements to optimize performance
   let cachedPresenterNotes = [];
 
@@ -46,6 +48,7 @@ const SlideEngine = (function () {
     if (location.search.includes('presenter=true')) {
       cacheNotes();
       initPresenterDashboard();
+      initBroadcastReceiver({ onNav: syncPresenterDash });
       return;
     }
 
@@ -202,12 +205,17 @@ const SlideEngine = (function () {
     if (nextBtn) nextBtn.disabled = index === cachedPresenterNotes.length - 1;
   }
 
-  function initBroadcastReceiver() {
+  function initBroadcastReceiver(options = {}) {
     if (broadcast) {
+      const onNav = options.onNav;
       broadcast.onmessage = (e) => {
         if (e.data) {
           if (e.data.type === 'nav') {
-            updateSlide(e.data.index, false); // Update locally without animation, do not rebroadcast
+            if (typeof onNav === 'function') {
+              onNav(e.data.index);
+            } else {
+              updateSlide(e.data.index, false); // Update locally without animation, do not rebroadcast
+            }
           }
         }
       };
@@ -324,13 +332,16 @@ const SlideEngine = (function () {
 
     viewport.addEventListener('touchstart', (e) => {
       touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
     }, { passive: true });
 
     viewport.addEventListener('touchend', (e) => {
       touchEndX = e.changedTouches[0].screenX;
-      const diff = touchStartX - touchEndX;
-      if (Math.abs(diff) > 50) {
-        if (diff > 0) next();
+      touchEndY = e.changedTouches[0].screenY;
+      const diffX = touchStartX - touchEndX;
+      const diffY = touchStartY - touchEndY;
+      if (Math.abs(diffX) > 50 && Math.abs(diffX) > Math.abs(diffY)) {
+        if (diffX > 0) next();
         else prev();
       }
     }, { passive: true });
