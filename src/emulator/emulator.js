@@ -98,9 +98,10 @@ const ViewportEmulator = (function () {
       window.dispatchEvent(new Event('resize'));
       
       // Dispatch Lecta internal slideChanged event to redraw SVGs instantly
-      if (typeof SlideEngine !== 'undefined') {
-        document.dispatchEvent(new CustomEvent('slideChanged', { 
-          detail: { index: SlideEngine.getCurrent() } 
+      const slideEngine = window.SlideEngine;
+      if (slideEngine && typeof slideEngine.getCurrent === 'function') {
+        document.dispatchEvent(new CustomEvent('slideChanged', {
+          detail: { index: slideEngine.getCurrent() }
         }));
       }
     }, 150);
