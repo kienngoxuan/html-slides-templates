@@ -39,6 +39,7 @@ const SidebarModule = (function () {
 
   // ===== INIT =====
   function init() {
+    if (location.search.includes('presenter=true')) return;
     initThemeMode();
     initGearPanel();
     initSidebar();
@@ -190,8 +191,9 @@ const SidebarModule = (function () {
       const thumb = e.target.closest('.slide-thumb');
       if (thumb) {
         const idx = parseInt(thumb.dataset.slide, 10);
-        if (typeof SlideEngine !== 'undefined') {
-          SlideEngine.goTo(idx);
+        const slideEngine = window.SlideEngine;
+        if (slideEngine && typeof slideEngine.goTo === 'function') {
+          slideEngine.goTo(idx);
         }
       }
     });
@@ -230,7 +232,8 @@ const SidebarModule = (function () {
   }
 
   function syncOverviewActive(idx) {
-    const current = idx !== undefined ? idx : (typeof SlideEngine !== 'undefined' ? SlideEngine.getCurrent() : 0);
+    const slideEngine = window.SlideEngine;
+    const current = idx !== undefined ? idx : (slideEngine && typeof slideEngine.getCurrent === 'function' ? slideEngine.getCurrent() : 0);
     document.querySelectorAll('.slide-thumb').forEach((t, i) => {
       t.classList.toggle('active', i === current);
     });
