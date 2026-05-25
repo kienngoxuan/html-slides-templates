@@ -21,4 +21,5 @@ const SpeakerNotes = (function () {
   }
   return { init };
 })();
-
+window.ThemeSwitcher = window.ThemeSwitcher || ThemeSwitcher;
+window.SpeakerNotes = window.SpeakerNotes || SpeakerNotes;
