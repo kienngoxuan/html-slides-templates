@@ -7,8 +7,9 @@
 const fs = require('fs');
 const path = require('path');
 const ROOT = __dirname;
-
-function read(rel) { return fs.readFileSync(path.join(ROOT, rel), 'utf-8'); }
+const { readFiles, loadFaviconDataURI, renderThemeDots } = require('./src/build/utils');
+const { getDeckCssFiles, getDeckJsFiles } = require('./src/build/assets');
+const { LIGHT_THEMES, DARK_THEMES } = require('./src/build/themes');
 
 // Validation function for robust slide structure verification
 function validateSlideSchema(slideData, dataFile) {
@@ -106,32 +107,11 @@ function buildSlideDeck(dataFile, outputFile) {
   const meta = slideData.meta;
 
   // Load favicon if available
-  let faviconDataURI = '';
-  try {
-    const faviconBuffer = fs.readFileSync(path.join(ROOT, 'src/favicon.JPG'));
-    const base64Favicon = faviconBuffer.toString('base64');
-    faviconDataURI = `data:image/jpeg;base64,${base64Favicon}`;
-  } catch (err) {
-    console.warn('⚠️ Could not load src/favicon.JPG for base64 embedding:', err);
-  }
+  const faviconDataURI = loadFaviconDataURI(ROOT);
 
   // CSS
-  const allCSS = [
-    read('src/css/variables.css'),
-    read('src/css/base.css'),
-    read('src/css/blocks.css'),
-    read('src/css/animations.css'),
-    read('src/css/sidebar.css'),
-    read('src/emulator/emulator.css'),
-    read('src/emulator/emulator-layouts.css'),
-  ].join('\n\n');
-
-  // JS
-  const jsEngine  = read('src/js/engine.js');
-  const jsBlocks  = read('src/js/blocks.js');
-  const jsThemes  = read('src/js/themes.js');
-  const jsSidebar = read('src/js/sidebar.js');
-  const jsEmulator = read('src/emulator/emulator.js');
+  const allCSS = readFiles(ROOT, getDeckCssFiles());
+  const allJS = readFiles(ROOT, getDeckJsFiles());
 
   // Slides HTML
   const { renderSlideHTML } = require('./src/js/renderer.js');
@@ -149,33 +129,8 @@ function buildSlideDeck(dataFile, outputFile) {
     </div>`).join('');
 
   // Light themes for gear panel
-  const LIGHT_THEMES = [
-    { id:'ocean', label:'Ocean' },
-    { id:'forest', label:'Forest' },
-    { id:'berry', label:'Berry' },
-    { id:'slate', label:'Slate' },
-    { id:'paper', label:'Paper' },
-    { id:'nordic', label:'Nordic' },
-    { id:'sunset', label:'Sunset' },
-  ];
-  const lightThemeDotItems = LIGHT_THEMES.map(t =>
-    `<div class="theme-dot-item${meta.theme === t.id ? ' active' : ''}" data-theme="${t.id}">
-      <div class="dot" data-theme="${t.id}"></div>
-      <span>${t.label}</span>
-    </div>`).join('');
-
-  // Dark themes for gear panel
-  const DARK_THEMES = [
-    { id:'neon', label:'Neon' },
-    { id:'midnight', label:'Midnight' },
-    { id:'evergreen', label:'Evergreen' },
-    { id:'volcano', label:'Volcano' },
-  ];
-  const darkThemeDotItems = DARK_THEMES.map(t =>
-    `<div class="theme-dot-item" data-theme="${t.id}">
-      <div class="dot" data-theme="${t.id}"></div>
-      <span>${t.label}</span>
-    </div>`).join('');
+  const lightThemeDotItems = renderThemeDots(LIGHT_THEMES, meta.theme);
+  const darkThemeDotItems = renderThemeDots(DARK_THEMES);
 
   const studentAttr = meta.students ? ` data-students="${JSON.stringify(meta.students).replace(/"/g, '&quot;')}"` : '';
 
@@ -393,11 +348,7 @@ function buildSlideDeck(dataFile, outputFile) {
   </div>
 
   <script>
-${jsEngine}
-${jsBlocks}
-${jsThemes}
-${jsSidebar}
-${jsEmulator}
+${allJS}
 
 document.addEventListener('DOMContentLoaded', () => {
   SidebarModule.init();
