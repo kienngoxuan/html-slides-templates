@@ -21,6 +21,16 @@ const jsBlocks = read('src/js/blocks.js');
 const jsSidebar = read('src/js/sidebar.js');
 const jsEmulator = read('src/emulator/emulator.js');
 
+// Load favicon if available
+let faviconDataURI = '';
+try {
+  const faviconBuffer = fs.readFileSync(path.join(ROOT, 'src/favicon.JPG'));
+  const base64Favicon = faviconBuffer.toString('base64');
+  faviconDataURI = `data:image/jpeg;base64,${base64Favicon}`;
+} catch (err) {
+  console.warn('⚠️ Could not load src/favicon.JPG for base64 embedding:', err);
+}
+
 // Create theme dot lists
 const LIGHT_THEMES = [
   { id:'ocean', label:'Ocean' },
@@ -53,6 +63,7 @@ const html = `<!DOCTYPE html>
 <html lang="en" data-theme="ocean">
 <head>
 <meta charset="UTF-8">
+${faviconDataURI ? `<link rel="icon" type="image/jpeg" href="${faviconDataURI}">` : ''}
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lecta AI — All Designs Catalog</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
