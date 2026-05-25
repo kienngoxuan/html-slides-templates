@@ -150,6 +150,27 @@
         ],
         "speakerNotes": "Conclude the dashboard visualization training. Invite questions from the audience."
       }
+    },
+    {
+      "id": "slide-s3-8",
+      "type": "advanced-quiz",
+      "data": {
+        "heading": "System Architecture Review",
+        "icon": "🏆",
+        "questions": [
+          {
+            "question": "Which chart type is best suited for illustrating fractional market shares?",
+            "options": ["Bar Chart", "Line Chart", "Donut Chart", "Flowchart Diagram"],
+            "correct": 2
+          },
+          {
+            "question": "How is sorting performance in premium interactive tables optimized?",
+            "options": ["Through direct client-side DOM array sorting", "By reloading the page on header clicks", "By calling third-party cloud functions", "Through server-side visual renders"],
+            "correct": 0
+          }
+        ],
+        "speakerNotes": "Review client-side sorting and data structures from the dashboard training."
+      }
     }
   ]
 }
