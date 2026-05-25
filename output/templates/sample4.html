@@ -3970,18 +3970,26 @@ const InteractiveBlocks = (function () {
       options.forEach((opt, i) => {
         opt.addEventListener('click', () => {
           if (question.dataset.answered === 'true') return;
-          question.dataset.answered = 'true';
+
+          // Clear previous highlights to cleanly reset the retry state
+          options.forEach(o => o.classList.remove('selected', 'correct', 'wrong'));
 
           opt.classList.add('selected');
+
           if (i === correctIdx) {
+            question.dataset.answered = 'true'; // Lock the question only when correct
             opt.classList.add('correct');
+            if (explanation) {
+              explanation.classList.add('visible');
+            }
           } else {
             opt.classList.add('wrong');
-            if (options[correctIdx]) options[correctIdx].classList.add('correct');
-          }
-
-          if (explanation) {
-            explanation.classList.add('visible');
+            if (options[correctIdx]) {
+              options[correctIdx].classList.add('correct');
+            }
+            if (explanation) {
+              explanation.classList.add('visible');
+            }
           }
         });
       });
