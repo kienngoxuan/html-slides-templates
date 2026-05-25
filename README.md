@@ -94,15 +94,26 @@ html-slides-templates/
 │   ├── css/
 │   │   ├── variables.css      # Core OKLCH color systems, typography, & tokens
 │   │   ├── base.css           # Structural layout, slide trackers, viewport, print rules
-│   │   ├── blocks.css         # Styling for all 14 interactive slide blocks
+│   │   ├── blocks/
+│   │   │   ├── core.css       # Core interactive blocks: accordion, tabs, cards, quiz
+│   │   │   ├── data.css       # Data/media blocks: charts, tables, flow, split, mermaid
+│   │   │   ├── overlays.css   # Overlay UI: advanced quiz modal, drawing, search palette
+│   │   │   └── presenter.css  # Presenter notes, dashboard, video/presenter-specific UI
 │   │   ├── animations.css     # Transitions, slide-enters, fade-ups, spotlights
 │   │   └── sidebar.css        # Settings gear panel, sidebar tab grids, & picker styling
 │   ├── js/
 │   │   ├── engine.js          # Swipe guestures, keyboard keys, slide trackers, elements cache
-│   │   ├── blocks.js          # High-performance event delegation, SVG charts, retryable quiz
+│   │   ├── blocks-core.js     # Core interactive block behaviors
+│   │   ├── blocks-data.js     # Charts, tables, bento, flow interactions
+│   │   ├── lazy-loaders.js    # On-demand KaTeX, Mermaid, Prism bootstrapping
+│   │   ├── blocks.js          # Orchestrator wiring modular block systems together
 │   │   ├── sidebar.js         # Notes mapped by Slide ID, timer, student picker, OS theme detection
 │   │   ├── renderer.js        # Server-side HTML templating engine for JSON blocks (XSS protected)
-│   │   └── themes.js          # Config delegators for color property overrides
+│   │   └── themes.js          # Small compatibility stubs for notes/theme-related UI
+│   ├── build/
+│   │   ├── assets.js           # Shared asset lists for build scripts
+│   │   ├── themes.js           # Theme metadata for build scripts
+│   │   └── utils.js            # Shared helpers for build scripts
 │   ├── data/
 │   │   ├── sample-slides.json # Interactive Introduction to Web Development data
 │   │   ├── sample2-slides.json# Visual Aesthetics & OKLCH color lesson data
