@@ -1346,4 +1346,115 @@
   transform: scale(1) translate(-50%, -100%);
 }
 
+/* === ADVANCED QUIZ === */
+.advanced-quiz-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.adv-question {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.adv-question h4 {
+  margin-bottom: var(--space-md);
+  font-size: 1.05rem;
+}
+
+.adv-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.adv-option {
+  padding: var(--space-md);
+  background: var(--color-bg-alt);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--color-text);
+  text-align: left;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+}
+
+.adv-option:hover:not(.correct):not(.wrong) {
+  border-color: var(--color-primary-alpha);
+  background: var(--color-surface-hover);
+}
+
+.adv-option.selected {
+  border-color: var(--color-primary);
+  background: color-mix(in oklch, var(--color-primary) 8%, var(--color-bg));
+}
+
+.adv-option.selected .option-letter {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.adv-option.correct {
+  border-color: var(--color-success);
+  background: color-mix(in oklch, var(--color-success) 12%, var(--color-bg));
+}
+
+.adv-option.correct .option-letter {
+  background: var(--color-success);
+  color: white;
+  border-color: var(--color-success);
+}
+
+.adv-option.wrong {
+  border-color: var(--color-error);
+  background: color-mix(in oklch, var(--color-error) 12%, var(--color-bg));
+}
+
+.adv-option.wrong .option-letter {
+  background: var(--color-error);
+  color: white;
+  border-color: var(--color-error);
+}
+
+.adv-quiz-action-row {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-md);
+}
+
+.adv-quiz-result-card {
+  text-align: center;
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+  margin-top: var(--space-lg);
+  border: 2px solid var(--color-primary-alpha);
+  animation: fadeSlideUp 400ms ease;
+}
+
+.adv-result-score {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.adv-result-feedback {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
 
