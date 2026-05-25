@@ -294,6 +294,27 @@
         ],
         "speakerNotes": "Summarize key points. Give direct encouragement to the classroom! Open the floor to interactive Q&A."
       }
+    },
+    {
+      "id": "slide-11",
+      "type": "advanced-quiz",
+      "data": {
+        "heading": "Đánh giá Thẩm mỹ Thiết kế",
+        "icon": "🏆",
+        "questions": [
+          {
+            "question": "Không gian màu nào được thiết kế tối ưu dựa trên cảm nhận độ sáng thực tế của mắt người?",
+            "options": ["sRGB", "HSL", "OKLCH", "HEX"],
+            "correct": 2
+          },
+          {
+            "question": "Tỷ lệ tương phản tối thiểu đề xuất cho văn bản dễ tiếp cận là bao nhiêu?",
+            "options": ["2.0:1", "4.5:1", "1.0:1", "10:1"],
+            "correct": 1
+          }
+        ],
+        "speakerNotes": "Kiểm tra kiến thức về thiết kế thẩm mỹ hiện đại và các nguyên tắc thiết kế OKLCH."
+      }
     }
   ]
 }
