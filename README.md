@@ -63,6 +63,29 @@ Export clean offline handouts of your presentations effortlessly! Standard CSS p
 
 ---
 
+## 🔮 Future Roadmap (Features mới có thể thêm)
+
+### 🎯 Tính năng Giảng dạy / Presenter
+| Feature | Mô tả | Độ phức tạp |
+| :--- | :--- | :--- |
+| **Drawing/Annotation Overlay** | Canvas layer để vẽ bút, bút highlight, tẩy trực tiếp lên slide (như PowerPoint). | Medium |
+| **Presenter View trên màn hình thứ 2** | Mở cửa sổ `/presenter.html` hoặc dual-monitor mode: 1 cửa sổ hiển thị slide, 1 cửa sổ hiển thị notes + timer + next slide. | High |
+| **QR Code cho Q&A** | Sinh QR code trong sidebar để audience trên điện thoại submit câu hỏi vào danh sách (không cần server, có thể dùng polling hoặc WebRTC). | Medium |
+| **Laser Pointer nâng cao** | Hiện tại chỉ là CSS class. Có thể thêm trail effect, đổi màu, hoặc spotlight theo cursor. | Low |
+| **Auto-play / Rehearse Timer** | Set duration cho từng slide trong JSON, tự động advance hoặc báo đỏ khi quá giờ. | Medium |
+| **Slide Search (Ctrl+K)** | Tìm kiếm full-text trong toàn bộ presentation, jump đến slide. | Low |
+
+### 🎨 Tính năng Content Blocks mới
+| Feature | Mô tả |
+| :--- | :--- |
+| **MathJax / KaTeX Block** | Render công thức toán học từ JSON `{"type": "math", "data": {"latex": "E=mc^2"}}`. |
+| **Mermaid Diagram Block** | Nhúng Mermaid.js để vẽ flowchart/sequence/Gantt từ text. |
+| **Video Embed Block** | Support YouTube/Vimeo/local MP4 với custom poster. |
+| **Syntax Highlighting** | Tích hợp Shiki hoặc Prism cho code blocks (hiện tại chỉ là `<pre><code>` plain text). |
+| **Two-Column Layout Block** | `type: "split"` để chia slide làm 2 cột (text + image/code). |
+
+---
+
 ## 📂 Codebase Architecture
 
 ```plaintext
