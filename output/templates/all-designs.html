@@ -5124,6 +5124,64 @@ const InteractiveBlocksCore = (function () {
 
   /* === Interactive Image URL Customizer === */
   function initInteractiveImages() {
+    const IMAGE_INDEX_KEY = 'lecta-img-index';
+    const IMAGE_CACHE_LIMIT = 40;
+
+    function readImageIndex() {
+      try {
+        const raw = localStorage.getItem(IMAGE_INDEX_KEY);
+        const list = raw ? JSON.parse(raw) : [];
+        return Array.isArray(list) ? list : [];
+      } catch (e) {
+        console.warn('localStorage is blocked or full:', e);
+        return [];
+      }
+    }
+
+    function writeImageIndex(list) {
+      try {
+        localStorage.setItem(IMAGE_INDEX_KEY, JSON.stringify(list));
+      } catch (e) {
+        console.warn('localStorage is blocked or full:', e);
+      }
+    }
+
+    function pruneImageIndex(list) {
+      while (list.length > IMAGE_CACHE_LIMIT) {
+        const key = list.shift();
+        if (!key) continue;
+        try {
+          localStorage.removeItem(key);
+        } catch (e) {
+          console.warn('localStorage is blocked or full:', e);
+        }
+      }
+    }
+
+    function recordImageKey(key) {
+      const list = readImageIndex().filter((k) => k !== key);
+      list.push(key);
+      pruneImageIndex(list);
+      writeImageIndex(list);
+    }
+
+    function saveImageUrl(key, url) {
+      try {
+        localStorage.setItem(key, url);
+        recordImageKey(key);
+      } catch (err) {
+        console.warn('localStorage is blocked or full:', err);
+        const list = readImageIndex();
+        pruneImageIndex(list);
+        try {
+          localStorage.setItem(key, url);
+          recordImageKey(key);
+        } catch (e) {
+          console.warn('localStorage is blocked or full:', e);
+        }
+      }
+    }
+
     document.querySelectorAll('.interactive-image').forEach((img, index) => {
       const slide = img.closest('.slide');
       const key = 'lecta-img-' + (slide ? slide.id : ('index-' + index));
@@ -5150,11 +5208,7 @@ const InteractiveBlocksCore = (function () {
       const newUrl = prompt('Enter a new Image URL (Unsplash or any web link):', img.src);
       if (newUrl !== null && newUrl.trim() !== '') {
         img.src = newUrl.trim();
-        try {
-          localStorage.setItem(key, newUrl.trim());
-        } catch (err) {
-          console.warn('localStorage is blocked or full:', err);
-        }
+        saveImageUrl(key, newUrl.trim());
       }
     });
   }
@@ -5416,8 +5470,21 @@ const InteractiveBlocksCore = (function () {
           }
           feedback.textContent = msg;
 
-          backdrop._originalParent = container;
-          document.body.appendChild(backdrop);
+          document.querySelectorAll('body > .adv-quiz-modal-backdrop').forEach(existing => {
+            if (existing !== backdrop) {
+              existing.style.display = 'none';
+              if (existing._originalParent) {
+                existing._originalParent.appendChild(existing);
+              } else {
+                existing.remove();
+              }
+            }
+          });
+
+          if (backdrop.parentElement !== document.body) {
+            backdrop._originalParent = container;
+            document.body.appendChild(backdrop);
+          }
 
           backdrop.style.display = 'flex';
           document.body.classList.add('adv-quiz-modal-open');
@@ -5458,9 +5525,8 @@ const InteractiveBlocksCore = (function () {
         const backdrop = closeBtn.closest('.adv-quiz-modal-backdrop');
         if (backdrop) {
           backdrop.style.display = 'none';
-          if (backdrop._originalParent) {
-            backdrop._originalParent.appendChild(backdrop);
-          }
+          const parent = backdrop._originalParent || backdrop.closest('.advanced-quiz-container');
+          if (parent) parent.appendChild(backdrop);
         }
         document.body.classList.remove('adv-quiz-modal-open');
         return;
@@ -6297,26 +6363,85 @@ const LazyLoaders = (function () {
     const containers = document.querySelectorAll('.math-display-equation');
     if (containers.length === 0) return;
 
-    if (!window.renderMathInElement) {
+    function renderWithAutoRender() {
+      containers.forEach(el => {
+        if (el.dataset.katexRendered === 'true') return;
+        const latex = el.dataset.latex || '';
+        el.textContent = `\\[${latex}\\]`;
+        try {
+          window.renderMathInElement(el, {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '\\[', right: '\\]', display: true },
+              { left: '$', right: '$', display: false },
+              { left: '\\(', right: '\\)', display: false },
+            ],
+            throwOnError: false,
+          });
+          el.dataset.katexRendered = 'true';
+        } catch (e) {
+          console.error('KaTeX auto-render error:', e);
+        }
+      });
+    }
+
+    function renderWithCore() {
+      containers.forEach(el => {
+        if (el.dataset.katexRendered === 'true') return;
+        const latex = el.dataset.latex || '';
+        try {
+          window.katex.render(latex, el, { displayMode: true, throwOnError: false });
+          el.dataset.katexRendered = 'true';
+        } catch (e) {
+          console.error('KaTeX error:', e);
+        }
+      });
+    }
+
+    function ensureKaTeXStyles() {
+      if (document.querySelector('link[data-katex-css="true"]')) return;
       const link = document.createElement('link');
       link.rel = 'stylesheet';
       link.href = 'https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css';
+      link.dataset.katexCss = 'true';
       document.head.appendChild(link);
+    }
 
+    function loadAutoRender() {
+      if (window.renderMathInElement) {
+        renderWithAutoRender();
+        return;
+      }
+
+      if (document.querySelector('script[data-katex-auto-render="true"]')) return;
       const script = document.createElement('script');
-      script.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js';
+      script.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js';
+      script.dataset.katexAutoRender = 'true';
       script.onload = () => {
-        containers.forEach(el => {
-          const latex = el.dataset.latex || '';
-          try {
-            window.katex.render(latex, el, { displayMode: true, throwOnError: false });
-          } catch (e) {
-            console.error('KaTeX error:', e);
-          }
-        });
+        if (window.renderMathInElement) renderWithAutoRender();
+        else if (window.katex) renderWithCore();
       };
       document.body.appendChild(script);
     }
+
+    ensureKaTeXStyles();
+
+    if (!window.katex) {
+      if (document.querySelector('script[data-katex-core="true"]')) return;
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js';
+      script.dataset.katexCore = 'true';
+      script.onload = () => loadAutoRender();
+      document.body.appendChild(script);
+      return;
+    }
+
+    if (!window.renderMathInElement) {
+      loadAutoRender();
+      return;
+    }
+
+    renderWithAutoRender();
   }
 
   /* === 🌿 Mermaid On-Demand Loader === */
@@ -6432,6 +6557,7 @@ const SidebarModule = (function () {
 
   // ===== INIT =====
   function init() {
+    if (location.search.includes('presenter=true')) return;
     initThemeMode();
     initGearPanel();
     initSidebar();
@@ -6583,8 +6709,9 @@ const SidebarModule = (function () {
       const thumb = e.target.closest('.slide-thumb');
       if (thumb) {
         const idx = parseInt(thumb.dataset.slide, 10);
-        if (typeof SlideEngine !== 'undefined') {
-          SlideEngine.goTo(idx);
+        const slideEngine = window.SlideEngine;
+        if (slideEngine && typeof slideEngine.goTo === 'function') {
+          slideEngine.goTo(idx);
         }
       }
     });
@@ -6623,7 +6750,8 @@ const SidebarModule = (function () {
   }
 
   function syncOverviewActive(idx) {
-    const current = idx !== undefined ? idx : (typeof SlideEngine !== 'undefined' ? SlideEngine.getCurrent() : 0);
+    const slideEngine = window.SlideEngine;
+    const current = idx !== undefined ? idx : (slideEngine && typeof slideEngine.getCurrent === 'function' ? slideEngine.getCurrent() : 0);
     document.querySelectorAll('.slide-thumb').forEach((t, i) => {
       t.classList.toggle('active', i === current);
     });
@@ -6928,9 +7056,10 @@ const ViewportEmulator = (function () {
       window.dispatchEvent(new Event('resize'));
       
       // Dispatch Lecta internal slideChanged event to redraw SVGs instantly
-      if (typeof SlideEngine !== 'undefined') {
-        document.dispatchEvent(new CustomEvent('slideChanged', { 
-          detail: { index: SlideEngine.getCurrent() } 
+      const slideEngine = window.SlideEngine;
+      if (slideEngine && typeof slideEngine.getCurrent === 'function') {
+        document.dispatchEvent(new CustomEvent('slideChanged', {
+          detail: { index: slideEngine.getCurrent() }
         }));
       }
     }, 150);
