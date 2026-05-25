@@ -285,3 +285,79 @@ pre code {
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
+
+/* Firefox Scrollbar support */
+@supports (scrollbar-width: thin) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) transparent;
+  }
+}
+
+/* Print stylesheets for clean offline PDF exports (one slide per page) */
+@media print {
+  body, html {
+    overflow: visible !important;
+    height: auto !important;
+    width: auto !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  
+  .right-sidebar,
+  .nav-bar,
+  .nav-progress,
+  .gear-btn,
+  .presenter-toggle,
+  .speaker-notes-panel,
+  .edit-image-overlay-btn,
+  .freeze-overlay,
+  .spotlight-overlay,
+  .settings-panel {
+    display: none !important;
+  }
+
+  .slides-viewport {
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  .slides-track {
+    display: block !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .slide {
+    page-break-after: always !important;
+    page-break-inside: avoid !important;
+    display: block !important;
+    height: 100vh !important;
+    min-height: 100vh !important;
+    padding: 2cm !important;
+    overflow: visible !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    box-sizing: border-box !important;
+  }
+
+  .slide-inner {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+    transform: none !important;
+  }
+
+  .chart-canvas-wrapper,
+  .table-responsive-wrapper,
+  .flow-layout-wrapper {
+    box-shadow: none !important;
+    border: 1px solid #cccccc !important;
+    background: #ffffff !important;
+  }
+  
+  .glass-table th {
+    background: #f0f0f0 !important;
+    color: #000000 !important;
+  }
+}
