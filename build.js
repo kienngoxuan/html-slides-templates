@@ -10,9 +10,98 @@ const ROOT = __dirname;
 
 function read(rel) { return fs.readFileSync(path.join(ROOT, rel), 'utf-8'); }
 
+// Validation function for robust slide structure verification
+function validateSlideSchema(slideData, dataFile) {
+  if (!slideData) {
+    throw new Error(`Validation failed for ${dataFile}: JSON is null or undefined`);
+  }
+  if (!slideData.meta) {
+    throw new Error(`Validation failed for ${dataFile}: missing required "meta" object`);
+  }
+  if (typeof slideData.meta.title !== 'string') {
+    console.warn(`[Warning] ${dataFile}: "meta.title" is recommended to be a string`);
+  }
+  if (!Array.isArray(slideData.slides)) {
+    throw new Error(`Validation failed for ${dataFile}: "slides" must be an array`);
+  }
+
+  slideData.slides.forEach((slide, idx) => {
+    if (!slide.id) {
+      slide.id = `slide-${idx + 1}`; // Safe fallback ID
+    }
+    if (!slide.type) {
+      throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1}: missing required "type" field`);
+    }
+    if (!slide.data) {
+      throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1}: missing required "data" object`);
+    }
+
+    const d = slide.data;
+    switch (slide.type) {
+      case 'bullets':
+      case 'accordion':
+      case 'summary':
+        if (!Array.isArray(d.items)) {
+          throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("${slide.type}"): "items" must be an array`);
+        }
+        break;
+      case 'cards':
+        if (!Array.isArray(d.cards)) {
+          throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("cards"): "cards" must be an array`);
+        }
+        break;
+      case 'tabs':
+        if (!Array.isArray(d.tabs)) {
+          throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("tabs"): "tabs" must be an array`);
+        }
+        break;
+      case 'quiz':
+        if (!Array.isArray(d.questions)) {
+          throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("quiz"): "questions" must be an array`);
+        }
+        d.questions.forEach((q, qi) => {
+          if (q.correct === undefined || isNaN(parseInt(q.correct, 10))) {
+            throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("quiz"), question ${qi + 1}: "correct" index must be defined as an integer`);
+          }
+          if (!Array.isArray(q.options)) {
+            throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("quiz"), question ${qi + 1}: "options" must be an array`);
+          }
+        });
+        break;
+      case 'chart':
+        if (!d.chartType) {
+          throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("chart"): missing required "chartType"`);
+        }
+        break;
+      case 'bento':
+        if (!Array.isArray(d.items)) {
+          throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("bento"): "items" must be an array`);
+        }
+        break;
+      case 'timeline':
+        if (!Array.isArray(d.events)) {
+          throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("timeline"): "events" must be an array`);
+        }
+        break;
+      case 'compare':
+        if (!d.left || !Array.isArray(d.left.items)) {
+          throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("compare"): "left.items" must be an array`);
+        }
+        if (!d.right || !Array.isArray(d.right.items)) {
+          throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("compare"): "right.items" must be an array`);
+        }
+        break;
+    }
+  });
+}
+
 // Assembles a specific JSON file into a target HTML file
 function buildSlideDeck(dataFile, outputFile) {
   const slideData = JSON.parse(fs.readFileSync(dataFile, 'utf-8'));
+  
+  // Validate schema before compiling to report mistakes instantly
+  validateSlideSchema(slideData, dataFile);
+  
   const meta = slideData.meta;
 
   // CSS
@@ -77,6 +166,8 @@ function buildSlideDeck(dataFile, outputFile) {
       <span>${t.label}</span>
     </div>`).join('');
 
+  const studentAttr = meta.students ? ` data-students="${JSON.stringify(meta.students).replace(/"/g, '&quot;')}"` : '';
+
   const html = `<!DOCTYPE html>
 <html lang="en" data-theme="${meta.theme || 'ocean'}">
 <head>
@@ -89,7 +180,7 @@ function buildSlideDeck(dataFile, outputFile) {
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>${allCSS}</style>
 </head>
-<body>
+<body${studentAttr}>
   <!-- Progress Bar -->
   <div class="nav-progress" style="width:${Math.round(100/slideData.slides.length)}%"></div>
 
