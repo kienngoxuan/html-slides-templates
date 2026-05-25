@@ -1,0 +1,140 @@
+{
+  "meta": {
+    "title": "LECTA AI — Next-Gen Presentation Architecture",
+    "subtitle": "Unlocking wide-gamut OKLCH styling, interactive P2P overlays, responsive video frames, and dynamic canvas annotations.",
+    "author": "Lecta AI Labs",
+    "date": "2026",
+    "theme": "volcano",
+    "duration": 60
+  },
+  "slides": [
+    {
+      "id": "slide-s5-1",
+      "type": "title",
+      "data": {
+        "heading": "Next-Gen Presentation Architecture",
+        "subtitle": "Unlocking wide-gamut OKLCH styling, interactive P2P presenter overlays, responsive video frames, and dynamic canvas annotations.",
+        "badge": "Special Keynote",
+        "speakerNotes": "Welcome to the ultimate presentation masterclass. Today we explore high-end visual blocks and tools!"
+      }
+    },
+    {
+      "id": "slide-s5-2",
+      "type": "split",
+      "data": {
+        "heading": "Synchronized Presenter Flow",
+        "icon": "🔄",
+        "layout": "split-50-50",
+        "left": {
+          "type": "mermaid",
+          "data": {
+            "code": "flowchart TD\n  Presenter([Presenter Console]) -->|BroadcastChannel| Receiver([Audience Window])\n  Receiver -->|Render Sync| UI([Instant Navigation])\n  Presenter -->|Split Screen| Previews([Current & Next Previews])"
+          }
+        },
+        "right": {
+          "type": "bullets",
+          "data": {
+            "items": [
+              "Zero-Server bidirectional offline synchronization.",
+              "Broadcasting slide indices instantly across monitor frame boundaries.",
+              "Integrated current and next previews with countdown stopwatch."
+            ]
+          }
+        },
+        "speakerNotes": "Explain how the BroadcastChannel establishes offline real-time synchronization between standard presenter consoles and audience view windows."
+      }
+    },
+    {
+      "id": "slide-s5-3",
+      "type": "bento",
+      "data": {
+        "heading": "Modern Presentation Blocks",
+        "icon": "🍱",
+        "gridTemplate": "large | small small",
+        "items": [
+          {
+            "size": "large",
+            "title": "Next-Gen Bento Blueprint",
+            "content": "Combine math equations, flowcharts, video players, and code sandboxes inside responsive grid slots that resize fluidly across tablet, mobile, or widescreen screens.",
+            "badge": "Responsive Canvas",
+            "bgGradient": "oklch(58% 0.22 35) to oklch(48% 0.18 20)"
+          },
+          {
+            "size": "small",
+            "title": "Dynamic Loaders",
+            "content": "On-demand CDN fetching only downloads heavy engines (KaTeX, Mermaid, Prism) when needed.",
+            "icon": "⚡"
+          },
+          {
+            "size": "small",
+            "title": "Glassmorphism",
+            "content": "Sophisticated glass backdrop filters and glowing neon borders that respond cleanly to theme settings.",
+            "icon": "✨"
+          }
+        ],
+        "speakerNotes": "Review the Bento block configuration. Show the contrast between the primary large block and supporting cards."
+      }
+    },
+    {
+      "id": "slide-s5-4",
+      "type": "split",
+      "data": {
+        "heading": "Mathematical Precision & Code",
+        "icon": "🧮",
+        "layout": "split-50-50",
+        "left": {
+          "type": "math",
+          "data": {
+            "latex": "\\nabla \\times \\mathbf{E} = -\\frac{\\partial \\mathbf{B}}{\\partial t}",
+            "explanation": "Faraday's Law of Induction describes how a time-varying magnetic field induces a spatially-varying, non-conservative electric field."
+          }
+        },
+        "right": {
+          "type": "code",
+          "data": {
+            "language": "javascript",
+            "code": "// On-Demand KaTeX Render Function\nfunction initKaTeX() {\n  const latex = '\\\\nabla \\\\times \\\\mathbf{E}';\n  window.katex.render(latex, element);\n}"
+          }
+        },
+        "speakerNotes": "Walk students through Faraday's Law and demonstrate how LECTA renders complex mathematical LaTeX formulas side-by-side with Prism code blocks."
+      }
+    },
+    {
+      "id": "slide-s5-5",
+      "type": "video",
+      "data": {
+        "heading": "Video Showcase Integration",
+        "icon": "🎬",
+        "videoType": "youtube",
+        "videoId": "LXb3EKWsInQ",
+        "speakerNotes": "Play the YouTube embedded showcase presentation video."
+      }
+    },
+    {
+      "id": "slide-s5-6",
+      "type": "advanced-quiz",
+      "data": {
+        "heading": "Lecta Masterclass Assessment",
+        "icon": "🏆",
+        "questions": [
+          {
+            "question": "Which technology establishes low-overhead communication between split speaker consoles and primary audience displays?",
+            "options": ["WebSocket Remote Portals", "Bidirectional BroadcastChannel", "Persistent Shared Workers", "Synchronous HTTP Polling"],
+            "correct": 1
+          },
+          {
+            "question": "How are heavy script engines like KaTeX and Mermaid initialized in the zero-dependency LECTA engine?",
+            "options": ["Bundled in the primary compiled asset", "Loaded on-demand from CDNs when slides load", "Installed globally via node packages", "Pre-rendered into static graphics shapes"],
+            "correct": 1
+          },
+          {
+            "question": "Which theme color space prevents pixel clipping while maintaining identical perceptual lightness?",
+            "options": ["Standard sRGB color coordinates", "Perceptual OKLCH theme tokens", "Traditional HSL bright values", "Hexadecimal light indicators"],
+            "correct": 1
+          }
+        ],
+        "speakerNotes": "Assess the audience's mastery of the lesson material. Have them select choices and submit to calculate their final score."
+      }
+    }
+  ]
+}
