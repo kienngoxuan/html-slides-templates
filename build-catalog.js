@@ -6,10 +6,12 @@
 const fs = require('fs');
 const path = require('path');
 const ROOT = __dirname;
-const { readFiles, loadFaviconDataURI, renderThemeDots } = require('./src/build/utils');
+const { readFiles, loadFaviconDataURI, renderThemeDots, renderFontFaceCSS } = require('./src/build/utils');
 const { getCatalogCssFiles, getCatalogJsFiles } = require('./src/build/assets');
 const { LIGHT_THEMES, DARK_THEMES } = require('./src/build/themes');
+const { FONT_FILES } = require('./src/build/fonts');
 
+const fontFaceCSS = renderFontFaceCSS(ROOT, FONT_FILES);
 const allCSS = readFiles(ROOT, getCatalogCssFiles());
 const allJS = readFiles(ROOT, getCatalogJsFiles());
 
@@ -27,8 +29,8 @@ const html = `<!DOCTYPE html>
 ${faviconDataURI ? `<link rel="icon" type="image/jpeg" href="${faviconDataURI}">` : ''}
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lecta AI — All Designs Catalog</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
+${fontFaceCSS}
 ${allCSS}
 </style>
 </head>
