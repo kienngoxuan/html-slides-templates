@@ -104,6 +104,16 @@ function buildSlideDeck(dataFile, outputFile) {
   
   const meta = slideData.meta;
 
+  // Load favicon if available
+  let faviconDataURI = '';
+  try {
+    const faviconBuffer = fs.readFileSync(path.join(ROOT, 'src/favicon.JPG'));
+    const base64Favicon = faviconBuffer.toString('base64');
+    faviconDataURI = `data:image/jpeg;base64,${base64Favicon}`;
+  } catch (err) {
+    console.warn('⚠️ Could not load src/favicon.JPG for base64 embedding:', err);
+  }
+
   // CSS
   const allCSS = [
     read('src/css/variables.css'),
@@ -172,6 +182,7 @@ function buildSlideDeck(dataFile, outputFile) {
 <html lang="en" data-theme="${meta.theme || 'ocean'}">
 <head>
   <meta charset="UTF-8">
+  ${faviconDataURI ? `<link rel="icon" type="image/jpeg" href="${faviconDataURI}">` : ''}
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="${meta.subtitle || 'Interactive slide deck built with Lecta AI'}">
   <title>${meta.title || 'Lecta AI Presentation'}</title>
