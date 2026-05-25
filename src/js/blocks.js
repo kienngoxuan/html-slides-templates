@@ -26,7 +26,12 @@ const InteractiveBlocks = (function () {
     document.querySelectorAll('.interactive-image').forEach((img, index) => {
       const slide = img.closest('.slide');
       const key = 'lecta-img-' + (slide ? slide.id : ('index-' + index));
-      const savedUrl = localStorage.getItem(key);
+      let savedUrl = null;
+      try {
+        savedUrl = localStorage.getItem(key);
+      } catch (e) {
+        console.warn('localStorage is blocked or full:', e);
+      }
       if (savedUrl) {
         img.src = savedUrl;
       }
@@ -44,84 +49,140 @@ const InteractiveBlocks = (function () {
       const newUrl = prompt('Enter a new Image URL (Unsplash or any web link):', img.src);
       if (newUrl !== null && newUrl.trim() !== '') {
         img.src = newUrl.trim();
-        localStorage.setItem(key, newUrl.trim());
+        try {
+          localStorage.setItem(key, newUrl.trim());
+        } catch (err) {
+          console.warn('localStorage is blocked or full:', err);
+        }
       }
     });
   }
 
-  /* === Accordion === */
+  /* === Accordion (Event Delegation & ARIA Compliant) === */
   function initAccordions() {
-    document.querySelectorAll('.accordion-header').forEach(header => {
-      header.addEventListener('click', () => {
-        const item = header.closest('.accordion-item');
-        const accordion = item.closest('.accordion');
-        // Close others in same accordion
-        accordion.querySelectorAll('.accordion-item.open').forEach(open => {
-          if (open !== item) open.classList.remove('open');
-        });
-        item.classList.toggle('open');
+    document.addEventListener('click', (e) => {
+      const header = e.target.closest('.accordion-header');
+      if (!header) return;
+
+      const item = header.closest('.accordion-item');
+      const accordion = item.closest('.accordion');
+      if (!accordion) return;
+
+      // Close others in same accordion
+      accordion.querySelectorAll('.accordion-item.open').forEach(open => {
+        if (open !== item) {
+          open.classList.remove('open');
+          const openHeader = open.querySelector('.accordion-header');
+          if (openHeader) openHeader.setAttribute('aria-expanded', 'false');
+        }
       });
+
+      const isOpen = item.classList.toggle('open');
+      header.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
   }
 
-  /* === Tabs === */
+  /* === Tabs (Event Delegation & ARIA Compliant) === */
   function initTabs() {
-    document.querySelectorAll('.tabs-container').forEach(container => {
-      const buttons = container.querySelectorAll('.tab-btn');
-      const panels = container.querySelectorAll('.tab-panel');
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.tab-btn');
+      if (!btn) return;
 
-      buttons.forEach((btn, i) => {
-        btn.addEventListener('click', () => {
-          buttons.forEach(b => b.classList.remove('active'));
-          panels.forEach(p => p.classList.remove('active'));
-          btn.classList.add('active');
-          panels[i].classList.add('active');
-        });
+      const container = btn.closest('.tabs-container');
+      if (!container) return;
+
+      const buttons = Array.from(container.querySelectorAll('.tab-btn'));
+      const panels = container.querySelectorAll('.tab-panel');
+      const idx = buttons.indexOf(btn);
+      if (idx === -1) return;
+
+      buttons.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
       });
+      panels.forEach(p => p.classList.remove('active'));
+
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      if (panels[idx]) panels[idx].classList.add('active');
     });
   }
 
-  /* === Stepper === */
+  /* === Stepper (Event Delegation) === */
   function initSteppers() {
+    // Click navigation controls
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.stepper .nav-btn');
+      if (!btn) return;
+
+      const stepper = btn.closest('.stepper');
+      if (!stepper) return;
+
+      const dots = stepper.querySelectorAll('.step-dot');
+      const contents = stepper.querySelectorAll('.step-content');
+      const lines = stepper.querySelectorAll('.step-line');
+      const prevBtn = stepper.querySelector('.step-prev');
+      const nextBtn = stepper.querySelector('.step-next');
+
+      let currentStep = 0;
+      dots.forEach((d, i) => {
+        if (d.classList.contains('active')) currentStep = i;
+      });
+
+      let nextStep = currentStep;
+      if (btn.classList.contains('step-prev')) nextStep = currentStep - 1;
+      if (btn.classList.contains('step-next')) nextStep = currentStep + 1;
+
+      if (nextStep < 0 || nextStep >= contents.length) return;
+      goToStep(stepper, dots, contents, lines, prevBtn, nextBtn, nextStep);
+    });
+
+    // Direct dot navigation click delegation
+    document.addEventListener('click', (e) => {
+      const dot = e.target.closest('.stepper .step-dot');
+      if (!dot) return;
+
+      const stepper = dot.closest('.stepper');
+      if (!stepper) return;
+
+      const dots = Array.from(stepper.querySelectorAll('.step-dot'));
+      const contents = stepper.querySelectorAll('.step-content');
+      const lines = stepper.querySelectorAll('.step-line');
+      const prevBtn = stepper.querySelector('.step-prev');
+      const nextBtn = stepper.querySelector('.step-next');
+
+      const nextStep = dots.indexOf(dot);
+      goToStep(stepper, dots, contents, lines, prevBtn, nextBtn, nextStep);
+    });
+
+    // Initial default layout for all steppers
     document.querySelectorAll('.stepper').forEach(stepper => {
       const dots = stepper.querySelectorAll('.step-dot');
       const contents = stepper.querySelectorAll('.step-content');
       const lines = stepper.querySelectorAll('.step-line');
       const prevBtn = stepper.querySelector('.step-prev');
       const nextBtn = stepper.querySelector('.step-next');
-      let currentStep = 0;
-
-      function goToStep(idx) {
-        if (idx < 0 || idx >= contents.length) return;
-        currentStep = idx;
-
-        dots.forEach((d, i) => {
-          d.classList.remove('active', 'completed');
-          if (i < idx) d.classList.add('completed');
-          if (i === idx) d.classList.add('active');
-        });
-
-        lines.forEach((l, i) => {
-          l.classList.toggle('active', i < idx);
-        });
-
-        contents.forEach((c, i) => {
-          c.classList.toggle('active', i === idx);
-        });
-
-        if (prevBtn) prevBtn.disabled = idx === 0;
-        if (nextBtn) nextBtn.disabled = idx === contents.length - 1;
-      }
-
-      dots.forEach((dot, i) => {
-        dot.addEventListener('click', () => goToStep(i));
-      });
-
-      if (prevBtn) prevBtn.addEventListener('click', () => goToStep(currentStep - 1));
-      if (nextBtn) nextBtn.addEventListener('click', () => goToStep(currentStep + 1));
-
-      goToStep(0);
+      goToStep(stepper, dots, contents, lines, prevBtn, nextBtn, 0);
     });
+  }
+
+  function goToStep(stepper, dots, contents, lines, prevBtn, nextBtn, idx) {
+    dots.forEach((d, i) => {
+      d.classList.remove('active', 'completed');
+      if (i < idx) d.classList.add('completed');
+      if (i === idx) d.classList.add('active');
+    });
+
+    lines.forEach((l, i) => {
+      l.classList.toggle('active', i < idx);
+    });
+
+    contents.forEach((c, i) => {
+      c.classList.toggle('active', i === idx);
+    });
+
+    if (prevBtn) prevBtn.disabled = idx === 0;
+    if (nextBtn) nextBtn.disabled = idx === contents.length - 1;
   }
 
   /* === Flip Cards === */
@@ -133,31 +194,50 @@ const InteractiveBlocks = (function () {
     });
   }
 
-  /* === Quiz === */
+  /* === Quiz (With Dynamic State Resets) === */
   function initQuiz() {
     document.querySelectorAll('.quiz-question').forEach(question => {
       const correctIdx = parseInt(question.dataset.correct, 10);
       const options = question.querySelectorAll('.quiz-option');
       const explanation = question.querySelector('.quiz-explanation');
-      let answered = false;
+      question.dataset.answered = 'false';
 
       options.forEach((opt, i) => {
         opt.addEventListener('click', () => {
-          if (answered) return;
-          answered = true;
+          if (question.dataset.answered === 'true') return;
+          question.dataset.answered = 'true';
 
           opt.classList.add('selected');
           if (i === correctIdx) {
             opt.classList.add('correct');
           } else {
             opt.classList.add('wrong');
-            options[correctIdx].classList.add('correct');
+            if (options[correctIdx]) options[correctIdx].classList.add('correct');
           }
 
           if (explanation) {
             explanation.classList.add('visible');
           }
         });
+      });
+    });
+
+    // Reset quiz states when a slide is changed so presenters can re-teach/re-run quizzes
+    document.addEventListener('slideChanged', (e) => {
+      const activeSlideIndex = e.detail.index;
+      const slides = document.querySelectorAll('.slide');
+      const activeSlide = slides[activeSlideIndex];
+      if (!activeSlide) return;
+
+      activeSlide.querySelectorAll('.quiz-question').forEach(question => {
+        question.dataset.answered = 'false';
+        question.querySelectorAll('.quiz-option').forEach(opt => {
+          opt.classList.remove('selected', 'correct', 'wrong');
+        });
+        const explanation = question.querySelector('.quiz-explanation');
+        if (explanation) {
+          explanation.classList.remove('visible');
+        }
       });
     });
   }
@@ -543,11 +623,19 @@ const InteractiveBlocks = (function () {
       path.setAttribute('stroke-width', '3');
       path.setAttribute('stroke-linecap', 'round');
       
-      const pathLength = 1500;
+      svg.appendChild(path);
+      
+      let pathLength = 1500;
+      try {
+        const totalLen = path.getTotalLength();
+        if (totalLen > 0) pathLength = totalLen;
+      } catch (e) {
+        console.warn('Failed to measure path length, using fallback:', e);
+      }
+
       path.setAttribute('stroke-dasharray', pathLength);
       path.setAttribute('stroke-dashoffset', pathLength);
       path.style.transition = 'stroke-dashoffset 1.5s ease-out';
-      svg.appendChild(path);
 
       setTimeout(() => {
         path.setAttribute('stroke-dashoffset', '0');
@@ -937,3 +1025,5 @@ const InteractiveBlocks = (function () {
 
   return { init };
 })();
+
+window.InteractiveBlocks = window.InteractiveBlocks || InteractiveBlocks;
