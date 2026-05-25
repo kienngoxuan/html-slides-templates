@@ -1195,6 +1195,347 @@ const InteractiveBlocks = (function () {
         });
       });
     });
+    initDrawing();
+    initSearchPalette();
+    initLaserPointerTrails();
+    initKaTeXMaths();
+    initMermaidDiagrams();
+    initSyntaxHighlighting();
+  }
+
+  /* === 🖌️ Presenter Canvas Annotation & Scribbling Overlay === */
+  let isDrawingActive = false;
+  function initDrawing() {
+    const canvas = document.querySelector('.drawing-canvas-overlay');
+    const toolbar = document.querySelector('.drawing-toolbar');
+    if (!canvas || !toolbar) return;
+
+    const ctx = canvas.getContext('2d');
+    let isDrawing = false;
+    let tool = 'pen'; // 'pen', 'highlighter', 'eraser'
+    let color = '#ef4444'; // Red default
+    let size = 4;
+
+    function resizeCanvas() {
+      const view = document.querySelector('.slides-viewport') || document.body;
+      canvas.width = view.clientWidth;
+      canvas.height = view.clientHeight;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // Toggle overlay and toolbar
+    document.addEventListener('toggleDrawingCanvas', () => {
+      isDrawingActive = !isDrawingActive;
+      if (isDrawingActive) {
+        canvas.style.pointerEvents = 'auto';
+        toolbar.classList.add('active');
+        resizeCanvas();
+      } else {
+        canvas.style.pointerEvents = 'none';
+        toolbar.classList.remove('active');
+      }
+    });
+
+    // Handle Toolbar Tools Selection
+    toolbar.querySelectorAll('.draw-tool-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (btn.classList.contains('draw-clear')) {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          return;
+        }
+        toolbar.querySelectorAll('.draw-tool-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        tool = btn.dataset.tool;
+      });
+    });
+
+    // Handle Colors Selection
+    toolbar.querySelectorAll('.draw-color-dot').forEach(dot => {
+      dot.addEventListener('click', () => {
+        toolbar.querySelectorAll('.draw-color-dot').forEach(d => d.classList.remove('active'));
+        dot.classList.add('active');
+        color = dot.dataset.color;
+      });
+    });
+
+    // Handle Size Range Slider
+    const sizeSlider = toolbar.querySelector('.draw-brush-size');
+    const sizeIndicator = toolbar.querySelector('.draw-brush-indicator');
+    if (sizeSlider) {
+      sizeSlider.addEventListener('input', (e) => {
+        size = e.target.value;
+        if (sizeIndicator) sizeIndicator.textContent = `Size: ${size}px`;
+      });
+    }
+
+    // Scribble Drawing Mechanics (Desktop Mouse & Mobile Touch)
+    function getPos(e) {
+      const rect = canvas.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      return {
+        x: clientX - rect.left,
+        y: clientY - rect.top
+      };
+    }
+
+    function startDraw(e) {
+      if (!isDrawingActive) return;
+      isDrawing = true;
+      const pos = getPos(e);
+      ctx.beginPath();
+      ctx.moveTo(pos.x, pos.y);
+      e.preventDefault();
+    }
+
+    function draw(e) {
+      if (!isDrawingActive || !isDrawing) return;
+      const pos = getPos(e);
+
+      ctx.lineWidth = size;
+      if (tool === 'eraser') {
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.strokeStyle = 'rgba(0,0,0,1)';
+        ctx.lineWidth = size * 3; // Wider eraser
+      } else if (tool === 'highlighter') {
+        ctx.globalCompositeOperation = 'multiply';
+        ctx.strokeStyle = color;
+        ctx.globalAlpha = 0.4;
+      } else {
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.strokeStyle = color;
+        ctx.globalAlpha = 1.0;
+      }
+
+      ctx.lineTo(pos.x, pos.y);
+      ctx.stroke();
+      e.preventDefault();
+    }
+
+    function stopDraw() {
+      isDrawing = false;
+    }
+
+    canvas.addEventListener('mousedown', startDraw);
+    canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('mouseup', stopDraw);
+    canvas.addEventListener('mouseleave', stopDraw);
+
+    canvas.addEventListener('touchstart', startDraw, { passive: false });
+    canvas.addEventListener('touchmove', draw, { passive: false });
+    canvas.addEventListener('touchend', stopDraw);
+
+    // Clear canvas when slides navigate
+    document.addEventListener('slideChanged', () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    });
+  }
+
+  /* === 🔍 Glassmorphic Spotlight Search Command Palette === */
+  function initSearchPalette() {
+    const backdrop = document.querySelector('.search-palette-backdrop');
+    const input = document.querySelector('.search-input');
+    const list = document.querySelector('.search-results-list');
+    if (!backdrop || !input || !list) return;
+
+    let selectedIndex = -1;
+    let currentResults = [];
+
+    document.addEventListener('toggleSearchPalette', () => {
+      const isVisible = backdrop.style.display === 'flex';
+      if (isVisible) {
+        backdrop.style.display = 'none';
+      } else {
+        backdrop.style.display = 'flex';
+        input.value = '';
+        input.focus();
+        renderResults('');
+      }
+    });
+
+    backdrop.addEventListener('click', (e) => {
+      if (e.target === backdrop) {
+        backdrop.style.display = 'none';
+      }
+    });
+
+    input.addEventListener('input', (e) => {
+      renderResults(e.target.value);
+    });
+
+    function renderResults(query) {
+      list.innerHTML = '';
+      selectedIndex = -1;
+      currentResults = [];
+
+      const queryLower = query.toLowerCase().trim();
+      const slides = Array.from(document.querySelectorAll('.slide'));
+
+      slides.forEach((s, idx) => {
+        const headingEl = s.querySelector('h2, h1');
+        const heading = headingEl ? headingEl.textContent.trim() : `Slide ${idx + 1}`;
+        const bodyContent = s.textContent.toLowerCase();
+
+        if (!queryLower || heading.toLowerCase().includes(queryLower) || bodyContent.includes(queryLower)) {
+          currentResults.push({ index: idx, heading, id: s.id || `slide-${idx + 1}` });
+        }
+      });
+
+      if (currentResults.length === 0) {
+        list.innerHTML = `<div style="padding:1rem; text-align:center; color:var(--color-text-muted);">No results found. Try another query!</div>`;
+        return;
+      }
+
+      currentResults.forEach((res, i) => {
+        const item = document.createElement('button');
+        item.className = 'search-result-item';
+        item.innerHTML = `
+          <span class="search-result-num">${res.index + 1}</span>
+          <div class="search-result-info">
+            <span class="search-result-title">${res.heading}</span>
+            <span class="search-result-snippet">Jump to #${res.id}</span>
+          </div>
+        `;
+        item.addEventListener('click', () => {
+          if (window.SlideEngine) window.SlideEngine.goTo(res.index);
+          backdrop.style.display = 'none';
+        });
+        list.appendChild(item);
+      });
+    }
+
+    input.addEventListener('keydown', (e) => {
+      const items = list.querySelectorAll('.search-result-item');
+      if (items.length === 0) return;
+
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        selectedIndex = (selectedIndex + 1) % items.length;
+        updateSelectedResult(items);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        selectedIndex = (selectedIndex - 1 + items.length) % items.length;
+        updateSelectedResult(items);
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (selectedIndex >= 0 && selectedIndex < items.length) {
+          items[selectedIndex].click();
+        } else if (items.length > 0) {
+          items[0].click();
+        }
+      } else if (e.key === 'Escape') {
+        backdrop.style.display = 'none';
+      }
+    });
+
+    function updateSelectedResult(items) {
+      items.forEach((item, idx) => {
+        if (idx === selectedIndex) {
+          item.classList.add('selected');
+          item.scrollIntoView({ block: 'nearest' });
+        } else {
+          item.classList.remove('selected');
+        }
+      });
+    }
+  }
+
+  /* === 🎯 Decaying Laser Pointer Particle Trails === */
+  function initLaserPointerTrails() {
+    document.addEventListener('mousemove', (e) => {
+      if (!document.body.classList.contains('laser-pointer')) return;
+
+      const dot = document.createElement('div');
+      dot.className = 'laser-trail-particle';
+      dot.style.position = 'fixed';
+      dot.style.left = `${e.clientX}px`;
+      dot.style.top = `${e.clientY}px`;
+      dot.style.width = '12px';
+      dot.style.height = '12px';
+      dot.style.backgroundColor = '#ef4444';
+      dot.style.borderRadius = '50%';
+      dot.style.pointerEvents = 'none';
+      dot.style.zIndex = '9999999';
+      dot.style.transform = 'translate(-50%, -50%)';
+      dot.style.boxShadow = '0 0 10px #ef4444, 0 0 20px #ef4444';
+      dot.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+      document.body.appendChild(dot);
+
+      setTimeout(() => {
+        dot.style.opacity = '0';
+        dot.style.transform = 'translate(-50%, -50%) scale(0.2)';
+      }, 50);
+
+      setTimeout(() => {
+        dot.remove();
+      }, 450);
+    });
+  }
+
+  /* === 🧮 KaTeX On-Demand Loader === */
+  function initKaTeXMaths() {
+    const containers = document.querySelectorAll('.math-display-equation');
+    if (containers.length === 0) return;
+
+    if (!window.renderMathInElement) {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css';
+      document.head.appendChild(link);
+
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js';
+      script.onload = () => {
+        containers.forEach(el => {
+          const latex = el.dataset.latex || '';
+          try {
+            window.katex.render(latex, el, { displayMode: true, throwOnError: false });
+          } catch (e) {
+            console.error('KaTeX error:', e);
+          }
+        });
+      };
+      document.body.appendChild(script);
+    }
+  }
+
+  /* === 🌿 Mermaid On-Demand Loader === */
+  function initMermaidDiagrams() {
+    const containers = document.querySelectorAll('.mermaid');
+    if (containers.length === 0) return;
+
+    if (!window.mermaid) {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.2.4/dist/mermaid.min.js';
+      script.onload = () => {
+        window.mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+      };
+      document.body.appendChild(script);
+    }
+  }
+
+  /* === 💻 Prism Syntax Highlighting On-Demand Loader === */
+  function initSyntaxHighlighting() {
+    const codeBlocks = document.querySelectorAll('pre code');
+    if (codeBlocks.length === 0) return;
+
+    if (!window.Prism) {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css';
+      document.head.appendChild(link);
+
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js';
+      script.onload = () => {
+        window.Prism.highlightAll();
+      };
+      document.body.appendChild(script);
+    }
   }
 
   return { init };
