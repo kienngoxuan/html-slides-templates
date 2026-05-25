@@ -339,7 +339,7 @@ function renderSlideHTML(slide) {
     <div class="block-heading"><span class="icon">${d.icon || '🧮'}</span><h2>${esc(d.heading)}</h2></div>
     <div class="math-block-container">
       <div class="math-display-equation" data-latex="${esc(d.latex)}">
-        \\[ ${d.latex} \\]
+        \\[ ${esc(d.latex)} \\]
       </div>
       ${d.explanation ? `<p class="math-explanation">${esc(d.explanation)}</p>` : ''}
     </div>
@@ -424,13 +424,30 @@ function renderSubBlock(b, id) {
       return `<div class="sub-block sub-code"><pre><code class="language-${d.language || 'javascript'}">${esc(d.code)}</code></pre></div>`;
     case 'image':
       return `<div class="sub-block sub-image" style="border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md);"><img src="${d.url}" alt="${esc(d.alt || '')}" style="width: 100%; display: block; object-fit: cover;"></div>`;
+    case 'math':
+      return `<div class="sub-block sub-math">
+  <div class="math-block-container">
+    <div class="math-display-equation" data-latex="${esc(d.latex)}">
+      \\[ ${esc(d.latex)} \\]
+    </div>
+    ${d.explanation ? `<p class="math-explanation">${esc(d.explanation)}</p>` : ''}
+  </div>
+</div>`;
+    case 'mermaid':
+      return `<div class="sub-block sub-mermaid">
+  <div class="mermaid-block-container">
+    <div class="mermaid-diagram-wrapper">
+      <div class="mermaid" id="mermaid-${id}">${d.code}</div>
+    </div>
+  </div>
+</div>`;
     default:
       return `<div class="sub-block sub-unknown"><p>${esc(JSON.stringify(b))}</p></div>`;
   }
 }
 
 function esc(str) {
-  if (!str) return '';
+  if (str === null || str === undefined) return '';
   return String(str)
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
