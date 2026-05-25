@@ -531,6 +531,38 @@ ${cssEmulatorLayouts}
       </div>
     </div></div>
 
+  <!-- Advanced Quiz -->
+  <div class="comp-card"><div class="comp-card-header">Advanced Quiz Block (Submit to Grade) <span class="card-type">advanced-quiz</span></div>
+    <div class="comp-card-body">
+      <div class="advanced-quiz-container" data-total-questions="2">
+        <div class="adv-question" data-question-index="0" data-correct="2">
+          <h4>1. Which layout model is 2-dimensional?</h4>
+          <div class="adv-options">
+            <button class="adv-option" data-option-index="0"><span class="option-letter">A</span> Flexbox</button>
+            <button class="adv-option" data-option-index="1"><span class="option-letter">B</span> Block flow</button>
+            <button class="adv-option" data-option-index="2"><span class="option-letter">C</span> Grid</button>
+            <button class="adv-option" data-option-index="3"><span class="option-letter">D</span> Absolute positioning</button>
+          </div>
+        </div>
+        <div class="adv-question" data-question-index="1" data-correct="1">
+          <h4>2. What does OKLCH provide over standard HSL?</h4>
+          <div class="adv-options">
+            <button class="adv-option" data-option-index="0"><span class="option-letter">A</span> Smaller asset sizes</button>
+            <button class="adv-option" data-option-index="1"><span class="option-letter">B</span> Perceptually uniform brightness</button>
+            <button class="adv-option" data-option-index="2"><span class="option-letter">C</span> Complete backwards compatibility</button>
+          </div>
+        </div>
+        <div class="adv-quiz-action-row">
+          <button class="btn btn-primary adv-submit-btn">📥 Submit Assessment</button>
+        </div>
+        <div class="adv-quiz-result-card glassmorphic-panel" style="display: none;">
+          <div class="adv-result-score">Score: <span class="score-fraction">0/0</span></div>
+          <div class="adv-result-feedback"></div>
+          <button class="btn btn-outline adv-retry-btn" style="margin-top: 1rem;">🔄 Try Again</button>
+        </div>
+      </div>
+    </div></div>
+
   <!-- Compare -->
   <div class="comp-card"><div class="comp-card-header">Compare Block <span class="card-type">compare</span></div>
     <div class="comp-card-body">
@@ -612,7 +644,7 @@ console.log(greeting); // JetBrains Mono</code></pre>
 </div> <!-- Close .catalog-viewport -->
 
 <div style="text-align:center;padding:3rem 1rem;color:var(--color-text-muted);font-size:0.85rem;border-top:1px solid var(--color-border-light);margin-top:3rem">
-  <p>Lecta AI Component Catalog · Built with vanilla HTML/CSS/JS · Switch themes with settings gear above →</p>
+  <p style="margin: 0 auto; max-width: none;">Lecta AI Component Catalog · Built with vanilla HTML/CSS/JS · Switch themes with settings gear above →</p>
 </div>
 
 <script>
