@@ -56,15 +56,16 @@ function validateSlideSchema(slideData, dataFile) {
         }
         break;
       case 'quiz':
+      case 'advanced-quiz':
         if (!Array.isArray(d.questions)) {
-          throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("quiz"): "questions" must be an array`);
+          throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("${slide.type}"): "questions" must be an array`);
         }
         d.questions.forEach((q, qi) => {
           if (q.correct === undefined || isNaN(parseInt(q.correct, 10))) {
-            throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("quiz"), question ${qi + 1}: "correct" index must be defined as an integer`);
+            throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("${slide.type}"), question ${qi + 1}: "correct" index must be defined as an integer`);
           }
           if (!Array.isArray(q.options)) {
-            throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("quiz"), question ${qi + 1}: "options" must be an array`);
+            throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("${slide.type}"), question ${qi + 1}: "options" must be an array`);
           }
         });
         break;
