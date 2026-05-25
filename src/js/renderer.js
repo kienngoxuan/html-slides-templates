@@ -109,6 +109,34 @@ function renderSlideHTML(slide) {
   </div>
 </section>`;
 
+    case 'advanced-quiz':
+      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🏆'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="advanced-quiz-container stagger" data-total-questions="${d.questions.length}">
+      ${d.questions.map((q, qi) => `<div class="adv-question" data-question-index="${qi}" data-correct="${q.correct}">
+        <h4>${qi + 1}. ${esc(q.question)}</h4>
+        <div class="adv-options">
+          ${q.options.map((o, oi) => `<button class="adv-option" data-option-index="${oi}">
+            <span class="option-letter">${String.fromCharCode(65 + oi)}</span>
+            ${esc(o)}
+          </button>`).join('\n          ')}
+        </div>
+      </div>`).join('\n      ')}
+      
+      <div class="adv-quiz-action-row">
+        <button class="btn btn-primary adv-submit-btn">📥 Submit Assessment</button>
+      </div>
+      
+      <div class="adv-quiz-result-card glassmorphic-panel" style="display: none;">
+        <div class="adv-result-score">Score: <span class="score-fraction">0/0</span></div>
+        <div class="adv-result-feedback"></div>
+        <button class="btn btn-outline adv-retry-btn" style="margin-top: 1rem;">🔄 Try Again</button>
+      </div>
+    </div>
+  </div>
+</section>`;
+
     case 'quiz':
       return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
   <div class="slide-inner">
