@@ -314,11 +314,11 @@ const InteractiveBlocks = (function () {
           }
         });
 
-        const resultCard = container.querySelector('.adv-quiz-result-card');
+        const backdrop = container.querySelector('.adv-quiz-modal-backdrop');
         const scoreFraction = container.querySelector('.score-fraction');
         const feedback = container.querySelector('.adv-result-feedback');
 
-        if (resultCard && scoreFraction && feedback) {
+        if (backdrop && scoreFraction && feedback) {
           const total = questions.length;
           scoreFraction.textContent = `${score}/${total}`;
           
@@ -332,8 +332,7 @@ const InteractiveBlocks = (function () {
             msg = '📚 Good attempt. Review the slides and try again to improve your score!';
           }
           feedback.textContent = msg;
-          resultCard.style.display = 'block';
-          resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          backdrop.style.display = 'flex';
         }
         return;
       }
@@ -351,14 +350,25 @@ const InteractiveBlocks = (function () {
           submitBtn.style.opacity = '1';
         }
 
-        const resultCard = container.querySelector('.adv-quiz-result-card');
-        if (resultCard) {
-          resultCard.style.display = 'none';
+        const backdrop = container.querySelector('.adv-quiz-modal-backdrop');
+        if (backdrop) {
+          backdrop.style.display = 'none';
         }
 
         container.querySelectorAll('.adv-option').forEach(opt => {
           opt.classList.remove('selected', 'correct', 'wrong');
         });
+        return;
+      }
+
+      // 4. Close modal overlay popup
+      const closeBtn = e.target.closest('.adv-quiz-modal-close');
+      if (closeBtn) {
+        const backdrop = closeBtn.closest('.adv-quiz-modal-backdrop');
+        if (backdrop) {
+          backdrop.style.display = 'none';
+        }
+        return;
       }
     });
 
@@ -376,8 +386,8 @@ const InteractiveBlocks = (function () {
           submitBtn.disabled = false;
           submitBtn.style.opacity = '1';
         }
-        const resultCard = container.querySelector('.adv-quiz-result-card');
-        if (resultCard) resultCard.style.display = 'none';
+        const backdrop = container.querySelector('.adv-quiz-modal-backdrop');
+        if (backdrop) backdrop.style.display = 'none';
 
         container.querySelectorAll('.adv-option').forEach(opt => {
           opt.classList.remove('selected', 'correct', 'wrong');
