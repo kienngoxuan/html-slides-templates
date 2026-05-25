@@ -416,7 +416,7 @@ ${cssEmulatorLayouts}
 <div class="component-grid full-width">
   <div class="comp-card"><div class="comp-card-header">Interactive Flowchart / Mindmap <span class="card-type">flow</span></div>
     <div class="comp-card-body">
-      <div class="flow-block-container" data-nodes='[{"id":"1","label":"1. Event Ingestion","x":50,"y":100,"details":"Ingest events with sub-millisecond latencies."},{"id":"2","label":"2. Stream Processing","x":250,"y":180,"details":"Cleanse, transform, and aggregate streaming data."},{"id":"3","label":"3. Analytical Warehouse","x":450,"y":100,"details":"Store historical analytical records optimized for speed."},{"id":"4","label":"4. Lecta Dashboard","x":650,"y":180,"details":"Visualize real-time business metrics."}]' data-connections='[{"from":"1","to":"2"},{"from":"2","to":"3"},{"from":"3","to":"4"}]'>
+      <div class="flow-block-container" data-nodes='[{"id":"1","label":"1. Event Ingestion","x":50,"y":100,"details":"Ingest events with sub-millisecond latencies."},{"id":"2","label":"2. Stream Processing","x":230,"y":180,"details":"Cleanse, transform, and aggregate streaming data."},{"id":"3","label":"3. Analytical Warehouse","x":410,"y":100,"details":"Store historical analytical records optimized for speed."},{"id":"4","label":"4. Lecta Dashboard","x":590,"y":180,"details":"Visualize real-time business metrics."}]' data-connections='[{"from":"1","to":"2"},{"from":"2","to":"3"},{"from":"3","to":"4"}]'>
         <div class="flow-layout-wrapper">
           <svg class="flow-svg-canvas" viewBox="0 0 800 350"></svg>
         </div>
