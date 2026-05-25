@@ -613,6 +613,57 @@ ${cssEmulatorLayouts}
     </div></div>
 </div>
 
+<!-- ===== 11. NEXT-GEN ADVANCED BLOCKS ===== -->
+<h2 class="section-title"><span class="sec-icon">🚀</span> Next-Gen Advanced Blocks <span class="sec-id">SEC-11</span></h2>
+<div class="component-grid full-width">
+  <!-- Math Display Equation -->
+  <div class="comp-card"><div class="comp-card-header">Math display equation <span class="card-type">math</span></div>
+    <div class="comp-card-body">
+      <div class="math-display-equation" data-latex="\Psi(x, t) = A e^{i(kx - \omega t)}">
+        $$\Psi(x, t) = A e^{i(kx - \omega t)}$$
+      </div>
+      <p style="text-align:center; font-size:0.9rem; color:var(--color-text-muted); margin-top:0.5rem;">Rendered dynamically using high-performance KaTeX equations engine.</p>
+    </div></div>
+
+  <!-- Mermaid.js Visual Diagram -->
+  <div class="comp-card"><div class="comp-card-header">Mermaid flowchart diagram <span class="card-type">mermaid</span></div>
+    <div class="comp-card-body">
+      <pre class="mermaid" style="text-align:center; background:none; border:none; padding:0;">
+flowchart TD
+    A[Start Presentation] --> B{P2P Synchronizer}
+    B -->|BroadcastChannel| C[Presenter View Window]
+    B -->|Iframe preview| D[Audience Slide Track]
+      </pre>
+    </div></div>
+
+  <!-- Responsive Media Video Block -->
+  <div class="comp-card"><div class="comp-card-header">Responsive media player frame <span class="card-type">video</span></div>
+    <div class="comp-card-body">
+      <div class="video-container" style="max-width:600px; margin:0 auto;">
+        <iframe src="https://www.youtube.com/embed/LXb3EKWsInQ" allowfullscreen></iframe>
+      </div>
+    </div></div>
+
+  <!-- Asymmetric Split Column Layout -->
+  <div class="comp-card"><div class="comp-card-header">Asymmetric split columns layout <span class="card-type">split</span></div>
+    <div class="comp-card-body">
+      <div class="split-layout split-50-50">
+        <div class="split-col-left" style="flex:1;">
+          <div style="padding:1.5rem; background:var(--color-surface-hover); border-radius:var(--radius-md); height:100%; border:1px solid var(--color-border-light);">
+            <h4>👈 Left Content Block</h4>
+            <p>Perfect for structured lists, descriptive highlights, and introductory context cards.</p>
+          </div>
+        </div>
+        <div class="split-col-right" style="flex:1;">
+          <div style="padding:1.5rem; background:var(--color-primary-alpha); border-radius:var(--radius-md); border:1px dashed var(--color-primary); height:100%;">
+            <h4 style="color:var(--color-primary-dark);">👉 Right Content Block</h4>
+            <p style="color:var(--color-text-secondary);">Configured side-by-side with identical perceptual weighting to optimize comparisons.</p>
+          </div>
+        </div>
+      </div>
+    </div></div>
+</div>
+
 <!-- ===== 9. TYPOGRAPHY ===== -->
 <h2 class="section-title"><span class="sec-icon">🔤</span> Typography <span class="sec-id">SEC-09</span></h2>
 <div class="component-grid full-width">
@@ -649,6 +700,39 @@ console.log(greeting); // JetBrains Mono</code></pre>
 
 <div style="text-align:center;padding:3rem 1rem;color:var(--color-text-muted);font-size:0.85rem;border-top:1px solid var(--color-border-light);margin-top:3rem">
   <p style="margin: 0 auto; max-width: none;">Lecta AI Component Catalog · Built with vanilla HTML/CSS/JS · Switch themes with settings gear above →</p>
+</div>
+
+<!-- 🖌️ Global Drawing Canvas Annotation Overlay -->
+<canvas class="drawing-canvas-overlay" width="1920" height="1080"></canvas>
+
+<!-- 🖌️ Drawing Annotation Toolbar -->
+<div class="drawing-toolbar">
+  <button class="draw-tool-btn active" data-tool="pen" title="Pen">✏️</button>
+  <button class="draw-tool-btn" data-tool="highlighter" title="Highlighter">🖍️</button>
+  <button class="draw-tool-btn" data-tool="eraser" title="Eraser">🧹</button>
+  <div class="draw-divider"></div>
+  <div class="draw-color-dot draw-color-red active" data-color="#ef4444" title="Red"></div>
+  <div class="draw-color-dot draw-color-blue" data-color="#3b82f6" title="Blue"></div>
+  <div class="draw-color-dot draw-color-yellow" data-color="#eab308" title="Yellow"></div>
+  <div class="draw-color-dot draw-color-green" data-color="#10b981" title="Green"></div>
+  <div class="draw-divider"></div>
+  <span class="draw-brush-indicator">Size: 4px</span>
+  <input type="range" class="draw-brush-size" min="2" max="20" value="4" style="width: 60px;" />
+  <div class="draw-divider"></div>
+  <button class="draw-tool-btn draw-clear" title="Clear Canvas">🗑️</button>
+</div>
+
+<!-- 🔍 Spotlight Command Search Palette -->
+<div class="search-palette-backdrop">
+  <div class="search-palette">
+    <div class="search-input-wrapper">
+      <span>🔍</span>
+      <input type="text" class="search-input" placeholder="Type slide title, content, or block name..." />
+    </div>
+    <div class="search-results-list">
+      <!-- Results rendered dynamically via JS -->
+    </div>
+  </div>
 </div>
 
 <script>
