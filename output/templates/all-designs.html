@@ -1180,6 +1180,8 @@ pre code {
   display: flex;
   align-items: center;
   gap: var(--space-sm);
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .quiz-option:hover:not(.selected) {
@@ -2089,6 +2091,8 @@ pre code {
   align-items: center;
   gap: var(--space-sm);
   width: 100%;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .adv-option:hover:not(.correct):not(.wrong) {
@@ -2155,6 +2159,70 @@ pre code {
   font-size: 1.1rem;
   font-weight: 500;
   color: var(--color-text-secondary);
+}
+
+/* === PREMIUM COMPONENT BUTTONS === */
+.adv-submit-btn,
+.adv-retry-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: 0.8rem 2.2rem;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-spring);
+  user-select: none;
+  -webkit-user-select: none;
+  box-shadow: var(--shadow-sm);
+  outline: none;
+  border: none;
+}
+
+/* Premium Gradient Submit Button */
+.adv-submit-btn {
+  background: var(--gradient-primary);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.adv-submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--color-primary-alpha), var(--shadow-glow);
+  filter: brightness(1.06);
+}
+
+.adv-submit-btn:active:not(:disabled) {
+  transform: translateY(0) scale(0.96);
+}
+
+.adv-submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Premium Glassmorphic Outline Retry Button */
+.adv-retry-btn {
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  backdrop-filter: blur(8px);
+}
+
+.adv-retry-btn:hover {
+  background: var(--color-primary);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--color-primary-alpha);
+}
+
+.adv-retry-btn:active {
+  transform: translateY(0) scale(0.96);
 }
 
 
