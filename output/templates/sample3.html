@@ -1466,52 +1466,6 @@ pre code {
   border-color: var(--color-primary);
 }
 
-/* === SPEAKER NOTES (Presenter) === */
-.speaker-notes-panel {
-  display: none;
-  position: fixed;
-  bottom: 56px;
-  left: 0;
-  right: 0;
-  max-height: 200px;
-  background: var(--color-surface);
-  border-top: 1px solid var(--color-border);
-  padding: var(--space-md) var(--space-lg);
-  overflow-y: auto;
-  z-index: 999;
-  animation: slideUp 300ms ease;
-}
-
-.speaker-notes-panel.visible {
-  display: block;
-}
-
-.speaker-notes-panel h4 {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--color-text-muted);
-  margin-bottom: var(--space-sm);
-}
-
-.speaker-notes-panel p {
-  font-size: 0.9rem;
-  line-height: 1.7;
-  color: var(--color-text-secondary);
-}
-
-@media (max-width: 768px) {
-  .slide {
-    padding: var(--space-lg) var(--space-md);
-  }
-  .compare-container {
-    grid-template-columns: 1fr;
-  }
-  .cards-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 /* === IMAGE BLOCK === */
 .image-block-container {
   display: flex;
@@ -2058,6 +2012,88 @@ pre code {
   transform: scale(1) translate(-50%, -100%);
 }
 
+/* Split Grid Layouts */
+.split-layout-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+  margin-top: var(--space-md);
+}
+
+.split-layout-container.split-40-60 { grid-template-columns: 4fr 6fr; }
+.split-layout-container.split-60-40 { grid-template-columns: 6fr 4fr; }
+
+.split-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  height: 100%;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .split-layout-container {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-lg);
+  }
+}
+
+/* Math (KaTeX Equation) Block Styling */
+.math-block-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  margin: var(--space-md) auto;
+  max-width: 650px;
+  box-shadow: var(--shadow-sm);
+}
+
+.math-display-equation {
+  font-size: 1.8rem;
+  color: var(--color-primary);
+  margin: var(--space-md) 0;
+  overflow-x: auto;
+  width: 100%;
+  text-align: center;
+}
+
+.math-explanation {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+/* Mermaid Flowcharts Block Styling */
+.mermaid-block-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  margin: var(--space-md) auto;
+  width: 100%;
+  max-width: 800px;
+  box-shadow: var(--shadow-sm);
+  overflow: auto;
+}
+
+.mermaid-diagram-wrapper {
+  width: 100%;
+  min-height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 /* === ADVANCED QUIZ === */
 .advanced-quiz-container {
   display: flex;
@@ -2323,9 +2359,6 @@ body.adv-quiz-modal-open .slide {
   overflow: hidden !important;
 }
 
-/* ==========================================================================
-   LECTA NEXT-GEN UPGRADE: PRESENTATION DRAWING, SEARCH, PRESENTERS, & BLOCKS
-   ========================================================================== */
 
 /* 1. Global Drawing Canvas & Floating Toolbar */
 .drawing-canvas-overlay {
@@ -2546,87 +2579,62 @@ body.adv-quiz-modal-open .slide {
   color: var(--color-text-secondary);
 }
 
-/* 3. New Advanced Slide Content Blocks */
 
-/* Split Grid Layouts */
-.split-layout-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-xl);
-  align-items: center;
-  margin-top: var(--space-md);
+@keyframes blink {
+  0% { opacity: 0.4; }
+  100% { opacity: 1; }
 }
 
-.split-layout-container.split-40-60 { grid-template-columns: 4fr 6fr; }
-.split-layout-container.split-60-40 { grid-template-columns: 6fr 4fr; }
+@keyframes slideDown {
+  0% { transform: translateY(-50px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
 
-.split-column {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
-  height: 100%;
-  justify-content: center;
+
+/* === SPEAKER NOTES (Presenter) === */
+.speaker-notes-panel {
+  display: none;
+  position: fixed;
+  bottom: 56px;
+  left: 0;
+  right: 0;
+  max-height: 200px;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-md) var(--space-lg);
+  overflow-y: auto;
+  z-index: 999;
+  animation: slideUp 300ms ease;
+}
+
+.speaker-notes-panel.visible {
+  display: block;
+}
+
+.speaker-notes-panel h4 {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-sm);
+}
+
+.speaker-notes-panel p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
 }
 
 @media (max-width: 768px) {
-  .split-layout-container {
-    grid-template-columns: 1fr !important;
-    gap: var(--space-lg);
+  .slide {
+    padding: var(--space-lg) var(--space-md);
   }
-}
-
-/* Math (KaTeX Equation) Block Styling */
-.math-block-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-xl);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  margin: var(--space-md) auto;
-  max-width: 650px;
-  box-shadow: var(--shadow-sm);
-}
-
-.math-display-equation {
-  font-size: 1.8rem;
-  color: var(--color-primary);
-  margin: var(--space-md) 0;
-  overflow-x: auto;
-  width: 100%;
-  text-align: center;
-}
-
-.math-explanation {
-  font-size: 0.9rem;
-  color: var(--color-text-secondary);
-  text-align: center;
-}
-
-/* Mermaid Flowcharts Block Styling */
-.mermaid-block-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-md);
-  margin: var(--space-md) auto;
-  width: 100%;
-  max-width: 800px;
-  box-shadow: var(--shadow-sm);
-  overflow: auto;
-}
-
-.mermaid-diagram-wrapper {
-  width: 100%;
-  min-height: 250px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  .compare-container {
+    grid-template-columns: 1fr;
+  }
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* Video Block Styling */
@@ -2649,7 +2657,7 @@ body.adv-quiz-modal-open .slide {
   object-fit: cover;
 }
 
-/* 4. Speaker Dual-Monitor Presenter View Panel Dashboard */
+
 .presenter-view-layout {
   display: grid;
   grid-template-columns: 60% 40%;
@@ -2824,15 +2832,6 @@ body.adv-quiz-modal-open .slide {
   background: #0369a1;
 }
 
-@keyframes blink {
-  0% { opacity: 0.4; }
-  100% { opacity: 1; }
-}
-
-@keyframes slideDown {
-  0% { transform: translateY(-50px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
-}
 
 /* Premium Video Play Link Cards */
 .video-link-card {
@@ -4066,43 +4065,43 @@ body.viewport-mode-mobile .table-actions {
     <div class="settings-section light-theme-dots">
       <div class="settings-label">Light Theme</div>
       <div class="theme-dots-grid"><div class="theme-dot-item" data-theme="ocean">
-      <div class="dot" data-theme="ocean"></div>
-      <span>Ocean</span>
-    </div><div class="theme-dot-item" data-theme="forest">
-      <div class="dot" data-theme="forest"></div>
-      <span>Forest</span>
-    </div><div class="theme-dot-item" data-theme="berry">
-      <div class="dot" data-theme="berry"></div>
-      <span>Berry</span>
-    </div><div class="theme-dot-item" data-theme="slate">
-      <div class="dot" data-theme="slate"></div>
-      <span>Slate</span>
-    </div><div class="theme-dot-item" data-theme="paper">
-      <div class="dot" data-theme="paper"></div>
-      <span>Paper</span>
-    </div><div class="theme-dot-item" data-theme="nordic">
-      <div class="dot" data-theme="nordic"></div>
-      <span>Nordic</span>
-    </div><div class="theme-dot-item" data-theme="sunset">
-      <div class="dot" data-theme="sunset"></div>
-      <span>Sunset</span>
-    </div></div>
+    <div class="dot" data-theme="ocean"></div>
+    <span>Ocean</span>
+  </div><div class="theme-dot-item" data-theme="forest">
+    <div class="dot" data-theme="forest"></div>
+    <span>Forest</span>
+  </div><div class="theme-dot-item" data-theme="berry">
+    <div class="dot" data-theme="berry"></div>
+    <span>Berry</span>
+  </div><div class="theme-dot-item" data-theme="slate">
+    <div class="dot" data-theme="slate"></div>
+    <span>Slate</span>
+  </div><div class="theme-dot-item" data-theme="paper">
+    <div class="dot" data-theme="paper"></div>
+    <span>Paper</span>
+  </div><div class="theme-dot-item" data-theme="nordic">
+    <div class="dot" data-theme="nordic"></div>
+    <span>Nordic</span>
+  </div><div class="theme-dot-item" data-theme="sunset">
+    <div class="dot" data-theme="sunset"></div>
+    <span>Sunset</span>
+  </div></div>
     </div>
     <div class="settings-section dark-theme-dots" style="display: none;">
       <div class="settings-label">Dark Theme</div>
       <div class="theme-dots-grid"><div class="theme-dot-item" data-theme="neon">
-      <div class="dot" data-theme="neon"></div>
-      <span>Neon</span>
-    </div><div class="theme-dot-item" data-theme="midnight">
-      <div class="dot" data-theme="midnight"></div>
-      <span>Midnight</span>
-    </div><div class="theme-dot-item" data-theme="evergreen">
-      <div class="dot" data-theme="evergreen"></div>
-      <span>Evergreen</span>
-    </div><div class="theme-dot-item" data-theme="volcano">
-      <div class="dot" data-theme="volcano"></div>
-      <span>Volcano</span>
-    </div></div>
+    <div class="dot" data-theme="neon"></div>
+    <span>Neon</span>
+  </div><div class="theme-dot-item" data-theme="midnight">
+    <div class="dot" data-theme="midnight"></div>
+    <span>Midnight</span>
+  </div><div class="theme-dot-item" data-theme="evergreen">
+    <div class="dot" data-theme="evergreen"></div>
+    <span>Evergreen</span>
+  </div><div class="theme-dot-item" data-theme="volcano">
+    <div class="dot" data-theme="volcano"></div>
+    <span>Volcano</span>
+  </div></div>
     </div>
     <div class="settings-section">
       <div class="settings-label">View</div>
@@ -4925,14 +4924,16 @@ const SlideEngine = (function () {
 
 window.SlideEngine = window.SlideEngine || SlideEngine;
 
+
 /**
- * LECTA AI — Interactive Block Logic
- * Accordion, Tabs, Stepper, Flip Cards, Quiz, Timeline, Bullets
+ * LECTA AI — Core Interactive Elements
+ * Accordion, Tabs, Stepper, Flip Cards, Quiz, Advanced Quiz, Timeline, Bullets, Interactive Images
  */
 
-const InteractiveBlocks = (function () {
+const InteractiveBlocksCore = (function () {
 
   function init() {
+    initInteractiveImages();
     initAccordions();
     initTabs();
     initSteppers();
@@ -4941,16 +4942,10 @@ const InteractiveBlocks = (function () {
     initAdvancedQuiz();
     initTimeline();
     initBullets();
-    initInteractiveImages();
-    initCharts();
-    initTables();
-    initBento();
-    initFlows();
   }
 
   /* === Interactive Image URL Customizer === */
   function initInteractiveImages() {
-    // Load persisted images
     document.querySelectorAll('.interactive-image').forEach((img, index) => {
       const slide = img.closest('.slide');
       const key = 'lecta-img-' + (slide ? slide.id : ('index-' + index));
@@ -5038,7 +5033,6 @@ const InteractiveBlocks = (function () {
 
   /* === Stepper (Event Delegation) === */
   function initSteppers() {
-    // Click navigation controls
     document.addEventListener('click', (e) => {
       const btn = e.target.closest('.stepper .nav-btn');
       if (!btn) return;
@@ -5065,7 +5059,6 @@ const InteractiveBlocks = (function () {
       goToStep(stepper, dots, contents, lines, prevBtn, nextBtn, nextStep);
     });
 
-    // Direct dot navigation click delegation
     document.addEventListener('click', (e) => {
       const dot = e.target.closest('.stepper .step-dot');
       if (!dot) return;
@@ -5083,7 +5076,6 @@ const InteractiveBlocks = (function () {
       goToStep(stepper, dots, contents, lines, prevBtn, nextBtn, nextStep);
     });
 
-    // Initial default layout for all steppers
     document.querySelectorAll('.stepper').forEach(stepper => {
       const dots = stepper.querySelectorAll('.step-dot');
       const contents = stepper.querySelectorAll('.step-content');
@@ -5134,31 +5126,22 @@ const InteractiveBlocks = (function () {
         opt.addEventListener('click', () => {
           if (question.dataset.answered === 'true') return;
 
-          // Clear previous highlights to cleanly reset the retry state
           options.forEach(o => o.classList.remove('selected', 'correct', 'wrong'));
-
           opt.classList.add('selected');
 
           if (i === correctIdx) {
-            question.dataset.answered = 'true'; // Lock the question only when correct
+            question.dataset.answered = 'true';
             opt.classList.add('correct');
-            if (explanation) {
-              explanation.classList.add('visible');
-            }
+            if (explanation) explanation.classList.add('visible');
           } else {
             opt.classList.add('wrong');
-            if (options[correctIdx]) {
-              options[correctIdx].classList.add('correct');
-            }
-            if (explanation) {
-              explanation.classList.add('visible');
-            }
+            if (options[correctIdx]) options[correctIdx].classList.add('correct');
+            if (explanation) explanation.classList.add('visible');
           }
         });
       });
     });
 
-    // Reset quiz states when a slide is changed so presenters can re-teach/re-run quizzes
     document.addEventListener('slideChanged', (e) => {
       const activeSlideIndex = e.detail.index;
       const slides = document.querySelectorAll('.slide');
@@ -5171,9 +5154,7 @@ const InteractiveBlocks = (function () {
           opt.classList.remove('selected', 'correct', 'wrong');
         });
         const explanation = question.querySelector('.quiz-explanation');
-        if (explanation) {
-          explanation.classList.remove('visible');
-        }
+        if (explanation) explanation.classList.remove('visible');
       });
     });
   }
@@ -5181,7 +5162,6 @@ const InteractiveBlocks = (function () {
   /* === Advanced Quiz (Submit Assessment) === */
   function initAdvancedQuiz() {
     document.addEventListener('click', (e) => {
-      // 1. Option selection
       const option = e.target.closest('.adv-option');
       if (option) {
         const question = option.closest('.adv-question');
@@ -5193,7 +5173,6 @@ const InteractiveBlocks = (function () {
         return;
       }
 
-      // 2. Submit assessment
       const submitBtn = e.target.closest('.adv-submit-btn');
       if (submitBtn) {
         const container = submitBtn.closest('.advanced-quiz-container');
@@ -5259,7 +5238,6 @@ const InteractiveBlocks = (function () {
           }
           feedback.textContent = msg;
 
-          // Teleport modal backdrop to body to avoid container transform/filter viewport clipping contexts!
           backdrop._originalParent = container;
           document.body.appendChild(backdrop);
 
@@ -5269,7 +5247,6 @@ const InteractiveBlocks = (function () {
         return;
       }
 
-      // 3. Retry quiz
       const retryBtn = e.target.closest('.adv-retry-btn');
       if (retryBtn) {
         const modalBackdrop = e.target.closest('.adv-quiz-modal-backdrop');
@@ -5298,7 +5275,6 @@ const InteractiveBlocks = (function () {
         return;
       }
 
-      // 4. Close modal overlay popup
       const closeBtn = e.target.closest('.adv-quiz-modal-close');
       if (closeBtn) {
         const backdrop = closeBtn.closest('.adv-quiz-modal-backdrop');
@@ -5313,9 +5289,7 @@ const InteractiveBlocks = (function () {
       }
     });
 
-    // Reset advanced quiz states when slides transition
     document.addEventListener('slideChanged', (e) => {
-      // Find any modal currently teleported to body and return it to its slide
       document.querySelectorAll('body > .adv-quiz-modal-backdrop').forEach(backdrop => {
         backdrop.style.display = 'none';
         if (backdrop._originalParent) {
@@ -5351,7 +5325,6 @@ const InteractiveBlocks = (function () {
     document.querySelectorAll('.timeline-item').forEach(item => {
       item.addEventListener('click', () => {
         const timeline = item.closest('.timeline');
-        // Toggle active
         const wasActive = item.classList.contains('active');
         timeline.querySelectorAll('.timeline-item.active').forEach(a => a.classList.remove('active'));
         if (!wasActive) item.classList.add('active');
@@ -5368,7 +5341,27 @@ const InteractiveBlocks = (function () {
     });
   }
 
-    /* === Canva-style Chart Tooltips === */
+  return { init };
+})();
+
+window.InteractiveBlocksCore = window.InteractiveBlocksCore || InteractiveBlocksCore;
+
+
+/**
+ * LECTA AI — Data & Diagram Blocks
+ * Charts, Tables, Bento, Flow/Mindmap
+ */
+
+const InteractiveBlocksData = (function () {
+
+  function init() {
+    initCharts();
+    initTables();
+    initBento();
+    initFlows();
+  }
+
+  /* === Canva-style Chart Tooltips === */
   function bindTooltipEvents(el, text) {
     const showTooltip = (clientX, clientY) => {
       const tooltip = document.querySelector('.chart-tooltip');
@@ -5384,7 +5377,6 @@ const InteractiveBlocks = (function () {
       if (tooltip) tooltip.classList.remove('visible');
     };
 
-    // Mouse events
     el.addEventListener('mouseenter', (e) => {
       showTooltip(e.clientX, e.clientY);
       el.style.filter = 'brightness(1.15) saturate(1.1)';
@@ -5403,7 +5395,6 @@ const InteractiveBlocks = (function () {
       el.style.filter = 'none';
     });
 
-    // Touch events for mobile screens and simulated devices
     el.addEventListener('touchstart', (e) => {
       if (e.touches && e.touches[0]) {
         showTooltip(e.touches[0].clientX, e.touches[0].clientY);
@@ -5443,11 +5434,10 @@ const InteractiveBlocks = (function () {
       return;
     }
 
-    svg.innerHTML = ''; // Clear preview
+    svg.innerHTML = '';
 
     if (datasets.length === 0) return;
 
-    // Setup theme gradients
     const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
     defs.innerHTML = `
       <linearGradient id="primary-grad" x1="0" y1="0" x2="0" y2="1">
@@ -5473,7 +5463,6 @@ const InteractiveBlocks = (function () {
       renderDonutChart(svg, labels, datasets);
     }
 
-    // Render legend
     const legend = container.querySelector('.chart-legend');
     if (legend) {
       legend.innerHTML = datasets.map((ds, dsi) => `
@@ -5499,9 +5488,7 @@ const InteractiveBlocks = (function () {
     }
   }
 
-  /* === Charts === */
   function initCharts() {
-    // Create tooltip container if it doesn't exist
     let tooltip = document.querySelector('.chart-tooltip');
     if (!tooltip) {
       tooltip = document.createElement('div');
@@ -5513,15 +5500,13 @@ const InteractiveBlocks = (function () {
       renderChartContainer(container);
     });
 
-    // Re-render and trigger entrance animations on slide switch
     document.addEventListener('slideChanged', (e) => {
       const activeSlideIndex = e.detail.index;
       const slides = document.querySelectorAll('.slide');
       const activeSlide = slides[activeSlideIndex];
       if (!activeSlide) return;
 
-      const chartContainers = activeSlide.querySelectorAll('.chart-block-container');
-      chartContainers.forEach(container => {
+      activeSlide.querySelectorAll('.chart-block-container').forEach(container => {
         renderChartContainer(container);
       });
     });
@@ -5573,7 +5558,6 @@ const InteractiveBlocks = (function () {
       svg.appendChild(txt);
     }
 
-    // Support up to 15 columns without overlaps via auto-rotation!
     labels.forEach((lbl, gIdx) => {
       const groupX = padding + gIdx * groupWidth;
       const centerX = groupX + groupWidth / 2;
@@ -5584,7 +5568,6 @@ const InteractiveBlocks = (function () {
       txt.setAttribute('fill', 'var(--color-text-muted)');
       
       if (labels.length > 5) {
-        // Rotate labels to fit dense columns nicely
         txt.setAttribute('transform', `rotate(-30, ${centerX}, ${H - padding + 22})`);
         txt.setAttribute('text-anchor', 'end');
         txt.setAttribute('font-size', '10');
@@ -5614,7 +5597,6 @@ const InteractiveBlocks = (function () {
         rect.style.cursor = 'pointer';
         rect.style.transition = 'y 0.8s cubic-bezier(0.25, 1, 0.5, 1), height 0.8s cubic-bezier(0.25, 1, 0.5, 1), filter 0.2s ease';
         
-        // Canva-style high fidelity tooltip
         bindTooltipEvents(rect, `<strong>${ds.label}</strong><br><span>${lbl}</span>: <strong style="color: var(--color-${ds.color || 'primary'})">${val}</strong>`);
 
         svg.appendChild(rect);
@@ -5677,7 +5659,6 @@ const InteractiveBlocks = (function () {
 
     const stepX = chartW / (labels.length - 1 || 1);
 
-    // Support up to 20 labels without overlaps via auto-rotation!
     labels.forEach((lbl, idx) => {
       const x = padding + idx * stepX;
       const txt = document.createElementNS('http://www.w3.org/2000/svg', 'text');
@@ -5686,7 +5667,6 @@ const InteractiveBlocks = (function () {
       txt.setAttribute('fill', 'var(--color-text-muted)');
       
       if (labels.length > 5) {
-        // Rotate labels to fit dense datasets nicely
         txt.setAttribute('transform', `rotate(-30, ${x}, ${H - padding + 22})`);
         txt.setAttribute('text-anchor', 'end');
         txt.setAttribute('font-size', '10');
@@ -5734,7 +5714,7 @@ const InteractiveBlocks = (function () {
         const totalLen = path.getTotalLength();
         if (totalLen > 0) pathLength = totalLen;
       } catch (e) {
-        console.warn('Failed to measure path length, using fallback:', e);
+        console.warn('Failed to measure path length:', e);
       }
 
       path.setAttribute('stroke-dasharray', pathLength);
@@ -5757,7 +5737,6 @@ const InteractiveBlocks = (function () {
         dot.style.cursor = 'pointer';
         dot.style.transition = 'r 0.2s ease, filter 0.2s ease';
 
-        // Canva-style high fidelity tooltip
         bindTooltipEvents(dot, `<strong>${ds.label}</strong><br><span>${labels[idx]}</span>: <strong style="color: var(--color-${ds.color || 'primary'})">${ds.data[idx]}</strong>`);
 
         dot.addEventListener('mouseenter', () => {
@@ -5803,7 +5782,6 @@ const InteractiveBlocks = (function () {
 
     const chartLegendGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
 
-    // Support up to 10+ slices with dynamic colors & clean dual-column legends!
     const isDualColumn = data.length > 5;
     const itemsPerCol = isDualColumn ? Math.ceil(data.length / 2) : data.length;
     const lineSpacing = isDualColumn ? 22 : 24;
@@ -5813,7 +5791,6 @@ const InteractiveBlocks = (function () {
       const strokeLength = percentage * circumference;
       const strokeOffset = circumference - strokeLength;
       
-      // Dynamic OKLCH color engine for infinite distinct hues
       const colors = ['primary', 'success', 'accent', 'error', 'warning'];
       let strokeColor;
       if (data.length <= 5) {
@@ -5841,7 +5818,6 @@ const InteractiveBlocks = (function () {
       circle.style.cursor = 'pointer';
       circle.style.transition = 'stroke-dashoffset 1s ease-out, stroke-width 0.2s ease, filter 0.2s ease';
 
-      // Canva-style high fidelity tooltip
       bindTooltipEvents(circle, `<strong>${labels[idx] || 'Item'}</strong><br><span style="font-size: 1.1rem; font-weight: 700; color: ${strokeColor}">${val}</span> (${Math.round(percentage * 100)}%)`);
 
       circle.addEventListener('mouseenter', () => {
@@ -5863,7 +5839,6 @@ const InteractiveBlocks = (function () {
         circle.setAttribute('stroke-dashoffset', strokeOffset);
       }, 100);
 
-      // Dual-column legend positioning
       const colIdx = isDualColumn ? idx % 2 : 0;
       const rowIdx = isDualColumn ? Math.floor(idx / 2) : idx;
       
@@ -5887,7 +5862,6 @@ const InteractiveBlocks = (function () {
       labelTxt.setAttribute('font-weight', '500');
       
       if (isDualColumn) {
-        // Combine label and percentage for compact dual-column display
         labelTxt.textContent = `${labels[idx] || 'Item'} (${Math.round(percentage * 100)}%)`;
       } else {
         labelTxt.textContent = `${labels[idx] || 'Item'}`;
@@ -5986,7 +5960,7 @@ const InteractiveBlocks = (function () {
 
   /* === Bento Grid === */
   function initBento() {
-    // Premium css hover interactions only
+    // CSS-only hover interactions
   }
 
   /* === Flow / Mindmap === */
@@ -6028,7 +6002,6 @@ const InteractiveBlocks = (function () {
         svg.appendChild(defs);
         const marker = defs.querySelector('#arrow');
         if (marker) {
-          // Position arrow tip exactly on the dynamic border of the node!
           marker.setAttribute('refX', Math.round(nodeWidth / 2 + 8));
         }
       }
@@ -6082,8 +6055,6 @@ const InteractiveBlocks = (function () {
         text.setAttribute('font-weight', '600');
         text.style.pointerEvents = 'none';
         
-        // Dynamic font scaling & auto-ellipses based on dynamic nodeWidth!
-        // Capacity: Fits long labels perfectly even when N=10 (width=60px)
         const fontSize = nodeWidth < 110 ? 9 : (nodeWidth < 135 ? 10 : 12);
         text.setAttribute('font-size', fontSize);
         
@@ -6122,16 +6093,29 @@ const InteractiveBlocks = (function () {
         });
       });
     });
+  }
+
+  return { init };
+})();
+
+window.InteractiveBlocksData = window.InteractiveBlocksData || InteractiveBlocksData;
+
+
+/**
+ * LECTA AI — Presenter Overlay Interactions
+ * Drawing Canvas Annotations & Decaying Laser Trails
+ */
+
+const PresenterOverlay = (function () {
+
+  let isDrawingActive = false;
+
+  function init() {
     initDrawing();
-    initSearchPalette();
     initLaserPointerTrails();
-    initKaTeXMaths();
-    initMermaidDiagrams();
-    initSyntaxHighlighting();
   }
 
   /* === 🖌️ Presenter Canvas Annotation & Scribbling Overlay === */
-  let isDrawingActive = false;
   function initDrawing() {
     const canvas = document.querySelector('.drawing-canvas-overlay');
     const toolbar = document.querySelector('.drawing-toolbar');
@@ -6262,6 +6246,55 @@ const InteractiveBlocks = (function () {
     });
   }
 
+  /* === 🎯 Decaying Laser Pointer Particle Trails === */
+  function initLaserPointerTrails() {
+    document.addEventListener('mousemove', (e) => {
+      if (!document.body.classList.contains('laser-pointer')) return;
+
+      const dot = document.createElement('div');
+      dot.className = 'laser-trail-particle';
+      dot.style.position = 'fixed';
+      dot.style.left = `${e.clientX}px`;
+      dot.style.top = `${e.clientY}px`;
+      dot.style.width = '12px';
+      dot.style.height = '12px';
+      dot.style.backgroundColor = '#ef4444';
+      dot.style.borderRadius = '50%';
+      dot.style.pointerEvents = 'none';
+      dot.style.zIndex = '9999999';
+      dot.style.transform = 'translate(-50%, -50%)';
+      dot.style.boxShadow = '0 0 10px #ef4444, 0 0 20px #ef4444';
+      dot.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+      document.body.appendChild(dot);
+
+      setTimeout(() => {
+        dot.style.opacity = '0';
+        dot.style.transform = 'translate(-50%, -50%) scale(0.2)';
+      }, 50);
+
+      setTimeout(() => {
+        dot.remove();
+      }, 450);
+    });
+  }
+
+  return { init };
+})();
+
+window.PresenterOverlay = window.PresenterOverlay || PresenterOverlay;
+
+
+/**
+ * LECTA AI — Spotlight Command Search Palette
+ * Ctrl+K Search Overlay Logic
+ */
+
+const SpotlightSearch = (function () {
+
+  function init() {
+    initSearchPalette();
+  }
+
   /* === 🔍 Glassmorphic Spotlight Search Command Palette === */
   function initSearchPalette() {
     const backdrop = document.querySelector('.search-palette-backdrop');
@@ -6371,36 +6404,23 @@ const InteractiveBlocks = (function () {
     }
   }
 
-  /* === 🎯 Decaying Laser Pointer Particle Trails === */
-  function initLaserPointerTrails() {
-    document.addEventListener('mousemove', (e) => {
-      if (!document.body.classList.contains('laser-pointer')) return;
+  return { init };
+})();
 
-      const dot = document.createElement('div');
-      dot.className = 'laser-trail-particle';
-      dot.style.position = 'fixed';
-      dot.style.left = `${e.clientX}px`;
-      dot.style.top = `${e.clientY}px`;
-      dot.style.width = '12px';
-      dot.style.height = '12px';
-      dot.style.backgroundColor = '#ef4444';
-      dot.style.borderRadius = '50%';
-      dot.style.pointerEvents = 'none';
-      dot.style.zIndex = '9999999';
-      dot.style.transform = 'translate(-50%, -50%)';
-      dot.style.boxShadow = '0 0 10px #ef4444, 0 0 20px #ef4444';
-      dot.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-      document.body.appendChild(dot);
+window.SpotlightSearch = window.SpotlightSearch || SpotlightSearch;
 
-      setTimeout(() => {
-        dot.style.opacity = '0';
-        dot.style.transform = 'translate(-50%, -50%) scale(0.2)';
-      }, 50);
 
-      setTimeout(() => {
-        dot.remove();
-      }, 450);
-    });
+/**
+ * LECTA AI — Heavy Rendering Lazy Loaders
+ * Dynamic on-demand loading for KaTeX, Mermaid.js, and Prism.js
+ */
+
+const LazyLoaders = (function () {
+
+  function init() {
+    initKaTeXMaths();
+    initMermaidDiagrams();
+    initSyntaxHighlighting();
   }
 
   /* === 🧮 KaTeX On-Demand Loader === */
@@ -6468,7 +6488,39 @@ const InteractiveBlocks = (function () {
   return { init };
 })();
 
+window.LazyLoaders = window.LazyLoaders || LazyLoaders;
+
+
+/**
+ * LECTA AI — Interactive Block Orchestrator
+ * Integrates modular JS units (blocks-core, blocks-data, presenter-overlay, spotlight-search, lazy-loaders)
+ */
+
+const InteractiveBlocks = (function () {
+
+  function init() {
+    if (window.InteractiveBlocksCore) {
+      window.InteractiveBlocksCore.init();
+    }
+    if (window.InteractiveBlocksData) {
+      window.InteractiveBlocksData.init();
+    }
+    if (window.PresenterOverlay) {
+      window.PresenterOverlay.init();
+    }
+    if (window.SpotlightSearch) {
+      window.SpotlightSearch.init();
+    }
+    if (window.LazyLoaders) {
+      window.LazyLoaders.init();
+    }
+  }
+
+  return { init };
+})();
+
 window.InteractiveBlocks = window.InteractiveBlocks || InteractiveBlocks;
+
 
 /**
  * LECTA AI — Theme Switcher (stub, owned by SidebarModule)
@@ -6495,6 +6547,7 @@ const SpeakerNotes = (function () {
 })();
 window.ThemeSwitcher = window.ThemeSwitcher || ThemeSwitcher;
 window.SpeakerNotes = window.SpeakerNotes || SpeakerNotes;
+
 
 /**
  * LECTA AI — Sidebar, Settings Panel, Dark/Light Mode
@@ -6931,6 +6984,7 @@ const SidebarModule = (function () {
 })();
 
 window.SidebarModule = window.SidebarModule || SidebarModule;
+
 
 /**
  * LECTA AI — Viewport Emulator Controller
