@@ -247,6 +247,32 @@
         ],
         "speakerNotes": "Recap the key points. Encourage students to start a personal project this week. Share the resource links. Open the floor for Q&A."
       }
+    },
+    {
+      "id": "slide-11",
+      "type": "advanced-quiz",
+      "data": {
+        "heading": "Final Web Core Assessment",
+        "icon": "🏆",
+        "questions": [
+          {
+            "question": "Which HTML tag is used for the largest structural heading?",
+            "options": ["<head>", "<h6>", "<h1>", "<header>"],
+            "correct": 2
+          },
+          {
+            "question": "What is the primary purpose of CSS?",
+            "options": ["To define document styles and layouts", "To structure backend databases", "To handle user input events dynamically", "To encrypt client-side network connections"],
+            "correct": 0
+          },
+          {
+            "question": "Which symbol represents the ID selector in CSS?",
+            "options": [".", "#", "*", "@"],
+            "correct": 1
+          }
+        ],
+        "speakerNotes": "Assess the class's understanding of the basic web technologies. Let them answer and click submit."
+      }
     }
   ]
 }
