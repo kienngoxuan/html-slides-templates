@@ -639,8 +639,15 @@ flowchart TD
   <!-- Responsive Media Video Block -->
   <div class="comp-card"><div class="comp-card-header">Responsive media player frame <span class="card-type">video</span></div>
     <div class="comp-card-body">
-      <div class="video-container" style="max-width:600px; margin:0 auto;">
-        <iframe src="https://www.youtube.com/embed/LXb3EKWsInQ" allowfullscreen></iframe>
+      <div style="max-width:600px; margin:0 auto;">
+        <a href="https://www.youtube.com/watch?v=M7lc1UVf-VE" target="_blank" class="video-link-card" aria-label="Watch video on YouTube">
+          <div class="video-preview-thumbnail" style="background-image: url('https://img.youtube.com/vi/M7lc1UVf-VE/hqdefault.jpg')">
+            <div class="video-play-overlay">
+              <div class="video-play-btn">▶</div>
+              <span class="video-play-text">Watch on YouTube</span>
+            </div>
+          </div>
+        </a>
       </div>
     </div></div>
 
