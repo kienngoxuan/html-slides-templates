@@ -333,8 +333,85 @@ function renderSlideHTML(slide) {
   </div>
 </section>`;
 
+    case 'math':
+      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🧮'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="math-block-container">
+      <div class="math-display-equation" data-latex="${esc(d.latex)}">
+        \\[ ${d.latex} \\]
+      </div>
+      ${d.explanation ? `<p class="math-explanation">${esc(d.explanation)}</p>` : ''}
+    </div>
+  </div>
+</section>`;
+
+    case 'mermaid':
+      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🌿'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="mermaid-block-container">
+      <div class="mermaid-diagram-wrapper">
+        <div class="mermaid" id="mermaid-${slide.id}">${d.code}</div>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+    case 'video': {
+      let videoHTML = '';
+      if (d.videoType === 'youtube') {
+        videoHTML = `<iframe class="video-player-frame" src="https://www.youtube.com/embed/${d.videoId}?enablejsapi=1" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+      } else if (d.videoType === 'vimeo') {
+        videoHTML = `<iframe class="video-player-frame" src="https://player.vimeo.com/video/${d.videoId}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+      } else {
+        videoHTML = `<video class="video-player-frame" controls poster="${d.poster || ''}"><source src="${d.videoUrl}" type="video/mp4"></video>`;
+      }
+      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🎬'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="video-block-container">
+      ${videoHTML}
+    </div>
+  </div>
+</section>`;
+    }
+
+    case 'split':
+      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '⚔️'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="split-layout-container ${d.layout || 'split-50-50'}">
+      <div class="split-column left-column">
+        ${renderSubBlock(d.left, slide.id + '-left')}
+      </div>
+      <div class="split-column right-column">
+        ${renderSubBlock(d.right, slide.id + '-right')}
+      </div>
+    </div>
+  </div>
+</section>`;
+
     default:
       return `<section class="slide" id="${slide.id}"><div class="slide-inner"><p>Unknown block type: ${slide.type}</p></div></section>`;
+  }
+}
+
+function renderSubBlock(b, id) {
+  if (!b) return '';
+  const type = b.type;
+  const d = b.data || {};
+  switch (type) {
+    case 'text':
+      return `<div class="sub-block sub-text"><p>${esc(d.content)}</p></div>`;
+    case 'bullets':
+      return `<div class="sub-block sub-bullets"><ul style="list-style-type: disc; padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;">${d.items.map(it => `<li>${esc(it)}</li>`).join('')}</ul></div>`;
+    case 'code':
+      return `<div class="sub-block sub-code"><pre><code class="language-${d.language || 'javascript'}">${esc(d.code)}</code></pre></div>`;
+    case 'image':
+      return `<div class="sub-block sub-image" style="border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md);"><img src="${d.url}" alt="${esc(d.alt || '')}" style="width: 100%; display: block; object-fit: cover;"></div>`;
+    default:
+      return `<div class="sub-block sub-unknown"><p>${esc(JSON.stringify(b))}</p></div>`;
   }
 }
 
