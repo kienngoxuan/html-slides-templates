@@ -200,6 +200,65 @@
       }
     },
     {
+      "id": "slide-s4-math",
+      "type": "math",
+      "data": {
+        "heading": "Quantum Probability Equation",
+        "icon": "🧮",
+        "latex": "\\Psi(x, t) = A e^{i(kx - \\omega t)}",
+        "explanation": "Schrödinger's wavefunction equation represents the quantum state of a physical system in space and time.",
+        "speakerNotes": "Introduce the Wavefunction equation slide to students."
+      }
+    },
+    {
+      "id": "slide-s4-mermaid",
+      "type": "mermaid",
+      "data": {
+        "heading": "Interactive Slide Engine Sequence",
+        "icon": "🌿",
+        "code": "sequenceDiagram\n  Presenter->>Engine: Go Next Slide\n  Engine-->>Peers: Broadcast navigation\n  Peers->>UI: Render slide change\n  PresenterView->>Presenter: Display next preview",
+        "speakerNotes": "Explain the interactive multi-screen peer-to-peer sequence flow."
+      }
+    },
+    {
+      "id": "slide-s4-video",
+      "type": "video",
+      "data": {
+        "heading": "Lecta Presentation Showcase Video",
+        "icon": "🎬",
+        "videoType": "youtube",
+        "videoId": "LXb3EKWsInQ",
+        "speakerNotes": "Play the YouTube embedded showcase presentation video."
+      }
+    },
+    {
+      "id": "slide-s4-split",
+      "type": "split",
+      "data": {
+        "heading": "Two-Column Layout Comparison",
+        "icon": "⚔️",
+        "layout": "split-50-50",
+        "left": {
+          "type": "bullets",
+          "data": {
+            "items": [
+              "Beautiful structured left column bullet items",
+              "Supports custom text blocks and image cards",
+              "Helps contrast information side-by-side"
+            ]
+          }
+        },
+        "right": {
+          "type": "code",
+          "data": {
+            "language": "javascript",
+            "code": "const lecta = {\n  type: 'presentation',\n  features: ['math', 'mermaid', 'video']\n};"
+          }
+        },
+        "speakerNotes": "Showcase the fluid and versatile side-by-side split screen columns."
+      }
+    },
+    {
       "id": "slide-s4-9",
       "type": "advanced-quiz",
       "data": {
