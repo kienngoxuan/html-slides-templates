@@ -6,58 +6,19 @@
 const fs = require('fs');
 const path = require('path');
 const ROOT = __dirname;
-const read = (rel) => fs.readFileSync(path.join(ROOT, rel), 'utf-8');
+const { readFiles, loadFaviconDataURI, renderThemeDots } = require('./src/build/utils');
+const { getCatalogCssFiles, getCatalogJsFiles } = require('./src/build/assets');
+const { LIGHT_THEMES, DARK_THEMES } = require('./src/build/themes');
 
-const cssVars = read('src/css/variables.css');
-const cssBase = read('src/css/base.css');
-const cssBlocks = read('src/css/blocks.css');
-const cssAnim = read('src/css/animations.css');
-const cssSidebar = read('src/css/sidebar.css');
-const cssCatalog = read('src/catalog/catalog-css.css');
-const cssEmulator = read('src/emulator/emulator.css');
-const cssEmulatorLayouts = read('src/emulator/emulator-layouts.css');
-
-const jsBlocks = read('src/js/blocks.js');
-const jsSidebar = read('src/js/sidebar.js');
-const jsEmulator = read('src/emulator/emulator.js');
+const allCSS = readFiles(ROOT, getCatalogCssFiles());
+const allJS = readFiles(ROOT, getCatalogJsFiles());
 
 // Load favicon if available
-let faviconDataURI = '';
-try {
-  const faviconBuffer = fs.readFileSync(path.join(ROOT, 'src/favicon.JPG'));
-  const base64Favicon = faviconBuffer.toString('base64');
-  faviconDataURI = `data:image/jpeg;base64,${base64Favicon}`;
-} catch (err) {
-  console.warn('⚠️ Could not load src/favicon.JPG for base64 embedding:', err);
-}
+const faviconDataURI = loadFaviconDataURI(ROOT);
 
 // Create theme dot lists
-const LIGHT_THEMES = [
-  { id:'ocean', label:'Ocean' },
-  { id:'forest', label:'Forest' },
-  { id:'berry', label:'Berry' },
-  { id:'slate', label:'Slate' },
-  { id:'paper', label:'Paper' },
-  { id:'nordic', label:'Nordic' },
-  { id:'sunset', label:'Sunset' },
-];
-const lightThemeDotItems = LIGHT_THEMES.map(t =>
-  `<div class="theme-dot-item${t.id === 'ocean' ? ' active' : ''}" data-theme="${t.id}">
-    <div class="dot" data-theme="${t.id}"></div>
-    <span>${t.label}</span>
-  </div>`).join('');
-
-const DARK_THEMES = [
-  { id:'neon', label:'Neon' },
-  { id:'midnight', label:'Midnight' },
-  { id:'evergreen', label:'Evergreen' },
-  { id:'volcano', label:'Volcano' },
-];
-const darkThemeDotItems = DARK_THEMES.map(t =>
-  `<div class="theme-dot-item" data-theme="${t.id}">
-    <div class="dot" data-theme="${t.id}"></div>
-    <span>${t.label}</span>
-  </div>`).join('');
+const lightThemeDotItems = renderThemeDots(LIGHT_THEMES, 'ocean');
+const darkThemeDotItems = renderThemeDots(DARK_THEMES);
 
 const html = `<!DOCTYPE html>
 <html lang="en" data-theme="ocean">
@@ -68,14 +29,7 @@ ${faviconDataURI ? `<link rel="icon" type="image/jpeg" href="${faviconDataURI}">
 <title>Lecta AI — All Designs Catalog</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-${cssVars}
-${cssBase}
-${cssBlocks}
-${cssAnim}
-${cssSidebar}
-${cssCatalog}
-${cssEmulator}
-${cssEmulatorLayouts}
+${allCSS}
 </style>
 </head>
 <body class="catalog">
@@ -654,14 +608,14 @@ flowchart TD
   <!-- Asymmetric Split Column Layout -->
   <div class="comp-card"><div class="comp-card-header">Asymmetric split columns layout <span class="card-type">split</span></div>
     <div class="comp-card-body">
-      <div class="split-layout split-50-50">
-        <div class="split-col-left" style="flex:1;">
+      <div class="split-layout-container split-50-50">
+        <div class="split-column left-column">
           <div style="padding:1.5rem; background:var(--color-surface-hover); border-radius:var(--radius-md); height:100%; border:1px solid var(--color-border-light);">
             <h4>👈 Left Content Block</h4>
             <p>Perfect for structured lists, descriptive highlights, and introductory context cards.</p>
           </div>
         </div>
-        <div class="split-col-right" style="flex:1;">
+        <div class="split-column right-column">
           <div style="padding:1.5rem; background:var(--color-primary-alpha); border-radius:var(--radius-md); border:1px dashed var(--color-primary); height:100%;">
             <h4 style="color:var(--color-primary-dark);">👉 Right Content Block</h4>
             <p style="color:var(--color-text-secondary);">Configured side-by-side with identical perceptual weighting to optimize comparisons.</p>
@@ -709,43 +663,8 @@ console.log(greeting); // JetBrains Mono</code></pre>
   <p style="margin: 0 auto; max-width: none;">Lecta AI Component Catalog · Built with vanilla HTML/CSS/JS · Switch themes with settings gear above →</p>
 </div>
 
-<!-- 🖌️ Global Drawing Canvas Annotation Overlay -->
-<canvas class="drawing-canvas-overlay" width="1920" height="1080"></canvas>
-
-<!-- 🖌️ Drawing Annotation Toolbar -->
-<div class="drawing-toolbar">
-  <button class="draw-tool-btn active" data-tool="pen" title="Pen">✏️</button>
-  <button class="draw-tool-btn" data-tool="highlighter" title="Highlighter">🖍️</button>
-  <button class="draw-tool-btn" data-tool="eraser" title="Eraser">🧹</button>
-  <div class="draw-divider"></div>
-  <div class="draw-color-dot draw-color-red active" data-color="#ef4444" title="Red"></div>
-  <div class="draw-color-dot draw-color-blue" data-color="#3b82f6" title="Blue"></div>
-  <div class="draw-color-dot draw-color-yellow" data-color="#eab308" title="Yellow"></div>
-  <div class="draw-color-dot draw-color-green" data-color="#10b981" title="Green"></div>
-  <div class="draw-divider"></div>
-  <span class="draw-brush-indicator">Size: 4px</span>
-  <input type="range" class="draw-brush-size" min="2" max="20" value="4" style="width: 60px;" />
-  <div class="draw-divider"></div>
-  <button class="draw-tool-btn draw-clear" title="Clear Canvas">🗑️</button>
-</div>
-
-<!-- 🔍 Spotlight Command Search Palette -->
-<div class="search-palette-backdrop">
-  <div class="search-palette">
-    <div class="search-input-wrapper">
-      <span>🔍</span>
-      <input type="text" class="search-input" placeholder="Type slide title, content, or block name..." />
-    </div>
-    <div class="search-results-list">
-      <!-- Results rendered dynamically via JS -->
-    </div>
-  </div>
-</div>
-
 <script>
-${jsBlocks}
-${jsSidebar}
-${jsEmulator}
+${allJS}
 document.addEventListener('DOMContentLoaded', () => {
   SidebarModule.init();
   InteractiveBlocks.init();
