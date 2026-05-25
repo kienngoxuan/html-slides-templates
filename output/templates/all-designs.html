@@ -2304,6 +2304,16 @@ pre code {
   transform: translateY(0) scale(0.96);
 }
 
+/* Scroll locking when Advanced Quiz Modal is open */
+body.adv-quiz-modal-open {
+  overflow: hidden !important;
+}
+body.adv-quiz-modal-open .catalog,
+body.adv-quiz-modal-open .slide-deck,
+body.adv-quiz-modal-open .slide {
+  overflow: hidden !important;
+}
+
 
 
 /* ============================================
@@ -3000,6 +3010,7 @@ body.catalog {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .component-grid.full-width {
@@ -4171,7 +4182,7 @@ body.viewport-mode-mobile .table-actions {
 <div class="component-grid full-width">
   <div class="comp-card"><div class="comp-card-header">Interactive Flowchart / Mindmap <span class="card-type">flow</span></div>
     <div class="comp-card-body">
-      <div class="flow-block-container" data-nodes='[{"id":"1","label":"1. Event Ingestion","x":50,"y":100,"details":"Ingest events with sub-millisecond latencies."},{"id":"2","label":"2. Stream Processing","x":250,"y":180,"details":"Cleanse, transform, and aggregate streaming data."},{"id":"3","label":"3. Analytical Warehouse","x":450,"y":100,"details":"Store historical analytical records optimized for speed."},{"id":"4","label":"4. Lecta Dashboard","x":650,"y":180,"details":"Visualize real-time business metrics."}]' data-connections='[{"from":"1","to":"2"},{"from":"2","to":"3"},{"from":"3","to":"4"}]'>
+      <div class="flow-block-container" data-nodes='[{"id":"1","label":"1. Event Ingestion","x":50,"y":100,"details":"Ingest events with sub-millisecond latencies."},{"id":"2","label":"2. Stream Processing","x":230,"y":180,"details":"Cleanse, transform, and aggregate streaming data."},{"id":"3","label":"3. Analytical Warehouse","x":410,"y":100,"details":"Store historical analytical records optimized for speed."},{"id":"4","label":"4. Lecta Dashboard","x":590,"y":180,"details":"Visualize real-time business metrics."}]' data-connections='[{"from":"1","to":"2"},{"from":"2","to":"3"},{"from":"3","to":"4"}]'>
         <div class="flow-layout-wrapper">
           <svg class="flow-svg-canvas" viewBox="0 0 800 350"></svg>
         </div>
@@ -4722,7 +4733,6 @@ const InteractiveBlocks = (function () {
             score++;
           }
         });
-
         const backdrop = container.querySelector('.adv-quiz-modal-backdrop');
         const scoreFraction = container.querySelector('.score-fraction');
         const feedback = container.querySelector('.adv-result-feedback');
@@ -4742,6 +4752,7 @@ const InteractiveBlocks = (function () {
           }
           feedback.textContent = msg;
           backdrop.style.display = 'flex';
+          document.body.classList.add('adv-quiz-modal-open');
         }
         return;
       }
@@ -4763,6 +4774,7 @@ const InteractiveBlocks = (function () {
         if (backdrop) {
           backdrop.style.display = 'none';
         }
+        document.body.classList.remove('adv-quiz-modal-open');
 
         container.querySelectorAll('.adv-option').forEach(opt => {
           opt.classList.remove('selected', 'correct', 'wrong');
@@ -4777,6 +4789,7 @@ const InteractiveBlocks = (function () {
         if (backdrop) {
           backdrop.style.display = 'none';
         }
+        document.body.classList.remove('adv-quiz-modal-open');
         return;
       }
     });
@@ -4802,6 +4815,7 @@ const InteractiveBlocks = (function () {
           opt.classList.remove('selected', 'correct', 'wrong');
         });
       });
+      document.body.classList.remove('adv-quiz-modal-open');
     });
   }
 
