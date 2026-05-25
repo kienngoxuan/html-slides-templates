@@ -361,9 +361,23 @@ function renderSlideHTML(slide) {
     case 'video': {
       let videoHTML = '';
       if (d.videoType === 'youtube') {
-        videoHTML = `<iframe class="video-player-frame" src="https://www.youtube.com/embed/${d.videoId}?enablejsapi=1" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+        videoHTML = `<a href="https://www.youtube.com/watch?v=${d.videoId}" target="_blank" class="video-link-card" aria-label="Watch video on YouTube">
+        <div class="video-preview-thumbnail" style="background-image: url('https://img.youtube.com/vi/${d.videoId}/hqdefault.jpg')">
+          <div class="video-play-overlay">
+            <div class="video-play-btn">▶</div>
+            <span class="video-play-text">Watch on YouTube</span>
+          </div>
+        </div>
+      </a>`;
       } else if (d.videoType === 'vimeo') {
-        videoHTML = `<iframe class="video-player-frame" src="https://player.vimeo.com/video/${d.videoId}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+        videoHTML = `<a href="https://vimeo.com/${d.videoId}" target="_blank" class="video-link-card" aria-label="Watch video on Vimeo">
+        <div class="video-preview-thumbnail" style="background: #111;">
+          <div class="video-play-overlay">
+            <div class="video-play-btn" style="background: #00adef; box-shadow: 0 4px 20px rgba(0, 173, 239, 0.5);">▶</div>
+            <span class="video-play-text">Watch on Vimeo</span>
+          </div>
+        </div>
+      </a>`;
       } else {
         videoHTML = `<video class="video-player-frame" controls poster="${d.poster || ''}"><source src="${d.videoUrl}" type="video/mp4"></video>`;
       }
