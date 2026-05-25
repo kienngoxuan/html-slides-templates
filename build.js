@@ -7,9 +7,10 @@
 const fs = require('fs');
 const path = require('path');
 const ROOT = __dirname;
-const { readFiles, loadFaviconDataURI, renderThemeDots } = require('./src/build/utils');
+const { readFiles, loadFaviconDataURI, renderThemeDots, renderFontFaceCSS } = require('./src/build/utils');
 const { getDeckCssFiles, getDeckJsFiles } = require('./src/build/assets');
 const { LIGHT_THEMES, DARK_THEMES } = require('./src/build/themes');
+const { FONT_FILES } = require('./src/build/fonts');
 
 // Validation function for robust slide structure verification
 function validateSlideSchema(slideData, dataFile) {
@@ -80,9 +81,27 @@ function validateSlideSchema(slideData, dataFile) {
           throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("bento"): "items" must be an array`);
         }
         break;
+      case 'stepper':
+        if (!Array.isArray(d.steps)) {
+          throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("stepper"): "steps" must be an array`);
+        }
+        break;
       case 'timeline':
         if (!Array.isArray(d.events)) {
           throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("timeline"): "events" must be an array`);
+        }
+        break;
+      case 'flow':
+        if (!Array.isArray(d.nodes)) {
+          throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("flow"): "nodes" must be an array`);
+        }
+        if (!Array.isArray(d.connections)) {
+          throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("flow"): "connections" must be an array`);
+        }
+        break;
+      case 'image':
+        if (!d.url || typeof d.url !== 'string') {
+          throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("image"): "url" must be a string`);
         }
         break;
       case 'compare':
@@ -110,6 +129,7 @@ function buildSlideDeck(dataFile, outputFile) {
   const faviconDataURI = loadFaviconDataURI(ROOT);
 
   // CSS
+  const fontFaceCSS = renderFontFaceCSS(ROOT, FONT_FILES);
   const allCSS = readFiles(ROOT, getDeckCssFiles());
   const allJS = readFiles(ROOT, getDeckJsFiles());
 
@@ -142,10 +162,8 @@ function buildSlideDeck(dataFile, outputFile) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="${meta.subtitle || 'Interactive slide deck built with Lecta AI'}">
   <title>${meta.title || 'Lecta AI Presentation'}</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>${allCSS}</style>
+  <style>${fontFaceCSS}
+${allCSS}</style>
 </head>
 <body${studentAttr}>
   <!-- Progress Bar -->
