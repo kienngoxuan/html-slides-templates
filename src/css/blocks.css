@@ -1604,4 +1604,14 @@
   transform: translateY(0) scale(0.96);
 }
 
+/* Scroll locking when Advanced Quiz Modal is open */
+body.adv-quiz-modal-open {
+  overflow: hidden !important;
+}
+body.adv-quiz-modal-open .catalog,
+body.adv-quiz-modal-open .slide-deck,
+body.adv-quiz-modal-open .slide {
+  overflow: hidden !important;
+}
+
 
