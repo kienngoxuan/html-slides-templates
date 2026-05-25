@@ -32,9 +32,26 @@ function renderThemeDots(themes, activeThemeId) {
     .join('');
 }
 
+function renderFontFaceCSS(root, fonts) {
+  return fonts
+    .map((font) => {
+      const buffer = fs.readFileSync(path.join(root, font.file));
+      const base64 = buffer.toString('base64');
+      return `@font-face {
+  font-family: '${font.family}';
+  font-style: ${font.style};
+  font-weight: ${font.weight};
+  font-display: swap;
+  src: url(data:font/woff2;base64,${base64}) format('woff2');
+}`;
+    })
+    .join('\n');
+}
+
 module.exports = {
   readFile,
   readFiles,
   loadFaviconDataURI,
   renderThemeDots,
+  renderFontFaceCSS,
 };
