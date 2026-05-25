@@ -340,6 +340,7 @@
   --gradient-bg: linear-gradient(180deg, oklch(97% 0.01 50), oklch(94% 0.02 50));
 }
 
+
 /* ============================================
    LECTA AI — Base Styles
    Reset, typography, layout foundations
@@ -703,6 +704,7 @@ pre code {
     color: #000000 !important;
   }
 }
+
 
 /* ============================================
    LECTA AI — Interactive Block Styles
@@ -1462,52 +1464,6 @@ pre code {
   border-color: var(--color-primary);
 }
 
-/* === SPEAKER NOTES (Presenter) === */
-.speaker-notes-panel {
-  display: none;
-  position: fixed;
-  bottom: 56px;
-  left: 0;
-  right: 0;
-  max-height: 200px;
-  background: var(--color-surface);
-  border-top: 1px solid var(--color-border);
-  padding: var(--space-md) var(--space-lg);
-  overflow-y: auto;
-  z-index: 999;
-  animation: slideUp 300ms ease;
-}
-
-.speaker-notes-panel.visible {
-  display: block;
-}
-
-.speaker-notes-panel h4 {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--color-text-muted);
-  margin-bottom: var(--space-sm);
-}
-
-.speaker-notes-panel p {
-  font-size: 0.9rem;
-  line-height: 1.7;
-  color: var(--color-text-secondary);
-}
-
-@media (max-width: 768px) {
-  .slide {
-    padding: var(--space-lg) var(--space-md);
-  }
-  .compare-container {
-    grid-template-columns: 1fr;
-  }
-  .cards-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 /* === IMAGE BLOCK === */
 .image-block-container {
   display: flex;
@@ -2054,6 +2010,88 @@ pre code {
   transform: scale(1) translate(-50%, -100%);
 }
 
+/* Split Grid Layouts */
+.split-layout-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+  margin-top: var(--space-md);
+}
+
+.split-layout-container.split-40-60 { grid-template-columns: 4fr 6fr; }
+.split-layout-container.split-60-40 { grid-template-columns: 6fr 4fr; }
+
+.split-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  height: 100%;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .split-layout-container {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-lg);
+  }
+}
+
+/* Math (KaTeX Equation) Block Styling */
+.math-block-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  margin: var(--space-md) auto;
+  max-width: 650px;
+  box-shadow: var(--shadow-sm);
+}
+
+.math-display-equation {
+  font-size: 1.8rem;
+  color: var(--color-primary);
+  margin: var(--space-md) 0;
+  overflow-x: auto;
+  width: 100%;
+  text-align: center;
+}
+
+.math-explanation {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+/* Mermaid Flowcharts Block Styling */
+.mermaid-block-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  margin: var(--space-md) auto;
+  width: 100%;
+  max-width: 800px;
+  box-shadow: var(--shadow-sm);
+  overflow: auto;
+}
+
+.mermaid-diagram-wrapper {
+  width: 100%;
+  min-height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 /* === ADVANCED QUIZ === */
 .advanced-quiz-container {
   display: flex;
@@ -2319,9 +2357,6 @@ body.adv-quiz-modal-open .slide {
   overflow: hidden !important;
 }
 
-/* ==========================================================================
-   LECTA NEXT-GEN UPGRADE: PRESENTATION DRAWING, SEARCH, PRESENTERS, & BLOCKS
-   ========================================================================== */
 
 /* 1. Global Drawing Canvas & Floating Toolbar */
 .drawing-canvas-overlay {
@@ -2542,87 +2577,62 @@ body.adv-quiz-modal-open .slide {
   color: var(--color-text-secondary);
 }
 
-/* 3. New Advanced Slide Content Blocks */
 
-/* Split Grid Layouts */
-.split-layout-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-xl);
-  align-items: center;
-  margin-top: var(--space-md);
+@keyframes blink {
+  0% { opacity: 0.4; }
+  100% { opacity: 1; }
 }
 
-.split-layout-container.split-40-60 { grid-template-columns: 4fr 6fr; }
-.split-layout-container.split-60-40 { grid-template-columns: 6fr 4fr; }
+@keyframes slideDown {
+  0% { transform: translateY(-50px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
 
-.split-column {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
-  height: 100%;
-  justify-content: center;
+
+/* === SPEAKER NOTES (Presenter) === */
+.speaker-notes-panel {
+  display: none;
+  position: fixed;
+  bottom: 56px;
+  left: 0;
+  right: 0;
+  max-height: 200px;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-md) var(--space-lg);
+  overflow-y: auto;
+  z-index: 999;
+  animation: slideUp 300ms ease;
+}
+
+.speaker-notes-panel.visible {
+  display: block;
+}
+
+.speaker-notes-panel h4 {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-sm);
+}
+
+.speaker-notes-panel p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
 }
 
 @media (max-width: 768px) {
-  .split-layout-container {
-    grid-template-columns: 1fr !important;
-    gap: var(--space-lg);
+  .slide {
+    padding: var(--space-lg) var(--space-md);
   }
-}
-
-/* Math (KaTeX Equation) Block Styling */
-.math-block-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-xl);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  margin: var(--space-md) auto;
-  max-width: 650px;
-  box-shadow: var(--shadow-sm);
-}
-
-.math-display-equation {
-  font-size: 1.8rem;
-  color: var(--color-primary);
-  margin: var(--space-md) 0;
-  overflow-x: auto;
-  width: 100%;
-  text-align: center;
-}
-
-.math-explanation {
-  font-size: 0.9rem;
-  color: var(--color-text-secondary);
-  text-align: center;
-}
-
-/* Mermaid Flowcharts Block Styling */
-.mermaid-block-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-md);
-  margin: var(--space-md) auto;
-  width: 100%;
-  max-width: 800px;
-  box-shadow: var(--shadow-sm);
-  overflow: auto;
-}
-
-.mermaid-diagram-wrapper {
-  width: 100%;
-  min-height: 250px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  .compare-container {
+    grid-template-columns: 1fr;
+  }
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* Video Block Styling */
@@ -2645,7 +2655,7 @@ body.adv-quiz-modal-open .slide {
   object-fit: cover;
 }
 
-/* 4. Speaker Dual-Monitor Presenter View Panel Dashboard */
+
 .presenter-view-layout {
   display: grid;
   grid-template-columns: 60% 40%;
@@ -2820,15 +2830,6 @@ body.adv-quiz-modal-open .slide {
   background: #0369a1;
 }
 
-@keyframes blink {
-  0% { opacity: 0.4; }
-  100% { opacity: 1; }
-}
-
-@keyframes slideDown {
-  0% { transform: translateY(-50px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
-}
 
 /* Premium Video Play Link Cards */
 .video-link-card {
@@ -2933,6 +2934,7 @@ body.adv-quiz-modal-open .slide {
     box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
   }
 }
+
 
 
 
@@ -3043,6 +3045,7 @@ body.adv-quiz-modal-open .slide {
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid color-mix(in oklch, var(--color-border-light) 50%, transparent);
 }
+
 
 /* ============================================
    LECTA AI — Gear Settings Panel + Right Sidebar
@@ -3568,6 +3571,7 @@ body.sidebar-open .slides-viewport {
   body.sidebar-open .slides-viewport { width: 100vw; }
 }
 
+
 /* ============================================
    ALL-DESIGNS CATALOG — Layout & Cards
    ============================================ */
@@ -3960,6 +3964,7 @@ body.catalog {
   body.catalog { padding: 1rem; }
 }
 
+
 /* ==========================================================================
    LECTA AI — Viewport Emulator Chassis Styles
    YouTube Shorts style device frame with immersive scaling and deep shadows.
@@ -4160,6 +4165,7 @@ body.viewport-mode-mobile .settings-panel {
   z-index: 10005;
   pointer-events: none;
 }
+
 
 /* ==========================================================================
    LECTA AI — Viewport Emulator Layout Adaptive Styles
@@ -5041,14 +5047,14 @@ flowchart TD
   <!-- Asymmetric Split Column Layout -->
   <div class="comp-card"><div class="comp-card-header">Asymmetric split columns layout <span class="card-type">split</span></div>
     <div class="comp-card-body">
-      <div class="split-layout split-50-50">
-        <div class="split-col-left" style="flex:1;">
+      <div class="split-layout-container split-50-50">
+        <div class="split-column left-column">
           <div style="padding:1.5rem; background:var(--color-surface-hover); border-radius:var(--radius-md); height:100%; border:1px solid var(--color-border-light);">
             <h4>👈 Left Content Block</h4>
             <p>Perfect for structured lists, descriptive highlights, and introductory context cards.</p>
           </div>
         </div>
-        <div class="split-col-right" style="flex:1;">
+        <div class="split-column right-column">
           <div style="padding:1.5rem; background:var(--color-primary-alpha); border-radius:var(--radius-md); border:1px dashed var(--color-primary); height:100%;">
             <h4 style="color:var(--color-primary-dark);">👉 Right Content Block</h4>
             <p style="color:var(--color-text-secondary);">Configured side-by-side with identical perceptual weighting to optimize comparisons.</p>
@@ -5096,48 +5102,16 @@ console.log(greeting); // JetBrains Mono</code></pre>
   <p style="margin: 0 auto; max-width: none;">Lecta AI Component Catalog · Built with vanilla HTML/CSS/JS · Switch themes with settings gear above →</p>
 </div>
 
-<!-- 🖌️ Global Drawing Canvas Annotation Overlay -->
-<canvas class="drawing-canvas-overlay" width="1920" height="1080"></canvas>
-
-<!-- 🖌️ Drawing Annotation Toolbar -->
-<div class="drawing-toolbar">
-  <button class="draw-tool-btn active" data-tool="pen" title="Pen">✏️</button>
-  <button class="draw-tool-btn" data-tool="highlighter" title="Highlighter">🖍️</button>
-  <button class="draw-tool-btn" data-tool="eraser" title="Eraser">🧹</button>
-  <div class="draw-divider"></div>
-  <div class="draw-color-dot draw-color-red active" data-color="#ef4444" title="Red"></div>
-  <div class="draw-color-dot draw-color-blue" data-color="#3b82f6" title="Blue"></div>
-  <div class="draw-color-dot draw-color-yellow" data-color="#eab308" title="Yellow"></div>
-  <div class="draw-color-dot draw-color-green" data-color="#10b981" title="Green"></div>
-  <div class="draw-divider"></div>
-  <span class="draw-brush-indicator">Size: 4px</span>
-  <input type="range" class="draw-brush-size" min="2" max="20" value="4" style="width: 60px;" />
-  <div class="draw-divider"></div>
-  <button class="draw-tool-btn draw-clear" title="Clear Canvas">🗑️</button>
-</div>
-
-<!-- 🔍 Spotlight Command Search Palette -->
-<div class="search-palette-backdrop">
-  <div class="search-palette">
-    <div class="search-input-wrapper">
-      <span>🔍</span>
-      <input type="text" class="search-input" placeholder="Type slide title, content, or block name..." />
-    </div>
-    <div class="search-results-list">
-      <!-- Results rendered dynamically via JS -->
-    </div>
-  </div>
-</div>
-
 <script>
 /**
- * LECTA AI — Interactive Block Logic
- * Accordion, Tabs, Stepper, Flip Cards, Quiz, Timeline, Bullets
+ * LECTA AI — Core Interactive Elements
+ * Accordion, Tabs, Stepper, Flip Cards, Quiz, Advanced Quiz, Timeline, Bullets, Interactive Images
  */
 
-const InteractiveBlocks = (function () {
+const InteractiveBlocksCore = (function () {
 
   function init() {
+    initInteractiveImages();
     initAccordions();
     initTabs();
     initSteppers();
@@ -5146,16 +5120,10 @@ const InteractiveBlocks = (function () {
     initAdvancedQuiz();
     initTimeline();
     initBullets();
-    initInteractiveImages();
-    initCharts();
-    initTables();
-    initBento();
-    initFlows();
   }
 
   /* === Interactive Image URL Customizer === */
   function initInteractiveImages() {
-    // Load persisted images
     document.querySelectorAll('.interactive-image').forEach((img, index) => {
       const slide = img.closest('.slide');
       const key = 'lecta-img-' + (slide ? slide.id : ('index-' + index));
@@ -5243,7 +5211,6 @@ const InteractiveBlocks = (function () {
 
   /* === Stepper (Event Delegation) === */
   function initSteppers() {
-    // Click navigation controls
     document.addEventListener('click', (e) => {
       const btn = e.target.closest('.stepper .nav-btn');
       if (!btn) return;
@@ -5270,7 +5237,6 @@ const InteractiveBlocks = (function () {
       goToStep(stepper, dots, contents, lines, prevBtn, nextBtn, nextStep);
     });
 
-    // Direct dot navigation click delegation
     document.addEventListener('click', (e) => {
       const dot = e.target.closest('.stepper .step-dot');
       if (!dot) return;
@@ -5288,7 +5254,6 @@ const InteractiveBlocks = (function () {
       goToStep(stepper, dots, contents, lines, prevBtn, nextBtn, nextStep);
     });
 
-    // Initial default layout for all steppers
     document.querySelectorAll('.stepper').forEach(stepper => {
       const dots = stepper.querySelectorAll('.step-dot');
       const contents = stepper.querySelectorAll('.step-content');
@@ -5339,31 +5304,22 @@ const InteractiveBlocks = (function () {
         opt.addEventListener('click', () => {
           if (question.dataset.answered === 'true') return;
 
-          // Clear previous highlights to cleanly reset the retry state
           options.forEach(o => o.classList.remove('selected', 'correct', 'wrong'));
-
           opt.classList.add('selected');
 
           if (i === correctIdx) {
-            question.dataset.answered = 'true'; // Lock the question only when correct
+            question.dataset.answered = 'true';
             opt.classList.add('correct');
-            if (explanation) {
-              explanation.classList.add('visible');
-            }
+            if (explanation) explanation.classList.add('visible');
           } else {
             opt.classList.add('wrong');
-            if (options[correctIdx]) {
-              options[correctIdx].classList.add('correct');
-            }
-            if (explanation) {
-              explanation.classList.add('visible');
-            }
+            if (options[correctIdx]) options[correctIdx].classList.add('correct');
+            if (explanation) explanation.classList.add('visible');
           }
         });
       });
     });
 
-    // Reset quiz states when a slide is changed so presenters can re-teach/re-run quizzes
     document.addEventListener('slideChanged', (e) => {
       const activeSlideIndex = e.detail.index;
       const slides = document.querySelectorAll('.slide');
@@ -5376,9 +5332,7 @@ const InteractiveBlocks = (function () {
           opt.classList.remove('selected', 'correct', 'wrong');
         });
         const explanation = question.querySelector('.quiz-explanation');
-        if (explanation) {
-          explanation.classList.remove('visible');
-        }
+        if (explanation) explanation.classList.remove('visible');
       });
     });
   }
@@ -5386,7 +5340,6 @@ const InteractiveBlocks = (function () {
   /* === Advanced Quiz (Submit Assessment) === */
   function initAdvancedQuiz() {
     document.addEventListener('click', (e) => {
-      // 1. Option selection
       const option = e.target.closest('.adv-option');
       if (option) {
         const question = option.closest('.adv-question');
@@ -5398,7 +5351,6 @@ const InteractiveBlocks = (function () {
         return;
       }
 
-      // 2. Submit assessment
       const submitBtn = e.target.closest('.adv-submit-btn');
       if (submitBtn) {
         const container = submitBtn.closest('.advanced-quiz-container');
@@ -5464,7 +5416,6 @@ const InteractiveBlocks = (function () {
           }
           feedback.textContent = msg;
 
-          // Teleport modal backdrop to body to avoid container transform/filter viewport clipping contexts!
           backdrop._originalParent = container;
           document.body.appendChild(backdrop);
 
@@ -5474,7 +5425,6 @@ const InteractiveBlocks = (function () {
         return;
       }
 
-      // 3. Retry quiz
       const retryBtn = e.target.closest('.adv-retry-btn');
       if (retryBtn) {
         const modalBackdrop = e.target.closest('.adv-quiz-modal-backdrop');
@@ -5503,7 +5453,6 @@ const InteractiveBlocks = (function () {
         return;
       }
 
-      // 4. Close modal overlay popup
       const closeBtn = e.target.closest('.adv-quiz-modal-close');
       if (closeBtn) {
         const backdrop = closeBtn.closest('.adv-quiz-modal-backdrop');
@@ -5518,9 +5467,7 @@ const InteractiveBlocks = (function () {
       }
     });
 
-    // Reset advanced quiz states when slides transition
     document.addEventListener('slideChanged', (e) => {
-      // Find any modal currently teleported to body and return it to its slide
       document.querySelectorAll('body > .adv-quiz-modal-backdrop').forEach(backdrop => {
         backdrop.style.display = 'none';
         if (backdrop._originalParent) {
@@ -5556,7 +5503,6 @@ const InteractiveBlocks = (function () {
     document.querySelectorAll('.timeline-item').forEach(item => {
       item.addEventListener('click', () => {
         const timeline = item.closest('.timeline');
-        // Toggle active
         const wasActive = item.classList.contains('active');
         timeline.querySelectorAll('.timeline-item.active').forEach(a => a.classList.remove('active'));
         if (!wasActive) item.classList.add('active');
@@ -5573,7 +5519,27 @@ const InteractiveBlocks = (function () {
     });
   }
 
-    /* === Canva-style Chart Tooltips === */
+  return { init };
+})();
+
+window.InteractiveBlocksCore = window.InteractiveBlocksCore || InteractiveBlocksCore;
+
+
+/**
+ * LECTA AI — Data & Diagram Blocks
+ * Charts, Tables, Bento, Flow/Mindmap
+ */
+
+const InteractiveBlocksData = (function () {
+
+  function init() {
+    initCharts();
+    initTables();
+    initBento();
+    initFlows();
+  }
+
+  /* === Canva-style Chart Tooltips === */
   function bindTooltipEvents(el, text) {
     const showTooltip = (clientX, clientY) => {
       const tooltip = document.querySelector('.chart-tooltip');
@@ -5589,7 +5555,6 @@ const InteractiveBlocks = (function () {
       if (tooltip) tooltip.classList.remove('visible');
     };
 
-    // Mouse events
     el.addEventListener('mouseenter', (e) => {
       showTooltip(e.clientX, e.clientY);
       el.style.filter = 'brightness(1.15) saturate(1.1)';
@@ -5608,7 +5573,6 @@ const InteractiveBlocks = (function () {
       el.style.filter = 'none';
     });
 
-    // Touch events for mobile screens and simulated devices
     el.addEventListener('touchstart', (e) => {
       if (e.touches && e.touches[0]) {
         showTooltip(e.touches[0].clientX, e.touches[0].clientY);
@@ -5648,11 +5612,10 @@ const InteractiveBlocks = (function () {
       return;
     }
 
-    svg.innerHTML = ''; // Clear preview
+    svg.innerHTML = '';
 
     if (datasets.length === 0) return;
 
-    // Setup theme gradients
     const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
     defs.innerHTML = `
       <linearGradient id="primary-grad" x1="0" y1="0" x2="0" y2="1">
@@ -5678,7 +5641,6 @@ const InteractiveBlocks = (function () {
       renderDonutChart(svg, labels, datasets);
     }
 
-    // Render legend
     const legend = container.querySelector('.chart-legend');
     if (legend) {
       legend.innerHTML = datasets.map((ds, dsi) => `
@@ -5704,9 +5666,7 @@ const InteractiveBlocks = (function () {
     }
   }
 
-  /* === Charts === */
   function initCharts() {
-    // Create tooltip container if it doesn't exist
     let tooltip = document.querySelector('.chart-tooltip');
     if (!tooltip) {
       tooltip = document.createElement('div');
@@ -5718,15 +5678,13 @@ const InteractiveBlocks = (function () {
       renderChartContainer(container);
     });
 
-    // Re-render and trigger entrance animations on slide switch
     document.addEventListener('slideChanged', (e) => {
       const activeSlideIndex = e.detail.index;
       const slides = document.querySelectorAll('.slide');
       const activeSlide = slides[activeSlideIndex];
       if (!activeSlide) return;
 
-      const chartContainers = activeSlide.querySelectorAll('.chart-block-container');
-      chartContainers.forEach(container => {
+      activeSlide.querySelectorAll('.chart-block-container').forEach(container => {
         renderChartContainer(container);
       });
     });
@@ -5778,7 +5736,6 @@ const InteractiveBlocks = (function () {
       svg.appendChild(txt);
     }
 
-    // Support up to 15 columns without overlaps via auto-rotation!
     labels.forEach((lbl, gIdx) => {
       const groupX = padding + gIdx * groupWidth;
       const centerX = groupX + groupWidth / 2;
@@ -5789,7 +5746,6 @@ const InteractiveBlocks = (function () {
       txt.setAttribute('fill', 'var(--color-text-muted)');
       
       if (labels.length > 5) {
-        // Rotate labels to fit dense columns nicely
         txt.setAttribute('transform', `rotate(-30, ${centerX}, ${H - padding + 22})`);
         txt.setAttribute('text-anchor', 'end');
         txt.setAttribute('font-size', '10');
@@ -5819,7 +5775,6 @@ const InteractiveBlocks = (function () {
         rect.style.cursor = 'pointer';
         rect.style.transition = 'y 0.8s cubic-bezier(0.25, 1, 0.5, 1), height 0.8s cubic-bezier(0.25, 1, 0.5, 1), filter 0.2s ease';
         
-        // Canva-style high fidelity tooltip
         bindTooltipEvents(rect, `<strong>${ds.label}</strong><br><span>${lbl}</span>: <strong style="color: var(--color-${ds.color || 'primary'})">${val}</strong>`);
 
         svg.appendChild(rect);
@@ -5882,7 +5837,6 @@ const InteractiveBlocks = (function () {
 
     const stepX = chartW / (labels.length - 1 || 1);
 
-    // Support up to 20 labels without overlaps via auto-rotation!
     labels.forEach((lbl, idx) => {
       const x = padding + idx * stepX;
       const txt = document.createElementNS('http://www.w3.org/2000/svg', 'text');
@@ -5891,7 +5845,6 @@ const InteractiveBlocks = (function () {
       txt.setAttribute('fill', 'var(--color-text-muted)');
       
       if (labels.length > 5) {
-        // Rotate labels to fit dense datasets nicely
         txt.setAttribute('transform', `rotate(-30, ${x}, ${H - padding + 22})`);
         txt.setAttribute('text-anchor', 'end');
         txt.setAttribute('font-size', '10');
@@ -5939,7 +5892,7 @@ const InteractiveBlocks = (function () {
         const totalLen = path.getTotalLength();
         if (totalLen > 0) pathLength = totalLen;
       } catch (e) {
-        console.warn('Failed to measure path length, using fallback:', e);
+        console.warn('Failed to measure path length:', e);
       }
 
       path.setAttribute('stroke-dasharray', pathLength);
@@ -5962,7 +5915,6 @@ const InteractiveBlocks = (function () {
         dot.style.cursor = 'pointer';
         dot.style.transition = 'r 0.2s ease, filter 0.2s ease';
 
-        // Canva-style high fidelity tooltip
         bindTooltipEvents(dot, `<strong>${ds.label}</strong><br><span>${labels[idx]}</span>: <strong style="color: var(--color-${ds.color || 'primary'})">${ds.data[idx]}</strong>`);
 
         dot.addEventListener('mouseenter', () => {
@@ -6008,7 +5960,6 @@ const InteractiveBlocks = (function () {
 
     const chartLegendGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
 
-    // Support up to 10+ slices with dynamic colors & clean dual-column legends!
     const isDualColumn = data.length > 5;
     const itemsPerCol = isDualColumn ? Math.ceil(data.length / 2) : data.length;
     const lineSpacing = isDualColumn ? 22 : 24;
@@ -6018,7 +5969,6 @@ const InteractiveBlocks = (function () {
       const strokeLength = percentage * circumference;
       const strokeOffset = circumference - strokeLength;
       
-      // Dynamic OKLCH color engine for infinite distinct hues
       const colors = ['primary', 'success', 'accent', 'error', 'warning'];
       let strokeColor;
       if (data.length <= 5) {
@@ -6046,7 +5996,6 @@ const InteractiveBlocks = (function () {
       circle.style.cursor = 'pointer';
       circle.style.transition = 'stroke-dashoffset 1s ease-out, stroke-width 0.2s ease, filter 0.2s ease';
 
-      // Canva-style high fidelity tooltip
       bindTooltipEvents(circle, `<strong>${labels[idx] || 'Item'}</strong><br><span style="font-size: 1.1rem; font-weight: 700; color: ${strokeColor}">${val}</span> (${Math.round(percentage * 100)}%)`);
 
       circle.addEventListener('mouseenter', () => {
@@ -6068,7 +6017,6 @@ const InteractiveBlocks = (function () {
         circle.setAttribute('stroke-dashoffset', strokeOffset);
       }, 100);
 
-      // Dual-column legend positioning
       const colIdx = isDualColumn ? idx % 2 : 0;
       const rowIdx = isDualColumn ? Math.floor(idx / 2) : idx;
       
@@ -6092,7 +6040,6 @@ const InteractiveBlocks = (function () {
       labelTxt.setAttribute('font-weight', '500');
       
       if (isDualColumn) {
-        // Combine label and percentage for compact dual-column display
         labelTxt.textContent = `${labels[idx] || 'Item'} (${Math.round(percentage * 100)}%)`;
       } else {
         labelTxt.textContent = `${labels[idx] || 'Item'}`;
@@ -6191,7 +6138,7 @@ const InteractiveBlocks = (function () {
 
   /* === Bento Grid === */
   function initBento() {
-    // Premium css hover interactions only
+    // CSS-only hover interactions
   }
 
   /* === Flow / Mindmap === */
@@ -6233,7 +6180,6 @@ const InteractiveBlocks = (function () {
         svg.appendChild(defs);
         const marker = defs.querySelector('#arrow');
         if (marker) {
-          // Position arrow tip exactly on the dynamic border of the node!
           marker.setAttribute('refX', Math.round(nodeWidth / 2 + 8));
         }
       }
@@ -6287,8 +6233,6 @@ const InteractiveBlocks = (function () {
         text.setAttribute('font-weight', '600');
         text.style.pointerEvents = 'none';
         
-        // Dynamic font scaling & auto-ellipses based on dynamic nodeWidth!
-        // Capacity: Fits long labels perfectly even when N=10 (width=60px)
         const fontSize = nodeWidth < 110 ? 9 : (nodeWidth < 135 ? 10 : 12);
         text.setAttribute('font-size', fontSize);
         
@@ -6327,285 +6271,25 @@ const InteractiveBlocks = (function () {
         });
       });
     });
-    initDrawing();
-    initSearchPalette();
-    initLaserPointerTrails();
+  }
+
+  return { init };
+})();
+
+window.InteractiveBlocksData = window.InteractiveBlocksData || InteractiveBlocksData;
+
+
+/**
+ * LECTA AI — Heavy Rendering Lazy Loaders
+ * Dynamic on-demand loading for KaTeX, Mermaid.js, and Prism.js
+ */
+
+const LazyLoaders = (function () {
+
+  function init() {
     initKaTeXMaths();
     initMermaidDiagrams();
     initSyntaxHighlighting();
-  }
-
-  /* === 🖌️ Presenter Canvas Annotation & Scribbling Overlay === */
-  let isDrawingActive = false;
-  function initDrawing() {
-    const canvas = document.querySelector('.drawing-canvas-overlay');
-    const toolbar = document.querySelector('.drawing-toolbar');
-    if (!canvas || !toolbar) return;
-
-    const ctx = canvas.getContext('2d');
-    let isDrawing = false;
-    let tool = 'pen'; // 'pen', 'highlighter', 'eraser'
-    let color = '#ef4444'; // Red default
-    let size = 4;
-
-    function resizeCanvas() {
-      const view = document.querySelector('.slides-viewport') || document.body;
-      canvas.width = view.clientWidth;
-      canvas.height = view.clientHeight;
-      ctx.lineCap = 'round';
-      ctx.lineJoin = 'round';
-    }
-
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    // Toggle overlay and toolbar
-    document.addEventListener('toggleDrawingCanvas', () => {
-      isDrawingActive = !isDrawingActive;
-      if (isDrawingActive) {
-        canvas.style.pointerEvents = 'auto';
-        toolbar.classList.add('active');
-        resizeCanvas();
-      } else {
-        canvas.style.pointerEvents = 'none';
-        toolbar.classList.remove('active');
-      }
-    });
-
-    // Handle Toolbar Tools Selection
-    toolbar.querySelectorAll('.draw-tool-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        if (btn.classList.contains('draw-clear')) {
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-          return;
-        }
-        toolbar.querySelectorAll('.draw-tool-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        tool = btn.dataset.tool;
-      });
-    });
-
-    // Handle Colors Selection
-    toolbar.querySelectorAll('.draw-color-dot').forEach(dot => {
-      dot.addEventListener('click', () => {
-        toolbar.querySelectorAll('.draw-color-dot').forEach(d => d.classList.remove('active'));
-        dot.classList.add('active');
-        color = dot.dataset.color;
-      });
-    });
-
-    // Handle Size Range Slider
-    const sizeSlider = toolbar.querySelector('.draw-brush-size');
-    const sizeIndicator = toolbar.querySelector('.draw-brush-indicator');
-    if (sizeSlider) {
-      sizeSlider.addEventListener('input', (e) => {
-        size = e.target.value;
-        if (sizeIndicator) sizeIndicator.textContent = `Size: ${size}px`;
-      });
-    }
-
-    // Scribble Drawing Mechanics (Desktop Mouse & Mobile Touch)
-    function getPos(e) {
-      const rect = canvas.getBoundingClientRect();
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-      return {
-        x: clientX - rect.left,
-        y: clientY - rect.top
-      };
-    }
-
-    function startDraw(e) {
-      if (!isDrawingActive) return;
-      isDrawing = true;
-      const pos = getPos(e);
-      ctx.beginPath();
-      ctx.moveTo(pos.x, pos.y);
-      e.preventDefault();
-    }
-
-    function draw(e) {
-      if (!isDrawingActive || !isDrawing) return;
-      const pos = getPos(e);
-
-      ctx.lineWidth = size;
-      if (tool === 'eraser') {
-        ctx.globalCompositeOperation = 'destination-out';
-        ctx.strokeStyle = 'rgba(0,0,0,1)';
-        ctx.lineWidth = size * 3; // Wider eraser
-      } else if (tool === 'highlighter') {
-        ctx.globalCompositeOperation = 'multiply';
-        ctx.strokeStyle = color;
-        ctx.globalAlpha = 0.4;
-      } else {
-        ctx.globalCompositeOperation = 'source-over';
-        ctx.strokeStyle = color;
-        ctx.globalAlpha = 1.0;
-      }
-
-      ctx.lineTo(pos.x, pos.y);
-      ctx.stroke();
-      e.preventDefault();
-    }
-
-    function stopDraw() {
-      isDrawing = false;
-    }
-
-    canvas.addEventListener('mousedown', startDraw);
-    canvas.addEventListener('mousemove', draw);
-    canvas.addEventListener('mouseup', stopDraw);
-    canvas.addEventListener('mouseleave', stopDraw);
-
-    canvas.addEventListener('touchstart', startDraw, { passive: false });
-    canvas.addEventListener('touchmove', draw, { passive: false });
-    canvas.addEventListener('touchend', stopDraw);
-
-    // Clear canvas when slides navigate
-    document.addEventListener('slideChanged', () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-    });
-  }
-
-  /* === 🔍 Glassmorphic Spotlight Search Command Palette === */
-  function initSearchPalette() {
-    const backdrop = document.querySelector('.search-palette-backdrop');
-    const input = document.querySelector('.search-input');
-    const list = document.querySelector('.search-results-list');
-    if (!backdrop || !input || !list) return;
-
-    let selectedIndex = -1;
-    let currentResults = [];
-
-    document.addEventListener('toggleSearchPalette', () => {
-      const isVisible = backdrop.style.display === 'flex';
-      if (isVisible) {
-        backdrop.style.display = 'none';
-      } else {
-        backdrop.style.display = 'flex';
-        input.value = '';
-        input.focus();
-        renderResults('');
-      }
-    });
-
-    backdrop.addEventListener('click', (e) => {
-      if (e.target === backdrop) {
-        backdrop.style.display = 'none';
-      }
-    });
-
-    input.addEventListener('input', (e) => {
-      renderResults(e.target.value);
-    });
-
-    function renderResults(query) {
-      list.innerHTML = '';
-      selectedIndex = -1;
-      currentResults = [];
-
-      const queryLower = query.toLowerCase().trim();
-      const slides = Array.from(document.querySelectorAll('.slide'));
-
-      slides.forEach((s, idx) => {
-        const headingEl = s.querySelector('h2, h1');
-        const heading = headingEl ? headingEl.textContent.trim() : `Slide ${idx + 1}`;
-        const bodyContent = s.textContent.toLowerCase();
-
-        if (!queryLower || heading.toLowerCase().includes(queryLower) || bodyContent.includes(queryLower)) {
-          currentResults.push({ index: idx, heading, id: s.id || `slide-${idx + 1}` });
-        }
-      });
-
-      if (currentResults.length === 0) {
-        list.innerHTML = `<div style="padding:1rem; text-align:center; color:var(--color-text-muted);">No results found. Try another query!</div>`;
-        return;
-      }
-
-      currentResults.forEach((res, i) => {
-        const item = document.createElement('button');
-        item.className = 'search-result-item';
-        item.innerHTML = `
-          <span class="search-result-num">${res.index + 1}</span>
-          <div class="search-result-info">
-            <span class="search-result-title">${res.heading}</span>
-            <span class="search-result-snippet">Jump to #${res.id}</span>
-          </div>
-        `;
-        item.addEventListener('click', () => {
-          if (window.SlideEngine) window.SlideEngine.goTo(res.index);
-          backdrop.style.display = 'none';
-        });
-        list.appendChild(item);
-      });
-    }
-
-    input.addEventListener('keydown', (e) => {
-      const items = list.querySelectorAll('.search-result-item');
-      if (items.length === 0) return;
-
-      if (e.key === 'ArrowDown') {
-        e.preventDefault();
-        selectedIndex = (selectedIndex + 1) % items.length;
-        updateSelectedResult(items);
-      } else if (e.key === 'ArrowUp') {
-        e.preventDefault();
-        selectedIndex = (selectedIndex - 1 + items.length) % items.length;
-        updateSelectedResult(items);
-      } else if (e.key === 'Enter') {
-        e.preventDefault();
-        if (selectedIndex >= 0 && selectedIndex < items.length) {
-          items[selectedIndex].click();
-        } else if (items.length > 0) {
-          items[0].click();
-        }
-      } else if (e.key === 'Escape') {
-        backdrop.style.display = 'none';
-      }
-    });
-
-    function updateSelectedResult(items) {
-      items.forEach((item, idx) => {
-        if (idx === selectedIndex) {
-          item.classList.add('selected');
-          item.scrollIntoView({ block: 'nearest' });
-        } else {
-          item.classList.remove('selected');
-        }
-      });
-    }
-  }
-
-  /* === 🎯 Decaying Laser Pointer Particle Trails === */
-  function initLaserPointerTrails() {
-    document.addEventListener('mousemove', (e) => {
-      if (!document.body.classList.contains('laser-pointer')) return;
-
-      const dot = document.createElement('div');
-      dot.className = 'laser-trail-particle';
-      dot.style.position = 'fixed';
-      dot.style.left = `${e.clientX}px`;
-      dot.style.top = `${e.clientY}px`;
-      dot.style.width = '12px';
-      dot.style.height = '12px';
-      dot.style.backgroundColor = '#ef4444';
-      dot.style.borderRadius = '50%';
-      dot.style.pointerEvents = 'none';
-      dot.style.zIndex = '9999999';
-      dot.style.transform = 'translate(-50%, -50%)';
-      dot.style.boxShadow = '0 0 10px #ef4444, 0 0 20px #ef4444';
-      dot.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-      document.body.appendChild(dot);
-
-      setTimeout(() => {
-        dot.style.opacity = '0';
-        dot.style.transform = 'translate(-50%, -50%) scale(0.2)';
-      }, 50);
-
-      setTimeout(() => {
-        dot.remove();
-      }, 450);
-    });
   }
 
   /* === 🧮 KaTeX On-Demand Loader === */
@@ -6673,7 +6357,39 @@ const InteractiveBlocks = (function () {
   return { init };
 })();
 
+window.LazyLoaders = window.LazyLoaders || LazyLoaders;
+
+
+/**
+ * LECTA AI — Interactive Block Orchestrator
+ * Integrates modular JS units (blocks-core, blocks-data, presenter-overlay, spotlight-search, lazy-loaders)
+ */
+
+const InteractiveBlocks = (function () {
+
+  function init() {
+    if (window.InteractiveBlocksCore) {
+      window.InteractiveBlocksCore.init();
+    }
+    if (window.InteractiveBlocksData) {
+      window.InteractiveBlocksData.init();
+    }
+    if (window.PresenterOverlay) {
+      window.PresenterOverlay.init();
+    }
+    if (window.SpotlightSearch) {
+      window.SpotlightSearch.init();
+    }
+    if (window.LazyLoaders) {
+      window.LazyLoaders.init();
+    }
+  }
+
+  return { init };
+})();
+
 window.InteractiveBlocks = window.InteractiveBlocks || InteractiveBlocks;
+
 
 /**
  * LECTA AI — Sidebar, Settings Panel, Dark/Light Mode
@@ -7110,6 +6826,7 @@ const SidebarModule = (function () {
 })();
 
 window.SidebarModule = window.SidebarModule || SidebarModule;
+
 
 /**
  * LECTA AI — Viewport Emulator Controller
