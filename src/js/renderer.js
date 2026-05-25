@@ -128,10 +128,14 @@ function renderSlideHTML(slide) {
         <button class="btn btn-primary adv-submit-btn">📥 Submit Assessment</button>
       </div>
       
-      <div class="adv-quiz-result-card glassmorphic-panel" style="display: none;">
-        <div class="adv-result-score">Score: <span class="score-fraction">0/0</span></div>
-        <div class="adv-result-feedback"></div>
-        <button class="btn btn-outline adv-retry-btn" style="margin-top: 1rem;">🔄 Try Again</button>
+      <!-- Modal Overlay Popup -->
+      <div class="adv-quiz-modal-backdrop" style="display: none;">
+        <div class="adv-quiz-modal glassmorphic-panel stagger-item">
+          <button class="adv-quiz-modal-close" aria-label="Close modal">&times;</button>
+          <div class="adv-result-score">Score: <span class="score-fraction">0/0</span></div>
+          <div class="adv-result-feedback"></div>
+          <button class="adv-retry-btn" style="margin-top: 1.5rem;">🔄 Try Again</button>
+        </div>
       </div>
     </div>
   </div>
