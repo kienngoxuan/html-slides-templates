@@ -1204,20 +1204,20 @@
 }
 
 /* Auto Contrast Overrides for Bento Cards with Custom Background Gradients */
-.bento-card[style] {
+.bento-card-gradient {
   color: #ffffff !important;
   border-color: rgba(255, 255, 255, 0.15) !important;
 }
-.bento-card[style] .bento-card-content h3 {
+.bento-card-gradient .bento-card-content h3 {
   color: #ffffff !important;
 }
-.bento-card[style] .bento-card-content p {
+.bento-card-gradient .bento-card-content p {
   color: rgba(255, 255, 255, 0.85) !important;
 }
-.bento-card[style] .bento-icon {
+.bento-card-gradient .bento-icon {
   color: #ffffff !important;
 }
-.bento-card[style]::before {
+.bento-card-gradient::before {
   background: linear-gradient(180deg, transparent 30%, rgba(0, 0, 0, 0.65)) !important;
 }
 
