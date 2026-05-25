@@ -3,6 +3,8 @@
  */
 
 const SidebarModule = (function () {
+  if (window.SidebarModule) return window.SidebarModule;
+
   // ===== STATE =====
   const THEME_KEY = 'lecta-theme';
   const MODE_KEY  = 'lecta-mode';
@@ -15,7 +17,25 @@ const SidebarModule = (function () {
   let timerSeconds = 0;
   let timerRunning = false;
   let sidebarOpen = false;
-  const studentNames = ['Alex','Maria','James','Sofia','Liam','Emma','Noah','Olivia','Ethan','Ava','Lucas','Mia','Benjamin','Charlotte'];
+  let studentNames = ['Alex','Maria','James','Sofia','Liam','Emma','Noah','Olivia','Ethan','Ava','Lucas','Mia','Benjamin','Charlotte'];
+
+  // Safe localStorage Wrappers
+  function safeGetItem(key) {
+    try {
+      return localStorage.getItem(key);
+    } catch (e) {
+      console.warn('localStorage is blocked or full:', e);
+      return null;
+    }
+  }
+
+  function safeSetItem(key, value) {
+    try {
+      localStorage.setItem(key, value);
+    } catch (e) {
+      console.warn('localStorage is blocked or full:', e);
+    }
+  }
 
   // ===== INIT =====
   function init() {
@@ -31,29 +51,40 @@ const SidebarModule = (function () {
 
   // ===== DARK / LIGHT MODE =====
   function initThemeMode() {
-    const savedMode  = localStorage.getItem(MODE_KEY)  || 'light';
-    const savedTheme = localStorage.getItem(THEME_KEY) || 'ocean';
-    applyMode(savedMode, savedTheme, false);
+    const savedMode  = safeGetItem(MODE_KEY);
+    const savedTheme = safeGetItem(THEME_KEY) || 'ocean';
+    
+    // Auto detect dark mode from system preferences if not saved
+    let defaultMode = 'light';
+    if (!savedMode) {
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        defaultMode = 'dark';
+      }
+    } else {
+      defaultMode = savedMode;
+    }
+
+    applyMode(defaultMode, savedTheme, false);
   }
 
   function applyMode(mode, theme, save = true) {
     if (mode === 'dark') {
-      const activeDarkTheme = (theme && DARK_THEMES.includes(theme)) ? theme : (localStorage.getItem(THEME_KEY) || 'neon');
+      const activeDarkTheme = (theme && DARK_THEMES.includes(theme)) ? theme : (safeGetItem(THEME_KEY) || 'neon');
       const dt = DARK_THEMES.includes(activeDarkTheme) ? activeDarkTheme : 'neon';
       
       document.documentElement.setAttribute('data-theme', dt);
       if (save) {
-        localStorage.setItem(MODE_KEY, 'dark');
-        localStorage.setItem(THEME_KEY, dt);
+        safeSetItem(MODE_KEY, 'dark');
+        safeSetItem(THEME_KEY, dt);
       }
     } else {
-      const activeLightTheme = (theme && LIGHT_THEMES.includes(theme)) ? theme : (localStorage.getItem(THEME_KEY) || 'ocean');
+      const activeLightTheme = (theme && LIGHT_THEMES.includes(theme)) ? theme : (safeGetItem(THEME_KEY) || 'ocean');
       const lt = LIGHT_THEMES.includes(activeLightTheme) ? activeLightTheme : 'ocean';
       
       document.documentElement.setAttribute('data-theme', lt);
       if (save) {
-        localStorage.setItem(MODE_KEY, 'light');
-        localStorage.setItem(THEME_KEY, lt);
+        safeSetItem(MODE_KEY, 'light');
+        safeSetItem(THEME_KEY, lt);
       }
     }
     
@@ -104,7 +135,7 @@ const SidebarModule = (function () {
     document.querySelectorAll('.mode-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const mode = btn.dataset.mode;
-        const currentTheme = localStorage.getItem(THEME_KEY);
+        const currentTheme = safeGetItem(THEME_KEY);
         // default toggle
         if (mode === 'dark') {
           applyMode('dark', DARK_THEMES.includes(currentTheme) ? currentTheme : 'neon');
@@ -177,9 +208,13 @@ const SidebarModule = (function () {
     });
 
     // Sync overview highlight on slide change
+    let firstLoad = true;
     document.addEventListener('slideChanged', (e) => {
       syncOverviewActive(e.detail.index);
-      saveNoteForSlide(e.detail.previousIndex);
+      if (!firstLoad && e.detail.previousIndex !== undefined && e.detail.previousIndex !== e.detail.index) {
+        saveNoteForSlide(e.detail.previousIndex);
+      }
+      firstLoad = false;
       loadNoteForSlide(e.detail.index);
     });
   }
@@ -269,19 +304,40 @@ const SidebarModule = (function () {
     }
     loadNoteForSlide(0);
   }
+
+  function getSlideId(idx) {
+    const slides = document.querySelectorAll('.slide');
+    return slides[idx]?.id || String(idx);
+  }
+
   function saveNoteForSlide(idx) {
+    if (idx === undefined || idx === null) return;
     const ta = document.querySelector('.notes-textarea');
     if (!ta) return;
-    const notes = JSON.parse(localStorage.getItem(NOTES_KEY) || '{}');
-    notes[idx] = ta.value;
-    localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
+    const slideId = getSlideId(idx);
+    
+    try {
+      const notes = JSON.parse(safeGetItem(NOTES_KEY) || '{}');
+      notes[slideId] = ta.value;
+      safeSetItem(NOTES_KEY, JSON.stringify(notes));
+    } catch (e) {
+      console.warn('Failed to save slide notes:', e);
+    }
   }
+
   function loadNoteForSlide(idx) {
     currentSlideForNotes = idx;
     const ta = document.querySelector('.notes-textarea');
     if (!ta) return;
-    const notes = JSON.parse(localStorage.getItem(NOTES_KEY) || '{}');
-    ta.value = notes[idx] || '';
+    const slideId = getSlideId(idx);
+    
+    try {
+      const notes = JSON.parse(safeGetItem(NOTES_KEY) || '{}');
+      ta.value = notes[slideId] || '';
+    } catch (e) {
+      console.warn('Failed to load slide notes:', e);
+      ta.value = '';
+    }
   }
 
   // ===== TEACHING TOOLS =====
@@ -348,6 +404,20 @@ const SidebarModule = (function () {
     const btn  = document.querySelector('.random-btn');
     const disp = document.querySelector('.random-name');
     if (!btn || !disp) return;
+
+    // Load custom student list if available
+    try {
+      const customStudentsAttr = document.body.dataset.students;
+      if (customStudentsAttr) {
+        const parsed = JSON.parse(customStudentsAttr);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          studentNames = parsed;
+        }
+      }
+    } catch (e) {
+      console.warn('Failed to parse custom student list:', e);
+    }
+
     btn.addEventListener('click', () => {
       let count = 0;
       // High-speed smooth snappy spinning
@@ -361,3 +431,5 @@ const SidebarModule = (function () {
 
   return { init, toggleSidebar };
 })();
+
+window.SidebarModule = window.SidebarModule || SidebarModule;
