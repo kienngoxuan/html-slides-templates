@@ -11,6 +11,7 @@ const InteractiveBlocks = (function () {
     initSteppers();
     initFlipCards();
     initQuiz();
+    initAdvancedQuiz();
     initTimeline();
     initBullets();
     initInteractiveImages();
@@ -246,6 +247,141 @@ const InteractiveBlocks = (function () {
         if (explanation) {
           explanation.classList.remove('visible');
         }
+      });
+    });
+  }
+
+  /* === Advanced Quiz (Submit Assessment) === */
+  function initAdvancedQuiz() {
+    document.addEventListener('click', (e) => {
+      // 1. Option selection
+      const option = e.target.closest('.adv-option');
+      if (option) {
+        const question = option.closest('.adv-question');
+        const container = option.closest('.advanced-quiz-container');
+        if (!container || container.dataset.submitted === 'true') return;
+
+        question.querySelectorAll('.adv-option').forEach(o => o.classList.remove('selected'));
+        option.classList.add('selected');
+        return;
+      }
+
+      // 2. Submit assessment
+      const submitBtn = e.target.closest('.adv-submit-btn');
+      if (submitBtn) {
+        const container = submitBtn.closest('.advanced-quiz-container');
+        if (!container || container.dataset.submitted === 'true') return;
+
+        const questions = container.querySelectorAll('.adv-question');
+        let unanswered = 0;
+        questions.forEach(q => {
+          if (!q.querySelector('.adv-option.selected')) {
+            unanswered++;
+          }
+        });
+
+        if (unanswered > 0) {
+          alert(`Please answer all ${unanswered} remaining question(s) before submitting!`);
+          return;
+        }
+
+        container.dataset.submitted = 'true';
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = '0.5';
+
+        let score = 0;
+        questions.forEach(q => {
+          const correctIdx = parseInt(q.dataset.correct, 10);
+          const options = q.querySelectorAll('.adv-option');
+          let selectedIdx = -1;
+          
+          options.forEach((opt, idx) => {
+            if (opt.classList.contains('selected')) {
+              selectedIdx = idx;
+            }
+          });
+
+          options.forEach((opt, idx) => {
+            if (idx === correctIdx) {
+              opt.classList.add('correct');
+            } else if (idx === selectedIdx) {
+              opt.classList.add('wrong');
+            }
+          });
+
+          if (selectedIdx === correctIdx) {
+            score++;
+          }
+        });
+
+        const resultCard = container.querySelector('.adv-quiz-result-card');
+        const scoreFraction = container.querySelector('.score-fraction');
+        const feedback = container.querySelector('.adv-result-feedback');
+
+        if (resultCard && scoreFraction && feedback) {
+          const total = questions.length;
+          scoreFraction.textContent = `${score}/${total}`;
+          
+          let msg = '';
+          const ratio = score / total;
+          if (ratio === 1) {
+            msg = '🏆 Perfect Score! You master these concepts completely!';
+          } else if (ratio >= 0.7) {
+            msg = '✨ Great job! You passed the assessment with honors.';
+          } else {
+            msg = '📚 Good attempt. Review the slides and try again to improve your score!';
+          }
+          feedback.textContent = msg;
+          resultCard.style.display = 'block';
+          resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        return;
+      }
+
+      // 3. Retry quiz
+      const retryBtn = e.target.closest('.adv-retry-btn');
+      if (retryBtn) {
+        const container = retryBtn.closest('.advanced-quiz-container');
+        if (!container) return;
+
+        container.dataset.submitted = 'false';
+        const submitBtn = container.querySelector('.adv-submit-btn');
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.style.opacity = '1';
+        }
+
+        const resultCard = container.querySelector('.adv-quiz-result-card');
+        if (resultCard) {
+          resultCard.style.display = 'none';
+        }
+
+        container.querySelectorAll('.adv-option').forEach(opt => {
+          opt.classList.remove('selected', 'correct', 'wrong');
+        });
+      }
+    });
+
+    // Reset advanced quiz states when slides transition
+    document.addEventListener('slideChanged', (e) => {
+      const activeSlideIndex = e.detail.index;
+      const slides = document.querySelectorAll('.slide');
+      const activeSlide = slides[activeSlideIndex];
+      if (!activeSlide) return;
+
+      activeSlide.querySelectorAll('.advanced-quiz-container').forEach(container => {
+        container.dataset.submitted = 'false';
+        const submitBtn = container.querySelector('.adv-submit-btn');
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.style.opacity = '1';
+        }
+        const resultCard = container.querySelector('.adv-quiz-result-card');
+        if (resultCard) resultCard.style.display = 'none';
+
+        container.querySelectorAll('.adv-option').forEach(opt => {
+          opt.classList.remove('selected', 'correct', 'wrong');
+        });
       });
     });
   }
@@ -659,26 +795,22 @@ const InteractiveBlocks = (function () {
         dot.setAttribute('stroke', `var(--color-${ds.color || 'primary'})`);
         dot.setAttribute('stroke-width', '3');
         dot.style.cursor = 'pointer';
-        dot.style.transition = 'transform 0.2s ease, r 0.2s ease, filter 0.2s ease';
+        dot.style.transition = 'r 0.2s ease, filter 0.2s ease';
 
         // Canva-style high fidelity tooltip
         bindTooltipEvents(dot, `<strong>${ds.label}</strong><br><span>${labels[idx]}</span>: <strong style="color: var(--color-${ds.color || 'primary'})">${ds.data[idx]}</strong>`);
 
         dot.addEventListener('mouseenter', () => {
-          dot.setAttribute('r', '7');
-          dot.style.transform = 'scale(1.2)';
+          dot.setAttribute('r', '8');
         });
         dot.addEventListener('mouseleave', () => {
           dot.setAttribute('r', '5');
-          dot.style.transform = 'none';
         });
         dot.addEventListener('touchstart', () => {
-          dot.setAttribute('r', '7');
-          dot.style.transform = 'scale(1.2)';
+          dot.setAttribute('r', '8');
         });
         dot.addEventListener('touchend', () => {
           dot.setAttribute('r', '5');
-          dot.style.transform = 'none';
         });
 
         svg.appendChild(dot);
@@ -916,8 +1048,9 @@ const InteractiveBlocks = (function () {
 
       const nodeWidth = 160;
       const nodeHeight = 50;
-      const paddingX = 50;
-      const spreadWidth = 800 - paddingX * 2 - nodeWidth;
+      const paddingX = 40;
+      const rightSafety = 40;
+      const spreadWidth = 800 - paddingX - rightSafety - nodeWidth;
 
       const N = nodes.length;
       nodes.forEach((node, idx) => {
