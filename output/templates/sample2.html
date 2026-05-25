@@ -2104,6 +2104,25 @@ pre code {
   background: var(--color-surface-hover);
 }
 
+.adv-option .option-letter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  transition: all var(--transition-fast);
+  user-select: none;
+  -webkit-user-select: none;
+  flex-shrink: 0;
+}
+
 .adv-option.selected {
   border-color: var(--color-primary);
   background: color-mix(in oklch, var(--color-primary) 8%, var(--color-bg));
@@ -2143,26 +2162,86 @@ pre code {
   margin-top: var(--space-md);
 }
 
-.adv-quiz-result-card {
-  text-align: center;
-  padding: var(--space-xl);
-  border-radius: var(--radius-lg);
-  margin-top: var(--space-lg);
+/* === ADVANCED QUIZ POPUP MODAL === */
+.adv-quiz-modal-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  animation: fadeIn 300ms ease;
+  border-radius: var(--radius-xl);
+  padding: var(--space-md);
+  box-sizing: border-box;
+}
+
+.adv-quiz-modal {
+  position: relative;
+  width: 90%;
+  max-width: 440px;
+  background: var(--color-surface);
   border: 2px solid var(--color-primary-alpha);
-  animation: fadeSlideUp 400ms ease;
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl) var(--space-lg);
+  box-shadow: var(--shadow-xl), var(--shadow-glow);
+  text-align: center;
+  animation: scaleUp 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+/* Close Button */
+.adv-quiz-modal-close {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-md);
+  background: transparent;
+  border: none;
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color var(--transition-fast);
+  padding: 0.25rem;
+  line-height: 1;
+}
+
+.adv-quiz-modal-close:hover {
+  color: var(--color-error);
 }
 
 .adv-result-score {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 800;
   color: var(--color-primary);
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-xs);
+  font-family: var(--font-heading);
 }
 
 .adv-result-feedback {
   font-size: 1.1rem;
   font-weight: 500;
   color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+  from { transform: scale(0.9) translateY(10px); opacity: 0; }
+  to { transform: scale(1) translateY(0); opacity: 1; }
 }
 
 /* === PREMIUM COMPONENT BUTTONS === */
@@ -3846,10 +3925,14 @@ color: rgb(75, 108, 183);</code></pre>
         <button class="btn btn-primary adv-submit-btn">📥 Submit Assessment</button>
       </div>
       
-      <div class="adv-quiz-result-card glassmorphic-panel" style="display: none;">
-        <div class="adv-result-score">Score: <span class="score-fraction">0/0</span></div>
-        <div class="adv-result-feedback"></div>
-        <button class="btn btn-outline adv-retry-btn" style="margin-top: 1rem;">🔄 Try Again</button>
+      <!-- Modal Overlay Popup -->
+      <div class="adv-quiz-modal-backdrop" style="display: none;">
+        <div class="adv-quiz-modal glassmorphic-panel stagger-item">
+          <button class="adv-quiz-modal-close" aria-label="Close modal">&times;</button>
+          <div class="adv-result-score">Score: <span class="score-fraction">0/0</span></div>
+          <div class="adv-result-feedback"></div>
+          <button class="adv-retry-btn" style="margin-top: 1.5rem;">🔄 Try Again</button>
+        </div>
       </div>
     </div>
   </div>
@@ -4538,11 +4621,11 @@ const InteractiveBlocks = (function () {
           }
         });
 
-        const resultCard = container.querySelector('.adv-quiz-result-card');
+        const backdrop = container.querySelector('.adv-quiz-modal-backdrop');
         const scoreFraction = container.querySelector('.score-fraction');
         const feedback = container.querySelector('.adv-result-feedback');
 
-        if (resultCard && scoreFraction && feedback) {
+        if (backdrop && scoreFraction && feedback) {
           const total = questions.length;
           scoreFraction.textContent = `${score}/${total}`;
           
@@ -4556,8 +4639,7 @@ const InteractiveBlocks = (function () {
             msg = '📚 Good attempt. Review the slides and try again to improve your score!';
           }
           feedback.textContent = msg;
-          resultCard.style.display = 'block';
-          resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          backdrop.style.display = 'flex';
         }
         return;
       }
@@ -4575,14 +4657,25 @@ const InteractiveBlocks = (function () {
           submitBtn.style.opacity = '1';
         }
 
-        const resultCard = container.querySelector('.adv-quiz-result-card');
-        if (resultCard) {
-          resultCard.style.display = 'none';
+        const backdrop = container.querySelector('.adv-quiz-modal-backdrop');
+        if (backdrop) {
+          backdrop.style.display = 'none';
         }
 
         container.querySelectorAll('.adv-option').forEach(opt => {
           opt.classList.remove('selected', 'correct', 'wrong');
         });
+        return;
+      }
+
+      // 4. Close modal overlay popup
+      const closeBtn = e.target.closest('.adv-quiz-modal-close');
+      if (closeBtn) {
+        const backdrop = closeBtn.closest('.adv-quiz-modal-backdrop');
+        if (backdrop) {
+          backdrop.style.display = 'none';
+        }
+        return;
       }
     });
 
@@ -4600,8 +4693,8 @@ const InteractiveBlocks = (function () {
           submitBtn.disabled = false;
           submitBtn.style.opacity = '1';
         }
-        const resultCard = container.querySelector('.adv-quiz-result-card');
-        if (resultCard) resultCard.style.display = 'none';
+        const backdrop = container.querySelector('.adv-quiz-modal-backdrop');
+        if (backdrop) backdrop.style.display = 'none';
 
         container.querySelectorAll('.adv-option').forEach(opt => {
           opt.classList.remove('selected', 'correct', 'wrong');
