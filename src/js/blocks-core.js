@@ -19,6 +19,64 @@ const InteractiveBlocksCore = (function () {
 
   /* === Interactive Image URL Customizer === */
   function initInteractiveImages() {
+    const IMAGE_INDEX_KEY = 'lecta-img-index';
+    const IMAGE_CACHE_LIMIT = 40;
+
+    function readImageIndex() {
+      try {
+        const raw = localStorage.getItem(IMAGE_INDEX_KEY);
+        const list = raw ? JSON.parse(raw) : [];
+        return Array.isArray(list) ? list : [];
+      } catch (e) {
+        console.warn('localStorage is blocked or full:', e);
+        return [];
+      }
+    }
+
+    function writeImageIndex(list) {
+      try {
+        localStorage.setItem(IMAGE_INDEX_KEY, JSON.stringify(list));
+      } catch (e) {
+        console.warn('localStorage is blocked or full:', e);
+      }
+    }
+
+    function pruneImageIndex(list) {
+      while (list.length > IMAGE_CACHE_LIMIT) {
+        const key = list.shift();
+        if (!key) continue;
+        try {
+          localStorage.removeItem(key);
+        } catch (e) {
+          console.warn('localStorage is blocked or full:', e);
+        }
+      }
+    }
+
+    function recordImageKey(key) {
+      const list = readImageIndex().filter((k) => k !== key);
+      list.push(key);
+      pruneImageIndex(list);
+      writeImageIndex(list);
+    }
+
+    function saveImageUrl(key, url) {
+      try {
+        localStorage.setItem(key, url);
+        recordImageKey(key);
+      } catch (err) {
+        console.warn('localStorage is blocked or full:', err);
+        const list = readImageIndex();
+        pruneImageIndex(list);
+        try {
+          localStorage.setItem(key, url);
+          recordImageKey(key);
+        } catch (e) {
+          console.warn('localStorage is blocked or full:', e);
+        }
+      }
+    }
+
     document.querySelectorAll('.interactive-image').forEach((img, index) => {
       const slide = img.closest('.slide');
       const key = 'lecta-img-' + (slide ? slide.id : ('index-' + index));
@@ -33,24 +91,89 @@ const InteractiveBlocksCore = (function () {
       }
     });
 
+    function closeEditor(editor) {
+      if (!editor) return;
+      editor.remove();
+    }
+
+    function openImageEditor(wrapper, img, key) {
+      if (!wrapper || !img) return;
+      const existing = wrapper.querySelector('.image-url-editor');
+      if (existing) return;
+
+      const editor = document.createElement('div');
+      editor.className = 'image-url-editor';
+
+      const panel = document.createElement('div');
+      panel.className = 'image-url-editor-panel';
+
+      const label = document.createElement('label');
+      label.className = 'image-url-editor-label';
+      label.textContent = 'Image URL';
+
+      const input = document.createElement('input');
+      input.type = 'url';
+      input.className = 'image-url-editor-input';
+      input.placeholder = 'https://...';
+      input.value = img.src || '';
+
+      const actions = document.createElement('div');
+      actions.className = 'image-url-editor-actions';
+
+      const cancelBtn = document.createElement('button');
+      cancelBtn.type = 'button';
+      cancelBtn.className = 'btn btn-outline';
+      cancelBtn.textContent = 'Cancel';
+
+      const saveBtn = document.createElement('button');
+      saveBtn.type = 'button';
+      saveBtn.className = 'btn btn-primary';
+      saveBtn.textContent = 'Apply';
+
+      actions.appendChild(cancelBtn);
+      actions.appendChild(saveBtn);
+      panel.appendChild(label);
+      panel.appendChild(input);
+      panel.appendChild(actions);
+      editor.appendChild(panel);
+      wrapper.appendChild(editor);
+
+      const applyValue = () => {
+        const newUrl = input.value.trim();
+        if (!newUrl) return;
+        img.src = newUrl;
+        saveImageUrl(key, newUrl);
+        closeEditor(editor);
+      };
+
+      saveBtn.addEventListener('click', applyValue);
+      cancelBtn.addEventListener('click', () => closeEditor(editor));
+      editor.addEventListener('click', (evt) => {
+        if (evt.target === editor) closeEditor(editor);
+      });
+      input.addEventListener('keydown', (evt) => {
+        if (evt.key === 'Enter') {
+          evt.preventDefault();
+          applyValue();
+        } else if (evt.key === 'Escape') {
+          closeEditor(editor);
+        }
+      });
+
+      setTimeout(() => input.focus(), 0);
+    }
+
     document.addEventListener('click', (e) => {
       const btn = e.target.closest('.edit-image-overlay-btn');
       if (!btn) return;
-      const img = btn.parentNode.querySelector('.interactive-image');
+      const wrapper = btn.closest('.image-box-wrapper');
+      const img = wrapper ? wrapper.querySelector('.interactive-image') : null;
       if (!img) return;
 
       const slide = btn.closest('.slide');
       const key = 'lecta-img-' + (slide ? slide.id : 'index-0');
 
-      const newUrl = prompt('Enter a new Image URL (Unsplash or any web link):', img.src);
-      if (newUrl !== null && newUrl.trim() !== '') {
-        img.src = newUrl.trim();
-        try {
-          localStorage.setItem(key, newUrl.trim());
-        } catch (err) {
-          console.warn('localStorage is blocked or full:', err);
-        }
-      }
+      openImageEditor(wrapper, img, key);
     });
   }
 
@@ -311,8 +434,21 @@ const InteractiveBlocksCore = (function () {
           }
           feedback.textContent = msg;
 
-          backdrop._originalParent = container;
-          document.body.appendChild(backdrop);
+          document.querySelectorAll('body > .adv-quiz-modal-backdrop').forEach(existing => {
+            if (existing !== backdrop) {
+              existing.style.display = 'none';
+              if (existing._originalParent) {
+                existing._originalParent.appendChild(existing);
+              } else {
+                existing.remove();
+              }
+            }
+          });
+
+          if (backdrop.parentElement !== document.body) {
+            backdrop._originalParent = container;
+            document.body.appendChild(backdrop);
+          }
 
           backdrop.style.display = 'flex';
           document.body.classList.add('adv-quiz-modal-open');
@@ -353,9 +489,8 @@ const InteractiveBlocksCore = (function () {
         const backdrop = closeBtn.closest('.adv-quiz-modal-backdrop');
         if (backdrop) {
           backdrop.style.display = 'none';
-          if (backdrop._originalParent) {
-            backdrop._originalParent.appendChild(backdrop);
-          }
+          const parent = backdrop._originalParent || backdrop.closest('.advanced-quiz-container');
+          if (parent) parent.appendChild(backdrop);
         }
         document.body.classList.remove('adv-quiz-modal-open');
         return;
