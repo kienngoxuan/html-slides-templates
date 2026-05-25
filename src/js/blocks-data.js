@@ -14,12 +14,41 @@ const InteractiveBlocksData = (function () {
 
   /* === Canva-style Chart Tooltips === */
   function bindTooltipEvents(el, text) {
+    const padding = 12;
+
+    const positionTooltip = (clientX, clientY) => {
+      const tooltip = document.querySelector('.chart-tooltip');
+      if (!tooltip) return;
+
+      const width = tooltip.offsetWidth || 0;
+      const height = tooltip.offsetHeight || 0;
+      const halfW = width / 2;
+
+      let left = clientX;
+      let top = clientY;
+
+      if (left + halfW + padding > window.innerWidth) {
+        left = window.innerWidth - halfW - padding;
+      }
+      if (left - halfW - padding < 0) {
+        left = halfW + padding;
+      }
+      if (top - height - padding < 0) {
+        top = height + padding;
+      }
+      if (top + padding > window.innerHeight) {
+        top = window.innerHeight - padding;
+      }
+
+      tooltip.style.left = `${left}px`;
+      tooltip.style.top = `${top}px`;
+    };
+
     const showTooltip = (clientX, clientY) => {
       const tooltip = document.querySelector('.chart-tooltip');
       if (!tooltip) return;
       tooltip.innerHTML = text;
-      tooltip.style.left = `${clientX}px`;
-      tooltip.style.top = `${clientY}px`;
+      positionTooltip(clientX, clientY);
       tooltip.classList.add('visible');
     };
 
@@ -34,11 +63,7 @@ const InteractiveBlocksData = (function () {
     });
 
     el.addEventListener('mousemove', (e) => {
-      const tooltip = document.querySelector('.chart-tooltip');
-      if (tooltip) {
-        tooltip.style.left = `${e.clientX}px`;
-        tooltip.style.top = `${e.clientY}px`;
-      }
+      positionTooltip(e.clientX, e.clientY);
     });
 
     el.addEventListener('mouseleave', () => {
@@ -55,11 +80,7 @@ const InteractiveBlocksData = (function () {
 
     el.addEventListener('touchmove', (e) => {
       if (e.touches && e.touches[0]) {
-        const tooltip = document.querySelector('.chart-tooltip');
-        if (tooltip) {
-          tooltip.style.left = `${e.touches[0].clientX}px`;
-          tooltip.style.top = `${e.touches[0].clientY}px`;
-        }
+        positionTooltip(e.touches[0].clientX, e.touches[0].clientY);
       }
     });
 
