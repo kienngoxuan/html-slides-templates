@@ -331,6 +331,11 @@ const InteractiveBlocks = (function () {
             msg = '📚 Good attempt. Review the slides and try again to improve your score!';
           }
           feedback.textContent = msg;
+
+          // Teleport modal backdrop to body to avoid container transform/filter viewport clipping contexts!
+          backdrop._originalParent = container;
+          document.body.appendChild(backdrop);
+
           backdrop.style.display = 'flex';
           document.body.classList.add('adv-quiz-modal-open');
         }
@@ -340,7 +345,8 @@ const InteractiveBlocks = (function () {
       // 3. Retry quiz
       const retryBtn = e.target.closest('.adv-retry-btn');
       if (retryBtn) {
-        const container = retryBtn.closest('.advanced-quiz-container');
+        const modalBackdrop = e.target.closest('.adv-quiz-modal-backdrop');
+        const container = retryBtn.closest('.advanced-quiz-container') || (modalBackdrop ? modalBackdrop._originalParent : null);
         if (!container) return;
 
         container.dataset.submitted = 'false';
@@ -350,9 +356,12 @@ const InteractiveBlocks = (function () {
           submitBtn.style.opacity = '1';
         }
 
-        const backdrop = container.querySelector('.adv-quiz-modal-backdrop');
+        const backdrop = document.querySelector('body > .adv-quiz-modal-backdrop') || container.querySelector('.adv-quiz-modal-backdrop');
         if (backdrop) {
           backdrop.style.display = 'none';
+          if (backdrop._originalParent) {
+            backdrop._originalParent.appendChild(backdrop);
+          }
         }
         document.body.classList.remove('adv-quiz-modal-open');
 
@@ -368,6 +377,9 @@ const InteractiveBlocks = (function () {
         const backdrop = closeBtn.closest('.adv-quiz-modal-backdrop');
         if (backdrop) {
           backdrop.style.display = 'none';
+          if (backdrop._originalParent) {
+            backdrop._originalParent.appendChild(backdrop);
+          }
         }
         document.body.classList.remove('adv-quiz-modal-open');
         return;
@@ -376,6 +388,14 @@ const InteractiveBlocks = (function () {
 
     // Reset advanced quiz states when slides transition
     document.addEventListener('slideChanged', (e) => {
+      // Find any modal currently teleported to body and return it to its slide
+      document.querySelectorAll('body > .adv-quiz-modal-backdrop').forEach(backdrop => {
+        backdrop.style.display = 'none';
+        if (backdrop._originalParent) {
+          backdrop._originalParent.appendChild(backdrop);
+        }
+      });
+
       const activeSlideIndex = e.detail.index;
       const slides = document.querySelectorAll('.slide');
       const activeSlide = slides[activeSlideIndex];
