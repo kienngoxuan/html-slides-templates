@@ -48,6 +48,12 @@
   --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Annotation Drawing Brushes */
+  --brush-red: #ef4444;
+  --brush-blue: #3b82f6;
+  --brush-yellow: #eab308;
+  --brush-green: #10b981;
 }
 
 /* === THEME: Ocean Lecture === */
@@ -2317,6 +2323,518 @@ body.adv-quiz-modal-open .slide {
   overflow: hidden !important;
 }
 
+/* ==========================================================================
+   LECTA NEXT-GEN UPGRADE: PRESENTATION DRAWING, SEARCH, PRESENTERS, & BLOCKS
+   ========================================================================== */
+
+/* 1. Global Drawing Canvas & Floating Toolbar */
+.drawing-canvas-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  cursor: crosshair;
+  pointer-events: none; /* Managed dynamically via JS */
+  display: block;
+}
+
+.drawing-toolbar {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(120%);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: 0.5rem 1.25rem;
+  box-shadow: var(--shadow-xl), var(--shadow-glow);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  z-index: 1000000;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: transform var(--transition-spring), opacity var(--transition-base);
+  opacity: 0;
+}
+
+.drawing-toolbar.active {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.draw-tool-btn {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-text);
+  font-size: 0.95rem;
+  transition: all var(--transition-fast);
+}
+
+.draw-tool-btn:hover {
+  background: var(--color-surface-hover);
+  transform: scale(1.08);
+}
+
+.draw-tool-btn.active {
+  background: var(--color-primary-alpha);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  transform: scale(1.05);
+}
+
+.draw-color-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+  border: 2px solid transparent;
+}
+
+.draw-color-dot:hover {
+  transform: scale(1.2);
+}
+
+.draw-color-dot.active {
+  transform: scale(1.25);
+  border-color: var(--color-text);
+}
+
+.draw-color-red { background-color: var(--brush-red); }
+.draw-color-blue { background-color: var(--brush-blue); }
+.draw-color-yellow { background-color: var(--brush-yellow); } /* Highlighter */
+.draw-color-green { background-color: var(--brush-green); }
+
+.draw-divider {
+  width: 1px;
+  height: 24px;
+  background-color: var(--color-border);
+}
+
+.draw-brush-indicator {
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  color: var(--color-text-secondary);
+}
+
+/* 2. Spotlight Command Palette (Search Box Overlay) */
+.search-palette-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  z-index: 10000001;
+  padding-top: 15vh;
+  animation: fadeIn 200ms ease;
+}
+
+.search-palette {
+  width: 90%;
+  max-width: 580px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-primary-alpha);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl), var(--shadow-glow);
+  padding: var(--space-md);
+  animation: slideDown 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  background: var(--color-bg-alt);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.5rem 1rem;
+  transition: border-color var(--transition-fast);
+}
+
+.search-input-wrapper:focus-within {
+  border-color: var(--color-primary);
+}
+
+.search-input-wrapper span {
+  font-size: 1.2rem;
+}
+
+.search-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+}
+
+.search-results-list {
+  max-height: 300px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.search-result-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  background: transparent;
+  border: none;
+  text-align: left;
+  width: 100%;
+  font-family: var(--font-body);
+  color: var(--color-text);
+}
+
+.search-result-item:hover, .search-result-item.selected {
+  background: var(--color-primary-alpha);
+  color: var(--color-primary);
+}
+
+.search-result-num {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+}
+
+.search-result-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-result-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.search-result-snippet {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+}
+
+/* 3. New Advanced Slide Content Blocks */
+
+/* Split Grid Layouts */
+.split-layout-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+  margin-top: var(--space-md);
+}
+
+.split-layout-container.split-40-60 { grid-template-columns: 4fr 6fr; }
+.split-layout-container.split-60-40 { grid-template-columns: 6fr 4fr; }
+
+.split-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  height: 100%;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .split-layout-container {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-lg);
+  }
+}
+
+/* Math (KaTeX Equation) Block Styling */
+.math-block-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  margin: var(--space-md) auto;
+  max-width: 650px;
+  box-shadow: var(--shadow-sm);
+}
+
+.math-display-equation {
+  font-size: 1.8rem;
+  color: var(--color-primary);
+  margin: var(--space-md) 0;
+  overflow-x: auto;
+  width: 100%;
+  text-align: center;
+}
+
+.math-explanation {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+/* Mermaid Flowcharts Block Styling */
+.mermaid-block-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  margin: var(--space-md) auto;
+  width: 100%;
+  max-width: 800px;
+  box-shadow: var(--shadow-sm);
+  overflow: auto;
+}
+
+.mermaid-diagram-wrapper {
+  width: 100%;
+  min-height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Video Block Styling */
+.video-block-container {
+  position: relative;
+  background: var(--color-surface);
+  border: 2px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  margin: var(--space-md) auto;
+  max-width: 750px;
+  aspect-ratio: 16/9;
+}
+
+.video-player-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+  object-fit: cover;
+}
+
+/* 4. Speaker Dual-Monitor Presenter View Panel Dashboard */
+.presenter-view-layout {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  height: 100vh;
+  width: 100vw;
+  background: #0b0f19;
+  color: #f1f5f9;
+  font-family: var(--font-body);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.presenter-left-col {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  border-right: 1px solid #1e293b;
+  height: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.presenter-right-col {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  height: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.presenter-header-card {
+  background: #1e293b;
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.presenter-timer-box {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.presenter-time-elapsed {
+  font-family: var(--font-mono);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #38bdf8;
+}
+
+.presenter-rehearse-timer-progress {
+  width: 100%;
+  height: 6px;
+  background: #334155;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.presenter-rehearse-timer-bar {
+  height: 100%;
+  background: var(--gradient-primary);
+  width: 100%;
+  transition: width 1s linear;
+}
+
+.presenter-rehearse-timer-bar.warning {
+  background: var(--brush-red);
+  animation: blink 1s infinite alternate;
+}
+
+.presenter-notes-box {
+  background: #111827;
+  border: 1px solid #1e293b;
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.presenter-notes-box h3 {
+  color: #94a3b8;
+  margin-bottom: var(--space-sm);
+  font-family: var(--font-heading);
+}
+
+.presenter-notes-content {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #e2e8f0;
+  white-space: pre-wrap;
+  overflow-y: auto;
+}
+
+.presenter-slide-previews {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.presenter-preview-frame {
+  background: #1e293b;
+  border: 2px solid #334155;
+  border-radius: var(--radius-md);
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.presenter-preview-frame.active {
+  border-color: #38bdf8;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+}
+
+.presenter-preview-label {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  background: rgba(15, 23, 42, 0.85);
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+  z-index: 10;
+  font-weight: 600;
+}
+
+.presenter-preview-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  transform: scale(0.5);
+  transform-origin: center;
+}
+
+.presenter-controls-row {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.presenter-btn {
+  background: #1e293b;
+  border: 1px solid #334155;
+  color: #fff;
+  border-radius: var(--radius-md);
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  flex-grow: 1;
+}
+
+.presenter-btn:hover {
+  background: #334155;
+}
+
+.presenter-btn.primary {
+  background: #0284c7;
+  border-color: #0369a1;
+}
+
+.presenter-btn.primary:hover {
+  background: #0369a1;
+}
+
+@keyframes blink {
+  0% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+@keyframes slideDown {
+  0% { transform: translateY(-50px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+
 
 
 
@@ -4165,10 +4683,43 @@ gap: 1.5rem;</code></pre>
     </div>
   </div>
 
+  <!-- 🖌️ Global Drawing Canvas Annotation Overlay -->
+  <canvas class="drawing-canvas-overlay" width="1920" height="1080"></canvas>
+
+  <!-- 🖌️ Drawing Annotation Toolbar -->
+  <div class="drawing-toolbar">
+    <button class="draw-tool-btn active" data-tool="pen" title="Pen">✏️</button>
+    <button class="draw-tool-btn" data-tool="highlighter" title="Highlighter">🖍️</button>
+    <button class="draw-tool-btn" data-tool="eraser" title="Eraser">🧹</button>
+    <div class="draw-divider"></div>
+    <div class="draw-color-dot draw-color-red active" data-color="#ef4444" title="Red"></div>
+    <div class="draw-color-dot draw-color-blue" data-color="#3b82f6" title="Blue"></div>
+    <div class="draw-color-dot draw-color-yellow" data-color="#eab308" title="Yellow"></div>
+    <div class="draw-color-dot draw-color-green" data-color="#10b981" title="Green"></div>
+    <div class="draw-divider"></div>
+    <span class="draw-brush-indicator">Size: 4px</span>
+    <input type="range" class="draw-brush-size" min="2" max="20" value="4" style="width: 60px;" />
+    <div class="draw-divider"></div>
+    <button class="draw-tool-btn draw-clear" title="Clear Canvas">🗑️</button>
+  </div>
+
+  <!-- 🔍 Spotlight Command Search Palette -->
+  <div class="search-palette-backdrop">
+    <div class="search-palette">
+      <div class="search-input-wrapper">
+        <span>🔍</span>
+        <input type="text" class="search-input" placeholder="Type slide title, content, or block name..." />
+      </div>
+      <div class="search-results-list">
+        <!-- Results rendered dynamically via JS -->
+      </div>
+    </div>
+  </div>
+
   <script>
 /**
  * LECTA AI — Slide Engine
- * Core navigation: keyboard, touch swipe, buttons, progress
+ * Core navigation: keyboard, touch swipe, buttons, progress, BroadcastChannel sync, Presenter view dashboard
  */
 
 const SlideEngine = (function () {
@@ -4179,16 +4730,207 @@ const SlideEngine = (function () {
   let touchStartX = 0;
   let touchEndX = 0;
   let slides = []; // Caching slide elements to optimize performance
+  let cachedPresenterNotes = [];
+
+  // Broadcast channel for multi-monitor, zero-server offline peer-to-peer sync
+  const broadcast = window.BroadcastChannel ? new BroadcastChannel('lecta-presentation') : null;
 
   function init() {
+    // If embedded iframe, strip down UI controls to display slide tracks only
+    if (location.search.includes('embed=true')) {
+      const style = document.createElement('style');
+      style.textContent = `
+        .nav-bar, .gear-btn, .settings-panel, .presenter-toggle, .speaker-notes-panel, .right-sidebar {
+          display: none !important;
+        }
+        .slides-viewport {
+          height: 100vh !important;
+          width: 100vw !important;
+          max-width: 100% !important;
+          margin: 0 !important;
+          border-radius: 0 !important;
+        }
+        body {
+          overflow: hidden !important;
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
     slides = Array.from(document.querySelectorAll('.slide'));
     totalSlides = slides.length;
     if (totalSlides === 0) return;
+
+    // Check if Presenter View URL parameter is active
+    if (location.search.includes('presenter=true')) {
+      cacheNotes();
+      initPresenterDashboard();
+      return;
+    }
 
     updateSlide(0, false);
     bindKeyboard();
     bindTouch();
     bindButtons();
+    initBroadcastReceiver();
+  }
+
+  function cacheNotes() {
+    slides.forEach((s, idx) => {
+      cachedPresenterNotes.push({
+        id: s.id || `slide-${idx}`,
+        notes: s.dataset.speakerNotes || 'No speaker notes for this slide.'
+      });
+    });
+  }
+
+  function initPresenterDashboard() {
+    document.body.innerHTML = `
+      <div class="presenter-view-layout">
+        <!-- Left Column: Stopwatch notes, progress pacing -->
+        <div class="presenter-left-col">
+          <div class="presenter-header-card">
+            <div>
+              <h2 style="margin:0; font-size:1.3rem; font-family:var(--font-heading);">Lecta Presenter Console</h2>
+              <div class="presenter-rehearse-timer-progress">
+                <div class="presenter-rehearse-timer-bar"></div>
+              </div>
+            </div>
+            <div class="presenter-timer-box">
+              <span class="presenter-time-elapsed">00:00:00</span>
+              <button class="presenter-btn" id="presenter-timer-toggle" style="padding:0.4rem 0.8rem; font-size:0.85rem;">Pause</button>
+            </div>
+          </div>
+          
+          <div class="presenter-notes-box">
+            <h3>📝 Speaker Notes</h3>
+            <div class="presenter-notes-content">No speaker notes.</div>
+          </div>
+          
+          <div class="presenter-controls-row">
+            <button class="presenter-btn" id="pres-btn-prev">← Previous</button>
+            <button class="presenter-btn primary" id="pres-btn-next">Next →</button>
+          </div>
+        </div>
+        
+        <!-- Right Column: Visual Preview windows -->
+        <div class="presenter-right-col">
+          <div class="presenter-slide-previews">
+            <div style="display:flex; flex-direction:column; gap:4px; flex: 1;">
+              <div style="font-size:0.75rem; font-weight:700; color:#64748b; text-transform:uppercase; margin-left:4px;">Current Slide</div>
+              <div class="presenter-preview-frame active">
+                <iframe id="pres-iframe-curr" src="${location.href.split('?')[0]}?embed=true#slide-0"></iframe>
+              </div>
+            </div>
+            
+            <div style="display:flex; flex-direction:column; gap:4px; flex: 1;">
+              <div style="font-size:0.75rem; font-weight:700; color:#64748b; text-transform:uppercase; margin-left:4px;">Next Slide</div>
+              <div class="presenter-preview-frame">
+                <iframe id="pres-iframe-next" src="${location.href.split('?')[0]}?embed=true#slide-1"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Bind Controls
+    document.getElementById('pres-btn-prev').addEventListener('click', () => {
+      if (currentSlide > 0) {
+        currentSlide--;
+        broadcastSlide(currentSlide);
+        syncPresenterDash(currentSlide);
+      }
+    });
+    document.getElementById('pres-btn-next').addEventListener('click', () => {
+      if (currentSlide + 1 < cachedPresenterNotes.length) {
+        currentSlide++;
+        broadcastSlide(currentSlide);
+        syncPresenterDash(currentSlide);
+      }
+    });
+
+    // Start Timer
+    let seconds = 0;
+    let timerInterval = setInterval(() => {
+      seconds++;
+      const hrs = String(Math.floor(seconds / 3600)).padStart(2, '0');
+      const mins = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
+      const secs = String(seconds % 60).padStart(2, '0');
+      const timeStr = `${hrs}:${mins}:${secs}`;
+      const timerEl = document.querySelector('.presenter-time-elapsed');
+      if (timerEl) timerEl.textContent = timeStr;
+    }, 1000);
+
+    let isTimerActive = true;
+    document.getElementById('presenter-timer-toggle').addEventListener('click', (e) => {
+      if (isTimerActive) {
+        clearInterval(timerInterval);
+        e.target.textContent = 'Resume';
+      } else {
+        timerInterval = setInterval(() => {
+          seconds++;
+          const hrs = String(Math.floor(seconds / 3600)).padStart(2, '0');
+          const mins = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
+          const secs = String(seconds % 60).padStart(2, '0');
+          const timerEl = document.querySelector('.presenter-time-elapsed');
+          if (timerEl) timerEl.textContent = `${hrs}:${mins}:${secs}`;
+        }, 1000);
+        e.target.textContent = 'Pause';
+      }
+      isTimerActive = !isTimerActive;
+    });
+
+    // Initial sync
+    syncPresenterDash(currentSlide);
+  }
+
+  function broadcastSlide(index) {
+    if (broadcast) {
+      broadcast.postMessage({ type: 'nav', index });
+    }
+  }
+
+  function syncPresenterDash(index) {
+    currentSlide = index;
+    // Update notes
+    const notesBox = document.querySelector('.presenter-notes-content');
+    if (notesBox) {
+      notesBox.textContent = (cachedPresenterNotes[index] && cachedPresenterNotes[index].notes) || 'No speaker notes for this slide.';
+    }
+
+    // Update iframes hashes
+    const iframeCurr = document.getElementById('pres-iframe-curr');
+    const iframeNext = document.getElementById('pres-iframe-next');
+    
+    const baseUrl = location.href.split('?')[0];
+    if (iframeCurr) iframeCurr.src = `${baseUrl}?embed=true#${cachedPresenterNotes[index] ? cachedPresenterNotes[index].id : ''}`;
+    if (iframeNext) {
+      if (index + 1 < cachedPresenterNotes.length) {
+        iframeNext.src = `${baseUrl}?embed=true#${cachedPresenterNotes[index + 1].id}`;
+        iframeNext.parentElement.style.opacity = '1';
+      } else {
+        iframeNext.parentElement.style.opacity = '0.3';
+      }
+    }
+
+    // Update buttons
+    const prevBtn = document.getElementById('pres-btn-prev');
+    const nextBtn = document.getElementById('pres-btn-next');
+    if (prevBtn) prevBtn.disabled = index === 0;
+    if (nextBtn) nextBtn.disabled = index === cachedPresenterNotes.length - 1;
+  }
+
+  function initBroadcastReceiver() {
+    if (broadcast) {
+      broadcast.onmessage = (e) => {
+        if (e.data) {
+          if (e.data.type === 'nav') {
+            updateSlide(e.data.index, false); // Update locally without animation, do not rebroadcast
+          }
+        }
+      };
+    }
   }
 
   function updateSlide(index, animate = true) {
@@ -4235,6 +4977,11 @@ const SlideEngine = (function () {
     // Update speaker notes
     updateSpeakerNotes();
 
+    // Broadcast current slide index changes to peers in real-time
+    if (broadcast && animate !== false) {
+      broadcast.postMessage({ type: 'nav', index: currentSlide });
+    }
+
     // Dispatch custom event with both current and previous slide indexes
     document.dispatchEvent(new CustomEvent('slideChanged', { 
       detail: { 
@@ -4251,25 +4998,40 @@ const SlideEngine = (function () {
   function bindKeyboard() {
     document.addEventListener('keydown', (e) => {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-      switch (e.key) {
-        case 'ArrowRight':
-        case 'ArrowDown':
+      
+      // Prevent browser default Ctrl+K search dialog
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        document.dispatchEvent(new CustomEvent('toggleSearchPalette'));
+        return;
+      }
+
+      switch (e.key.toLowerCase()) {
+        case 'arrowright':
+        case 'arrowdown':
         case ' ':
           e.preventDefault();
           next();
           break;
-        case 'ArrowLeft':
-        case 'ArrowUp':
+        case 'arrowleft':
+        case 'arrowup':
           e.preventDefault();
           prev();
           break;
-        case 'Home':
+        case 'home':
           e.preventDefault();
           goTo(0);
           break;
-        case 'End':
+        case 'end':
           e.preventDefault();
           goTo(totalSlides - 1);
+          break;
+        case 'd':
+          document.dispatchEvent(new CustomEvent('toggleDrawingCanvas'));
+          break;
+        case 'p':
+          // Open Presenter view on second screen
+          window.open(location.href.split('?')[0] + '?presenter=true', 'LectaPresenter', 'width=1100,height=750');
           break;
       }
     });
@@ -4311,8 +5073,9 @@ const SlideEngine = (function () {
 
   function getCurrent() { return currentSlide; }
   function getTotal() { return totalSlides; }
+  function getBroadcast() { return broadcast; }
 
-  return { init, next, prev, goTo, getCurrent, getTotal };
+  return { init, next, prev, goTo, getCurrent, getTotal, getBroadcast };
 })();
 
 window.SlideEngine = window.SlideEngine || SlideEngine;
@@ -5514,6 +6277,347 @@ const InteractiveBlocks = (function () {
         });
       });
     });
+    initDrawing();
+    initSearchPalette();
+    initLaserPointerTrails();
+    initKaTeXMaths();
+    initMermaidDiagrams();
+    initSyntaxHighlighting();
+  }
+
+  /* === 🖌️ Presenter Canvas Annotation & Scribbling Overlay === */
+  let isDrawingActive = false;
+  function initDrawing() {
+    const canvas = document.querySelector('.drawing-canvas-overlay');
+    const toolbar = document.querySelector('.drawing-toolbar');
+    if (!canvas || !toolbar) return;
+
+    const ctx = canvas.getContext('2d');
+    let isDrawing = false;
+    let tool = 'pen'; // 'pen', 'highlighter', 'eraser'
+    let color = '#ef4444'; // Red default
+    let size = 4;
+
+    function resizeCanvas() {
+      const view = document.querySelector('.slides-viewport') || document.body;
+      canvas.width = view.clientWidth;
+      canvas.height = view.clientHeight;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // Toggle overlay and toolbar
+    document.addEventListener('toggleDrawingCanvas', () => {
+      isDrawingActive = !isDrawingActive;
+      if (isDrawingActive) {
+        canvas.style.pointerEvents = 'auto';
+        toolbar.classList.add('active');
+        resizeCanvas();
+      } else {
+        canvas.style.pointerEvents = 'none';
+        toolbar.classList.remove('active');
+      }
+    });
+
+    // Handle Toolbar Tools Selection
+    toolbar.querySelectorAll('.draw-tool-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (btn.classList.contains('draw-clear')) {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          return;
+        }
+        toolbar.querySelectorAll('.draw-tool-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        tool = btn.dataset.tool;
+      });
+    });
+
+    // Handle Colors Selection
+    toolbar.querySelectorAll('.draw-color-dot').forEach(dot => {
+      dot.addEventListener('click', () => {
+        toolbar.querySelectorAll('.draw-color-dot').forEach(d => d.classList.remove('active'));
+        dot.classList.add('active');
+        color = dot.dataset.color;
+      });
+    });
+
+    // Handle Size Range Slider
+    const sizeSlider = toolbar.querySelector('.draw-brush-size');
+    const sizeIndicator = toolbar.querySelector('.draw-brush-indicator');
+    if (sizeSlider) {
+      sizeSlider.addEventListener('input', (e) => {
+        size = e.target.value;
+        if (sizeIndicator) sizeIndicator.textContent = `Size: ${size}px`;
+      });
+    }
+
+    // Scribble Drawing Mechanics (Desktop Mouse & Mobile Touch)
+    function getPos(e) {
+      const rect = canvas.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      return {
+        x: clientX - rect.left,
+        y: clientY - rect.top
+      };
+    }
+
+    function startDraw(e) {
+      if (!isDrawingActive) return;
+      isDrawing = true;
+      const pos = getPos(e);
+      ctx.beginPath();
+      ctx.moveTo(pos.x, pos.y);
+      e.preventDefault();
+    }
+
+    function draw(e) {
+      if (!isDrawingActive || !isDrawing) return;
+      const pos = getPos(e);
+
+      ctx.lineWidth = size;
+      if (tool === 'eraser') {
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.strokeStyle = 'rgba(0,0,0,1)';
+        ctx.lineWidth = size * 3; // Wider eraser
+      } else if (tool === 'highlighter') {
+        ctx.globalCompositeOperation = 'multiply';
+        ctx.strokeStyle = color;
+        ctx.globalAlpha = 0.4;
+      } else {
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.strokeStyle = color;
+        ctx.globalAlpha = 1.0;
+      }
+
+      ctx.lineTo(pos.x, pos.y);
+      ctx.stroke();
+      e.preventDefault();
+    }
+
+    function stopDraw() {
+      isDrawing = false;
+    }
+
+    canvas.addEventListener('mousedown', startDraw);
+    canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('mouseup', stopDraw);
+    canvas.addEventListener('mouseleave', stopDraw);
+
+    canvas.addEventListener('touchstart', startDraw, { passive: false });
+    canvas.addEventListener('touchmove', draw, { passive: false });
+    canvas.addEventListener('touchend', stopDraw);
+
+    // Clear canvas when slides navigate
+    document.addEventListener('slideChanged', () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    });
+  }
+
+  /* === 🔍 Glassmorphic Spotlight Search Command Palette === */
+  function initSearchPalette() {
+    const backdrop = document.querySelector('.search-palette-backdrop');
+    const input = document.querySelector('.search-input');
+    const list = document.querySelector('.search-results-list');
+    if (!backdrop || !input || !list) return;
+
+    let selectedIndex = -1;
+    let currentResults = [];
+
+    document.addEventListener('toggleSearchPalette', () => {
+      const isVisible = backdrop.style.display === 'flex';
+      if (isVisible) {
+        backdrop.style.display = 'none';
+      } else {
+        backdrop.style.display = 'flex';
+        input.value = '';
+        input.focus();
+        renderResults('');
+      }
+    });
+
+    backdrop.addEventListener('click', (e) => {
+      if (e.target === backdrop) {
+        backdrop.style.display = 'none';
+      }
+    });
+
+    input.addEventListener('input', (e) => {
+      renderResults(e.target.value);
+    });
+
+    function renderResults(query) {
+      list.innerHTML = '';
+      selectedIndex = -1;
+      currentResults = [];
+
+      const queryLower = query.toLowerCase().trim();
+      const slides = Array.from(document.querySelectorAll('.slide'));
+
+      slides.forEach((s, idx) => {
+        const headingEl = s.querySelector('h2, h1');
+        const heading = headingEl ? headingEl.textContent.trim() : `Slide ${idx + 1}`;
+        const bodyContent = s.textContent.toLowerCase();
+
+        if (!queryLower || heading.toLowerCase().includes(queryLower) || bodyContent.includes(queryLower)) {
+          currentResults.push({ index: idx, heading, id: s.id || `slide-${idx + 1}` });
+        }
+      });
+
+      if (currentResults.length === 0) {
+        list.innerHTML = `<div style="padding:1rem; text-align:center; color:var(--color-text-muted);">No results found. Try another query!</div>`;
+        return;
+      }
+
+      currentResults.forEach((res, i) => {
+        const item = document.createElement('button');
+        item.className = 'search-result-item';
+        item.innerHTML = `
+          <span class="search-result-num">${res.index + 1}</span>
+          <div class="search-result-info">
+            <span class="search-result-title">${res.heading}</span>
+            <span class="search-result-snippet">Jump to #${res.id}</span>
+          </div>
+        `;
+        item.addEventListener('click', () => {
+          if (window.SlideEngine) window.SlideEngine.goTo(res.index);
+          backdrop.style.display = 'none';
+        });
+        list.appendChild(item);
+      });
+    }
+
+    input.addEventListener('keydown', (e) => {
+      const items = list.querySelectorAll('.search-result-item');
+      if (items.length === 0) return;
+
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        selectedIndex = (selectedIndex + 1) % items.length;
+        updateSelectedResult(items);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        selectedIndex = (selectedIndex - 1 + items.length) % items.length;
+        updateSelectedResult(items);
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (selectedIndex >= 0 && selectedIndex < items.length) {
+          items[selectedIndex].click();
+        } else if (items.length > 0) {
+          items[0].click();
+        }
+      } else if (e.key === 'Escape') {
+        backdrop.style.display = 'none';
+      }
+    });
+
+    function updateSelectedResult(items) {
+      items.forEach((item, idx) => {
+        if (idx === selectedIndex) {
+          item.classList.add('selected');
+          item.scrollIntoView({ block: 'nearest' });
+        } else {
+          item.classList.remove('selected');
+        }
+      });
+    }
+  }
+
+  /* === 🎯 Decaying Laser Pointer Particle Trails === */
+  function initLaserPointerTrails() {
+    document.addEventListener('mousemove', (e) => {
+      if (!document.body.classList.contains('laser-pointer')) return;
+
+      const dot = document.createElement('div');
+      dot.className = 'laser-trail-particle';
+      dot.style.position = 'fixed';
+      dot.style.left = `${e.clientX}px`;
+      dot.style.top = `${e.clientY}px`;
+      dot.style.width = '12px';
+      dot.style.height = '12px';
+      dot.style.backgroundColor = '#ef4444';
+      dot.style.borderRadius = '50%';
+      dot.style.pointerEvents = 'none';
+      dot.style.zIndex = '9999999';
+      dot.style.transform = 'translate(-50%, -50%)';
+      dot.style.boxShadow = '0 0 10px #ef4444, 0 0 20px #ef4444';
+      dot.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+      document.body.appendChild(dot);
+
+      setTimeout(() => {
+        dot.style.opacity = '0';
+        dot.style.transform = 'translate(-50%, -50%) scale(0.2)';
+      }, 50);
+
+      setTimeout(() => {
+        dot.remove();
+      }, 450);
+    });
+  }
+
+  /* === 🧮 KaTeX On-Demand Loader === */
+  function initKaTeXMaths() {
+    const containers = document.querySelectorAll('.math-display-equation');
+    if (containers.length === 0) return;
+
+    if (!window.renderMathInElement) {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css';
+      document.head.appendChild(link);
+
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js';
+      script.onload = () => {
+        containers.forEach(el => {
+          const latex = el.dataset.latex || '';
+          try {
+            window.katex.render(latex, el, { displayMode: true, throwOnError: false });
+          } catch (e) {
+            console.error('KaTeX error:', e);
+          }
+        });
+      };
+      document.body.appendChild(script);
+    }
+  }
+
+  /* === 🌿 Mermaid On-Demand Loader === */
+  function initMermaidDiagrams() {
+    const containers = document.querySelectorAll('.mermaid');
+    if (containers.length === 0) return;
+
+    if (!window.mermaid) {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.2.4/dist/mermaid.min.js';
+      script.onload = () => {
+        window.mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+      };
+      document.body.appendChild(script);
+    }
+  }
+
+  /* === 💻 Prism Syntax Highlighting On-Demand Loader === */
+  function initSyntaxHighlighting() {
+    const codeBlocks = document.querySelectorAll('pre code');
+    if (codeBlocks.length === 0) return;
+
+    if (!window.Prism) {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css';
+      document.head.appendChild(link);
+
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js';
+      script.onload = () => {
+        window.Prism.highlightAll();
+      };
+      document.body.appendChild(script);
+    }
   }
 
   return { init };
