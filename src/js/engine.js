@@ -4,13 +4,16 @@
  */
 
 const SlideEngine = (function () {
+  if (window.SlideEngine) return window.SlideEngine;
+  
   let currentSlide = 0;
   let totalSlides = 0;
   let touchStartX = 0;
   let touchEndX = 0;
+  let slides = []; // Caching slide elements to optimize performance
 
   function init() {
-    const slides = document.querySelectorAll('.slide');
+    slides = Array.from(document.querySelectorAll('.slide'));
     totalSlides = slides.length;
     if (totalSlides === 0) return;
 
@@ -22,6 +25,7 @@ const SlideEngine = (function () {
 
   function updateSlide(index, animate = true) {
     if (index < 0 || index >= totalSlides) return;
+    const previousSlide = currentSlide;
     currentSlide = index;
 
     // Move track
@@ -50,7 +54,6 @@ const SlideEngine = (function () {
     if (nextBtn) nextBtn.disabled = currentSlide === totalSlides - 1;
 
     // Add enter animation to current slide
-    const slides = document.querySelectorAll('.slide');
     slides.forEach((s, i) => {
       const inner = s.querySelector('.slide-inner');
       if (inner) {
@@ -64,8 +67,13 @@ const SlideEngine = (function () {
     // Update speaker notes
     updateSpeakerNotes();
 
-    // Dispatch custom event
-    document.dispatchEvent(new CustomEvent('slideChanged', { detail: { index: currentSlide } }));
+    // Dispatch custom event with both current and previous slide indexes
+    document.dispatchEvent(new CustomEvent('slideChanged', { 
+      detail: { 
+        index: currentSlide,
+        previousIndex: previousSlide
+      } 
+    }));
   }
 
   function next() { updateSlide(currentSlide + 1); }
@@ -127,7 +135,6 @@ const SlideEngine = (function () {
   function updateSpeakerNotes() {
     const panel = document.querySelector('.speaker-notes-panel');
     if (!panel) return;
-    const slides = document.querySelectorAll('.slide');
     const currentEl = slides[currentSlide];
     const notes = currentEl ? currentEl.dataset.speakerNotes : '';
     const notesP = panel.querySelector('p');
@@ -139,3 +146,5 @@ const SlideEngine = (function () {
 
   return { init, next, prev, goTo, getCurrent, getTotal };
 })();
+
+window.SlideEngine = window.SlideEngine || SlideEngine;
