@@ -198,6 +198,32 @@
         ],
         "speakerNotes": "Wrap up the session. Celebrate their graduation into visual storytelling experts!"
       }
+    },
+    {
+      "id": "slide-s4-9",
+      "type": "advanced-quiz",
+      "data": {
+        "heading": "Final Skill Assessment",
+        "icon": "🏆",
+        "questions": [
+          {
+            "question": "Which CSS function creates high-fidelity opacity overlays without clipping?",
+            "options": ["rgba()", "hsla()", "color-mix()", "opacity()"],
+            "correct": 2
+          },
+          {
+            "question": "Which layout component is best suited for visual, asymmetric dashboards?",
+            "options": ["Bento Grid Layout", "Flexible Box Layout", "Standard Data Table", "Horizontal Timeline"],
+            "correct": 0
+          },
+          {
+            "question": "Which design pattern is optimized for fast mobile interactions in interactive presentation decks?",
+            "options": ["Dynamic inline frame imports", "High-performance event delegation", "Heavy client-side database queries", "Linear array loop handlers"],
+            "correct": 1
+          }
+        ],
+        "speakerNotes": "Assess the audience's mastery of the lesson material. Have them select choices and submit to calculate their final score."
+      }
     }
   ]
 }
