@@ -493,4 +493,69 @@ body.adv-quiz-modal-open .slide {
   0% { transform: translateY(-50px); opacity: 0; }
   100% { transform: translateY(0); opacity: 1; }
 }
-
+
+/* Safe-zone overlay for recording */
+.safe-zone-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1200;
+  display: none;
+}
+
+body.safe-zone-enabled .safe-zone-overlay {
+  display: block;
+}
+
+.safe-zone-box {
+  position: absolute;
+  border: 2px dashed color-mix(in oklch, var(--color-primary) 70%, transparent);
+  border-radius: var(--radius-lg);
+  background: color-mix(in oklch, var(--color-primary) 6%, transparent);
+  color: var(--color-primary);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  display: none;
+}
+
+.safe-zone-label {
+  position: absolute;
+  top: 0.4rem;
+  left: 0.6rem;
+  background: var(--color-bg);
+  padding: 0.1rem 0.4rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+
+body.safe-zone-camera-left .safe-zone-camera,
+body.safe-zone-camera-right .safe-zone-camera,
+body.safe-zone-subtitle-on .safe-zone-subtitle {
+  display: block;
+}
+
+body.safe-zone-camera-left .safe-zone-camera {
+  left: 4%;
+  top: 16%;
+  width: 26%;
+  height: 42%;
+}
+
+body.safe-zone-camera-right .safe-zone-camera {
+  right: 4%;
+  top: 16%;
+  width: 26%;
+  height: 42%;
+}
+
+body.safe-zone-subtitle-on .safe-zone-subtitle {
+  left: 8%;
+  right: 8%;
+  bottom: 6%;
+  height: 18%;
+}
+
