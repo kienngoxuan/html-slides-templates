@@ -145,15 +145,18 @@ const SlideEngine = (function () {
 
     // Start Timer
     let seconds = 0;
-    let timerInterval = setInterval(() => {
-      seconds++;
-      const hrs = String(Math.floor(seconds / 3600)).padStart(2, '0');
-      const mins = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
-      const secs = String(seconds % 60).padStart(2, '0');
-      const timeStr = `${hrs}:${mins}:${secs}`;
-      const timerEl = document.querySelector('.presenter-time-elapsed');
-      if (timerEl) timerEl.textContent = timeStr;
-    }, 1000);
+    function startPresenterTimer() {
+      return setInterval(() => {
+        seconds++;
+        const hrs = String(Math.floor(seconds / 3600)).padStart(2, '0');
+        const mins = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
+        const secs = String(seconds % 60).padStart(2, '0');
+        const timerEl = document.querySelector('.presenter-time-elapsed');
+        if (timerEl) timerEl.textContent = `${hrs}:${mins}:${secs}`;
+      }, 1000);
+    }
+
+    let timerInterval = startPresenterTimer();
 
     let isTimerActive = true;
     document.getElementById('presenter-timer-toggle').addEventListener('click', (e) => {
@@ -161,14 +164,7 @@ const SlideEngine = (function () {
         clearInterval(timerInterval);
         e.target.textContent = 'Resume';
       } else {
-        timerInterval = setInterval(() => {
-          seconds++;
-          const hrs = String(Math.floor(seconds / 3600)).padStart(2, '0');
-          const mins = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
-          const secs = String(seconds % 60).padStart(2, '0');
-          const timerEl = document.querySelector('.presenter-time-elapsed');
-          if (timerEl) timerEl.textContent = `${hrs}:${mins}:${secs}`;
-        }, 1000);
+        timerInterval = startPresenterTimer();
         e.target.textContent = 'Pause';
       }
       isTimerActive = !isTimerActive;
