@@ -42,6 +42,8 @@ function getDeckJsFiles() {
   return [
     'src/js/engine.js',
     ...CORE_BLOCK_JS,
+    'src/js/slide-health.js',
+    'src/js/lesson-studio.js',
     'src/js/themes.js',
     'src/js/sidebar.js',
     'src/emulator/emulator.js',
