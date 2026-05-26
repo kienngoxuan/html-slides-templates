@@ -5,7 +5,19 @@
     "author": "Lecta AI Labs",
     "date": "2026",
     "theme": "volcano",
-    "duration": 60
+    "duration": 60,
+    "context": {
+      "audience": "AI educator",
+      "topic": "AI Lesson Architecture",
+      "lessonLength": 60,
+      "tone": "clear",
+      "pace": "standard",
+      "rhythmPreset": "example-heavy",
+      "textDensity": "medium",
+      "exampleDensity": "high",
+      "primaryColor": "#ef4444",
+      "stylePack": "editorial-clean"
+    }
   },
   "slides": [
     {
@@ -21,6 +33,13 @@
     {
       "id": "slide-s5-2",
       "type": "split",
+      "flow": [
+        { "label": "Reveal diagram", "action": "reveal", "preset": "zoom-focus", "targets": [".split-column.left-column"] },
+        { "label": "Reveal insight 1", "action": "reveal", "preset": "fade-up", "targets": ["[data-flow-id='bullet-1']"] },
+        { "label": "Reveal insight 2", "action": "reveal", "preset": "fade-up", "targets": ["[data-flow-id='bullet-2']"] },
+        { "label": "Reveal insight 3", "action": "reveal", "preset": "fade-up", "targets": ["[data-flow-id='bullet-3']"] },
+        { "label": "Highlight sync", "action": "highlight", "preset": "highlight-pulse", "targets": ["[data-flow-id='bullet-2']"] }
+      ],
       "data": {
         "heading": "Synchronized Presenter Flow",
         "icon": "🔄",
