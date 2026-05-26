@@ -82,6 +82,10 @@ ${allCSS}
   
   <nav class="sidebar-tabs">
     <button class="sidebar-tab active" data-tab="overview">📋 Overview</button>
+    <button class="sidebar-tab" data-tab="flow">🎬 Flow</button>
+    <button class="sidebar-tab" data-tab="context">🧭 Context</button>
+    <button class="sidebar-tab" data-tab="templates">🧩 Templates</button>
+    <button class="sidebar-tab" data-tab="recording">REC</button>
     <button class="sidebar-tab" data-tab="timer">⏱️ Timer</button>
     <button class="sidebar-tab" data-tab="notes">📝 Notes</button>
     <button class="sidebar-tab" data-tab="tools">🛠️ Tools</button>
@@ -98,6 +102,55 @@ ${allCSS}
             <div class="slide-thumb-type">🎨 Catalog Reference</div>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- FLOW TAB -->
+    <div class="sidebar-panel" data-panel="flow">
+      <div class="flow-panel">
+        <div class="flow-header">
+          <div>
+            <div class="flow-title">Presentation Flow</div>
+            <div class="flow-subtitle">Flow controls are available in slide decks.</div>
+          </div>
+          <div class="flow-step-count">0/0</div>
+        </div>
+        <div class="flow-empty">Catalog view does not include flow steps.</div>
+      </div>
+    </div>
+
+    <!-- CONTEXT TAB -->
+    <div class="sidebar-panel" data-panel="context">
+      <div class="context-panel">
+        <div class="context-header">
+          <div class="context-title">Shared Context</div>
+          <div class="context-subtitle">Available in slide decks, not in catalog view.</div>
+        </div>
+        <div class="template-empty">Open a deck to edit context.</div>
+      </div>
+    </div>
+
+    <!-- TEMPLATE TAB -->
+    <div class="sidebar-panel" data-panel="templates">
+      <div class="template-panel">
+        <div class="template-header">
+          <div class="template-title">Use-case Templates</div>
+          <div class="template-subtitle">Template library appears in deck builds.</div>
+        </div>
+        <div class="template-empty">Open a deck to browse templates.</div>
+      </div>
+    </div>
+
+    <!-- RECORDING TAB -->
+    <div class="sidebar-panel" data-panel="recording">
+      <div class="recording-panel">
+        <div class="recording-header">
+          <div>
+            <div class="recording-title">Recording Assistant</div>
+            <div class="recording-subtitle">Available in deck builds.</div>
+          </div>
+        </div>
+        <div class="template-empty">Open a deck to enable recording tools.</div>
       </div>
     </div>
 
