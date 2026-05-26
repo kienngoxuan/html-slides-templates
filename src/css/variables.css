@@ -9,14 +9,21 @@
   --font-body: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
+  /* Rhythm controls */
+  --font-scale: 1;
+  --line-scale: 1;
+  --space-scale: 1;
+  --flow-duration: 360ms;
+  --flow-stagger: 60ms;
+
   /* Spacing */
-  --space-xs: 0.25rem;
-  --space-sm: 0.5rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 3rem;
-  --space-3xl: 4rem;
+  --space-xs: calc(0.25rem * var(--space-scale));
+  --space-sm: calc(0.5rem * var(--space-scale));
+  --space-md: calc(1rem * var(--space-scale));
+  --space-lg: calc(1.5rem * var(--space-scale));
+  --space-xl: calc(2rem * var(--space-scale));
+  --space-2xl: calc(3rem * var(--space-scale));
+  --space-3xl: calc(4rem * var(--space-scale));
 
   /* Radii */
   --radius-sm: 8px;
