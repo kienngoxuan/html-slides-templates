@@ -5,7 +5,19 @@
     "author": "Lecta AI Academy",
     "date": "2026",
     "theme": "volcano",
-    "duration": 45
+    "duration": 45,
+    "context": {
+      "audience": "Presentation designers",
+      "topic": "Slide Choreography",
+      "lessonLength": 45,
+      "tone": "friendly",
+      "pace": "standard",
+      "rhythmPreset": "intermediate-deep-dive",
+      "textDensity": "medium",
+      "exampleDensity": "medium",
+      "primaryColor": "#f97316",
+      "stylePack": "editorial-clean"
+    }
   },
   "slides": [
     {
