@@ -199,6 +199,19 @@ function validateSlideSchema(slideData, dataFile) {
           throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("image"): "url" must be a string`);
         }
         break;
+      case 'table':
+        if (!Array.isArray(d.columns)) {
+          throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("table"): "columns" must be an array`);
+        }
+        if (!Array.isArray(d.rows)) {
+          throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("table"): "rows" must be an array`);
+        }
+        d.columns.forEach((col, ci) => {
+          if (!col.key || typeof col.key !== 'string') {
+            throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("table"), column ${ci + 1}: "key" must be a non-empty string`);
+          }
+        });
+        break;
       case 'compare':
         if (!d.left || !Array.isArray(d.left.items)) {
           throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("compare"): "left.items" must be an array`);
