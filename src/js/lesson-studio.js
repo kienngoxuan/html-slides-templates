@@ -258,7 +258,22 @@ const LessonStudio = (function () {
       if (!currentSlide) return [];
       const nodes = [];
       step.targets.forEach((selector) => {
-        currentSlide.querySelectorAll(selector).forEach((el) => nodes.push(el));
+        let found = Array.from(currentSlide.querySelectorAll(selector));
+
+        // Fallback: if a [data-flow-id='bullet-N'] selector yields no results,
+        // the element may be a sub-bullet inside a split layout rendered as
+        // data-flow-id="sub-bullet-N". Retry with the sub-bullet variant.
+        if (found.length === 0) {
+          const subSelector = selector.replace(
+            /\[data-flow-id='bullet-(\d+)'\]/g,
+            "[data-flow-id='sub-bullet-$1']"
+          );
+          if (subSelector !== selector) {
+            found = Array.from(currentSlide.querySelectorAll(subSelector));
+          }
+        }
+
+        found.forEach((el) => nodes.push(el));
       });
       return nodes;
     }
