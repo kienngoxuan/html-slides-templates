@@ -57,24 +57,24 @@
 
 /* Slide enter animations */
 .slide-enter {
-  animation: fadeSlideUp 500ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation: fadeSlideUp var(--flow-duration) cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 /* Staggered children animation */
 .stagger > * {
   opacity: 0;
-  animation: fadeSlideUp 400ms ease forwards;
+  animation: fadeSlideUp var(--flow-duration) ease forwards;
 }
-.stagger > *:nth-child(1) { animation-delay: 50ms; }
-.stagger > *:nth-child(2) { animation-delay: 100ms; }
-.stagger > *:nth-child(3) { animation-delay: 150ms; }
-.stagger > *:nth-child(4) { animation-delay: 200ms; }
-.stagger > *:nth-child(5) { animation-delay: 250ms; }
-.stagger > *:nth-child(6) { animation-delay: 300ms; }
-.stagger > *:nth-child(7) { animation-delay: 350ms; }
-.stagger > *:nth-child(8) { animation-delay: 400ms; }
-.stagger > *:nth-child(9) { animation-delay: 450ms; }
-.stagger > *:nth-child(10) { animation-delay: 500ms; }
+.stagger > *:nth-child(1) { animation-delay: calc(var(--flow-stagger) * 1); }
+.stagger > *:nth-child(2) { animation-delay: calc(var(--flow-stagger) * 2); }
+.stagger > *:nth-child(3) { animation-delay: calc(var(--flow-stagger) * 3); }
+.stagger > *:nth-child(4) { animation-delay: calc(var(--flow-stagger) * 4); }
+.stagger > *:nth-child(5) { animation-delay: calc(var(--flow-stagger) * 5); }
+.stagger > *:nth-child(6) { animation-delay: calc(var(--flow-stagger) * 6); }
+.stagger > *:nth-child(7) { animation-delay: calc(var(--flow-stagger) * 7); }
+.stagger > *:nth-child(8) { animation-delay: calc(var(--flow-stagger) * 8); }
+.stagger > *:nth-child(9) { animation-delay: calc(var(--flow-stagger) * 9); }
+.stagger > *:nth-child(10) { animation-delay: calc(var(--flow-stagger) * 10); }
 
 /* Gradient animated background for title slides */
 .animated-gradient {
@@ -103,4 +103,86 @@
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid color-mix(in oklch, var(--color-border-light) 50%, transparent);
+}
+
+/* Flow step utilities */
+.flow-controlled {
+  animation: none !important;
+}
+.flow-hidden {
+  opacity: 0 !important;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity var(--flow-duration) ease, transform var(--flow-duration) ease;
+}
+.flow-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+.flow-highlight {
+  box-shadow: 0 0 0 2px var(--color-primary);
+  background: color-mix(in oklch, var(--color-primary) 12%, transparent);
+  border-radius: var(--radius-sm);
+  transition: box-shadow 200ms ease, background 200ms ease;
+}
+
+@keyframes flowSlideIn {
+  from { opacity: 0; transform: translateX(-12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes flowZoomFocus {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes flowWipe {
+  from { opacity: 0; transform: scaleX(0.85); }
+  to { opacity: 1; transform: scaleX(1); }
+}
+
+@keyframes flowCardPop {
+  0% { opacity: 0; transform: scale(0.94); }
+  70% { opacity: 1; transform: scale(1.02); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes flowHighlightPulse {
+  0%, 100% { box-shadow: 0 0 0 2px var(--color-primary); }
+  50% { box-shadow: 0 0 0 5px color-mix(in oklch, var(--color-primary) 35%, transparent); }
+}
+
+@keyframes flowTypeReveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+.flow-animate.flow-preset-fade-up {
+  animation: fadeSlideUp var(--flow-duration) ease forwards;
+}
+
+.flow-animate.flow-preset-slide-in {
+  animation: flowSlideIn var(--flow-duration) ease forwards;
+}
+
+.flow-animate.flow-preset-zoom-focus {
+  animation: flowZoomFocus var(--flow-duration) ease forwards;
+}
+
+.flow-animate.flow-preset-wipe {
+  transform-origin: left center;
+  animation: flowWipe var(--flow-duration) ease forwards;
+}
+
+.flow-animate.flow-preset-card-pop {
+  animation: flowCardPop var(--flow-duration) cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.flow-animate.flow-preset-highlight-pulse {
+  animation: flowHighlightPulse calc(var(--flow-duration) * 1.2) ease-in-out;
+}
+
+.flow-animate.flow-preset-type-reveal {
+  overflow: hidden;
+  animation: flowTypeReveal var(--flow-duration) steps(20, end) forwards;
 }
