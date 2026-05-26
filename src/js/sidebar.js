@@ -10,8 +10,8 @@ const SidebarModule = (function () {
   const MODE_KEY  = 'lecta-mode';
   const NOTES_KEY = 'lecta-notes';
   
-  const LIGHT_THEMES = ['ocean','forest','berry','slate','paper','nordic','sunset'];
-  const DARK_THEMES  = ['neon','midnight','evergreen','volcano'];
+  const LIGHT_THEMES = ['ocean','forest','berry','slate','paper','nordic','sunset','editorial','newspaper','brutalist','pastel','monochrome'];
+  const DARK_THEMES  = ['neon','midnight','evergreen','volcano','terminal','blueprint','blackboard'];
   
   let timerInterval = null;
   let timerSeconds = 0;
@@ -358,9 +358,22 @@ const SidebarModule = (function () {
     const spotlightOverlay = document.querySelector('.spotlight-overlay');
     if (spotlightBtn && spotlightOverlay) {
       spotlightBtn.addEventListener('click', () => {
-        const title = document.querySelector('.slide.active h1, .slide.active h2');
+        let titleText = '';
+        if (window.SlideEngine && typeof window.SlideEngine.getCurrent === 'function') {
+          const idx = window.SlideEngine.getCurrent();
+          const slides = document.querySelectorAll('.slide');
+          if (slides[idx]) {
+            const heading = slides[idx].querySelector('h1, h2');
+            if (heading) titleText = heading.textContent;
+          }
+        }
+        if (!titleText) {
+          const title = document.querySelector('.slide.active h1, .slide.active h2');
+          if (title) titleText = title.textContent;
+        }
+
         const content = document.querySelector('.spotlight-content p');
-        if (content && title) content.textContent = title.textContent;
+        if (content) content.textContent = titleText || 'Spotlight Presentation';
         spotlightOverlay.classList.add('active');
         spotlightBtn.classList.add('active');
       });
