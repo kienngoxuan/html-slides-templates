@@ -60,11 +60,20 @@ const SlideEngine = (function () {
   }
 
   function cacheNotes() {
+    // Try to load localStorage overrides written by the sidebar notes panel.
+    // Key matches the NOTES_KEY constant used in sidebar.js ('lecta-notes').
+    let savedNotes = {};
+    try {
+      savedNotes = JSON.parse(localStorage.getItem('lecta-notes') || '{}');
+    } catch (e) { /* ignore */ }
+
     slides.forEach((s, idx) => {
-      cachedPresenterNotes.push({
-        id: s.id || `slide-${idx}`,
-        notes: s.dataset.speakerNotes || 'No speaker notes for this slide.'
-      });
+      const slideId = s.id || `slide-${idx}`;
+      // localStorage override takes priority; fall back to built-in dataset notes.
+      const notes = savedNotes[slideId] !== undefined
+        ? savedNotes[slideId]
+        : (s.dataset.speakerNotes || 'No speaker notes for this slide.');
+      cachedPresenterNotes.push({ id: slideId, notes });
     });
   }
 
@@ -358,7 +367,19 @@ const SlideEngine = (function () {
     const panel = document.querySelector('.speaker-notes-panel');
     if (!panel) return;
     const currentEl = slides[currentSlide];
-    const notes = currentEl ? currentEl.dataset.speakerNotes : '';
+    const slideId = currentEl ? (currentEl.id || String(currentSlide)) : String(currentSlide);
+
+    // Prefer any custom note saved by the sidebar panel over the built-in default.
+    let notes = '';
+    try {
+      const saved = JSON.parse(localStorage.getItem('lecta-notes') || '{}');
+      notes = saved[slideId] !== undefined
+        ? saved[slideId]
+        : (currentEl ? currentEl.dataset.speakerNotes || '' : '');
+    } catch (e) {
+      notes = currentEl ? currentEl.dataset.speakerNotes || '' : '';
+    }
+
     const notesP = panel.querySelector('p');
     if (notesP) notesP.textContent = notes || 'No speaker notes for this slide.';
   }
