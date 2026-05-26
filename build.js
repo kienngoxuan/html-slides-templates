@@ -220,6 +220,67 @@ function validateSlideSchema(slideData, dataFile) {
           throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("compare"): "right.items" must be an array`);
         }
         break;
+      case 'quote-card':
+        if (!d.quote || typeof d.quote !== 'string') {
+          throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("quote-card"): "quote" must be a non-empty string`);
+        }
+        break;
+      case 'definition-card':
+        if (!d.term || typeof d.term !== 'string') {
+          throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("definition-card"): "term" must be a non-empty string`);
+        }
+        if (!d.definition || typeof d.definition !== 'string') {
+          throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("definition-card"): "definition" must be a non-empty string`);
+        }
+        break;
+      case 'analogy':
+        if (!d.technicalConcept || typeof d.technicalConcept !== 'string') {
+          throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("analogy"): "technicalConcept" must be a non-empty string`);
+        }
+        if (!d.analogy || typeof d.analogy !== 'string') {
+          throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("analogy"): "analogy" must be a non-empty string`);
+        }
+        break;
+      case 'stats':
+        if (!Array.isArray(d.stats) || d.stats.length === 0) {
+          throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("stats"): "stats" must be a non-empty array`);
+        }
+        d.stats.forEach((s, si) => {
+          if (!s.value || !s.label) {
+            throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("stats"), item ${si + 1}: "value" and "label" are required`);
+          }
+        });
+        break;
+      case 'checklist':
+        if (!Array.isArray(d.items) || d.items.length === 0) {
+          throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("checklist"): "items" must be a non-empty array`);
+        }
+        d.items.forEach((item, ii) => {
+          if (!item.text || typeof item.text !== 'string') {
+            throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("checklist"), item ${ii + 1}: "text" must be a non-empty string`);
+          }
+        });
+        break;
+      case 'timeline-horizontal':
+        if (!Array.isArray(d.events) || d.events.length === 0) {
+          throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("timeline-horizontal"): "events" must be a non-empty array`);
+        }
+        d.events.forEach((e, ei) => {
+          if (!e.title || !e.year) {
+            throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("timeline-horizontal"), event ${ei + 1}: "title" and "year" are required`);
+          }
+        });
+        break;
+      case 'splash':
+        if (!d.title || typeof d.title !== 'string') {
+          throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("splash"): "title" must be a non-empty string`);
+        }
+        break;
+      case 'code-diff':
+        if (!d.leftCode || !d.rightCode) {
+          throw new Error(`Validation failed for ${dataFile} at slide ${idx + 1} ("code-diff"): "leftCode" and "rightCode" are required`);
+        }
+        break;
     }
   });
 }
