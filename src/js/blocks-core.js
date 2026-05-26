@@ -15,6 +15,7 @@ const InteractiveBlocksCore = (function () {
     initAdvancedQuiz();
     initTimeline();
     initBullets();
+    initChecklist();
   }
 
   /* === Interactive Image URL Customizer === */
@@ -303,10 +304,11 @@ const InteractiveBlocksCore = (function () {
 
   /* === Flip Cards === */
   function initFlipCards() {
-    document.querySelectorAll('.flip-card').forEach(card => {
-      card.addEventListener('click', () => {
+    document.addEventListener('click', (e) => {
+      const card = e.target.closest('.flip-card');
+      if (card) {
         card.classList.toggle('flipped');
-      });
+      }
     });
   }
 
@@ -546,6 +548,30 @@ const InteractiveBlocksCore = (function () {
       item.addEventListener('click', () => {
         item.classList.toggle('expanded');
       });
+    });
+  }
+
+  /* === Checklist Reveal === */
+  function initChecklist() {
+    document.addEventListener('click', (e) => {
+      const toggle = e.target.closest('.checklist-toggle');
+      if (!toggle) return;
+      const item = toggle.closest('.checklist-item');
+      if (!item) return;
+
+      const isChecked = item.classList.contains('checked');
+      item.classList.toggle('checked', !isChecked);
+
+      // Update aria state
+      toggle.setAttribute('aria-pressed', String(!isChecked));
+
+      // Update box content
+      const box = toggle.querySelector('.checklist-box');
+      if (box) box.textContent = !isChecked ? '✓' : '';
+
+      // Micro-bounce animation
+      item.style.transform = 'scale(1.02)';
+      setTimeout(() => { item.style.transform = ''; }, 200);
     });
   }
 
