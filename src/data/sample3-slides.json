@@ -5,7 +5,19 @@
     "author": "Lecta AI Academy",
     "date": "2026",
     "theme": "midnight",
-    "duration": 30
+    "duration": 30,
+    "context": {
+      "audience": "Engineering intermediate",
+      "topic": "Dashboards & Data Visualization",
+      "lessonLength": 30,
+      "tone": "authoritative",
+      "pace": "fast",
+      "rhythmPreset": "fast-recap",
+      "textDensity": "high",
+      "exampleDensity": "medium",
+      "primaryColor": "#6366f1",
+      "stylePack": "dark-contrast"
+    }
   },
   "slides": [
     {
