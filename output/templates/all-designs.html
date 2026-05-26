@@ -7753,10 +7753,18 @@ const SidebarModule = (function () {
     const ta = document.querySelector('.notes-textarea');
     if (!ta) return;
     const slideId = getSlideId(idx);
-    
+
     try {
       const notes = JSON.parse(safeGetItem(NOTES_KEY) || '{}');
-      ta.value = notes[slideId] || '';
+      if (notes[slideId] !== undefined) {
+        // localStorage override exists — use it as the primary source
+        ta.value = notes[slideId];
+      } else {
+        // No custom note yet — seed from the slide's built-in speaker notes
+        const slides = document.querySelectorAll('.slide');
+        const slideEl = slides[idx];
+        ta.value = (slideEl && slideEl.dataset.speakerNotes) || '';
+      }
     } catch (e) {
       console.warn('Failed to load slide notes:', e);
       ta.value = '';
