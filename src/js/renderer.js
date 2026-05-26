@@ -354,7 +354,7 @@ function renderSlideHTML(slide) {
     <div class="block-heading"><span class="icon">${d.icon || '🌿'}</span><h2>${esc(d.heading)}</h2></div>
     <div class="mermaid-block-container">
       <div class="mermaid-diagram-wrapper">
-        <div class="mermaid" id="mermaid-${slide.id}">${d.code}</div>
+        <div class="mermaid" id="mermaid-${slide.id}">${esc(d.code)}</div>
       </div>
     </div>
   </div>
@@ -363,8 +363,8 @@ function renderSlideHTML(slide) {
     case 'video': {
       let videoHTML = '';
       if (d.videoType === 'youtube') {
-        videoHTML = `<a href="https://www.youtube.com/watch?v=${d.videoId}" target="_blank" class="video-link-card" aria-label="Watch video on YouTube">
-        <div class="video-preview-thumbnail" style="background-image: url('https://img.youtube.com/vi/${d.videoId}/hqdefault.jpg')">
+        videoHTML = `<a href="https://www.youtube.com/watch?v=${esc(d.videoId)}" target="_blank" class="video-link-card" aria-label="Watch video on YouTube">
+        <div class="video-preview-thumbnail" style="background-image: url('https://img.youtube.com/vi/${esc(d.videoId)}/hqdefault.jpg')">
           <div class="video-play-overlay">
             <div class="video-play-btn">▶</div>
             <span class="video-play-text">Watch on YouTube</span>
@@ -372,7 +372,7 @@ function renderSlideHTML(slide) {
         </div>
       </a>`;
       } else if (d.videoType === 'vimeo') {
-        videoHTML = `<a href="https://vimeo.com/${d.videoId}" target="_blank" class="video-link-card" aria-label="Watch video on Vimeo">
+        videoHTML = `<a href="https://vimeo.com/${esc(d.videoId)}" target="_blank" class="video-link-card" aria-label="Watch video on Vimeo">
         <div class="video-preview-thumbnail" style="background: #111;">
           <div class="video-play-overlay">
             <div class="video-play-btn" style="background: #00adef; box-shadow: 0 4px 20px rgba(0, 173, 239, 0.5);">▶</div>
@@ -381,7 +381,7 @@ function renderSlideHTML(slide) {
         </div>
       </a>`;
       } else {
-        videoHTML = `<video class="video-player-frame" controls poster="${d.poster || ''}"><source src="${d.videoUrl}" type="video/mp4"></video>`;
+        videoHTML = `<video class="video-player-frame" controls poster="${esc(d.poster || '')}"><source src="${esc(d.videoUrl)}" type="video/mp4"></video>`;
       }
       return `<section ${sectionAttrs}>
   <div class="slide-inner">
@@ -403,6 +403,163 @@ function renderSlideHTML(slide) {
       </div>
       <div class="split-column right-column">
         ${renderSubBlock(d.right, slide.id + '-right')}
+      </div>
+    </div>
+  </div>
+</section>`;
+
+    /* ============================================
+       NEW PREMIUM BLOCK TYPES — Phase 1 MVP
+       ============================================ */
+
+    case 'quote-card':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="quote-card-container stagger">
+      <div class="quote-card-mark">"</div>
+      <blockquote class="quote-card-text">${esc(d.quote)}</blockquote>
+      <div class="quote-card-attribution">
+        ${d.avatarUrl ? `<img class="quote-avatar" src="${esc(d.avatarUrl)}" alt="${esc(d.author || '')}" />` : `<div class="quote-avatar-placeholder">${esc((d.author || 'A').charAt(0).toUpperCase())}</div>`}
+        <div class="quote-meta">
+          <span class="quote-author">${esc(d.author || '')}</span>
+          ${d.role ? `<span class="quote-role">${esc(d.role)}</span>` : ''}
+        </div>
+      </div>
+      ${d.heading ? `<div class="quote-card-label">${esc(d.heading)}</div>` : ''}
+    </div>
+  </div>
+</section>`;
+
+    case 'definition-card':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="definition-card-container stagger">
+      <div class="definition-header">
+        <span class="definition-type-tag">${esc(d.type || 'noun')}</span>
+        ${d.pronunciation ? `<span class="definition-pronunciation">${esc(d.pronunciation)}</span>` : ''}
+      </div>
+      <h2 class="definition-term">${esc(d.term)}</h2>
+      <p class="definition-body">${esc(d.definition)}</p>
+      ${d.example ? `<div class="definition-example">
+        <span class="definition-example-label">Example</span>
+        <code>${esc(d.example)}</code>
+      </div>` : ''}
+      ${d.heading ? `<div class="definition-context-label">${esc(d.heading)}</div>` : ''}
+    </div>
+  </div>
+</section>`;
+
+    case 'analogy':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🔗'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="analogy-container stagger">
+      <div class="analogy-card analogy-technical" data-flow-id="analogy-left">
+        <div class="analogy-card-label">Technical Concept</div>
+        <p>${esc(d.technicalConcept)}</p>
+      </div>
+      <div class="analogy-bridge">
+        <div class="analogy-bridge-arrow">≈</div>
+        ${d.bridgeText ? `<span class="analogy-bridge-text">${esc(d.bridgeText)}</span>` : ''}
+      </div>
+      <div class="analogy-card analogy-realworld" data-flow-id="analogy-right">
+        <div class="analogy-card-label">Real-World Analogy</div>
+        <p>${esc(d.analogy)}</p>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+    case 'stats':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '📊'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="stats-grid stagger">
+      ${(d.stats || []).map((s, i) => `<div class="stat-card" data-flow-id="stat-${i + 1}">
+        <div class="stat-value">${esc(s.value)}</div>
+        <div class="stat-label">${esc(s.label)}</div>
+        ${s.trend ? `<div class="stat-trend trend-${s.trend === 'up' ? 'up' : 'down'}">${s.trend === 'up' ? '↑' : '↓'} ${esc(s.subtext || '')}</div>` : (s.subtext ? `<div class="stat-subtext">${esc(s.subtext)}</div>` : '')}
+      </div>`).join('\n      ')}
+    </div>
+  </div>
+</section>`;
+
+    case 'checklist':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '✅'}</span><h2>${esc(d.heading)}</h2></div>
+    <ul class="checklist stagger" role="list">
+      ${(d.items || []).map((item, i) => `<li class="checklist-item${item.completed ? ' checked' : ''}" data-flow-id="check-${i + 1}" data-checklist-id="${esc(item.id || String(i))}" role="listitem">
+        <button class="checklist-toggle" aria-label="Toggle ${esc(item.text)}" aria-pressed="${item.completed ? 'true' : 'false'}">
+          <span class="checklist-box" aria-hidden="true">${item.completed ? '✓' : ''}</span>
+        </button>
+        <span class="checklist-text">${esc(item.text)}</span>
+      </li>`).join('\n      ')}
+    </ul>
+  </div>
+</section>`;
+
+    case 'timeline-horizontal':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🗓️'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="timeline-h-track stagger">
+      <div class="timeline-h-line"></div>
+      ${(d.events || []).map((e, i) => `<div class="timeline-h-item" data-flow-id="timeline-h-${i + 1}">
+        <div class="timeline-h-dot"></div>
+        <div class="timeline-h-card">
+          <div class="timeline-h-year">${esc(e.year)}</div>
+          <div class="timeline-h-title">${esc(e.title)}</div>
+          ${e.desc ? `<div class="timeline-h-desc">${esc(e.desc)}</div>` : ''}
+        </div>
+      </div>`).join('\n      ')}
+    </div>
+  </div>
+</section>`;
+
+    case 'splash':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner splash-inner">
+    <div class="splash-meta-badge">${esc(d.badge || 'Presentation')}</div>
+    <h1 class="splash-title">${esc(d.title)}</h1>
+    ${d.subtitle ? `<p class="splash-subtitle">${esc(d.subtitle)}</p>` : ''}
+    <div class="splash-divider"></div>
+    <div class="splash-profile">
+      ${d.avatarUrl ? `<img class="splash-avatar" src="${esc(d.avatarUrl)}" alt="${esc(d.author || '')}" />` : `<div class="splash-avatar-placeholder">${esc((d.author || 'A').charAt(0).toUpperCase())}</div>`}
+      <div class="splash-author-meta">
+        <span class="splash-author-name">${esc(d.author || '')}</span>
+        ${d.role ? `<span class="splash-author-role">${esc(d.role)}</span>` : ''}
+      </div>
+      ${d.duration ? `<div class="splash-duration">⏱ ${esc(String(d.duration))} min</div>` : ''}
+    </div>
+    ${d.social ? `<div class="splash-social-row">
+      ${d.social.github ? `<a href="https://github.com/${esc(d.social.github)}" class="splash-social-chip" target="_blank">GitHub</a>` : ''}
+      ${d.social.twitter ? `<a href="https://twitter.com/${esc(d.social.twitter)}" class="splash-social-chip" target="_blank">Twitter</a>` : ''}
+      ${d.social.email ? `<a href="mailto:${esc(d.social.email)}" class="splash-social-chip">Email</a>` : ''}
+    </div>` : ''}
+  </div>
+</section>`;
+
+    case 'code-diff':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '⚡'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="code-diff-container stagger">
+      <div class="code-diff-pane" data-flow-id="code-left">
+        <div class="code-diff-header code-diff-before">
+          <span class="code-diff-dot"></span>
+          ${esc(d.leftTitle || 'Before')}
+          <span class="code-diff-lang">${esc(d.leftLang || 'js')}</span>
+        </div>
+        <pre><code class="language-${esc(d.leftLang || 'javascript')}">${esc(d.leftCode || '')}</code></pre>
+      </div>
+      <div class="code-diff-pane" data-flow-id="code-right">
+        <div class="code-diff-header code-diff-after">
+          <span class="code-diff-dot"></span>
+          ${esc(d.rightTitle || 'After')}
+          <span class="code-diff-lang">${esc(d.rightLang || 'js')}</span>
+        </div>
+        <pre><code class="language-${esc(d.rightLang || 'javascript')}">${esc(d.rightCode || '')}</code></pre>
       </div>
     </div>
   </div>
@@ -439,7 +596,7 @@ function renderSubBlock(b, id) {
       return `<div class="sub-block sub-mermaid">
   <div class="mermaid-block-container">
     <div class="mermaid-diagram-wrapper">
-      <div class="mermaid" id="mermaid-${id}">${d.code}</div>
+      <div class="mermaid" id="mermaid-${id}">${esc(d.code)}</div>
     </div>
   </div>
 </div>`;
