@@ -5,6 +5,7 @@ const BASE_CSS = [
   'src/css/blocks/data.css',
   'src/css/blocks/overlays.css',
   'src/css/blocks/presenter.css',
+  'src/css/blocks/new-blocks.css',
   'src/css/animations.css',
   'src/css/sidebar.css',
 ];
