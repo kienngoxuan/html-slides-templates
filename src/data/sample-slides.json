@@ -5,7 +5,19 @@
     "author": "Lecta AI",
     "date": "2026",
     "theme": "ocean",
-    "duration": 45
+    "duration": 45,
+    "context": {
+      "audience": "Web dev beginner",
+      "topic": "Modern Web Development",
+      "lessonLength": 45,
+      "tone": "clear",
+      "pace": "standard",
+      "rhythmPreset": "beginner-friendly",
+      "textDensity": "medium",
+      "exampleDensity": "medium",
+      "primaryColor": "#3b82f6",
+      "stylePack": "editorial-clean"
+    }
   },
   "slides": [
     {
@@ -21,6 +33,14 @@
     {
       "id": "slide-2",
       "type": "bullets",
+      "flow": [
+        { "label": "Reveal objective 1", "action": "reveal", "preset": "fade-up", "targets": ["[data-flow-id='bullet-1']"] },
+        { "label": "Reveal objective 2", "action": "reveal", "preset": "fade-up", "targets": ["[data-flow-id='bullet-2']"] },
+        { "label": "Reveal objective 3", "action": "reveal", "preset": "fade-up", "targets": ["[data-flow-id='bullet-3']"] },
+        { "label": "Reveal objective 4", "action": "reveal", "preset": "fade-up", "targets": ["[data-flow-id='bullet-4']"] },
+        { "label": "Reveal objective 5", "action": "reveal", "preset": "fade-up", "targets": ["[data-flow-id='bullet-5']"] },
+        { "label": "Highlight deployment", "action": "highlight", "preset": "highlight-pulse", "targets": ["[data-flow-id='bullet-5']"] }
+      ],
       "data": {
         "heading": "Learning Objectives",
         "icon": "🎯",
