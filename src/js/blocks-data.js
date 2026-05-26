@@ -626,6 +626,17 @@ const InteractiveBlocksData = (function () {
         });
 
         rows.forEach(row => tbody.appendChild(row));
+
+        // Re-apply table search filter query after sorting
+        const searchInput = container.querySelector('.table-search-input');
+        if (searchInput && searchInput.value) {
+          const query = searchInput.value.toLowerCase().trim();
+          rows.forEach(row => {
+            const cells = Array.from(row.querySelectorAll('td'));
+            const matches = cells.some(cell => cell.textContent.toLowerCase().includes(query));
+            row.style.display = matches ? '' : 'none';
+          });
+        }
       });
     });
   }
@@ -699,6 +710,7 @@ const InteractiveBlocksData = (function () {
         path.setAttribute('fill', 'none');
         path.setAttribute('stroke', 'var(--color-primary-alpha)');
         path.setAttribute('stroke-width', '2.5');
+        path.setAttribute('marker-end', 'url(#arrow)');
         svg.appendChild(path);
       });
 
