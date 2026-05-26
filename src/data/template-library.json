@@ -1,0 +1,229 @@
+{
+  "categories": [
+    {
+      "id": "concept-intro",
+      "label": "Concept Intro",
+      "description": "Define a new AI concept with a crisp takeaway and one supporting example.",
+      "templates": [
+        {
+          "id": "concept-hero",
+          "title": "Concept Hero",
+          "useCase": "Explain a concept",
+          "tags": ["beginner", "definition", "clarity"],
+          "slide": {
+            "type": "bullets",
+            "data": {
+              "heading": "What is a Transformer?",
+              "icon": "AI",
+              "items": [
+                { "text": "A model that learns attention between tokens", "detail": "Self-attention lets each token look at the rest of the sequence." },
+                { "text": "Scales well with large data", "detail": "Parallel training enables huge model sizes." },
+                { "text": "Used in GPT, BERT, and T5", "detail": "It is the backbone of modern NLP systems." }
+              ]
+            },
+            "flow": [
+                { "label": "Reveal definition", "action": "reveal", "preset": "fade-up", "targets": ["[data-flow-id='bullet-1']"] },
+                { "label": "Reveal scaling", "action": "reveal", "preset": "fade-up", "targets": ["[data-flow-id='bullet-2']"] },
+                { "label": "Reveal examples", "action": "reveal", "preset": "fade-up", "targets": ["[data-flow-id='bullet-3']"] }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "pipeline",
+      "label": "Pipeline / Workflow",
+      "description": "Walk through an AI workflow or data pipeline step-by-step.",
+      "templates": [
+        {
+          "id": "pipeline-flow",
+          "title": "AI Pipeline Walkthrough",
+          "useCase": "Walk through a pipeline",
+          "tags": ["workflow", "step-by-step"],
+          "slide": {
+            "type": "flow",
+            "data": {
+              "heading": "Training Pipeline",
+              "icon": "FLOW",
+              "nodes": [
+                { "id": "data", "label": "Data" },
+                { "id": "clean", "label": "Clean" },
+                { "id": "train", "label": "Train" },
+                { "id": "eval", "label": "Evaluate" },
+                { "id": "deploy", "label": "Deploy" }
+              ],
+              "connections": [
+                { "from": "data", "to": "clean" },
+                { "from": "clean", "to": "train" },
+                { "from": "train", "to": "eval" },
+                { "from": "eval", "to": "deploy" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "comparison",
+      "label": "Comparison",
+      "description": "Show before/after or method A vs method B with a clear verdict.",
+      "templates": [
+        {
+          "id": "compare-methods",
+          "title": "Method Comparison",
+          "useCase": "Compare two methods",
+          "tags": ["comparison", "decision"],
+          "slide": {
+            "type": "compare",
+            "data": {
+              "heading": "Bag-of-Words vs. Transformer",
+              "icon": "COMPARE",
+              "left": { "title": "Bag-of-Words", "items": ["Order ignored", "Simple features", "Fast but shallow"], "color": "blue" },
+              "right": { "title": "Transformer", "items": ["Context-aware", "Scales better", "State-of-the-art"], "color": "green" },
+              "verdict": "Transformers win when context matters."
+            },
+            "flow": [
+                { "label": "Reveal left", "action": "reveal", "preset": "slide-in", "targets": [".compare-side.side-blue"] },
+                { "label": "Reveal right", "action": "reveal", "preset": "slide-in", "targets": [".compare-side.side-green"] },
+                { "label": "Highlight verdict", "action": "highlight", "preset": "highlight-pulse", "targets": [".compare-verdict"] }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "example-breakdown",
+      "label": "Example Breakdown",
+      "description": "Step-by-step example with highlights for key moments.",
+      "templates": [
+        {
+          "id": "example-steps",
+          "title": "Example Walkthrough",
+          "useCase": "Teach with example",
+          "tags": ["example", "step-by-step"],
+          "slide": {
+            "type": "stepper",
+            "data": {
+              "heading": "Prompt -> Output",
+              "icon": "EXAMPLE",
+              "steps": [
+                { "title": "Step 1", "content": "Write a clear prompt with constraints.", "tip": "Be explicit about format." },
+                { "title": "Step 2", "content": "Model generates candidate output.", "tip": "Check for hallucinations." },
+                { "title": "Step 3", "content": "Refine with a follow-up prompt.", "tip": "Use critique + rewrite." }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "misconception",
+      "label": "Common Mistakes",
+      "description": "Highlight misconceptions or pitfalls with a fix.",
+      "templates": [
+        {
+          "id": "mistake-callout",
+          "title": "Misconception Callout",
+          "useCase": "Mistake / misconception",
+          "tags": ["mistakes", "clarity"],
+          "slide": {
+            "type": "bullets",
+            "data": {
+              "heading": "Common Misconceptions",
+              "icon": "WARN",
+              "items": [
+                { "text": "Bigger model = always better", "detail": "Data quality and evaluation matter more than size alone." },
+                { "text": "LLMs understand like humans", "detail": "They predict tokens; understanding is not guaranteed." },
+                { "text": "Prompting replaces evaluation", "detail": "You still need tests and metrics." }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "recap",
+      "label": "Recap / Cheat Sheet",
+      "description": "Summarize takeaways for quick recall.",
+      "templates": [
+        {
+          "id": "recap-summary",
+          "title": "Cheat Sheet",
+          "useCase": "Recap",
+          "tags": ["recap", "cheat-sheet"],
+          "slide": {
+            "type": "summary",
+            "data": {
+              "heading": "Key Takeaways",
+              "icon": "RECAP",
+              "items": [
+                "Attention is the core idea.",
+                "Data quality > model size.",
+                "Evaluate with real tasks."
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "code-explain",
+      "label": "Code + Explanation",
+      "description": "Split view: short code snippet with explanation.",
+      "templates": [
+        {
+          "id": "code-split",
+          "title": "Code + Explanation Split",
+          "useCase": "Teach with code example",
+          "tags": ["code", "explain"],
+          "slide": {
+            "type": "split",
+            "data": {
+              "heading": "Tokenization Example",
+              "icon": "CODE",
+              "layout": "split-50-50",
+              "left": {
+                "type": "code",
+                "data": {
+                  "language": "python",
+                  "code": "text = 'AI for beginners'\nprint(text.split())"
+                }
+              },
+              "right": {
+                "type": "bullets",
+                "data": {
+                  "items": [
+                    "Split into tokens",
+                    "Tokens feed into the model",
+                    "Small step, huge impact"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "chapter-opener",
+      "label": "Chapter Opener",
+      "description": "Reset attention before a new section.",
+      "templates": [
+        {
+          "id": "chapter-title",
+          "title": "Chapter Title",
+          "useCase": "Chapter opener",
+          "tags": ["section", "transition"],
+          "slide": {
+            "type": "title",
+            "data": {
+              "heading": "Chapter 2: How Models Learn",
+              "subtitle": "From data to gradients to generalization",
+              "badge": "Chapter Opener"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
