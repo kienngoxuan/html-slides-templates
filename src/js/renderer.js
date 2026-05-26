@@ -6,10 +6,12 @@
 function renderSlideHTML(slide) {
   const d = slide.data;
   const notes = (d.speakerNotes || '').replace(/"/g, '&quot;');
+  const flowAttr = slide.flow ? ` data-flow="${esc(JSON.stringify(slide.flow))}"` : '';
+  const sectionAttrs = `class="slide" id="${slide.id}" data-speaker-notes="${notes}"${flowAttr}`;
 
   switch (slide.type) {
     case 'title':
-      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+        return `<section ${sectionAttrs}>
   <div class="slide-inner slide-title">
     <span class="badge">${esc(d.badge || '')}</span>
     <h1>${esc(d.heading)}</h1>
@@ -18,11 +20,11 @@ function renderSlideHTML(slide) {
 </section>`;
 
     case 'bullets':
-      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+      return `<section ${sectionAttrs}>
   <div class="slide-inner">
     <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
     <ul class="bullet-list stagger">
-      ${d.items.map(item => `<li class="bullet-item">
+      ${d.items.map((item, i) => `<li class="bullet-item" data-flow-id="bullet-${i + 1}">
         <div class="bullet-text">${esc(item.text)}</div>
         <div class="bullet-detail"><p>${esc(item.detail || '')}</p></div>
       </li>`).join('\n      ')}
@@ -31,11 +33,11 @@ function renderSlideHTML(slide) {
 </section>`;
 
     case 'accordion':
-      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+      return `<section ${sectionAttrs}>
   <div class="slide-inner">
     <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
     <div class="accordion stagger">
-      ${d.items.map((item, i) => `<div class="accordion-item">
+      ${d.items.map((item, i) => `<div class="accordion-item" data-flow-id="accordion-${i + 1}">
         <button class="accordion-header" role="button" aria-expanded="false" aria-controls="accordion-content-${slide.id}-${i}" id="accordion-header-${slide.id}-${i}">
           ${esc(item.title)}
           <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
@@ -52,14 +54,14 @@ function renderSlideHTML(slide) {
 </section>`;
 
     case 'tabs':
-      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+      return `<section ${sectionAttrs}>
   <div class="slide-inner">
     <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
     <div class="tabs-container">
       <div class="tabs-header" role="tablist">
         ${d.tabs.map((t, i) => `<button class="tab-btn${i === 0 ? ' active' : ''}" role="tab" aria-selected="${i === 0 ? 'true' : 'false'}" aria-controls="panel-${slide.id}-${i}" id="tab-${slide.id}-${i}">${esc(t.label)}</button>`).join('')}
       </div>
-      ${d.tabs.map((t, i) => `<div class="tab-panel${i === 0 ? ' active' : ''}" role="tabpanel" aria-labelledby="tab-${slide.id}-${i}" id="panel-${slide.id}-${i}">
+      ${d.tabs.map((t, i) => `<div class="tab-panel${i === 0 ? ' active' : ''}" role="tabpanel" aria-labelledby="tab-${slide.id}-${i}" id="panel-${slide.id}-${i}" data-flow-id="tab-panel-${i + 1}">
         <p>${esc(t.content)}</p>
         ${t.features ? `<div class="tab-features">${t.features.map(f => `<span class="tab-feature-tag">${esc(f)}</span>`).join('')}</div>` : ''}
         ${t.code ? `<pre><code>${esc(t.code)}</code></pre>` : ''}
@@ -69,7 +71,7 @@ function renderSlideHTML(slide) {
 </section>`;
 
     case 'stepper':
-      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+      return `<section ${sectionAttrs}>
   <div class="slide-inner">
     <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
     <div class="stepper">
@@ -80,7 +82,7 @@ function renderSlideHTML(slide) {
           return html;
         }).join('')}
       </div>
-      ${d.steps.map((s, i) => `<div class="step-content${i === 0 ? ' active' : ''}">
+      ${d.steps.map((s, i) => `<div class="step-content${i === 0 ? ' active' : ''}" data-flow-id="step-${i + 1}">
         <h4>${esc(s.title)}</h4>
         <p>${esc(s.content)}</p>
         ${s.tip ? `<div class="step-tip">${esc(s.tip)}</div>` : ''}
@@ -94,11 +96,11 @@ function renderSlideHTML(slide) {
 </section>`;
 
     case 'cards':
-      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+      return `<section ${sectionAttrs}>
   <div class="slide-inner">
     <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
     <div class="cards-grid stagger">
-      ${d.cards.map(c => `<div class="flip-card">
+      ${d.cards.map((c, i) => `<div class="flip-card" data-flow-id="card-${i + 1}">
         <div class="flip-card-inner">
           <div class="flip-card-front">${esc(c.front)}</div>
           <div class="flip-card-back">${esc(c.back)}</div>
@@ -110,7 +112,7 @@ function renderSlideHTML(slide) {
 </section>`;
 
     case 'advanced-quiz':
-      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+      return `<section ${sectionAttrs}>
   <div class="slide-inner">
     <div class="block-heading"><span class="icon">${d.icon || '🏆'}</span><h2>${esc(d.heading)}</h2></div>
     <div class="advanced-quiz-container stagger" data-total-questions="${d.questions.length}">
@@ -142,7 +144,7 @@ function renderSlideHTML(slide) {
 </section>`;
 
     case 'quiz':
-      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+      return `<section ${sectionAttrs}>
   <div class="slide-inner">
     <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
     <div class="quiz-container stagger">
@@ -161,33 +163,33 @@ function renderSlideHTML(slide) {
 </section>`;
 
     case 'compare':
-      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+      return `<section ${sectionAttrs}>
   <div class="slide-inner">
     <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
     <div class="compare-container">
       <div class="compare-side side-${d.left.color || 'blue'}">
         <h3>${esc(d.left.title)}</h3>
         <ul class="compare-list">
-          ${d.left.items.map(i => `<li>${esc(i)}</li>`).join('\n          ')}
+          ${d.left.items.map((i, idx) => `<li data-flow-id="compare-left-${idx + 1}">${esc(i)}</li>`).join('\n          ')}
         </ul>
       </div>
       <div class="compare-side side-${d.right.color || 'green'}">
         <h3>${esc(d.right.title)}</h3>
         <ul class="compare-list">
-          ${d.right.items.map(i => `<li>${esc(i)}</li>`).join('\n          ')}
+          ${d.right.items.map((i, idx) => `<li data-flow-id="compare-right-${idx + 1}">${esc(i)}</li>`).join('\n          ')}
         </ul>
       </div>
-      ${d.verdict ? `<div class="compare-verdict">${esc(d.verdict)}</div>` : ''}
+      ${d.verdict ? `<div class="compare-verdict" data-flow-id="compare-verdict">${esc(d.verdict)}</div>` : ''}
     </div>
   </div>
 </section>`;
 
     case 'timeline':
-      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+      return `<section ${sectionAttrs}>
   <div class="slide-inner">
     <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
     <div class="timeline stagger">
-      ${d.events.map(e => `<div class="timeline-item">
+      ${d.events.map((e, i) => `<div class="timeline-item" data-flow-id="timeline-${i + 1}">
         <div class="timeline-dot"></div>
         <div class="timeline-year">${esc(e.year)}</div>
         <div class="timeline-title">${esc(e.title)}</div>
@@ -198,11 +200,11 @@ function renderSlideHTML(slide) {
 </section>`;
 
     case 'summary':
-      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+      return `<section ${sectionAttrs}>
   <div class="slide-inner">
     <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
     <ul class="summary-items stagger">
-      ${d.items.map(i => `<li>${esc(i)}</li>`).join('\n      ')}
+      ${d.items.map((i, idx) => `<li data-flow-id="summary-${idx + 1}">${esc(i)}</li>`).join('\n      ')}
     </ul>
     ${d.callToAction ? `<div class="summary-cta"><p>${esc(d.callToAction)}</p></div>` : ''}
     ${d.resources ? `<div class="summary-resources">
@@ -212,7 +214,7 @@ function renderSlideHTML(slide) {
 </section>`;
 
     case 'image':
-      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+      return `<section ${sectionAttrs}>
   <div class="slide-inner">
     <div class="block-heading"><span class="icon">${d.icon || '🖼️'}</span><h2>${esc(d.heading)}</h2></div>
     <div class="image-block-container stagger">
@@ -226,7 +228,7 @@ function renderSlideHTML(slide) {
 </section>`;
 
     case 'chart':
-      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+      return `<section ${sectionAttrs}>
   <div class="slide-inner">
     <div class="block-heading"><span class="icon">${d.icon || '📊'}</span><h2>${esc(d.heading)}</h2></div>
     <div class="chart-block-container stagger" data-chart-type="${esc(d.chartType || 'bar')}" data-labels="${esc(JSON.stringify(d.labels || [])).replace(/"/g, '&quot;')}" data-datasets="${esc(JSON.stringify(d.datasets || [])).replace(/"/g, '&quot;')}">
@@ -239,7 +241,7 @@ function renderSlideHTML(slide) {
 </section>`;
 
     case 'table':
-      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+      return `<section ${sectionAttrs}>
   <div class="slide-inner">
     <div class="block-heading"><span class="icon">${d.icon || '🧮'}</span><h2>${esc(d.heading)}</h2></div>
     <div class="table-block-container stagger">
@@ -287,15 +289,15 @@ function renderSlideHTML(slide) {
 </section>`;
 
     case 'bento':
-      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+      return `<section ${sectionAttrs}>
   <div class="slide-inner">
     <div class="block-heading"><span class="icon">${d.icon || '🍱'}</span><h2>${esc(d.heading)}</h2></div>
     <div class="bento-grid stagger" style="--grid-template: ${esc(d.gridTemplate || 'auto')}">
-      ${(d.items || []).map(item => {
+      ${(d.items || []).map((item, i) => {
         const bgStyle = item.bgGradient ? `background: linear-gradient(135deg, ${item.bgGradient.split(' to ')[0]}, ${item.bgGradient.split(' to ')[1] || 'transparent'}); border: none;` : '';
         const hasBg = item.bgGradient ? ' bento-card-gradient' : '';
         const sizeClass = `bento-size-${item.size || 'small'}`;
-        return `<div class="bento-card ${sizeClass}${hasBg}" style="${bgStyle}">
+        return `<div class="bento-card ${sizeClass}${hasBg}" style="${bgStyle}" data-flow-id="bento-${i + 1}">
           ${item.badge ? `<span class="bento-badge">${esc(item.badge)}</span>` : ''}
           ${item.icon ? `<div class="bento-icon">${esc(item.icon)}</div>` : ''}
           <div class="bento-card-content">
@@ -309,7 +311,7 @@ function renderSlideHTML(slide) {
 </section>`;
 
     case 'flow':
-      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+      return `<section ${sectionAttrs}>
   <div class="slide-inner">
     <div class="block-heading"><span class="icon">${d.icon || '🌿'}</span><h2>${esc(d.heading)}</h2></div>
     <div class="flow-block-container stagger" data-nodes="${esc(JSON.stringify(d.nodes || [])).replace(/"/g, '&quot;')}" data-connections="${esc(JSON.stringify(d.connections || [])).replace(/"/g, '&quot;')}">
@@ -334,7 +336,7 @@ function renderSlideHTML(slide) {
 </section>`;
 
     case 'math':
-      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+      return `<section ${sectionAttrs}>
   <div class="slide-inner">
     <div class="block-heading"><span class="icon">${d.icon || '🧮'}</span><h2>${esc(d.heading)}</h2></div>
     <div class="math-block-container">
@@ -347,7 +349,7 @@ function renderSlideHTML(slide) {
 </section>`;
 
     case 'mermaid':
-      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+      return `<section ${sectionAttrs}>
   <div class="slide-inner">
     <div class="block-heading"><span class="icon">${d.icon || '🌿'}</span><h2>${esc(d.heading)}</h2></div>
     <div class="mermaid-block-container">
@@ -381,7 +383,7 @@ function renderSlideHTML(slide) {
       } else {
         videoHTML = `<video class="video-player-frame" controls poster="${d.poster || ''}"><source src="${d.videoUrl}" type="video/mp4"></video>`;
       }
-      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+      return `<section ${sectionAttrs}>
   <div class="slide-inner">
     <div class="block-heading"><span class="icon">${d.icon || '🎬'}</span><h2>${esc(d.heading)}</h2></div>
     <div class="video-block-container">
@@ -392,7 +394,7 @@ function renderSlideHTML(slide) {
     }
 
     case 'split':
-      return `<section class="slide" id="${slide.id}" data-speaker-notes="${notes}">
+      return `<section ${sectionAttrs}>
   <div class="slide-inner">
     <div class="block-heading"><span class="icon">${d.icon || '⚔️'}</span><h2>${esc(d.heading)}</h2></div>
     <div class="split-layout-container ${d.layout || 'split-50-50'}">
@@ -407,7 +409,7 @@ function renderSlideHTML(slide) {
 </section>`;
 
     default:
-      return `<section class="slide" id="${slide.id}"><div class="slide-inner"><p>Unknown block type: ${slide.type}</p></div></section>`;
+      return `<section ${sectionAttrs}><div class="slide-inner"><p>Unknown block type: ${slide.type}</p></div></section>`;
   }
 }
 
@@ -419,7 +421,7 @@ function renderSubBlock(b, id) {
     case 'text':
       return `<div class="sub-block sub-text"><p>${esc(d.content)}</p></div>`;
     case 'bullets':
-      return `<div class="sub-block sub-bullets"><ul style="list-style-type: disc; padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;">${d.items.map(it => `<li>${esc(it)}</li>`).join('')}</ul></div>`;
+      return `<div class="sub-block sub-bullets"><ul style="list-style-type: disc; padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;">${d.items.map((it, i) => `<li data-flow-id="sub-bullet-${i + 1}">${esc(it)}</li>`).join('')}</ul></div>`;
     case 'code':
       return `<div class="sub-block sub-code"><pre><code class="language-${d.language || 'javascript'}">${esc(d.code)}</code></pre></div>`;
     case 'image':
