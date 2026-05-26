@@ -337,3 +337,277 @@
   --gradient-accent: linear-gradient(135deg, oklch(60% 0.12 260), oklch(65% 0.10 280));
   --gradient-bg: linear-gradient(180deg, oklch(97% 0.01 50), oklch(94% 0.02 50));
 }
+
+/* ============================================
+   DESIGN LANGUAGE PACKS — rocket.new inspired
+   Each pack overrides typography, borders,
+   shadows, spacing density & visual feel.
+   ============================================ */
+
+/* === PACK: Editorial Magazine (Light) === */
+[data-theme="editorial"] {
+  --font-heading: 'Playfair Display', 'Georgia', serif;
+  --font-body: 'Inter', sans-serif;
+  --color-primary: oklch(28% 0.02 250);
+  --color-primary-light: oklch(45% 0.03 250);
+  --color-primary-dark: oklch(15% 0.01 250);
+  --color-primary-alpha: oklch(28% 0.02 250 / 0.12);
+  --color-secondary: oklch(52% 0.22 30);
+  --color-accent: oklch(52% 0.22 30);
+  --color-accent-light: oklch(70% 0.16 30);
+  --color-bg: oklch(99% 0 0);
+  --color-bg-alt: oklch(96% 0.002 60);
+  --color-surface: oklch(100% 0 0);
+  --color-surface-hover: oklch(97% 0.003 60);
+  --color-text: oklch(12% 0.01 250);
+  --color-text-secondary: oklch(35% 0.02 250);
+  --color-text-muted: oklch(55% 0.01 250);
+  --color-border: oklch(82% 0.01 250);
+  --color-border-light: oklch(90% 0.005 250);
+  --color-success: oklch(42% 0.16 145);
+  --color-warning: oklch(55% 0.18 80);
+  --color-error: oklch(48% 0.22 25);
+  --gradient-primary: linear-gradient(135deg, oklch(28% 0.02 250), oklch(52% 0.22 30));
+  --gradient-accent: linear-gradient(135deg, oklch(52% 0.22 30), oklch(60% 0.18 45));
+  --gradient-bg: linear-gradient(180deg, oklch(99% 0 0), oklch(96% 0.002 60));
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: 4px;
+  --radius-xl: 6px;
+  --shadow-md: 0 2px 8px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04);
+  --shadow-lg: 0 4px 20px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.04);
+}
+
+/* === PACK: Terminal / Hacker (Dark) === */
+[data-theme="terminal"] {
+  --font-heading: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-body: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --color-primary: oklch(70% 0.25 145);
+  --color-primary-light: oklch(80% 0.18 145);
+  --color-primary-dark: oklch(55% 0.28 145);
+  --color-primary-alpha: oklch(70% 0.25 145 / 0.18);
+  --color-secondary: oklch(75% 0.22 80);
+  --color-accent: oklch(75% 0.22 80);
+  --color-accent-light: oklch(85% 0.15 80);
+  --color-bg: oklch(10% 0 0);
+  --color-bg-alt: oklch(14% 0.005 145);
+  --color-surface: oklch(16% 0.008 145);
+  --color-surface-hover: oklch(20% 0.01 145);
+  --color-text: oklch(88% 0.12 145);
+  --color-text-secondary: oklch(72% 0.08 145);
+  --color-text-muted: oklch(52% 0.05 145);
+  --color-border: oklch(30% 0.10 145);
+  --color-border-light: oklch(22% 0.06 145);
+  --color-success: oklch(72% 0.22 145);
+  --color-warning: oklch(78% 0.20 80);
+  --color-error: oklch(65% 0.24 25);
+  --gradient-primary: linear-gradient(135deg, oklch(70% 0.25 145), oklch(72% 0.22 160));
+  --gradient-accent: linear-gradient(135deg, oklch(75% 0.22 80), oklch(80% 0.18 90));
+  --gradient-bg: linear-gradient(180deg, oklch(10% 0 0), oklch(8% 0 0));
+  --shadow-glow: 0 0 20px oklch(70% 0.25 145 / 0.4);
+  --shadow-md: 0 4px 16px oklch(70% 0.25 145 / 0.15);
+}
+
+/* === PACK: Blueprint Tech (Dark) === */
+[data-theme="blueprint"] {
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --color-primary: oklch(72% 0.06 220);
+  --color-primary-light: oklch(85% 0.04 220);
+  --color-primary-dark: oklch(58% 0.08 220);
+  --color-primary-alpha: oklch(72% 0.06 220 / 0.20);
+  --color-secondary: oklch(65% 0.04 240);
+  --color-accent: oklch(75% 0.12 200);
+  --color-accent-light: oklch(85% 0.08 200);
+  --color-bg: oklch(22% 0.05 240);
+  --color-bg-alt: oklch(26% 0.06 240);
+  --color-surface: oklch(28% 0.06 240);
+  --color-surface-hover: oklch(32% 0.07 240);
+  --color-text: oklch(94% 0.02 220);
+  --color-text-secondary: oklch(80% 0.03 220);
+  --color-text-muted: oklch(62% 0.04 220);
+  --color-border: oklch(45% 0.06 220);
+  --color-border-light: oklch(36% 0.05 220);
+  --color-success: oklch(72% 0.16 160);
+  --color-warning: oklch(78% 0.16 80);
+  --color-error: oklch(68% 0.20 25);
+  --gradient-primary: linear-gradient(135deg, oklch(72% 0.06 220), oklch(65% 0.08 200));
+  --gradient-accent: linear-gradient(135deg, oklch(75% 0.12 200), oklch(80% 0.08 210));
+  --gradient-bg: linear-gradient(180deg, oklch(22% 0.05 240), oklch(18% 0.06 240));
+  --radius-sm: 0px;
+  --radius-md: 2px;
+  --radius-lg: 4px;
+  --radius-xl: 6px;
+}
+
+/* === PACK: Blackboard Chalk (Dark) === */
+[data-theme="blackboard"] {
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --color-primary: oklch(88% 0.04 165);
+  --color-primary-light: oklch(94% 0.02 165);
+  --color-primary-dark: oklch(75% 0.06 165);
+  --color-primary-alpha: oklch(88% 0.04 165 / 0.20);
+  --color-secondary: oklch(85% 0.06 80);
+  --color-accent: oklch(82% 0.14 60);
+  --color-accent-light: oklch(90% 0.08 60);
+  --color-bg: oklch(18% 0.02 165);
+  --color-bg-alt: oklch(22% 0.025 165);
+  --color-surface: oklch(24% 0.025 165);
+  --color-surface-hover: oklch(28% 0.03 165);
+  --color-text: oklch(92% 0.02 165);
+  --color-text-secondary: oklch(78% 0.03 165);
+  --color-text-muted: oklch(62% 0.03 165);
+  --color-border: oklch(40% 0.04 165);
+  --color-border-light: oklch(32% 0.03 165);
+  --color-success: oklch(80% 0.16 145);
+  --color-warning: oklch(82% 0.18 80);
+  --color-error: oklch(70% 0.22 25);
+  --gradient-primary: linear-gradient(135deg, oklch(88% 0.04 165), oklch(85% 0.06 80));
+  --gradient-accent: linear-gradient(135deg, oklch(82% 0.14 60), oklch(86% 0.10 70));
+  --gradient-bg: linear-gradient(180deg, oklch(18% 0.02 165), oklch(14% 0.02 165));
+  --shadow-md: 0 2px 12px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.04);
+  --shadow-glow: 0 0 24px oklch(88% 0.04 165 / 0.3);
+}
+
+/* === PACK: Newspaper Broadsheet (Light) === */
+[data-theme="newspaper"] {
+  --font-heading: 'Merriweather', 'Georgia', serif;
+  --font-body: 'Lora', 'Georgia', serif;
+  --color-primary: oklch(25% 0.02 60);
+  --color-primary-light: oklch(40% 0.02 60);
+  --color-primary-dark: oklch(12% 0.01 60);
+  --color-primary-alpha: oklch(25% 0.02 60 / 0.10);
+  --color-secondary: oklch(35% 0.04 30);
+  --color-accent: oklch(42% 0.14 25);
+  --color-accent-light: oklch(62% 0.10 25);
+  --color-bg: oklch(95% 0.015 80);
+  --color-bg-alt: oklch(91% 0.02 80);
+  --color-surface: oklch(97% 0.01 80);
+  --color-surface-hover: oklch(93% 0.015 80);
+  --color-text: oklch(12% 0.01 60);
+  --color-text-secondary: oklch(30% 0.015 60);
+  --color-text-muted: oklch(50% 0.01 60);
+  --color-border: oklch(70% 0.015 60);
+  --color-border-light: oklch(82% 0.01 60);
+  --color-success: oklch(38% 0.14 145);
+  --color-warning: oklch(50% 0.16 80);
+  --color-error: oklch(42% 0.20 25);
+  --gradient-primary: linear-gradient(135deg, oklch(25% 0.02 60), oklch(42% 0.14 25));
+  --gradient-accent: linear-gradient(135deg, oklch(42% 0.14 25), oklch(50% 0.10 35));
+  --gradient-bg: linear-gradient(180deg, oklch(95% 0.015 80), oklch(91% 0.02 80));
+  --radius-sm: 0px;
+  --radius-md: 2px;
+  --radius-lg: 4px;
+  --radius-xl: 4px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.12);
+  --shadow-md: 0 2px 6px rgba(0,0,0,0.14);
+  --shadow-lg: 0 4px 12px rgba(0,0,0,0.16);
+}
+
+/* === PACK: Brutalist Flat (Light) === */
+[data-theme="brutalist"] {
+  --font-heading: 'Impact', 'Arial Black', sans-serif;
+  --font-body: 'Space Grotesk', 'Inter', sans-serif;
+  --color-primary: oklch(25% 0 0);
+  --color-primary-light: oklch(40% 0 0);
+  --color-primary-dark: oklch(10% 0 0);
+  --color-primary-alpha: oklch(25% 0 0 / 0.12);
+  --color-secondary: oklch(58% 0.28 100);
+  --color-accent: oklch(62% 0.30 0);
+  --color-accent-light: oklch(78% 0.22 0);
+  --color-bg: oklch(98% 0 0);
+  --color-bg-alt: oklch(94% 0 0);
+  --color-surface: oklch(100% 0 0);
+  --color-surface-hover: oklch(95% 0 0);
+  --color-text: oklch(8% 0 0);
+  --color-text-secondary: oklch(28% 0 0);
+  --color-text-muted: oklch(48% 0 0);
+  --color-border: oklch(15% 0 0);
+  --color-border-light: oklch(30% 0 0);
+  --color-success: oklch(42% 0.22 145);
+  --color-warning: oklch(62% 0.28 100);
+  --color-error: oklch(48% 0.28 25);
+  --gradient-primary: linear-gradient(135deg, oklch(25% 0 0), oklch(62% 0.30 0));
+  --gradient-accent: linear-gradient(135deg, oklch(62% 0.30 0), oklch(58% 0.28 100));
+  --gradient-bg: linear-gradient(180deg, oklch(98% 0 0), oklch(94% 0 0));
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-full: 0px;
+  --shadow-sm: 2px 2px 0 oklch(15% 0 0);
+  --shadow-md: 4px 4px 0 oklch(15% 0 0);
+  --shadow-lg: 6px 6px 0 oklch(15% 0 0);
+  --shadow-xl: 8px 8px 0 oklch(15% 0 0);
+  --shadow-glow: 4px 4px 0 oklch(62% 0.30 0);
+}
+
+/* === PACK: Soft Pastel Edu (Light) === */
+[data-theme="pastel"] {
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --color-primary: oklch(62% 0.16 300);
+  --color-primary-light: oklch(78% 0.10 300);
+  --color-primary-dark: oklch(48% 0.20 300);
+  --color-primary-alpha: oklch(62% 0.16 300 / 0.18);
+  --color-secondary: oklch(68% 0.14 200);
+  --color-accent: oklch(72% 0.16 55);
+  --color-accent-light: oklch(86% 0.10 55);
+  --color-bg: oklch(97% 0.01 320);
+  --color-bg-alt: oklch(94% 0.015 310);
+  --color-surface: oklch(99% 0.005 320);
+  --color-surface-hover: oklch(96% 0.01 310);
+  --color-text: oklch(25% 0.04 300);
+  --color-text-secondary: oklch(45% 0.05 300);
+  --color-text-muted: oklch(62% 0.04 300);
+  --color-border: oklch(86% 0.04 300);
+  --color-border-light: oklch(92% 0.02 300);
+  --color-success: oklch(65% 0.18 150);
+  --color-warning: oklch(72% 0.18 80);
+  --color-error: oklch(62% 0.22 25);
+  --gradient-primary: linear-gradient(135deg, oklch(62% 0.16 300), oklch(68% 0.14 200));
+  --gradient-accent: linear-gradient(135deg, oklch(72% 0.16 55), oklch(78% 0.12 70));
+  --gradient-bg: linear-gradient(180deg, oklch(97% 0.01 320), oklch(94% 0.015 310));
+  --radius-sm: 14px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+  --radius-xl: 36px;
+  --radius-full: 9999px;
+  --shadow-sm: 0 2px 8px oklch(62% 0.16 300 / 0.12);
+  --shadow-md: 0 6px 20px oklch(62% 0.16 300 / 0.16);
+  --shadow-lg: 0 12px 40px oklch(62% 0.16 300 / 0.18);
+}
+
+/* === PACK: Minimal Monochrome (Light) === */
+[data-theme="monochrome"] {
+  --font-heading: 'Syncopate', 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --color-primary: oklch(15% 0 0);
+  --color-primary-light: oklch(35% 0 0);
+  --color-primary-dark: oklch(5% 0 0);
+  --color-primary-alpha: oklch(15% 0 0 / 0.08);
+  --color-secondary: oklch(40% 0 0);
+  --color-accent: oklch(15% 0 0);
+  --color-accent-light: oklch(40% 0 0);
+  --color-bg: oklch(100% 0 0);
+  --color-bg-alt: oklch(96% 0 0);
+  --color-surface: oklch(100% 0 0);
+  --color-surface-hover: oklch(97% 0 0);
+  --color-text: oklch(10% 0 0);
+  --color-text-secondary: oklch(35% 0 0);
+  --color-text-muted: oklch(58% 0 0);
+  --color-border: oklch(88% 0 0);
+  --color-border-light: oklch(93% 0 0);
+  --color-success: oklch(30% 0 0);
+  --color-warning: oklch(50% 0 0);
+  --color-error: oklch(15% 0 0);
+  --gradient-primary: linear-gradient(135deg, oklch(15% 0 0), oklch(35% 0 0));
+  --gradient-accent: linear-gradient(135deg, oklch(35% 0 0), oklch(55% 0 0));
+  --gradient-bg: linear-gradient(180deg, oklch(100% 0 0), oklch(96% 0 0));
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md: 0 2px 8px rgba(0,0,0,0.08);
+  --shadow-lg: 0 4px 16px rgba(0,0,0,0.10);
+  --shadow-glow: 0 0 0 2px oklch(15% 0 0);
+}
