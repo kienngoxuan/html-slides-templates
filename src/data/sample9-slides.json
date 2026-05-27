@@ -1,0 +1,193 @@
+{
+  "meta": {
+    "title": "Web Stack Battleground",
+    "subtitle": "SPAs vs Server Components",
+    "author": "Frontend Engineering Guild",
+    "date": "2026",
+    "theme": "sunset",
+    "duration": 25,
+    "context": {
+      "audience": "Web Developers",
+      "topic": "Frontend Architecture",
+      "lessonLength": 25,
+      "tone": "energetic",
+      "pace": "fast",
+      "rhythmPreset": "conference-talk",
+      "textDensity": "medium",
+      "exampleDensity": "high",
+      "primaryColor": "#f97316",
+      "stylePack": "editorial-clean"
+    }
+  },
+  "slides": [
+    {
+      "id": "slide-1",
+      "$ref": "slide-title",
+      "data": {
+        "heading": "Web Stack Battleground: SPAs vs Server Components",
+        "subtitle": "The paradigm shift from Client-Side rendering back to the Server.",
+        "badge": "DevCon 2026 Keynote",
+        "speakerNotes": "Welcome to the thunderdome! Today we compare the legacy Single Page App against the new Server Component era."
+      }
+    },
+    {
+      "id": "slide-2",
+      "$ref": "slide-stats",
+      "data": {
+        "heading": "Performance Speed Benchmarks",
+        "icon": "🚀",
+        "stats": [
+          {"$ref": "trend-up", "value": "82%", "label": "Faster FCP", "trend": "First Contentful Paint"},
+          {"$ref": "trend-up", "value": "94%", "label": "JS Bundle Reduction", "trend": "Avg E-commerce site"},
+          {"$ref": "trend-down", "value": "12ms", "label": "Hydration Latency", "trend": "Down from 450ms"}
+        ]
+      }
+    },
+    {
+      "id": "slide-3",
+      "$ref": "slide-table",
+      "data": {
+        "heading": "Meta-Framework Comparison Matrix",
+        "icon": "📊",
+        "columns": [
+          {"key": "fw", "label": "Framework"},
+          {"key": "paradigm", "label": "Default Paradigm"},
+          {"key": "stream", "label": "Streaming HTML"},
+          {"key": "form", "label": "Form Actions"}
+        ],
+        "rows": [
+          {"fw": "Next.js (App Router)", "paradigm": "Server Components", "stream": "Yes (Suspense)", "form": "Native Support"},
+          {"fw": "Remix", "paradigm": "SSR (Loaders/Actions)", "stream": "Yes", "form": "Native Support"},
+          {"fw": "Astro", "paradigm": "Island Architecture", "stream": "Yes (via Islands)", "form": "Manual setup"},
+          {"fw": "Vite (React SPA)", "paradigm": "Client-Side Rendering", "stream": "No", "form": "Manual API calls"}
+        ]
+      }
+    },
+    {
+      "id": "slide-4",
+      "type": "timeline",
+      "transitionPreset": "fade",
+      "data": {
+        "heading": "A Decade of Web Rendering Evolution",
+        "icon": "⏳",
+        "events": [
+          {"year": "2010", "title": "Server-Side Rendering (Classic)", "description": "PHP and Ruby dominated. Every click meant a full page reload."},
+          {"year": "2015", "title": "The SPA Era (React/Vue)", "description": "Thick clients. The browser downloaded a massive JS bundle and built the DOM."},
+          {"year": "2020", "title": "Static Site Generation (SSG)", "description": "Gatsby and Next.js pre-rendered HTML at build time for speed, but dynamic data was hard."},
+          {"year": "2026", "title": "React Server Components", "description": "The best of both worlds. Rendering logic lives on the server, streaming UI to the client."}
+        ]
+      }
+    },
+    {
+      "id": "slide-5",
+      "$ref": "slide-bento",
+      "data": {
+        "heading": "React 19 Core Architecture",
+        "icon": "🍱",
+        "gridTemplate": "large | small small",
+        "items": [
+          {"$ref": "bento-large", "title": "Server Actions", "content": "Asynchronous functions that execute on the server. They seamlessly integrate with standard HTML forms, providing progressive enhancement.", "badge": "Game Changer", "bgGradient": "oklch(60% 0.2 40) to oklch(50% 0.15 30)"},
+          {"$ref": "bento-small", "title": "The 'use' Hook", "content": "Read promises directly in render, suspending until data is ready.", "icon": "🎣"},
+          {"$ref": "bento-small", "title": "useOptimistic", "content": "Update the UI instantly while the server processes the mutation.", "icon": "✨"}
+        ]
+      }
+    },
+    {
+      "id": "slide-6",
+      "$ref": "slide-flow",
+      "data": {
+        "heading": "Server Actions Roundtrip",
+        "icon": "🔄",
+        "nodes": [
+          {"id": "client", "label": "Client Form Submit", "details": "User clicks 'Save'"},
+          {"id": "network", "label": "Multipart Request", "details": "Data sent to server"},
+          {"id": "server", "label": "Server Action Exec", "details": "DB Mutation"},
+          {"id": "stream", "label": "RSC Payload Stream", "details": "Updated UI chunks sent back"}
+        ],
+        "connections": [
+          {"from": "client", "to": "network"},
+          {"from": "network", "to": "server"},
+          {"from": "server", "to": "stream"}
+        ]
+      }
+    },
+    {
+      "id": "slide-7",
+      "type": "split",
+      "transitionPreset": "zoom-in",
+      "data": {
+        "heading": "Legacy Client-Side vs Next-Gen Server",
+        "icon": "⚡",
+        "layout": "split-50-50",
+        "left": {
+          "type": "bullets",
+          "data": {
+            "heading": "Traditional SPA",
+            "items": [
+              "Sends megabytes of JS to the user.",
+              "Requires complex client-side state management (Redux).",
+              "Waterfalls of API fetching on the client.",
+              "Poor initial load time (FCP) on slow devices."
+            ]
+          }
+        },
+        "right": {
+          "type": "bullets",
+          "data": {
+            "heading": "Server Components",
+            "items": [
+              "Zero JS shipped to the client by default.",
+              "Direct access to databases and backend resources.",
+              "Automatic code splitting by component.",
+              "Instant initial load with streaming HTML."
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "slide-8",
+      "$ref": "slide-code",
+      "data": {
+        "heading": "Form Handling Evolution",
+        "icon": "💻",
+        "leftTitle": "React 18 (Client SPA)",
+        "leftLang": "javascript",
+        "leftCode": "function Form() {\n  const [loading, setLoading] = useState(false);\n  const onSubmit = async (e) => {\n    e.preventDefault();\n    setLoading(true);\n    await fetch('/api/submit', { method: 'POST', body: ... });\n    setLoading(false);\n  };\n  return <form onSubmit={onSubmit}>...</form>;\n}",
+        "rightTitle": "React 19 (Server Action)",
+        "rightLang": "javascript",
+        "rightCode": "export default function Form() {\n  async function submitAction(formData) {\n    'use server';\n    await db.insert(formData.get('name'));\n  }\n  return <form action={submitAction}>...</form>;\n}"
+      }
+    },
+    {
+      "id": "slide-9",
+      "$ref": "slide-quiz",
+      "data": {
+        "heading": "Understanding Hydration & Streaming",
+        "icon": "❓",
+        "questions": [
+          {"question": "What is the primary benefit of 'Streaming' with React Server Components?", "correct": 1, "options": ["It compresses images automatically on the server.", "It allows the browser to render parts of the UI before the entire data request finishes.", "It forces the client to download a real-time web socket connection.", "It replaces the need for a database entirely."], "explanation": "Streaming breaks the HTML into chunks. When wrapped in Suspense, the server sends the skeleton immediately, then streams the data-heavy parts as soon as the database query finishes, vastly improving perceived load times."}
+        ]
+      }
+    },
+    {
+      "id": "slide-10",
+      "$ref": "slide-summary",
+      "data": {
+        "heading": "The Modern Developer Stack Wrap-up",
+        "icon": "🏁",
+        "items": [
+          "The pendulum has swung back from thick clients to smart servers.",
+          "React Server Components fundamentally change how we think about data fetching.",
+          "Performance is no longer an afterthought; it's built into the paradigm.",
+          "Meta-frameworks (Next, Remix, Astro) are essential for modern React development."
+        ],
+        "callToAction": "Try migrating a small SPA to the App Router this weekend!",
+        "resources": [
+          {"label": "React 19 Official Documentation", "url": "#"},
+          {"label": "Next.js App Router Guide", "url": "#"}
+        ]
+      }
+    }
+  ]
+}
