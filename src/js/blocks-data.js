@@ -683,21 +683,17 @@ const InteractiveBlocksData = (function () {
       svg.innerHTML = '';
       if (defs) {
         svg.appendChild(defs);
-        const marker = defs.querySelector('#arrow');
-        if (marker) {
-          marker.setAttribute('refX', Math.round(nodeWidth / 2 + 8));
-        }
       }
 
-      connections.forEach(conn => {
+      connections.forEach((conn, connIdx) => {
         const fromNode = nodes.find(n => n.id === conn.from);
         const toNode = nodes.find(n => n.id === conn.to);
         if (!fromNode || !toNode) return;
 
         const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        const startX = fromNode.x + nodeWidth / 2;
+        const startX = fromNode.x + nodeWidth;
         const startY = fromNode.y + nodeHeight / 2;
-        const endX = toNode.x + nodeWidth / 2;
+        const endX = toNode.x;
         const endY = toNode.y + nodeHeight / 2;
 
         const dx = endX - startX;
@@ -710,8 +706,24 @@ const InteractiveBlocksData = (function () {
         path.setAttribute('fill', 'none');
         path.setAttribute('stroke', 'var(--color-primary-alpha)');
         path.setAttribute('stroke-width', '2.5');
-        path.setAttribute('marker-end', 'url(#arrow)');
+        path.classList.add('flow-connection-path');
         svg.appendChild(path);
+
+        // SVG line draw animation
+        let pathLength = 500;
+        try {
+          const totalLen = path.getTotalLength();
+          if (totalLen > 0) pathLength = totalLen;
+        } catch (e) { /* fallback */ }
+
+        path.setAttribute('stroke-dasharray', pathLength);
+        path.setAttribute('stroke-dashoffset', pathLength);
+
+        // Staggered draw-in animation
+        setTimeout(() => {
+          path.style.transition = 'stroke-dashoffset 1.2s cubic-bezier(0.25, 1, 0.5, 1)';
+          path.setAttribute('stroke-dashoffset', '0');
+        }, 150 + connIdx * 200);
       });
 
       nodes.forEach(node => {
@@ -775,6 +787,33 @@ const InteractiveBlocksData = (function () {
             desc.textContent = node.details || 'No details specified for this step.';
           }
         });
+      });
+    });
+
+    // Re-animate flow connections when navigating to a flow slide
+    document.addEventListener('slideChanged', (e) => {
+      const slideIndex = e.detail.index;
+      const allSlides = document.querySelectorAll('.slide');
+      const activeSlide = allSlides[slideIndex];
+      if (!activeSlide) return;
+
+      activeSlide.querySelectorAll('.flow-connection-path').forEach((path, idx) => {
+        let pathLength = 500;
+        try {
+          const totalLen = path.getTotalLength();
+          if (totalLen > 0) pathLength = totalLen;
+        } catch (e) { /* fallback */ }
+
+        // Reset
+        path.style.transition = 'none';
+        path.setAttribute('stroke-dasharray', pathLength);
+        path.setAttribute('stroke-dashoffset', pathLength);
+
+        // Re-animate
+        setTimeout(() => {
+          path.style.transition = 'stroke-dashoffset 1.2s cubic-bezier(0.25, 1, 0.5, 1)';
+          path.setAttribute('stroke-dashoffset', '0');
+        }, 150 + idx * 200);
       });
     });
   }
