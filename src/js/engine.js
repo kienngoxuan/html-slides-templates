@@ -262,8 +262,18 @@ const SlideEngine = (function () {
       const inner = s.querySelector('.slide-inner');
       if (inner) {
         if (i === currentSlide && animate) {
+          // Apply transition preset class if the slide has one
+          const preset = s.dataset.transitionPreset;
+          if (preset) {
+            inner.classList.add(`slide-transition-${preset}`);
+          }
           inner.classList.add('slide-enter');
-          setTimeout(() => inner.classList.remove('slide-enter'), 600);
+          setTimeout(() => {
+            inner.classList.remove('slide-enter');
+            if (preset) {
+              inner.classList.remove(`slide-transition-${preset}`);
+            }
+          }, 700);
         }
       }
     });
@@ -283,6 +293,27 @@ const SlideEngine = (function () {
         previousIndex: previousSlide
       } 
     }));
+
+    // Trigger counter animation for stat blocks on the active slide
+    if (animate) {
+      const activeSlide = slides[currentSlide];
+      if (activeSlide) {
+        animateStatCounters(activeSlide);
+      }
+      const prevSlide = slides[previousSlide];
+      if (prevSlide) {
+        resetStatCounters(prevSlide);
+      }
+    }
+  }
+
+  function resetStatCounters(slideEl) {
+    const counters = slideEl.querySelectorAll('.stat-counter[data-count-target]');
+    counters.forEach(counter => {
+      delete counter.dataset.countAnimated;
+      const original = counter.dataset.countOriginal || '0';
+      counter.textContent = original;
+    });
   }
 
   function next() { updateSlide(currentSlide + 1); }
@@ -383,6 +414,63 @@ const SlideEngine = (function () {
   function getCurrent() { return currentSlide; }
   function getTotal() { return totalSlides; }
   function getBroadcast() { return broadcast; }
+
+  /* === Counter Animation for Stat Blocks === */
+  function animateStatCounters(slideEl) {
+    const counters = slideEl.querySelectorAll('.stat-counter[data-count-target]');
+    if (counters.length === 0) return;
+
+    counters.forEach(counter => {
+      // Skip if already animated
+      if (counter.dataset.countAnimated === 'true') return;
+      counter.dataset.countAnimated = 'true';
+
+      const target = parseFloat(counter.dataset.countTarget) || 0;
+      const decimals = parseInt(counter.dataset.countDecimals, 10) || 0;
+      const original = counter.dataset.countOriginal || String(target);
+      const hasCommas = original.includes(',');
+      const duration = 1200; // ms
+      let startTime = null;
+
+      // easeOutQuart for a satisfying deceleration
+      function easeOutQuart(t) {
+        return 1 - Math.pow(1 - t, 4);
+      }
+
+      function formatNumber(num) {
+        let formatted = num.toFixed(decimals);
+        if (hasCommas) {
+          const parts = formatted.split('.');
+          parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+          formatted = parts.join('.');
+        }
+        return formatted;
+      }
+
+      counter.classList.add('counting');
+      counter.textContent = formatNumber(0);
+
+      function tick(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const elapsed = timestamp - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easedProgress = easeOutQuart(progress);
+        const currentValue = easedProgress * target;
+
+        counter.textContent = formatNumber(currentValue);
+
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          counter.textContent = formatNumber(target);
+          counter.classList.remove('counting');
+        }
+      }
+
+      // Slight delay to let the slide enter animation start first
+      setTimeout(() => requestAnimationFrame(tick), 200);
+    });
+  }
 
   return { init, next, prev, goTo, getCurrent, getTotal, getBroadcast };
 })();
