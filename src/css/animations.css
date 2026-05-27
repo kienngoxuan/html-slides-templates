@@ -186,3 +186,127 @@
   overflow: hidden;
   animation: flowTypeReveal var(--flow-duration) steps(20, end) forwards;
 }
+
+/* ============================================
+   SLIDE TRANSITION PRESETS
+   Applied to .slide-inner when navigating
+   ============================================ */
+
+@keyframes transitionFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes transitionWipeRight {
+  from {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0.4;
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+@keyframes transitionZoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.75);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes transitionFlipY {
+  from {
+    opacity: 0;
+    transform: perspective(1200px) rotateY(-90deg);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(1200px) rotateY(0deg);
+  }
+}
+
+/* Transition preset classes — added to .slide-inner on navigation */
+.slide-transition-fade.slide-enter {
+  animation: transitionFade 0.6s ease forwards;
+}
+
+.slide-transition-wipe-right.slide-enter {
+  animation: transitionWipeRight 0.65s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.slide-transition-zoom-in.slide-enter {
+  animation: transitionZoomIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.slide-transition-flip-y.slide-enter {
+  animation: transitionFlipY 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+
+/* ============================================
+   STAGGER SPRING — Bouncy progressive reveal
+   For bullets, split layouts, etc.
+   ============================================ */
+
+@keyframes springSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.01);
+  }
+  80% {
+    transform: translateY(2px) scale(0.995);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.stagger-spring > * {
+  opacity: 0;
+  animation: springSlideUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+.stagger-spring > *:nth-child(1)  { animation-delay: calc(var(--flow-stagger) * 1); }
+.stagger-spring > *:nth-child(2)  { animation-delay: calc(var(--flow-stagger) * 2); }
+.stagger-spring > *:nth-child(3)  { animation-delay: calc(var(--flow-stagger) * 3); }
+.stagger-spring > *:nth-child(4)  { animation-delay: calc(var(--flow-stagger) * 4); }
+.stagger-spring > *:nth-child(5)  { animation-delay: calc(var(--flow-stagger) * 5); }
+.stagger-spring > *:nth-child(6)  { animation-delay: calc(var(--flow-stagger) * 6); }
+.stagger-spring > *:nth-child(7)  { animation-delay: calc(var(--flow-stagger) * 7); }
+.stagger-spring > *:nth-child(8)  { animation-delay: calc(var(--flow-stagger) * 8); }
+.stagger-spring > *:nth-child(9)  { animation-delay: calc(var(--flow-stagger) * 9); }
+.stagger-spring > *:nth-child(10) { animation-delay: calc(var(--flow-stagger) * 10); }
+
+
+/* ============================================
+   COUNTER ANIMATION — Stat block number count
+   ============================================ */
+
+.stat-counter {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-counter.counting {
+  transition: transform 0.1s ease;
+}
+
+
+/* ============================================
+   SVG LINE DRAW — Flow connection paths
+   ============================================ */
+
+.flow-svg-canvas .flow-connection-path {
+  transition: stroke-dashoffset 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
