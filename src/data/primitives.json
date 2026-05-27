@@ -1,0 +1,138 @@
+{
+  "bento-small": {
+    "size": "small"
+  },
+  "slide-quiz": {
+    "type": "quiz",
+    "transitionPreset": "zoom-in"
+  },
+  "slide-flow": {
+    "type": "flow",
+    "transitionPreset": "fade"
+  },
+  "slide-bullets": {
+    "type": "bullets",
+    "transitionPreset": "wipe-right"
+  },
+  "slide-bento": {
+    "type": "bento",
+    "transitionPreset": "zoom-in"
+  },
+  "slide-stats": {
+    "type": "stats",
+    "transitionPreset": "zoom-in"
+  },
+  "slide-compare": {
+    "type": "compare",
+    "transitionPreset": "wipe-right"
+  },
+  "slide-timeline": {
+    "type": "timeline-horizontal",
+    "transitionPreset": "wipe-right"
+  },
+  "slide-code": {
+    "type": "code-diff",
+    "transitionPreset": "fade"
+  },
+  "slide-table": {
+    "type": "table",
+    "transitionPreset": "fade"
+  },
+  "slide-summary": {
+    "type": "summary",
+    "transitionPreset": "wipe-right"
+  },
+  "slide-title": {
+    "type": "title",
+    "transitionPreset": "wipe-right"
+  },
+  "trend-up": {
+    "trendUp": true
+  },
+  "slide-timeline-horizontal": {
+    "type": "timeline-horizontal",
+    "transitionPreset": "wipe-right"
+  },
+  "slide-split": {
+    "type": "split",
+    "transitionPreset": "wipe-right"
+  },
+  "slide-code-diff": {
+    "type": "code-diff",
+    "transitionPreset": "fade"
+  },
+  "slide-advanced-quiz": {
+    "type": "advanced-quiz",
+    "transitionPreset": "zoom-in"
+  },
+  "slide-cards": {
+    "type": "cards",
+    "transitionPreset": "wipe-right"
+  },
+  "slide-image": {
+    "type": "image",
+    "transitionPreset": "zoom-in"
+  },
+  "slide-quote-card": {
+    "type": "quote-card",
+    "transitionPreset": "fade"
+  },
+  "slide-definition-card": {
+    "type": "definition-card",
+    "transitionPreset": "fade"
+  },
+  "slide-analogy": {
+    "type": "analogy",
+    "transitionPreset": "fade"
+  },
+  "slide-checklist": {
+    "type": "checklist",
+    "transitionPreset": "wipe-right"
+  },
+  "slide-splash": {
+    "type": "splash",
+    "transitionPreset": "zoom-in"
+  },
+  "slide-stepper": {
+    "type": "stepper",
+    "transitionPreset": "wipe-right"
+  },
+  "slide-accordion": {
+    "type": "accordion",
+    "transitionPreset": "wipe-right"
+  },
+  "slide-tabs": {
+    "type": "tabs",
+    "transitionPreset": "wipe-right"
+  },
+  "slide-chart": {
+    "type": "chart",
+    "transitionPreset": "fade"
+  },
+  "context-executive": {
+    "audience": "Stakeholders & Leadership",
+    "lessonLength": 20,
+    "tone": "optimistic",
+    "pace": "moderate",
+    "rhythmPreset": "executive-brief",
+    "textDensity": "medium",
+    "exampleDensity": "high",
+    "stylePack": "editorial-clean"
+  },
+  "context-beginner": {
+    "audience": "Beginners",
+    "lessonLength": 45,
+    "tone": "friendly",
+    "pace": "slow",
+    "rhythmPreset": "beginner-friendly",
+    "textDensity": "low",
+    "exampleDensity": "high",
+    "stylePack": "soft-glass"
+  },
+  "bento-large": {
+    "size": "large"
+  },
+  "trend-down": {
+    "trendUp": false
+  }
+}
