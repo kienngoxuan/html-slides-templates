@@ -1,0 +1,198 @@
+{
+  "meta": {
+    "title": "Enterprise Expansion Roadmap 2026",
+    "subtitle": "Global Infrastructure & Product Rollout",
+    "author": "VP of Engineering & Strategy",
+    "date": "2026",
+    "theme": "forest",
+    "duration": 20,
+    "context": {
+      "$ref": "context-executive",
+      "topic": "Global SaaS Expansion",
+      "primaryColor": "#16a34a"
+    }
+  },
+  "slides": [
+    {
+      "id": "slide-1",
+      "$ref": "slide-title",
+      "data": {
+        "heading": "Enterprise Expansion Roadmap 2026",
+        "subtitle": "Phased global rollout of our AI-native platform.",
+        "badge": "Strategic Planning",
+        "speakerNotes": "Good morning. We will outline our ambitious roadmap for global infrastructure deployment over the next four quarters."
+      }
+    },
+    {
+      "id": "slide-2",
+      "$ref": "slide-timeline",
+      "data": {
+        "heading": "Horizontal Timeline of Phased Expansion",
+        "icon": "📈",
+        "events": [
+          {"year": "Q1", "title": "Foundation & Compliance", "description": "Securing local data centers and ISO certifications."},
+          {"year": "Q2", "title": "EMEA Launch", "description": "Opening hubs in London, Frankfurt, and Dubai."},
+          {"year": "Q3", "title": "APAC Scaling", "description": "Deploying edge nodes in Singapore, Tokyo, and Sydney."},
+          {"year": "Q4", "title": "Global Optimization", "description": "AI-driven load balancing and cost optimization across all regions."}
+        ]
+      }
+    },
+    {
+      "id": "slide-3",
+      "$ref": "slide-flow",
+      "data": {
+        "heading": "Infrastructure Rollout Process Flow",
+        "icon": "🏗️",
+        "nodes": [
+          {"id": "plan", "label": "Capacity Planning", "details": "Forecasting compute needs."},
+          {"id": "prov", "label": "Automated Provisioning", "details": "Terraform / IaC execution."},
+          {"id": "deploy", "label": "Service Deployment", "details": "Rolling Kubernetes updates."},
+          {"id": "verify", "label": "Health Verification", "details": "Automated integration testing."}
+        ],
+        "connections": [
+          {"from": "plan", "to": "prov"},
+          {"from": "prov", "to": "deploy"},
+          {"from": "deploy", "to": "verify"}
+        ]
+      }
+    },
+    {
+      "id": "slide-4",
+      "$ref": "slide-bento",
+      "data": {
+        "heading": "Global Expansion Bento Grid",
+        "icon": "🌍",
+        "gridTemplate": "large | small small",
+        "items": [
+          {"$ref": "bento-large", "title": "Primary Data Centers", "content": "Strategically located Tier-4 facilities ensuring low-latency access and data sovereignty compliance for enterprise clients.", "badge": "Core Hubs", "bgGradient": "oklch(55% 0.15 140) to oklch(45% 0.1 130)"},
+          {"$ref": "bento-small", "title": "Edge Compute Nodes", "content": "Over 200 points of presence (PoPs) globally for static asset caching and edge function execution.", "icon": "⚡"},
+          {"$ref": "bento-small", "title": "Dedicated Connect", "content": "Private fiber links bypassing public internet congestion.", "icon": "🔗"}
+        ]
+      }
+    },
+    {
+      "id": "slide-5",
+      "$ref": "slide-stats",
+      "data": {
+        "heading": "Growth Targets & Projected Traction",
+        "icon": "🎯",
+        "stats": [
+          {"$ref": "trend-up", "value": "42", "label": "Target Countries", "trend": "+15 YoY"},
+          {"$ref": "trend-up", "value": "1,800%", "label": "Enterprise Partner Traction", "trend": "Based on signed LOIs"},
+          {"$ref": "trend-up", "value": "50", "label": "New Compute Centers", "trend": "By EOY 2026"}
+        ]
+      }
+    },
+    {
+      "$ref": "slide-split",
+      "id": "slide-6",
+      "data": {
+        "heading": "Centralized SaaS vs Edge Topology",
+        "icon": "⚖️",
+        "layout": "split-50-50",
+        "left": {
+          "type": "bullets",
+          "data": {
+            "heading": "Legacy Centralized Model",
+            "items": [
+              "High latency for international users.",
+              "Single point of failure during regional outages.",
+              "Difficult to comply with strict data residency laws.",
+              "Easier to manage, but harder to scale globally."
+            ]
+          }
+        },
+        "right": {
+          "type": "bullets",
+          "data": {
+            "heading": "Our New Edge Topology",
+            "items": [
+              "Sub-50ms latency for 95% of global users.",
+              "Highly resilient active-active multi-region failover.",
+              "Data localized to comply with GDPR/CCPA natively.",
+              "Complex orchestration handled by automated IaC."
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "slide-7",
+      "$ref": "slide-table",
+      "data": {
+        "heading": "Phase 1 - Phase 3 Delivery Matrix",
+        "icon": "🗓️",
+        "columns": [
+          {"key": "phase", "label": "Phase"},
+          {"key": "region", "label": "Region"},
+          {"key": "deliverable", "label": "Primary Deliverable"},
+          {"key": "date", "label": "Target Date"}
+        ],
+        "rows": [
+          {"phase": "Phase 1", "region": "North America", "deliverable": "Core API Upgrades & Sec Audit", "date": "March 15, 2026"},
+          {"phase": "Phase 2", "region": "EMEA", "deliverable": "GDPR Compliant Data Silos", "date": "July 1, 2026"},
+          {"phase": "Phase 3", "region": "APAC", "deliverable": "Edge Caching & Localized Support", "date": "October 30, 2026"},
+          {"phase": "Phase 4", "region": "Global", "deliverable": "Unified AI Management Plane", "date": "December 15, 2026"}
+        ]
+      }
+    },
+    {
+      "id": "slide-8",
+      "$ref": "slide-code",
+      "data": {
+        "heading": "Automated Deploy Script Refactoring",
+        "icon": "💻",
+        "leftTitle": "Manual Provisioning (Bash)",
+        "leftLang": "bash",
+        "leftCode": "# Old way: manual scripts\nssh admin@server 'apt-get update && apt-get install docker'\nscp config.json admin@server:/etc/app/\nssh admin@server 'docker-compose up -d'",
+        "rightTitle": "Infrastructure as Code (Terraform)",
+        "rightLang": "hcl",
+        "rightCode": "# New way: declarative IaC\nresource \"aws_instance\" \"app_server\" {\n  ami           = \"ami-0c55b159cbfafe1f0\"\n  instance_type = \"t3.large\"\n  user_data     = file(\"setup.sh\")\n  tags = {\n    Name = \"Global-Node-${var.region}\"\n  }\n}"
+      }
+    },
+    {
+      "id": "slide-9",
+      "$ref": "slide-quiz",
+      "data": {
+        "heading": "Infrastructure SLA Checklist",
+        "icon": "🛡️",
+        "questions": [
+          {"question": "Which compliance framework mandates that personal data must remain within the borders of the European Union unless strict transfer mechanisms are in place?", "correct": 0, "options": ["General Data Protection Regulation (GDPR)", "Health Insurance Portability and Accountability Act (HIPAA)", "Payment Card Industry Data Security Standard (PCI-DSS)", "System and Organization Controls (SOC 2)"], "explanation": "GDPR's data residency requirements are the primary driver behind our Phase 2 localized data silo rollout in the EMEA region."}
+        ]
+      }
+    },
+    {
+      "id": "slide-10",
+      "$ref": "slide-bullets",
+      "data": {
+        "heading": "Strategic Growth Pillars",
+        "icon": "🏛️",
+        "items": [
+          {"text": "Resilience First", "detail": "Every system designed assuming underlying hardware will eventually fail."},
+          {"text": "Security by Default", "detail": "Zero-trust architecture implemented across all inter-service communications."},
+          {"text": "Developer Experience (DX)", "detail": "Providing self-serve tools for internal teams to deploy without DevOps bottlenecks."},
+          {"text": "Sustainable Scaling", "detail": "Optimizing compute workloads to reduce our carbon footprint by 30%."}
+        ]
+      }
+    },
+    {
+      "id": "slide-11",
+      "$ref": "slide-summary",
+      "data": {
+        "heading": "Roadmap Milestones Recap",
+        "icon": "🏁",
+        "items": [
+          "Q1-Q4 roadmap is fully funded and engineering teams are aligned.",
+          "Our move to Edge topology will provide a significant competitive advantage.",
+          "Compliance (GDPR, SOC2) is proactively integrated into the deployment pipeline.",
+          "Execution risk is mitigated through Infrastructure as Code (Terraform)."
+        ],
+        "callToAction": "Reach out to the PMO for detailed Gantt charts and resource allocations.",
+        "resources": [
+          {"label": "Internal Expansion Handbook", "url": "#"},
+          {"label": "Live Infrastructure Dashboard", "url": "#"}
+        ]
+      }
+    }
+  ]
+}
