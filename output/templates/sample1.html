@@ -4394,6 +4394,130 @@ body.safe-zone-subtitle-on .safe-zone-subtitle {
   animation: flowTypeReveal var(--flow-duration) steps(20, end) forwards;
 }
 
+/* ============================================
+   SLIDE TRANSITION PRESETS
+   Applied to .slide-inner when navigating
+   ============================================ */
+
+@keyframes transitionFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes transitionWipeRight {
+  from {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0.4;
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+@keyframes transitionZoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.75);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes transitionFlipY {
+  from {
+    opacity: 0;
+    transform: perspective(1200px) rotateY(-90deg);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(1200px) rotateY(0deg);
+  }
+}
+
+/* Transition preset classes — added to .slide-inner on navigation */
+.slide-transition-fade.slide-enter {
+  animation: transitionFade 0.6s ease forwards;
+}
+
+.slide-transition-wipe-right.slide-enter {
+  animation: transitionWipeRight 0.65s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.slide-transition-zoom-in.slide-enter {
+  animation: transitionZoomIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.slide-transition-flip-y.slide-enter {
+  animation: transitionFlipY 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+
+/* ============================================
+   STAGGER SPRING — Bouncy progressive reveal
+   For bullets, split layouts, etc.
+   ============================================ */
+
+@keyframes springSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.01);
+  }
+  80% {
+    transform: translateY(2px) scale(0.995);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.stagger-spring > * {
+  opacity: 0;
+  animation: springSlideUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+.stagger-spring > *:nth-child(1)  { animation-delay: calc(var(--flow-stagger) * 1); }
+.stagger-spring > *:nth-child(2)  { animation-delay: calc(var(--flow-stagger) * 2); }
+.stagger-spring > *:nth-child(3)  { animation-delay: calc(var(--flow-stagger) * 3); }
+.stagger-spring > *:nth-child(4)  { animation-delay: calc(var(--flow-stagger) * 4); }
+.stagger-spring > *:nth-child(5)  { animation-delay: calc(var(--flow-stagger) * 5); }
+.stagger-spring > *:nth-child(6)  { animation-delay: calc(var(--flow-stagger) * 6); }
+.stagger-spring > *:nth-child(7)  { animation-delay: calc(var(--flow-stagger) * 7); }
+.stagger-spring > *:nth-child(8)  { animation-delay: calc(var(--flow-stagger) * 8); }
+.stagger-spring > *:nth-child(9)  { animation-delay: calc(var(--flow-stagger) * 9); }
+.stagger-spring > *:nth-child(10) { animation-delay: calc(var(--flow-stagger) * 10); }
+
+
+/* ============================================
+   COUNTER ANIMATION — Stat block number count
+   ============================================ */
+
+.stat-counter {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-counter.counting {
+  transition: transform 0.1s ease;
+}
+
+
+/* ============================================
+   SVG LINE DRAW — Flow connection paths
+   ============================================ */
+
+.flow-svg-canvas .flow-connection-path {
+  transition: stroke-dashoffset 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
 
 /* ============================================
    LECTA AI — Gear Settings Panel + Right Sidebar
@@ -5986,7 +6110,7 @@ body.viewport-mode-mobile .table-actions {
 <section class="slide" id="slide-2" data-speaker-notes="Walk through each objective. Click each bullet to reveal the detailed explanation. Ask the audience which topic they're most excited about." data-flow="[{&quot;label&quot;:&quot;Reveal objective 1&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;fade-up&quot;,&quot;targets&quot;:[&quot;[data-flow-id=&#39;bullet-1&#39;]&quot;]},{&quot;label&quot;:&quot;Reveal objective 2&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;fade-up&quot;,&quot;targets&quot;:[&quot;[data-flow-id=&#39;bullet-2&#39;]&quot;]},{&quot;label&quot;:&quot;Reveal objective 3&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;fade-up&quot;,&quot;targets&quot;:[&quot;[data-flow-id=&#39;bullet-3&#39;]&quot;]},{&quot;label&quot;:&quot;Reveal objective 4&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;fade-up&quot;,&quot;targets&quot;:[&quot;[data-flow-id=&#39;bullet-4&#39;]&quot;]},{&quot;label&quot;:&quot;Reveal objective 5&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;fade-up&quot;,&quot;targets&quot;:[&quot;[data-flow-id=&#39;bullet-5&#39;]&quot;]},{&quot;label&quot;:&quot;Highlight deployment&quot;,&quot;action&quot;:&quot;highlight&quot;,&quot;preset&quot;:&quot;highlight-pulse&quot;,&quot;targets&quot;:[&quot;[data-flow-id=&#39;bullet-5&#39;]&quot;]}]">
   <div class="slide-inner">
     <div class="block-heading"><span class="icon">🎯</span><h2>Learning Objectives</h2></div>
-    <ul class="bullet-list stagger">
+    <ul class="bullet-list stagger-spring">
       <li class="bullet-item" data-flow-id="bullet-1">
         <div class="bullet-text">Understand HTML structure and semantic elements</div>
         <div class="bullet-detail"><p>HTML is the skeleton of every webpage. Semantic elements like &lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, and &lt;footer&gt; give meaning to your content.</p></div>
@@ -6689,7 +6813,7 @@ gap: 1.5rem;</code></pre>
           <div class="template-category-desc">Define a new AI concept with a crisp takeaway and one supporting example.</div>
         </div>
         <div class="template-card-grid">
-        <div class="template-card" data-template="{&quot;type&quot;:&quot;bullets&quot;,&quot;data&quot;:{&quot;heading&quot;:&quot;What is a Transformer?&quot;,&quot;icon&quot;:&quot;AI&quot;,&quot;items&quot;:[{&quot;text&quot;:&quot;A model that learns attention between tokens&quot;,&quot;detail&quot;:&quot;Self-attention lets each token look at the rest of the sequence.&quot;},{&quot;text&quot;:&quot;Scales well with large data&quot;,&quot;detail&quot;:&quot;Parallel training enables huge model sizes.&quot;},{&quot;text&quot;:&quot;Used in GPT, BERT, and T5&quot;,&quot;detail&quot;:&quot;It is the backbone of modern NLP systems.&quot;}]},&quot;flow&quot;:[{&quot;label&quot;:&quot;Reveal definition&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;fade-up&quot;,&quot;targets&quot;:[&quot;[data-flow-id='bullet-1']&quot;]},{&quot;label&quot;:&quot;Reveal scaling&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;fade-up&quot;,&quot;targets&quot;:[&quot;[data-flow-id='bullet-2']&quot;]},{&quot;label&quot;:&quot;Reveal examples&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;fade-up&quot;,&quot;targets&quot;:[&quot;[data-flow-id='bullet-3']&quot;]}]}">
+        <div class="template-card" data-template="{&quot;$ref&quot;:&quot;slide-bullets&quot;,&quot;data&quot;:{&quot;heading&quot;:&quot;What is a Transformer?&quot;,&quot;icon&quot;:&quot;AI&quot;,&quot;items&quot;:[{&quot;text&quot;:&quot;A model that learns attention between tokens&quot;,&quot;detail&quot;:&quot;Self-attention lets each token look at the rest of the sequence.&quot;},{&quot;text&quot;:&quot;Scales well with large data&quot;,&quot;detail&quot;:&quot;Parallel training enables huge model sizes.&quot;},{&quot;text&quot;:&quot;Used in GPT, BERT, and T5&quot;,&quot;detail&quot;:&quot;It is the backbone of modern NLP systems.&quot;}]},&quot;flow&quot;:[{&quot;label&quot;:&quot;Reveal definition&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;fade-up&quot;,&quot;targets&quot;:[&quot;[data-flow-id='bullet-1']&quot;]},{&quot;label&quot;:&quot;Reveal scaling&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;fade-up&quot;,&quot;targets&quot;:[&quot;[data-flow-id='bullet-2']&quot;]},{&quot;label&quot;:&quot;Reveal examples&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;fade-up&quot;,&quot;targets&quot;:[&quot;[data-flow-id='bullet-3']&quot;]}]}">
           <div class="template-card-title">Concept Hero</div>
           <div class="template-card-use">Explain a concept</div>
           <div class="template-card-tags"><span class="template-tag">beginner</span><span class="template-tag">definition</span><span class="template-tag">clarity</span></div>
@@ -6704,7 +6828,7 @@ gap: 1.5rem;</code></pre>
           <div class="template-category-desc">Walk through an AI workflow or data pipeline step-by-step.</div>
         </div>
         <div class="template-card-grid">
-        <div class="template-card" data-template="{&quot;type&quot;:&quot;flow&quot;,&quot;data&quot;:{&quot;heading&quot;:&quot;Training Pipeline&quot;,&quot;icon&quot;:&quot;FLOW&quot;,&quot;nodes&quot;:[{&quot;id&quot;:&quot;data&quot;,&quot;label&quot;:&quot;Data&quot;},{&quot;id&quot;:&quot;clean&quot;,&quot;label&quot;:&quot;Clean&quot;},{&quot;id&quot;:&quot;train&quot;,&quot;label&quot;:&quot;Train&quot;},{&quot;id&quot;:&quot;eval&quot;,&quot;label&quot;:&quot;Evaluate&quot;},{&quot;id&quot;:&quot;deploy&quot;,&quot;label&quot;:&quot;Deploy&quot;}],&quot;connections&quot;:[{&quot;from&quot;:&quot;data&quot;,&quot;to&quot;:&quot;clean&quot;},{&quot;from&quot;:&quot;clean&quot;,&quot;to&quot;:&quot;train&quot;},{&quot;from&quot;:&quot;train&quot;,&quot;to&quot;:&quot;eval&quot;},{&quot;from&quot;:&quot;eval&quot;,&quot;to&quot;:&quot;deploy&quot;}]}}">
+        <div class="template-card" data-template="{&quot;$ref&quot;:&quot;slide-flow&quot;,&quot;data&quot;:{&quot;heading&quot;:&quot;Training Pipeline&quot;,&quot;icon&quot;:&quot;FLOW&quot;,&quot;nodes&quot;:[{&quot;id&quot;:&quot;data&quot;,&quot;label&quot;:&quot;Data&quot;},{&quot;id&quot;:&quot;clean&quot;,&quot;label&quot;:&quot;Clean&quot;},{&quot;id&quot;:&quot;train&quot;,&quot;label&quot;:&quot;Train&quot;},{&quot;id&quot;:&quot;eval&quot;,&quot;label&quot;:&quot;Evaluate&quot;},{&quot;id&quot;:&quot;deploy&quot;,&quot;label&quot;:&quot;Deploy&quot;}],&quot;connections&quot;:[{&quot;from&quot;:&quot;data&quot;,&quot;to&quot;:&quot;clean&quot;},{&quot;from&quot;:&quot;clean&quot;,&quot;to&quot;:&quot;train&quot;},{&quot;from&quot;:&quot;train&quot;,&quot;to&quot;:&quot;eval&quot;},{&quot;from&quot;:&quot;eval&quot;,&quot;to&quot;:&quot;deploy&quot;}]}}">
           <div class="template-card-title">AI Pipeline Walkthrough</div>
           <div class="template-card-use">Walk through a pipeline</div>
           <div class="template-card-tags"><span class="template-tag">workflow</span><span class="template-tag">step-by-step</span></div>
@@ -6719,7 +6843,7 @@ gap: 1.5rem;</code></pre>
           <div class="template-category-desc">Show before/after or method A vs method B with a clear verdict.</div>
         </div>
         <div class="template-card-grid">
-        <div class="template-card" data-template="{&quot;type&quot;:&quot;compare&quot;,&quot;data&quot;:{&quot;heading&quot;:&quot;Bag-of-Words vs. Transformer&quot;,&quot;icon&quot;:&quot;COMPARE&quot;,&quot;left&quot;:{&quot;title&quot;:&quot;Bag-of-Words&quot;,&quot;items&quot;:[&quot;Order ignored&quot;,&quot;Simple features&quot;,&quot;Fast but shallow&quot;],&quot;color&quot;:&quot;blue&quot;},&quot;right&quot;:{&quot;title&quot;:&quot;Transformer&quot;,&quot;items&quot;:[&quot;Context-aware&quot;,&quot;Scales better&quot;,&quot;State-of-the-art&quot;],&quot;color&quot;:&quot;green&quot;},&quot;verdict&quot;:&quot;Transformers win when context matters.&quot;},&quot;flow&quot;:[{&quot;label&quot;:&quot;Reveal left&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;slide-in&quot;,&quot;targets&quot;:[&quot;.compare-side.side-blue&quot;]},{&quot;label&quot;:&quot;Reveal right&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;slide-in&quot;,&quot;targets&quot;:[&quot;.compare-side.side-green&quot;]},{&quot;label&quot;:&quot;Highlight verdict&quot;,&quot;action&quot;:&quot;highlight&quot;,&quot;preset&quot;:&quot;highlight-pulse&quot;,&quot;targets&quot;:[&quot;.compare-verdict&quot;]}]}">
+        <div class="template-card" data-template="{&quot;$ref&quot;:&quot;slide-compare&quot;,&quot;data&quot;:{&quot;heading&quot;:&quot;Bag-of-Words vs. Transformer&quot;,&quot;icon&quot;:&quot;COMPARE&quot;,&quot;left&quot;:{&quot;title&quot;:&quot;Bag-of-Words&quot;,&quot;items&quot;:[&quot;Order ignored&quot;,&quot;Simple features&quot;,&quot;Fast but shallow&quot;],&quot;color&quot;:&quot;blue&quot;},&quot;right&quot;:{&quot;title&quot;:&quot;Transformer&quot;,&quot;items&quot;:[&quot;Context-aware&quot;,&quot;Scales better&quot;,&quot;State-of-the-art&quot;],&quot;color&quot;:&quot;green&quot;},&quot;verdict&quot;:&quot;Transformers win when context matters.&quot;},&quot;flow&quot;:[{&quot;label&quot;:&quot;Reveal left&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;slide-in&quot;,&quot;targets&quot;:[&quot;.compare-side.side-blue&quot;]},{&quot;label&quot;:&quot;Reveal right&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;slide-in&quot;,&quot;targets&quot;:[&quot;.compare-side.side-green&quot;]},{&quot;label&quot;:&quot;Highlight verdict&quot;,&quot;action&quot;:&quot;highlight&quot;,&quot;preset&quot;:&quot;highlight-pulse&quot;,&quot;targets&quot;:[&quot;.compare-verdict&quot;]}]}">
           <div class="template-card-title">Method Comparison</div>
           <div class="template-card-use">Compare two methods</div>
           <div class="template-card-tags"><span class="template-tag">comparison</span><span class="template-tag">decision</span></div>
@@ -6764,7 +6888,7 @@ gap: 1.5rem;</code></pre>
           <div class="template-category-desc">Summarize takeaways for quick recall.</div>
         </div>
         <div class="template-card-grid">
-        <div class="template-card" data-template="{&quot;type&quot;:&quot;summary&quot;,&quot;data&quot;:{&quot;heading&quot;:&quot;Key Takeaways&quot;,&quot;icon&quot;:&quot;RECAP&quot;,&quot;items&quot;:[&quot;Attention is the core idea.&quot;,&quot;Data quality &gt; model size.&quot;,&quot;Evaluate with real tasks.&quot;]}}">
+        <div class="template-card" data-template="{&quot;$ref&quot;:&quot;slide-summary&quot;,&quot;data&quot;:{&quot;heading&quot;:&quot;Key Takeaways&quot;,&quot;icon&quot;:&quot;RECAP&quot;,&quot;items&quot;:[&quot;Attention is the core idea.&quot;,&quot;Data quality &gt; model size.&quot;,&quot;Evaluate with real tasks.&quot;]}}">
           <div class="template-card-title">Cheat Sheet</div>
           <div class="template-card-use">Recap</div>
           <div class="template-card-tags"><span class="template-tag">recap</span><span class="template-tag">cheat-sheet</span></div>
@@ -7246,8 +7370,18 @@ const SlideEngine = (function () {
       const inner = s.querySelector('.slide-inner');
       if (inner) {
         if (i === currentSlide && animate) {
+          // Apply transition preset class if the slide has one
+          const preset = s.dataset.transitionPreset;
+          if (preset) {
+            inner.classList.add(`slide-transition-${preset}`);
+          }
           inner.classList.add('slide-enter');
-          setTimeout(() => inner.classList.remove('slide-enter'), 600);
+          setTimeout(() => {
+            inner.classList.remove('slide-enter');
+            if (preset) {
+              inner.classList.remove(`slide-transition-${preset}`);
+            }
+          }, 700);
         }
       }
     });
@@ -7267,6 +7401,27 @@ const SlideEngine = (function () {
         previousIndex: previousSlide
       } 
     }));
+
+    // Trigger counter animation for stat blocks on the active slide
+    if (animate) {
+      const activeSlide = slides[currentSlide];
+      if (activeSlide) {
+        animateStatCounters(activeSlide);
+      }
+      const prevSlide = slides[previousSlide];
+      if (prevSlide) {
+        resetStatCounters(prevSlide);
+      }
+    }
+  }
+
+  function resetStatCounters(slideEl) {
+    const counters = slideEl.querySelectorAll('.stat-counter[data-count-target]');
+    counters.forEach(counter => {
+      delete counter.dataset.countAnimated;
+      const original = counter.dataset.countOriginal || '0';
+      counter.textContent = original;
+    });
   }
 
   function next() { updateSlide(currentSlide + 1); }
@@ -7367,6 +7522,63 @@ const SlideEngine = (function () {
   function getCurrent() { return currentSlide; }
   function getTotal() { return totalSlides; }
   function getBroadcast() { return broadcast; }
+
+  /* === Counter Animation for Stat Blocks === */
+  function animateStatCounters(slideEl) {
+    const counters = slideEl.querySelectorAll('.stat-counter[data-count-target]');
+    if (counters.length === 0) return;
+
+    counters.forEach(counter => {
+      // Skip if already animated
+      if (counter.dataset.countAnimated === 'true') return;
+      counter.dataset.countAnimated = 'true';
+
+      const target = parseFloat(counter.dataset.countTarget) || 0;
+      const decimals = parseInt(counter.dataset.countDecimals, 10) || 0;
+      const original = counter.dataset.countOriginal || String(target);
+      const hasCommas = original.includes(',');
+      const duration = 1200; // ms
+      let startTime = null;
+
+      // easeOutQuart for a satisfying deceleration
+      function easeOutQuart(t) {
+        return 1 - Math.pow(1 - t, 4);
+      }
+
+      function formatNumber(num) {
+        let formatted = num.toFixed(decimals);
+        if (hasCommas) {
+          const parts = formatted.split('.');
+          parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+          formatted = parts.join('.');
+        }
+        return formatted;
+      }
+
+      counter.classList.add('counting');
+      counter.textContent = formatNumber(0);
+
+      function tick(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const elapsed = timestamp - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easedProgress = easeOutQuart(progress);
+        const currentValue = easedProgress * target;
+
+        counter.textContent = formatNumber(currentValue);
+
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          counter.textContent = formatNumber(target);
+          counter.classList.remove('counting');
+        }
+      }
+
+      // Slight delay to let the slide enter animation start first
+      setTimeout(() => requestAnimationFrame(tick), 200);
+    });
+  }
 
   return { init, next, prev, goTo, getCurrent, getTotal, getBroadcast };
 })();
@@ -8642,21 +8854,17 @@ const InteractiveBlocksData = (function () {
       svg.innerHTML = '';
       if (defs) {
         svg.appendChild(defs);
-        const marker = defs.querySelector('#arrow');
-        if (marker) {
-          marker.setAttribute('refX', Math.round(nodeWidth / 2 + 8));
-        }
       }
 
-      connections.forEach(conn => {
+      connections.forEach((conn, connIdx) => {
         const fromNode = nodes.find(n => n.id === conn.from);
         const toNode = nodes.find(n => n.id === conn.to);
         if (!fromNode || !toNode) return;
 
         const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        const startX = fromNode.x + nodeWidth / 2;
+        const startX = fromNode.x + nodeWidth;
         const startY = fromNode.y + nodeHeight / 2;
-        const endX = toNode.x + nodeWidth / 2;
+        const endX = toNode.x;
         const endY = toNode.y + nodeHeight / 2;
 
         const dx = endX - startX;
@@ -8669,8 +8877,24 @@ const InteractiveBlocksData = (function () {
         path.setAttribute('fill', 'none');
         path.setAttribute('stroke', 'var(--color-primary-alpha)');
         path.setAttribute('stroke-width', '2.5');
-        path.setAttribute('marker-end', 'url(#arrow)');
+        path.classList.add('flow-connection-path');
         svg.appendChild(path);
+
+        // SVG line draw animation
+        let pathLength = 500;
+        try {
+          const totalLen = path.getTotalLength();
+          if (totalLen > 0) pathLength = totalLen;
+        } catch (e) { /* fallback */ }
+
+        path.setAttribute('stroke-dasharray', pathLength);
+        path.setAttribute('stroke-dashoffset', pathLength);
+
+        // Staggered draw-in animation
+        setTimeout(() => {
+          path.style.transition = 'stroke-dashoffset 1.2s cubic-bezier(0.25, 1, 0.5, 1)';
+          path.setAttribute('stroke-dashoffset', '0');
+        }, 150 + connIdx * 200);
       });
 
       nodes.forEach(node => {
@@ -8734,6 +8958,33 @@ const InteractiveBlocksData = (function () {
             desc.textContent = node.details || 'No details specified for this step.';
           }
         });
+      });
+    });
+
+    // Re-animate flow connections when navigating to a flow slide
+    document.addEventListener('slideChanged', (e) => {
+      const slideIndex = e.detail.index;
+      const allSlides = document.querySelectorAll('.slide');
+      const activeSlide = allSlides[slideIndex];
+      if (!activeSlide) return;
+
+      activeSlide.querySelectorAll('.flow-connection-path').forEach((path, idx) => {
+        let pathLength = 500;
+        try {
+          const totalLen = path.getTotalLength();
+          if (totalLen > 0) pathLength = totalLen;
+        } catch (e) { /* fallback */ }
+
+        // Reset
+        path.style.transition = 'none';
+        path.setAttribute('stroke-dasharray', pathLength);
+        path.setAttribute('stroke-dashoffset', pathLength);
+
+        // Re-animate
+        setTimeout(() => {
+          path.style.transition = 'stroke-dashoffset 1.2s cubic-bezier(0.25, 1, 0.5, 1)';
+          path.setAttribute('stroke-dashoffset', '0');
+        }, 150 + idx * 200);
       });
     });
   }
