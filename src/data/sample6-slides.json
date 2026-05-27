@@ -1,0 +1,212 @@
+{
+  "meta": {
+    "title": "Cinematic Presenter Masterclass",
+    "subtitle": "High-Impact Visuals & 3D Transitions",
+    "author": "Lecta AI Creative Suite",
+    "date": "2026",
+    "theme": "neon",
+    "duration": 15,
+    "context": {
+      "audience": "Creative Designers",
+      "topic": "Cinematic Presenter Masterclass",
+      "lessonLength": 15,
+      "tone": "warm",
+      "pace": "slow",
+      "rhythmPreset": "beginner-friendly",
+      "textDensity": "low",
+      "exampleDensity": "high",
+      "primaryColor": "#8b5cf6",
+      "stylePack": "editorial-clean"
+    }
+  },
+  "slides": [
+    {
+      "id": "slide-1",
+      "type": "title",
+      "transitionPreset": "flip-y",
+      "data": {
+        "heading": "Hollywood HUDs in the Browser",
+        "subtitle": "Bringing 3D perspective and key-frame physics to web slides.",
+        "badge": "Masterclass · Cinematic Flow",
+        "speakerNotes": "Press next to trigger the high-end 3D perspective Flip-Y transition. Notice the sheer depth and organic feel of the motion."
+      }
+    },
+    {
+      "id": "slide-2",
+      "type": "timeline",
+      "transitionPreset": "fade",
+      "data": {
+        "heading": "History of UI in Films",
+        "icon": "🎬",
+        "events": [
+          {"year": "1999", "title": "The Matrix", "description": "Green falling code became the universal symbol for hacking and cyberpunk interfaces."},
+          {"year": "2002", "title": "Minority Report", "description": "Popularized gesture-based spatial interfaces and predictive analytics dashboards."},
+          {"year": "2008", "title": "Iron Man", "description": "Introduced highly complex, layered, glowing holographic user interfaces (HUDs)."},
+          {"year": "2013", "title": "Oblivion", "description": "Showcased sleek, minimal, data-dense interfaces with smooth glassmorphic elements."}
+        ],
+        "speakerNotes": "Walk through the timeline. Note how film UI has influenced real-world interface design."
+      }
+    },
+    {
+      "id": "slide-3",
+      "type": "bullets",
+      "transitionPreset": "flip-y",
+      "data": {
+        "heading": "Core Cinematic Mechanics",
+        "icon": "⚙️",
+        "items": [
+          {"text": "3D Cinematic Space Rotation", "detail": "Lifting the slide canvas with real perspective calculations creates instant production value."},
+          {"text": "Spring-Based Fluid Reveal", "detail": "Bullet items use custom bezier keyframes that simulate spring mass physics on entry."},
+          {"text": "High-Contrast Glass Panels", "detail": "Combining glassmorphism backgrounds with deep color themes ensures excellent readable contrast."},
+          {"text": "Dynamic Neon Glows", "detail": "Using CSS drop-shadows and box-shadows to simulate light emitting from elements."}
+        ],
+        "speakerNotes": "Notice how all elements cascade on entering. Every single item springs upward individually."
+      }
+    },
+    {
+      "$ref": "slide-bento",
+      "id": "slide-4",
+      "data": {
+        "heading": "The Bento Hud Blueprint",
+        "icon": "🍱",
+        "gridTemplate": "large | small small",
+        "items": [
+          {"$ref": "bento-large", "title": "Central Data Hub", "content": "The primary focus area, utilizing deep glowing borders and high-contrast typography to draw the eye immediately.", "badge": "Core Interface", "bgGradient": "oklch(25% 0.2 300) to oklch(15% 0.1 280)"},
+          {"$ref": "bento-small", "title": "Peripheral Metrics", "content": "Secondary data streams pulsing with neon accents.", "icon": "📊"},
+          {"$ref": "bento-small", "title": "System Status", "content": "Minimalist indicators reflecting real-time operational health.", "icon": "⚡"}
+        ],
+        "speakerNotes": "Explain the bento layout. It's asymmetric, which is a hallmark of modern sci-fi interfaces."
+      }
+    },
+    {
+      "$ref": "slide-flow",
+      "id": "slide-5",
+      "data": {
+        "heading": "Rendering Pipeline",
+        "icon": "🔄",
+        "nodes": [
+          {"id": "data", "label": "Data Ingestion", "details": "Real-time telemetry streams from sensors."},
+          {"id": "parse", "label": "Parser Engine", "details": "Normalizing data into unified JSON structures."},
+          {"id": "render", "label": "WebGL Renderer", "details": "Hardware-accelerated drawing of complex geometries."},
+          {"id": "post", "label": "Post-Processing", "details": "Applying bloom, chromatic aberration, and film grain."}
+        ],
+        "connections": [
+          {"from": "data", "to": "parse"},
+          {"from": "parse", "to": "render"},
+          {"from": "render", "to": "post"}
+        ],
+        "speakerNotes": "Watch the connections draw themselves. This simulates data flowing through the system."
+      }
+    },
+    {
+      "id": "slide-6",
+      "type": "split",
+      "transitionPreset": "flip-y",
+      "data": {
+        "heading": "HTML5 Canvas vs SVG Drawing",
+        "icon": "⚖️",
+        "layout": "split-50-50",
+        "left": {
+          "type": "bullets",
+          "data": {
+            "heading": "HTML5 Canvas",
+            "items": [
+              "Pixel-based, incredibly fast for thousands of objects.",
+              "Requires manual redraw loops for animation.",
+              "No DOM nodes, harder to attach events.",
+              "Best for particles, complex shaders, and games."
+            ]
+          }
+        },
+        "right": {
+          "type": "bullets",
+          "data": {
+            "heading": "SVG Drawing",
+            "items": [
+              "Vector-based, infinitely scalable without blur.",
+              "Native DOM integration for CSS styling and events.",
+              "Can be sluggish with too many complex paths.",
+              "Perfect for charts, graphs, and UI components."
+            ]
+          }
+        },
+        "speakerNotes": "A classic debate for UI engineers. We use SVG for structural clarity and Canvas for high-performance visual effects."
+      }
+    },
+    {
+      "$ref": "slide-code-diff",
+      "id": "slide-7",
+      "data": {
+        "heading": "Prism Code Snippets",
+        "icon": "💻",
+        "leftTitle": "Standard CSS",
+        "leftLang": "css",
+        "leftCode": ".hud-element {\n  border: 1px solid blue;\n  background: rgba(0,0,255,0.1);\n}",
+        "rightTitle": "Cinematic CSS",
+        "rightLang": "css",
+        "rightCode": ".hud-element {\n  border: 1px solid var(--neon-blue);\n  background: color-mix(in oklch, var(--neon-blue) 10%, transparent);\n  box-shadow: 0 0 15px var(--neon-blue);\n  backdrop-filter: blur(8px);\n}"
+      }
+    },
+    {
+      "$ref": "slide-quiz",
+      "id": "slide-8",
+      "data": {
+        "heading": "HUD Usability Challenge",
+        "icon": "❓",
+        "questions": [
+          {"question": "What is the primary risk of using highly stylized, cinematic interfaces in functional applications?", "correct": 2, "options": ["They require too much server bandwidth.", "They are impossible to build with standard web technologies.", "They can prioritize aesthetics over readability and user efficiency.", "They cause hardware damage to older monitors."], "explanation": "While beautiful, excessive glows, low contrast, and complex animations can fatigue users and obscure critical data."}
+        ]
+      }
+    },
+    {
+      "id": "slide-9",
+      "type": "bento",
+      "transitionPreset": "flip-y",
+      "data": {
+        "heading": "Case Study: The Neo-Tokyo HUD",
+        "icon": "🏙️",
+        "gridTemplate": "large | small small",
+        "items": [
+          {"$ref": "bento-large", "title": "Cyberpunk Aesthetics", "content": "Deep purples and harsh neon cyans create a classic dystopian metropolis feel, utilizing sharp angles and glitch animations.", "badge": "Design System", "bgGradient": "oklch(30% 0.25 320) to oklch(20% 0.15 260)"},
+          {"$ref": "bento-small", "title": "Glitch Effects", "content": "CSS keyframes displacing text to simulate signal interference.", "icon": "🌩️"},
+          {"$ref": "bento-small", "title": "Holographic Grids", "content": "Background patterns using repeating linear gradients.", "icon": "🌐"}
+        ]
+      }
+    },
+    {
+      "id": "slide-10",
+      "type": "timeline-horizontal",
+      "transitionPreset": "fade",
+      "data": {
+        "heading": "Timeline of the Neo-Tokyo Rollout",
+        "icon": "🚀",
+        "events": [
+          {"year": "Phase 1", "title": "Concept & Moodboards", "description": "Defining the visual language and color palette."},
+          {"year": "Phase 2", "title": "Component Library", "description": "Building reusable SVG and CSS elements."},
+          {"year": "Phase 3", "title": "Animation Prototyping", "description": "Tuning spring physics and transition timings."},
+          {"year": "Phase 4", "title": "Integration & Launch", "description": "Deploying the interface to production environments."}
+        ]
+      }
+    },
+    {
+      "id": "slide-11",
+      "type": "summary",
+      "transitionPreset": "flip-y",
+      "data": {
+        "heading": "Cinematic Wrap-Up",
+        "icon": "🏁",
+        "items": [
+          "Cinematic UI elevates the user experience through depth and motion.",
+          "Balance aesthetics with usability; don't let design obscure data.",
+          "Leverage modern CSS (OKLCH, filters) for performant visual effects.",
+          "Use spring physics for organic, satisfying interactions."
+        ],
+        "callToAction": "Start building your own futuristic interfaces!",
+        "resources": [
+          {"label": "UI/UX Design Principles", "url": "#"},
+          {"label": "Advanced CSS Animation Guide", "url": "#"}
+        ]
+      }
+    }
+  ]
+}
