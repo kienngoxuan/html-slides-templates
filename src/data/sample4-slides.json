@@ -37,21 +37,9 @@
         "heading": "The 3-Step Choreography Process",
         "icon": "🚶",
         "steps": [
-          {
-            "title": "1. Layout Wireframing",
-            "content": "Structure your core story blocks first. Map content hierarchies using standard Bento grids and grids to avoid visual fatigue.",
-            "tip": "Keep blocks focused on one single primary takeaway per card."
-          },
-          {
-            "title": "2. OKLCH Color Harmonization",
-            "content": "Configure custom OKLCH tokens to support instant light and dark mode adaptations with identical perceptual lightness.",
-            "tip": "Use color-mix for transparent glowing glass borders."
-          },
-          {
-            "title": "3. Visual Interactivity Hook",
-            "content": "Convert static lists to click-to-flip cards, expand-on-click bullets, or interactive quiz nodes to hook your students.",
-            "tip": "Animations should never exceed 300ms to maintain snappy responses."
-          }
+          {"title": "1. Layout Wireframing", "content": "Structure your core story blocks first. Map content hierarchies using standard Bento grids and grids to avoid visual fatigue.", "tip": "Keep blocks focused on one single primary takeaway per card."},
+          {"title": "2. OKLCH Color Harmonization", "content": "Configure custom OKLCH tokens to support instant light and dark mode adaptations with identical perceptual lightness.", "tip": "Use color-mix for transparent glowing glass borders."},
+          {"title": "3. Visual Interactivity Hook", "content": "Convert static lists to click-to-flip cards, expand-on-click bullets, or interactive quiz nodes to hook your students.", "tip": "Animations should never exceed 300ms to maintain snappy responses."}
         ],
         "speakerNotes": "Show students the Stepper block. Guide them step-by-step through the presentation blueprint process."
       }
@@ -94,25 +82,9 @@
         "icon": "🍱",
         "gridTemplate": "large | small small",
         "items": [
-          {
-            "size": "large",
-            "title": "Ultra-Responsive Layouts",
-            "content": "Grid blocks fluidly stack and adapt depending on device viewport or speaker orientation. Premium UI designed from the ground up to feel like a high-end web app.",
-            "badge": "Architecture Core",
-            "bgGradient": "oklch(55% 0.15 30) to oklch(42% 0.12 10)"
-          },
-          {
-            "size": "small",
-            "title": "Wide Gamut OKLCH",
-            "content": "Luminous colors that render accurately without standard RGB pixel clipping.",
-            "icon": "🌈"
-          },
-          {
-            "size": "small",
-            "title": "Zero Dependencies",
-            "content": "Built with pure vanilla HTML, CSS, and JS. Fast load time guaranteed.",
-            "icon": "🚀"
-          }
+          {"$ref": "bento-large", "title": "Ultra-Responsive Layouts", "content": "Grid blocks fluidly stack and adapt depending on device viewport or speaker orientation. Premium UI designed from the ground up to feel like a high-end web app.", "badge": "Architecture Core", "bgGradient": "oklch(55% 0.15 30) to oklch(42% 0.12 10)"},
+          {"$ref": "bento-small", "title": "Wide Gamut OKLCH", "content": "Luminous colors that render accurately without standard RGB pixel clipping.", "icon": "🌈"},
+          {"$ref": "bento-small", "title": "Zero Dependencies", "content": "Built with pure vanilla HTML, CSS, and JS. Fast load time guaranteed.", "icon": "🚀"}
         ],
         "speakerNotes": "Highlight the Bento grid template. Show how small features surround the large visual card."
       }
@@ -124,17 +96,7 @@
         "heading": "Aesthetic Intelligence Check",
         "icon": "❓",
         "questions": [
-          {
-            "question": "What is the primary advantage of designing with the OKLCH color space over standard HSL?",
-            "correct": 1,
-            "options": [
-              "It supports more standard RGB colors.",
-              "It keeps perceptual lightness consistent across different hues.",
-              "It is supported by older browsers without polyfills.",
-              "It makes HTML pages render 50% faster."
-            ],
-            "explanation": "Consistent perceptual lightness is the superpower of OKLCH. When you swap colors from green to yellow, the brightness feels identical to the human eye, maintaining perfect contrast!"
-          }
+          {"question": "What is the primary advantage of designing with the OKLCH color space over standard HSL?", "correct": 1, "options": ["It supports more standard RGB colors.", "It keeps perceptual lightness consistent across different hues.", "It is supported by older browsers without polyfills.", "It makes HTML pages render 50% faster."], "explanation": "Consistent perceptual lightness is the superpower of OKLCH. When you swap colors from green to yellow, the brightness feels identical to the human eye, maintaining perfect contrast!"}
         ],
         "speakerNotes": "Engage the audience with this interactive quiz. Click option B to reveal the explanation."
       }
@@ -146,21 +108,9 @@
         "heading": "Evolution of Interactive Web Media",
         "icon": "📅",
         "events": [
-          {
-            "year": "2010",
-            "title": "The Adobe Flash Era",
-            "description": "Heavy plugins, closed ecosystems, and insecure binaries. The web graphics landscape was fragmented and slow."
-          },
-          {
-            "year": "2018",
-            "title": "The Flexbox & Framework Rise",
-            "description": "CSS Flexbox and grids became standard. React, Vue, and heavy npm libraries dominated presentation frameworks."
-          },
-          {
-            "year": "2026",
-            "title": "Vanilla Glassmorphism & OKLCH",
-            "description": "Wide-gamut colors, native container queries, and direct zero-dependency static builds. Snappy, beautiful, and completely offline-ready."
-          }
+          {"year": "2010", "title": "The Adobe Flash Era", "description": "Heavy plugins, closed ecosystems, and insecure binaries. The web graphics landscape was fragmented and slow."},
+          {"year": "2018", "title": "The Flexbox & Framework Rise", "description": "CSS Flexbox and grids became standard. React, Vue, and heavy npm libraries dominated presentation frameworks."},
+          {"year": "2026", "title": "Vanilla Glassmorphism & OKLCH", "description": "Wide-gamut colors, native container queries, and direct zero-dependency static builds. Snappy, beautiful, and completely offline-ready."}
         ],
         "speakerNotes": "Showcase the timeline progression. Walk the class from 2010 plugins up to the premium 2026 native standards."
       }
@@ -172,21 +122,9 @@
         "heading": "Component Code Sandbox",
         "icon": "🗂",
         "tabs": [
-          {
-            "label": "HTML5 Blueprint",
-            "content": "Semantic HTML tags keep documents screen-reader friendly:",
-            "code": "<section class=\"slide-inner\">\n  <div class=\"bento-grid\">\n    <div class=\"bento-card\">...</div>\n  </div>\n</section>"
-          },
-          {
-            "label": "OKLCH Theme Tokens",
-            "content": "Define high-contrast tokens for custom light and dark variants:",
-            "code": ":root {\n  --color-primary: oklch(62% 0.16 28);\n  --color-primary-alpha: color-mix(in oklch, var(--color-primary) 15%, transparent);\n  --shadow-glow: 0 0 16px var(--color-primary-alpha);\n}"
-          },
-          {
-            "label": "Snappy Vanilla JS",
-            "content": "Direct interactive listener registration without frameworks:",
-            "code": "document.querySelectorAll('.flip-card').forEach(card => {\n  card.addEventListener('click', () => {\n    card.classList.toggle('flipped');\n  });\n});"
-          }
+          {"label": "HTML5 Blueprint", "content": "Semantic HTML tags keep documents screen-reader friendly:", "code": "<section class=\"slide-inner\">\n  <div class=\"bento-grid\">\n    <div class=\"bento-card\">...</div>\n  </div>\n</section>"},
+          {"label": "OKLCH Theme Tokens", "content": "Define high-contrast tokens for custom light and dark variants:", "code": ": root {\n  --color-primary: oklch(62% 0.16 28);\n  --color-primary-alpha: color-mix(in oklch, var(--color-primary) 15%, transparent);\n  --shadow-glow: 0 0 16px var(--color-primary-alpha);\n}"},
+          {"label": "Snappy Vanilla JS", "content": "Direct interactive listener registration without frameworks:", "code": "document.querySelectorAll('.flip-card').forEach(card => {\n  card.addEventListener('click', () => {\n    card.classList.toggle('flipped');\n  });\n});"}
         ],
         "speakerNotes": "Explain each tab's contents. Emphasize that semantic HTML, clean OKLCH, and vanilla JS represent the core design principles."
       }
@@ -205,8 +143,8 @@
         ],
         "callToAction": "Go choreograph your own high-fidelity presentations today!",
         "resources": [
-          { "label": "Lecta component reference catalog", "url": "all-designs.html" },
-          { "label": "MDN CSS Grid Layouts", "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout" }
+          {"label": "Lecta component reference catalog", "url": "all-designs.html"},
+          {"label": "MDN CSS Grid Layouts", "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout"}
         ],
         "speakerNotes": "Wrap up the session. Celebrate their graduation into visual storytelling experts!"
       }
@@ -277,21 +215,9 @@
         "heading": "Final Skill Assessment",
         "icon": "🏆",
         "questions": [
-          {
-            "question": "Which CSS function creates high-fidelity opacity overlays without clipping?",
-            "options": ["rgba()", "hsla()", "color-mix()", "opacity()"],
-            "correct": 2
-          },
-          {
-            "question": "Which layout component is best suited for visual, asymmetric dashboards?",
-            "options": ["Bento Grid Layout", "Flexible Box Layout", "Standard Data Table", "Horizontal Timeline"],
-            "correct": 0
-          },
-          {
-            "question": "Which design pattern is optimized for fast mobile interactions in interactive presentation decks?",
-            "options": ["Dynamic inline frame imports", "High-performance event delegation", "Heavy client-side database queries", "Linear array loop handlers"],
-            "correct": 1
-          }
+          {"question": "Which CSS function creates high-fidelity opacity overlays without clipping?", "options": ["rgba()", "hsla()", "color-mix()", "opacity()"], "correct": 2},
+          {"question": "Which layout component is best suited for visual, asymmetric dashboards?", "options": ["Bento Grid Layout", "Flexible Box Layout", "Standard Data Table", "Horizontal Timeline"], "correct": 0},
+          {"question": "Which design pattern is optimized for fast mobile interactions in interactive presentation decks?", "options": ["Dynamic inline frame imports", "High-performance event delegation", "Heavy client-side database queries", "Linear array loop handlers"], "correct": 1}
         ],
         "speakerNotes": "Assess the audience's mastery of the lesson material. Have them select choices and submit to calculate their final score."
       }
