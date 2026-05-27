@@ -33,6 +33,47 @@ function loadTemplateLibrary(root) {
   }
 }
 
+function loadPrimitives(root) {
+  try {
+    const file = path.join(root, 'src/data/primitives.json');
+    return JSON.parse(fs.readFileSync(file, 'utf-8'));
+  } catch (err) {
+    return {};
+  }
+}
+
+function expandRefs(obj, primitives) {
+  if (Array.isArray(obj)) {
+    for (let i = 0; i < obj.length; i++) {
+      obj[i] = expandRefs(obj[i], primitives);
+    }
+  } else if (obj && typeof obj === 'object') {
+    if (obj.$ref) {
+      const refId = obj.$ref;
+      if (!primitives[refId]) {
+        throw new Error(`Validation failed: Missing primitive ref: ${refId}`);
+      }
+      const base = primitives[refId] || {};
+      const newObj = JSON.parse(JSON.stringify(base)); // Deep clone base
+      
+      // Deep merge overrides
+      for (const key in obj) {
+        if (key === '$ref') continue;
+        if (typeof obj[key] === 'object' && obj[key] !== null && !Array.isArray(obj[key]) && typeof newObj[key] === 'object' && !Array.isArray(newObj[key])) {
+          newObj[key] = { ...newObj[key], ...obj[key] };
+        } else {
+          newObj[key] = obj[key];
+        }
+      }
+      obj = newObj;
+    }
+    for (const key in obj) {
+      obj[key] = expandRefs(obj[key], primitives);
+    }
+  }
+  return obj;
+}
+
 function buildLessonContext(meta) {
   const ctx = meta.context || {};
   return {
@@ -287,7 +328,11 @@ function validateSlideSchema(slideData, dataFile) {
 
 // Assembles a specific JSON file into a target HTML file
 function buildSlideDeck(dataFile, outputFile) {
-  const slideData = JSON.parse(fs.readFileSync(dataFile, 'utf-8'));
+  let slideData = JSON.parse(fs.readFileSync(dataFile, 'utf-8'));
+  
+  // Expand $ref primitives at build time
+  const primitives = loadPrimitives(ROOT);
+  slideData = expandRefs(slideData, primitives);
   
   // Validate schema before compiling to report mistakes instantly
   validateSlideSchema(slideData, dataFile);
@@ -781,7 +826,6 @@ if (process.argv[2] && process.argv[3]) {
 } else {
   console.log('🚀 Running Full Lecta AI Presentation Build Suite...');
   
-  // Build slide decks
   buildSlideDeck(
     path.join(ROOT, 'src/data/sample-slides.json'),
     path.join(ROOT, 'output/templates/sample1.html')
@@ -801,6 +845,26 @@ if (process.argv[2] && process.argv[3]) {
   buildSlideDeck(
     path.join(ROOT, 'src/data/sample5-slides.json'),
     path.join(ROOT, 'output/templates/sample5.html')
+  );
+  buildSlideDeck(
+    path.join(ROOT, 'src/data/sample6-slides.json'),
+    path.join(ROOT, 'output/templates/sample6.html')
+  );
+  buildSlideDeck(
+    path.join(ROOT, 'src/data/sample7-slides.json'),
+    path.join(ROOT, 'output/templates/sample7.html')
+  );
+  buildSlideDeck(
+    path.join(ROOT, 'src/data/sample8-slides.json'),
+    path.join(ROOT, 'output/templates/sample8.html')
+  );
+  buildSlideDeck(
+    path.join(ROOT, 'src/data/sample9-slides.json'),
+    path.join(ROOT, 'output/templates/sample9.html')
+  );
+  buildSlideDeck(
+    path.join(ROOT, 'src/data/sample10-slides.json'),
+    path.join(ROOT, 'output/templates/sample10.html')
   );
 
   // Build catalog programmatic fallback
