@@ -1,0 +1,245 @@
+{
+  "meta": {
+    "title": "Scaling Autonomous Multi-Agent Systems",
+    "subtitle": "Architectures for next-generation LLM orchestration.",
+    "author": "AI Engineering Labs",
+    "date": "2026",
+    "theme": "nordic",
+    "duration": 30,
+    "context": {
+      "audience": "Software Engineers",
+      "topic": "Multi-Agent Systems",
+      "lessonLength": 30,
+      "tone": "academic",
+      "pace": "moderate",
+      "rhythmPreset": "deep-dive",
+      "textDensity": "high",
+      "exampleDensity": "high",
+      "primaryColor": "#0f766e",
+      "stylePack": "brutalist-clean"
+    }
+  },
+  "slides": [
+    {
+      "id": "slide-1",
+      "type": "title",
+      "transitionPreset": "fade",
+      "data": {
+        "heading": "Scaling Autonomous Multi-Agent Systems",
+        "subtitle": "Building, evaluating, and deploying robust LLM agent pipelines.",
+        "badge": "Engineering Deep Dive",
+        "speakerNotes": "Welcome to the technical deep dive on Multi-Agent architectures."
+      }
+    },
+    {
+      "id": "slide-2",
+      "type": "timeline-horizontal",
+      "transitionPreset": "fade",
+      "data": {
+        "heading": "The Road to Artificial General Agents",
+        "icon": "🛣️",
+        "events": [
+          {"year": "2022", "title": "Zero-Shot Prompting", "description": "Basic conversational AI with limited context windows."},
+          {"year": "2023", "title": "RAG & Chaining", "description": "Retrieval Augmented Generation and simple LangChain pipelines."},
+          {"year": "2024", "title": "Tool Use & Planning", "description": "Agents calling external APIs and self-correcting (ReAct)."},
+          {"year": "2026", "title": "Multi-Agent Swarms", "description": "Distributed networks of specialized agents communicating asynchronously."}
+        ]
+      }
+    },
+    {
+      "$ref": "slide-flow",
+      "id": "slide-3",
+      "data": {
+        "heading": "Multi-Agent Routing Pipeline",
+        "icon": "🔄",
+        "nodes": [
+          {"id": "input", "label": "User Query", "details": "Natural language request."},
+          {"id": "router", "label": "LLM Router", "details": "Determines intent and selects agent."},
+          {"id": "agentA", "label": "Research Agent", "details": "Searches vector DBs."},
+          {"id": "agentB", "label": "Code Agent", "details": "Writes and tests scripts."},
+          {"id": "synth", "label": "Synthesizer", "details": "Combines agent outputs."}
+        ],
+        "connections": [
+          {"from": "input", "to": "router"},
+          {"from": "router", "to": "agentA"},
+          {"from": "router", "to": "agentB"},
+          {"from": "agentA", "to": "synth"},
+          {"from": "agentB", "to": "synth"}
+        ]
+      }
+    },
+    {
+      "$ref": "slide-bento",
+      "id": "slide-4",
+      "data": {
+        "heading": "The Agent Memory Bento Blueprint",
+        "icon": "🧠",
+        "gridTemplate": "large | small small",
+        "items": [
+          {"$ref": "bento-large", "title": "Vector Store (Long-term)", "content": "Semantic search across gigabytes of documents. Embeddings stored in Pinecone/Milvus.", "badge": "Core Memory", "bgGradient": "oklch(95% 0.05 180) to oklch(90% 0.08 190)"},
+          {"$ref": "bento-small", "title": "Context Window (Working)", "content": "The immediate prompt tokens provided to the LLM per inference.", "icon": "🪟"},
+          {"$ref": "bento-small", "title": "KV Cache (Episodic)", "content": "Fast key-value retrieval for recent conversation turns.", "icon": "⚡"}
+        ]
+      }
+    },
+    {
+      "id": "slide-5",
+      "type": "split",
+      "transitionPreset": "fade",
+      "data": {
+        "heading": "Synchronous vs Parallel Agents",
+        "icon": "⚖️",
+        "layout": "split-50-50",
+        "left": {
+          "type": "bullets",
+          "data": {
+            "heading": "Synchronous LLM Routing",
+            "items": [
+              "Easier to debug and trace.",
+              "Strict deterministic execution order.",
+              "Higher overall latency (blocking).",
+              "Prone to single point of failure."
+            ]
+          }
+        },
+        "right": {
+          "type": "bullets",
+          "data": {
+            "heading": "Parallel Async Agents",
+            "items": [
+              "Complex orchestration required (DAGs).",
+              "Massive speedups for independent tasks.",
+              "Requires robust conflict resolution.",
+              "Scales effectively across distributed compute."
+            ]
+          }
+        }
+      }
+    },
+    {
+      "$ref": "slide-code-diff",
+      "id": "slide-6",
+      "data": {
+        "heading": "Agentic Prompt Orchestration",
+        "icon": "📝",
+        "leftTitle": "Basic Prompting",
+        "leftLang": "python",
+        "leftCode": "prompt = f\"\"\"\nAnswer the user's question:\n{user_input}\n\"\"\"\nresponse = llm.generate(prompt)",
+        "rightTitle": "ReAct Framework",
+        "rightLang": "python",
+        "rightCode": "prompt = f\"\"\"\nUse the following format:\nThought: you should always think about what to do\nAction: the action to take, should be one of [{tool_names}]\nAction Input: the input to the action\nObservation: the result of the action\n... (this Thought/Action/Action Input/Observation can repeat N times)\nThought: I now know the final answer\nFinal Answer: the final answer to the original input question\n\nQuestion: {user_input}\n\"\"\"\nresponse = agent_executor.run(prompt)"
+      }
+    },
+    {
+      "id": "slide-7",
+      "type": "bullets",
+      "transitionPreset": "fade",
+      "data": {
+        "heading": "Primary Failure Modes",
+        "icon": "⚠️",
+        "items": [
+          {"text": "Infinite Loops", "detail": "Agent gets stuck repeatedly calling the same tool with the same input."},
+          {"text": "Hallucinated Tools", "detail": "Agent attempts to use a tool that was not provided in its prompt context."},
+          {"text": "Context Overflow", "detail": "Agent accumulates too much history, exceeding the model's maximum token limit."},
+          {"text": "Premature Termination", "detail": "Agent provides a final answer before adequately solving the multi-step problem."}
+        ]
+      }
+    },
+    {
+      "$ref": "slide-stats",
+      "id": "slide-8",
+      "data": {
+        "heading": "Agent Performance Under Load",
+        "icon": "🏎️",
+        "stats": [
+          {"$ref": "trend-down", "value": "42ms", "label": "Average Router Latency", "trend": "-15ms optimization"},
+          {"$ref": "trend-up", "value": "98.6%", "label": "Task Success Rate", "trend": "+2.1% MoM"},
+          {"$ref": "trend-up", "value": "64.2%", "label": "Compute Savings", "trend": "Via Semantic Caching"}
+        ]
+      }
+    },
+    {
+      "$ref": "slide-table",
+      "id": "slide-9",
+      "data": {
+        "heading": "Model Benchmarks & LLM Evaluation",
+        "icon": "📊",
+        "columns": [
+          {"key": "model", "label": "Model"},
+          {"key": "tool", "label": "Tool Use (Acc)"},
+          {"key": "reasoning", "label": "Reasoning (MMLU)"},
+          {"key": "cost", "label": "Cost / 1M Tokens"}
+        ],
+        "rows": [
+          {"model": "GPT-4o", "tool": "96.5%", "reasoning": "88.7", "cost": "$5.00"},
+          {"model": "Claude 3.5 Sonnet", "tool": "97.2%", "reasoning": "88.3", "cost": "$3.00"},
+          {"model": "Llama 3 (70B)", "tool": "89.1%", "reasoning": "82.0", "cost": "$0.80"},
+          {"model": "Mixtral 8x22B", "tool": "86.4%", "reasoning": "79.5", "cost": "$0.65"}
+        ]
+      }
+    },
+    {
+      "$ref": "slide-quiz",
+      "id": "slide-10",
+      "data": {
+        "heading": "Multi-Agent Architecture Checkpoint",
+        "icon": "✅",
+        "questions": [
+          {"question": "What is the primary purpose of a 'Synthesizer' node in a multi-agent workflow?", "correct": 1, "options": ["To route the initial request to the correct agent.", "To aggregate and format the final output from multiple parallel agents.", "To store long-term memories in a vector database.", "To fine-tune the LLM weights based on user feedback."], "explanation": "The Synthesizer acts as a reducer, taking the disparate findings of specialized workers (like a research agent and a coding agent) and crafting a single, coherent response."}
+        ]
+      }
+    },
+    {
+      "id": "slide-11",
+      "type": "split",
+      "transitionPreset": "fade",
+      "data": {
+        "heading": "Distributed Deployment Topology",
+        "icon": "☁️",
+        "layout": "split-50-50",
+        "left": {
+          "type": "bullets",
+          "data": {
+            "items": [
+              "Containerized Agent Workers (Kubernetes)",
+              "Serverless functions for lightweight routing",
+              "Managed Vector DB for shared state",
+              "Redis for ephemeral inter-agent pub/sub"
+            ]
+          }
+        },
+        "right": {
+          "type": "bullets",
+          "data": {
+            "items": [
+              "Ensures isolation between agent instances",
+              "Allows auto-scaling specific high-load agents",
+              "Prevents noisy-neighbor memory issues",
+              "Enables polyglot agent ecosystems"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "slide-12",
+      "type": "summary",
+      "transitionPreset": "fade",
+      "data": {
+        "heading": "Engineering Action Items & Roadmap",
+        "icon": "🎯",
+        "items": [
+          "Implement robust retry logic and fallback models for transient API failures.",
+          "Utilize semantic caching to dramatically reduce latency and costs for repeated queries.",
+          "Design agent tools with strict schemas (e.g., Pydantic) to minimize hallucinated arguments.",
+          "Transition from monolithic chains to orchestrator-worker graph topologies."
+        ],
+        "callToAction": "Review the GitHub repo for implementation examples.",
+        "resources": [
+          {"label": "LangGraph Documentation", "url": "#"},
+          {"label": "Agent Evaluation Framework", "url": "#"}
+        ]
+      }
+    }
+  ]
+}
