@@ -37,9 +37,9 @@
         "heading": "Why Visual Aesthetics Matter",
         "icon": "✨",
         "items": [
-          { "text": "First Impressions are Instantaneous", "detail": "Users judge a website within 50 milliseconds. Premium colors, balanced typography, and clean spacing establish trust immediately." },
-          { "text": "OKLCH Delivers Perfect Perceptual Balance", "detail": "Unlike RGB or HSL, OKLCH matches how human eyes perceive brightness. Changing hue doesn't make colors look muddy or overly bright." },
-          { "text": "Micro-animations Increase Engagement", "detail": "Subtle hover offsets, smooth spring transitions, and interactive visual cards keep users delighted and highly focused." }
+          {"text": "First Impressions are Instantaneous", "detail": "Users judge a website within 50 milliseconds. Premium colors, balanced typography, and clean spacing establish trust immediately."},
+          {"text": "OKLCH Delivers Perfect Perceptual Balance", "detail": "Unlike RGB or HSL, OKLCH matches how human eyes perceive brightness. Changing hue doesn't make colors look muddy or overly bright."},
+          {"text": "Micro-animations Increase Engagement", "detail": "Subtle hover offsets, smooth spring transitions, and interactive visual cards keep users delighted and highly focused."}
         ],
         "speakerNotes": "Discuss the 50ms rule of web aesthetics. Click each item to show detailed insights."
       }
@@ -51,24 +51,9 @@
         "heading": "Color Space Comparison",
         "icon": "🌈",
         "tabs": [
-          {
-            "label": "HEX / RGB",
-            "content": "Hexadecimal and RGB are standard format options in classical CSS. However, they represent how hardware screens display color, not how humans perceive it. Adjusting brightness or contrast mathematically is extremely difficult.",
-            "features": ["Hardware-centric", "Hard to read manually", "No perceptual consistency"],
-            "code": "color: #4b6cb7;\ncolor: rgb(75, 108, 183);"
-          },
-          {
-            "label": "HSL Color Space",
-            "content": "HSL (Hue, Saturation, Lightness) was a massive leap forward for readability. However, it suffers from a major flaw: yellow looks perceptually much brighter than blue at the same lightness value, leading to unpredictable contrasts.",
-            "features": ["Human-readable", "Perceptually inconsistent", "Can cause accessibility issues"],
-            "code": "color: hsl(220, 60%, 50%);"
-          },
-          {
-            "label": "OKLCH Color Space",
-            "content": "OKLCH (Lightness, Chroma, Hue) is the modern standard. It ensures consistent perceptual lightness across all hues. A lightness of 70% will always look equally bright to the human eye, regardless of hue color selection.",
-            "features": ["Consistent contrast", "Wide color gamuts (P3)", "Perfect for design systems"],
-            "code": "color: oklch(70% 0.16 250);"
-          }
+          {"label": "HEX / RGB", "content": "Hexadecimal and RGB are standard format options in classical CSS. However, they represent how hardware screens display color, not how humans perceive it. Adjusting brightness or contrast mathematically is extremely difficult.", "features": ["Hardware-centric", "Hard to read manually", "No perceptual consistency"], "code": "color: #4b6cb7;\ncolor: rgb(75, 108, 183);"},
+          {"label": "HSL Color Space", "content": "HSL (Hue, Saturation, Lightness) was a massive leap forward for readability. However, it suffers from a major flaw: yellow looks perceptually much brighter than blue at the same lightness value, leading to unpredictable contrasts.", "features": ["Human-readable", "Perceptually inconsistent", "Can cause accessibility issues"], "code": "color: hsl(220, 60%, 50%);"},
+          {"label": "OKLCH Color Space", "content": "OKLCH (Lightness, Chroma, Hue) is the modern standard. It ensures consistent perceptual lightness across all hues. A lightness of 70% will always look equally bright to the human eye, regardless of hue color selection.", "features": ["Consistent contrast", "Wide color gamuts (P3)", "Perfect for design systems"], "code": "color: oklch(70% 0.16 250);"}
         ],
         "speakerNotes": "Toggle between the tabs to compare the code and benefits of each system. Emphasize that OKLCH is now supported in all major browsers."
       }
@@ -80,10 +65,10 @@
         "heading": "Evolution of Web Colors",
         "icon": "📅",
         "events": [
-          { "year": "1996", "title": "Web-Safe Hex Colors", "description": "Screens only supported 256 colors. Developers were restricted to 216 'web-safe' hex codes to avoid visual dithering." },
-          { "year": "2002", "title": "16-Million Colors (RGB)", "description": "TrueColor displays become standard. CSS introduces rgba() allowing transparent overlays." },
-          { "year": "2011", "title": "HSL Support Arrives", "description": "CSS3 introduces HSL, allowing designers to tweak lightness and saturation naturally." },
-          { "year": "2023", "title": "OKLCH & Wide Gamuts", "description": "CSS Color Module Level 4 introduces OKLCH, enabling P3 wide gamuts and uniform color lightness." }
+          {"year": "1996", "title": "Web-Safe Hex Colors", "description": "Screens only supported 256 colors. Developers were restricted to 216 'web-safe' hex codes to avoid visual dithering."},
+          {"year": "2002", "title": "16-Million Colors (RGB)", "description": "TrueColor displays become standard. CSS introduces rgba() allowing transparent overlays."},
+          {"year": "2011", "title": "HSL Support Arrives", "description": "CSS3 introduces HSL, allowing designers to tweak lightness and saturation naturally."},
+          {"year": "2023", "title": "OKLCH & Wide Gamuts", "description": "CSS Color Module Level 4 introduces OKLCH, enabling P3 wide gamuts and uniform color lightness."}
         ],
         "speakerNotes": "Scroll through the timeline. Note how fast technology has evolved from restricted 256 colors to modern wide P3 color spaces."
       }
@@ -95,21 +80,9 @@
         "heading": "Building an Aesthetic Palette",
         "icon": "🎨",
         "steps": [
-          {
-            "title": "1. Pick a Lightness Range",
-            "content": "Define your surface background lightness and primary text lightness to ensure accessible contrast values (at least 4.5:1 ratio).",
-            "tip": "Aim for a Lightness of 98% for clean light surfaces, and 18% for deep rich dark backgrounds."
-          },
-          {
-            "title": "2. Define a Semantic Primary Hue",
-            "content": "Choose a main signature color for accents, links, active states, and buttons.",
-            "tip": "Sunset theme uses oklch(55% 0.18 25) which gives a gorgeous rich coral hue!"
-          },
-          {
-            "title": "3. Derive Secondary Colors via Hue Shifting",
-            "content": "Create complementary colors by shifting the hue parameter (e.g. add or subtract 30-40 degrees on the hue wheel).",
-            "tip": "This guarantees a matching aesthetic harmony without random color selection."
-          }
+          {"title": "1. Pick a Lightness Range", "content": "Define your surface background lightness and primary text lightness to ensure accessible contrast values (at least 4.5:1 ratio).", "tip": "Aim for a Lightness of 98% for clean light surfaces, and 18% for deep rich dark backgrounds."},
+          {"title": "2. Define a Semantic Primary Hue", "content": "Choose a main signature color for accents, links, active states, and buttons.", "tip": "Sunset theme uses oklch(55% 0.18 25) which gives a gorgeous rich coral hue!"},
+          {"title": "3. Derive Secondary Colors via Hue Shifting", "content": "Create complementary colors by shifting the hue parameter (e.g. add or subtract 30-40 degrees on the hue wheel).", "tip": "This guarantees a matching aesthetic harmony without random color selection."}
         ],
         "speakerNotes": "Walk students through the color wheel math. Show how easily OKLCH solves color theory."
       }
@@ -132,18 +105,8 @@
         "heading": "Visual Design Check",
         "icon": "❓",
         "questions": [
-          {
-            "question": "Which color parameter determines how humans perceive brightness consistently?",
-            "options": ["Hue (H)", "Chroma / Saturation (C)", "Lightness (L)", "RGB Ratio"],
-            "correct": 2,
-            "explanation": "Lightness in OKLCH ensures uniform perceived brightness, preventing yellow from looking brighter than blue at identical settings."
-          },
-          {
-            "question": "What is the primary benefit of Wide Gamut P3 colors?",
-            "options": ["Faster rendering times", "30% more vibrant and deep colors on modern displays", "Better print compatibility", "Lower file sizes"],
-            "correct": 1,
-            "explanation": "P3 gamuts unlock extremely saturated shades of green, red, and blue that were completely unrenderable on older sRGB screens."
-          }
+          {"question": "Which color parameter determines how humans perceive brightness consistently?", "options": ["Hue (H)", "Chroma / Saturation (C)", "Lightness (L)", "RGB Ratio"], "correct": 2, "explanation": "Lightness in OKLCH ensures uniform perceived brightness, preventing yellow from looking brighter than blue at identical settings."},
+          {"question": "What is the primary benefit of Wide Gamut P3 colors?", "options": ["Faster rendering times", "30% more vibrant and deep colors on modern displays", "Better print compatibility", "Lower file sizes"], "correct": 1, "explanation": "P3 gamuts unlock extremely saturated shades of green, red, and blue that were completely unrenderable on older sRGB screens."}
         ],
         "speakerNotes": "Assess the class's understanding. Prompt them to raise their hands and vote."
       }
@@ -185,10 +148,10 @@
         "heading": "Aesthetic Core Terms",
         "icon": "🃏",
         "cards": [
-          { "front": "Lightness (L)", "back": "The perceptual brightness of a color, ranging from 0% (black) to 100% (white)." },
-          { "front": "Chroma (C)", "back": "The saturation or intensity of the color. 0 represents pure gray, and 0.4 represents highly intense colors." },
-          { "front": "Hue (H)", "back": "The color type or angle on the color wheel, ranging from 0 to 360 degrees (0 is red, 120 green, 240 blue)." },
-          { "front": "Gamut Mapping", "back": "Fitting vivid colors into screen limits cleanly without causing ugly visual clipping or pixelation." }
+          {"front": "Lightness (L)", "back": "The perceptual brightness of a color, ranging from 0% (black) to 100% (white)."},
+          {"front": "Chroma (C)", "back": "The saturation or intensity of the color. 0 represents pure gray, and 0.4 represents highly intense colors."},
+          {"front": "Hue (H)", "back": "The color type or angle on the color wheel, ranging from 0 to 360 degrees (0 is red, 120 green, 240 blue)."},
+          {"front": "Gamut Mapping", "back": "Fitting vivid colors into screen limits cleanly without causing ugly visual clipping or pixelation."}
         ],
         "speakerNotes": "Let students click the cards to memorize these definitions. A vital glossary for visual web designers!"
       }
@@ -201,25 +164,9 @@
         "icon": "🍱",
         "gridTemplate": "large | small small",
         "items": [
-          {
-            "size": "large",
-            "title": "Bố cục bất đối xứng cao cấp",
-            "content": "Sắp xếp thông tin linh hoạt dưới dạng các ô lưới kính mờ Glassmorphism. Mỗi ô đại diện cho một chủ thể khác nhau, giúp tối ưu diện tích hiển thị và thu hút ánh nhìn.",
-            "badge": "Xu Hướng Thiết Kế",
-            "bgGradient": "oklch(60% 0.15 320) to oklch(50% 0.15 250)"
-          },
-          {
-            "size": "small",
-            "title": "Hiệu ứng Neon Glow",
-            "content": "Tự động phát sáng mờ khi di chuột, nâng cấp trải nghiệm tương tác trực giác.",
-            "icon": "⚡"
-          },
-          {
-            "size": "small",
-            "title": "Màu sắc OKLCH",
-            "content": "Đảm bảo độ tương phản hoàn hảo và chuyển màu mượt mà trên mọi màn hình rộng.",
-            "icon": "🎨"
-          }
+          {"$ref": "bento-large", "title": "Bố cục bất đối xứng cao cấp", "content": "Sắp xếp thông tin linh hoạt dưới dạng các ô lưới kính mờ Glassmorphism. Mỗi ô đại diện cho một chủ thể khác nhau, giúp tối ưu diện tích hiển thị và thu hút ánh nhìn.", "badge": "Xu Hướng Thiết Kế", "bgGradient": "oklch(60% 0.15 320) to oklch(50% 0.15 250)"},
+          {"$ref": "bento-small", "title": "Hiệu ứng Neon Glow", "content": "Tự động phát sáng mờ khi di chuột, nâng cấp trải nghiệm tương tác trực giác.", "icon": "⚡"},
+          {"$ref": "bento-small", "title": "Màu sắc OKLCH", "content": "Đảm bảo độ tương phản hoàn hảo và chuyển màu mượt mà trên mọi màn hình rộng.", "icon": "🎨"}
         ],
         "speakerNotes": "Giới thiệu xu hướng Bento Grid trong thiết kế hiện đại. Chỉ ra cách sắp xếp các ô có kích thước linh hoạt."
       }
@@ -231,18 +178,15 @@
         "heading": "Trực quan hóa Dữ liệu Tương tác",
         "icon": "📊",
         "chartType": "line",
-        "labels": ["Q1", "Q2", "Q3", "Q4"],
+        "labels": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "Q4"
+        ],
         "datasets": [
-          {
-            "label": "Độ phổ biến OKLCH (%)",
-            "data": [12, 38, 70, 95],
-            "color": "primary"
-          },
-          {
-            "label": "Học viên hài lòng (%)",
-            "data": [45, 68, 85, 98],
-            "color": "success"
-          }
+          {"label": "Độ phổ biến OKLCH (%)", "data": [12,38,70,95], "color": "primary"},
+          {"label": "Học viên hài lòng (%)", "data": [45,68,85,98], "color": "success"}
         ],
         "speakerNotes": "Di chuột vào các điểm mốc trên đường để xem giá trị tooltip, hoặc nhấp vào chú thích (Legend) để ẩn/hiện dữ liệu tương ứng."
       }
@@ -254,15 +198,15 @@
         "heading": "Bảng Số Liệu Kính Mờ Đa Năng",
         "icon": "🧮",
         "columns": [
-          { "key": "framework", "label": "Thư viện", "type": "text" },
-          { "key": "colors", "label": "Không gian màu", "type": "badge" },
-          { "key": "renderSpeed", "label": "Tốc độ", "type": "code" },
-          { "key": "satisfaction", "label": "Độ hài lòng", "type": "progress" }
+          {"key": "framework", "label": "Thư viện", "type": "text"},
+          {"key": "colors", "label": "Không gian màu", "type": "badge"},
+          {"key": "renderSpeed", "label": "Tốc độ", "type": "code"},
+          {"key": "satisfaction", "label": "Độ hài lòng", "type": "progress"}
         ],
         "rows": [
-          { "framework": "Lecta AI Engine", "colors": "OKLCH · success", "renderSpeed": "12ms", "satisfaction": 98 },
-          { "framework": "Legacy CSS Core", "colors": "HSL · warning", "renderSpeed": "48ms", "satisfaction": 72 },
-          { "framework": "Basic HTML Deck", "colors": "RGB · danger", "renderSpeed": "110ms", "satisfaction": 35 }
+          {"framework": "Lecta AI Engine", "colors": "OKLCH · success", "renderSpeed": "12ms", "satisfaction": 98},
+          {"framework": "Legacy CSS Core", "colors": "HSL · warning", "renderSpeed": "48ms", "satisfaction": 72},
+          {"framework": "Basic HTML Deck", "colors": "RGB · danger", "renderSpeed": "110ms", "satisfaction": 35}
         ],
         "speakerNotes": "Trình bày cách sử dụng bảng số liệu: Bạn có thể gõ vào ô tìm kiếm nhanh hoặc nhấp vào tiêu đề để sắp xếp các cột."
       }
@@ -274,15 +218,15 @@
         "heading": "Sơ đồ Quy trình Hoạt động",
         "icon": "🌿",
         "nodes": [
-          { "id": "n1", "label": "1. slide.json", "details": "Định nghĩa nội dung slide tối giản dưới dạng cấu trúc dữ liệu JSON." },
-          { "id": "n2", "label": "2. build.js", "details": "Compiler đóng gói các thành phần CSS/JS thành một tệp HTML duy nhất." },
-          { "id": "n3", "label": "3. renderer.js", "details": "Chuyển các khối dữ liệu JSON thành cấu trúc HTML ngữ nghĩa." },
-          { "id": "n4", "label": "4. Slide Deck", "details": "Tệp slide HTML hoàn thiện, chạy offline với đầy đủ hiệu ứng tương tác." }
+          {"id": "n1", "label": "1. slide.json", "details": "Định nghĩa nội dung slide tối giản dưới dạng cấu trúc dữ liệu JSON."},
+          {"id": "n2", "label": "2. build.js", "details": "Compiler đóng gói các thành phần CSS/JS thành một tệp HTML duy nhất."},
+          {"id": "n3", "label": "3. renderer.js", "details": "Chuyển các khối dữ liệu JSON thành cấu trúc HTML ngữ nghĩa."},
+          {"id": "n4", "label": "4. Slide Deck", "details": "Tệp slide HTML hoàn thiện, chạy offline với đầy đủ hiệu ứng tương tác."}
         ],
         "connections": [
-          { "from": "n1", "to": "n2" },
-          { "from": "n2", "to": "n3" },
-          { "from": "n3", "to": "n4" }
+          {"from": "n1", "to": "n2"},
+          {"from": "n2", "to": "n3"},
+          {"from": "n3", "to": "n4"}
         ],
         "speakerNotes": "Nhấp chuột vào từng node trên sơ đồ để hiển thị chi tiết các bước vận hành của hệ thống."
       }
@@ -301,8 +245,8 @@
         ],
         "callToAction": "Go design beautiful digital products today!",
         "resources": [
-          { "label": "OKLCH Color Picker", "url": "https://oklch.com" },
-          { "label": "W3C Accessibility Guidelines", "url": "https://w3.org/WAI" }
+          {"label": "OKLCH Color Picker", "url": "https://oklch.com"},
+          {"label": "W3C Accessibility Guidelines", "url": "https://w3.org/WAI"}
         ],
         "speakerNotes": "Summarize key points. Give direct encouragement to the classroom! Open the floor to interactive Q&A."
       }
@@ -314,16 +258,8 @@
         "heading": "Đánh giá Thẩm mỹ Thiết kế",
         "icon": "🏆",
         "questions": [
-          {
-            "question": "Không gian màu nào được thiết kế tối ưu dựa trên cảm nhận độ sáng thực tế của mắt người?",
-            "options": ["sRGB", "HSL", "OKLCH", "HEX"],
-            "correct": 2
-          },
-          {
-            "question": "Tỷ lệ tương phản tối thiểu đề xuất cho văn bản dễ tiếp cận là bao nhiêu?",
-            "options": ["2.0:1", "4.5:1", "1.0:1", "10:1"],
-            "correct": 1
-          }
+          {"question": "Không gian màu nào được thiết kế tối ưu dựa trên cảm nhận độ sáng thực tế của mắt người?", "options": ["sRGB", "HSL", "OKLCH", "HEX"], "correct": 2},
+          {"question": "Tỷ lệ tương phản tối thiểu đề xuất cho văn bản dễ tiếp cận là bao nhiêu?", "options": ["2.0:1", "4.5:1", "1.0:1", "10:1"], "correct": 1}
         ],
         "speakerNotes": "Kiểm tra kiến thức về thiết kế thẩm mỹ hiện đại và các nguyên tắc thiết kế OKLCH."
       }
