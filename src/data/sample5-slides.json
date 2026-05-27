@@ -34,11 +34,11 @@
       "id": "slide-s5-2",
       "type": "split",
       "flow": [
-        { "label": "Reveal diagram", "action": "reveal", "preset": "zoom-focus", "targets": [".split-column.left-column"] },
-        { "label": "Reveal insight 1", "action": "reveal", "preset": "fade-up", "targets": ["[data-flow-id='bullet-1']"] },
-        { "label": "Reveal insight 2", "action": "reveal", "preset": "fade-up", "targets": ["[data-flow-id='bullet-2']"] },
-        { "label": "Reveal insight 3", "action": "reveal", "preset": "fade-up", "targets": ["[data-flow-id='bullet-3']"] },
-        { "label": "Highlight sync", "action": "highlight", "preset": "highlight-pulse", "targets": ["[data-flow-id='bullet-2']"] }
+        {"label": "Reveal diagram", "action": "reveal", "preset": "zoom-focus", "targets": [".split-column.left-column"]},
+        {"label": "Reveal insight 1", "action": "reveal", "preset": "fade-up", "targets": ["[data-flow-id='bullet-1']"]},
+        {"label": "Reveal insight 2", "action": "reveal", "preset": "fade-up", "targets": ["[data-flow-id='bullet-2']"]},
+        {"label": "Reveal insight 3", "action": "reveal", "preset": "fade-up", "targets": ["[data-flow-id='bullet-3']"]},
+        {"label": "Highlight sync", "action": "highlight", "preset": "highlight-pulse", "targets": ["[data-flow-id='bullet-2']"]}
       ],
       "data": {
         "heading": "Synchronized Presenter Flow",
@@ -71,25 +71,9 @@
         "icon": "🍱",
         "gridTemplate": "large | small small",
         "items": [
-          {
-            "size": "large",
-            "title": "Next-Gen Bento Blueprint",
-            "content": "Combine math equations, flowcharts, video players, and code sandboxes inside responsive grid slots that resize fluidly across tablet, mobile, or widescreen screens.",
-            "badge": "Responsive Canvas",
-            "bgGradient": "oklch(58% 0.22 35) to oklch(48% 0.18 20)"
-          },
-          {
-            "size": "small",
-            "title": "Dynamic Loaders",
-            "content": "On-demand CDN fetching only downloads heavy engines (KaTeX, Mermaid, Prism) when needed.",
-            "icon": "⚡"
-          },
-          {
-            "size": "small",
-            "title": "Glassmorphism",
-            "content": "Sophisticated glass backdrop filters and glowing neon borders that respond cleanly to theme settings.",
-            "icon": "✨"
-          }
+          {"$ref": "bento-large", "title": "Next-Gen Bento Blueprint", "content": "Combine math equations, flowcharts, video players, and code sandboxes inside responsive grid slots that resize fluidly across tablet, mobile, or widescreen screens.", "badge": "Responsive Canvas", "bgGradient": "oklch(58% 0.22 35) to oklch(48% 0.18 20)"},
+          {"$ref": "bento-small", "title": "Dynamic Loaders", "content": "On-demand CDN fetching only downloads heavy engines (KaTeX, Mermaid, Prism) when needed.", "icon": "⚡"},
+          {"$ref": "bento-small", "title": "Glassmorphism", "content": "Sophisticated glass backdrop filters and glowing neon borders that respond cleanly to theme settings.", "icon": "✨"}
         ],
         "speakerNotes": "Review the Bento block configuration. Show the contrast between the primary large block and supporting cards."
       }
@@ -136,21 +120,9 @@
         "heading": "Lecta Masterclass Assessment",
         "icon": "🏆",
         "questions": [
-          {
-            "question": "Which technology establishes low-overhead communication between split speaker consoles and primary audience displays?",
-            "options": ["WebSocket Remote Portals", "Bidirectional BroadcastChannel", "Persistent Shared Workers", "Synchronous HTTP Polling"],
-            "correct": 1
-          },
-          {
-            "question": "How are heavy script engines like KaTeX and Mermaid initialized in the zero-dependency LECTA engine?",
-            "options": ["Bundled in the primary compiled asset", "Loaded on-demand from CDNs when slides load", "Installed globally via node packages", "Pre-rendered into static graphics shapes"],
-            "correct": 1
-          },
-          {
-            "question": "Which theme color space prevents pixel clipping while maintaining identical perceptual lightness?",
-            "options": ["Standard sRGB color coordinates", "Perceptual OKLCH theme tokens", "Traditional HSL bright values", "Hexadecimal light indicators"],
-            "correct": 1
-          }
+          {"question": "Which technology establishes low-overhead communication between split speaker consoles and primary audience displays?", "options": ["WebSocket Remote Portals", "Bidirectional BroadcastChannel", "Persistent Shared Workers", "Synchronous HTTP Polling"], "correct": 1},
+          {"question": "How are heavy script engines like KaTeX and Mermaid initialized in the zero-dependency LECTA engine?", "options": ["Bundled in the primary compiled asset", "Loaded on-demand from CDNs when slides load", "Installed globally via node packages", "Pre-rendered into static graphics shapes"], "correct": 1},
+          {"question": "Which theme color space prevents pixel clipping while maintaining identical perceptual lightness?", "options": ["Standard sRGB color coordinates", "Perceptual OKLCH theme tokens", "Traditional HSL bright values", "Hexadecimal light indicators"], "correct": 1}
         ],
         "speakerNotes": "Assess the audience's mastery of the lesson material. Have them select choices and submit to calculate their final score."
       }
