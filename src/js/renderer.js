@@ -7,7 +7,10 @@ function renderSlideHTML(slide) {
   const d = slide.data;
   const notes = (d.speakerNotes || '').replace(/"/g, '&quot;');
   const flowAttr = slide.flow ? ` data-flow="${esc(JSON.stringify(slide.flow))}"` : '';
-  const sectionAttrs = `class="slide" id="${slide.id}" data-speaker-notes="${notes}"${flowAttr}`;
+  const transitionPreset = slide.transitionPreset || '';
+  const transitionClass = transitionPreset ? ` slide-transition-${transitionPreset}` : '';
+  const transitionAttr = transitionPreset ? ` data-transition-preset="${esc(transitionPreset)}"` : '';
+  const sectionAttrs = `class="slide" id="${slide.id}" data-speaker-notes="${notes}"${flowAttr}${transitionAttr}`;
 
   switch (slide.type) {
     case 'title':
@@ -21,9 +24,9 @@ function renderSlideHTML(slide) {
 
     case 'bullets':
       return `<section ${sectionAttrs}>
-  <div class="slide-inner">
+  <div class="slide-inner${transitionClass}">
     <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
-    <ul class="bullet-list stagger">
+    <ul class="bullet-list stagger-spring">
       ${d.items.map((item, i) => `<li class="bullet-item" data-flow-id="bullet-${i + 1}">
         <div class="bullet-text">${esc(item.text)}</div>
         <div class="bullet-detail"><p>${esc(item.detail || '')}</p></div>
@@ -317,11 +320,6 @@ function renderSlideHTML(slide) {
     <div class="flow-block-container stagger" data-nodes="${esc(JSON.stringify(d.nodes || [])).replace(/"/g, '&quot;')}" data-connections="${esc(JSON.stringify(d.connections || [])).replace(/"/g, '&quot;')}">
       <div class="flow-layout-wrapper">
         <svg class="flow-svg-canvas" viewBox="0 0 800 350">
-          <defs>
-            <marker id="arrow" viewBox="0 0 10 10" refX="22" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-              <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--color-primary)" />
-            </marker>
-          </defs>
         </svg>
       </div>
       <div class="flow-detail-panel glassmorphic-panel">
@@ -395,9 +393,9 @@ function renderSlideHTML(slide) {
 
     case 'split':
       return `<section ${sectionAttrs}>
-  <div class="slide-inner">
+  <div class="slide-inner${transitionClass}">
     <div class="block-heading"><span class="icon">${d.icon || '⚔️'}</span><h2>${esc(d.heading)}</h2></div>
-    <div class="split-layout-container ${d.layout || 'split-50-50'}">
+    <div class="split-layout-container ${d.layout || 'split-50-50'} stagger-spring">
       <div class="split-column left-column">
         ${renderSubBlock(d.left, slide.id + '-left')}
       </div>
@@ -472,14 +470,31 @@ function renderSlideHTML(slide) {
 
     case 'stats':
       return `<section ${sectionAttrs}>
-  <div class="slide-inner">
+  <div class="slide-inner${transitionClass}">
     <div class="block-heading"><span class="icon">${d.icon || '📊'}</span><h2>${esc(d.heading)}</h2></div>
     <div class="stats-grid stagger">
-      ${(d.stats || []).map((s, i) => `<div class="stat-card" data-flow-id="stat-${i + 1}">
-        <div class="stat-value">${esc(s.value)}</div>
+      ${(d.stats || []).map((s, i) => {
+        // Parse value to extract numeric portion for counter animation
+        const rawValue = String(s.value);
+        const numMatch = rawValue.match(/^([^0-9]*)([0-9][0-9,.]*)(.*)$/);
+        let valueHTML;
+        if (numMatch) {
+          const prefix = esc(numMatch[1]);
+          const numericStr = numMatch[2];
+          const suffix = esc(numMatch[3]);
+          const isDecimal = numericStr.includes('.');
+          const decimalPlaces = isDecimal ? (numericStr.split('.')[1] || '').length : 0;
+          const cleanNum = numericStr.replace(/,/g, '');
+          valueHTML = `${prefix}<span class="stat-counter" data-count-target="${esc(cleanNum)}" data-count-decimals="${decimalPlaces}" data-count-original="${esc(numericStr)}">${esc(numericStr)}</span>${suffix}`;
+        } else {
+          valueHTML = esc(rawValue);
+        }
+        return `<div class="stat-card" data-flow-id="stat-${i + 1}">
+        <div class="stat-value">${valueHTML}</div>
         <div class="stat-label">${esc(s.label)}</div>
         ${s.trend ? `<div class="stat-trend trend-${s.trend === 'up' ? 'up' : 'down'}">${s.trend === 'up' ? '↑' : '↓'} ${esc(s.subtext || '')}</div>` : (s.subtext ? `<div class="stat-subtext">${esc(s.subtext)}</div>` : '')}
-      </div>`).join('\n      ')}
+      </div>`;
+      }).join('\n      ')}
     </div>
   </div>
 </section>`;
@@ -578,7 +593,7 @@ function renderSubBlock(b, id) {
     case 'text':
       return `<div class="sub-block sub-text"><p>${esc(d.content)}</p></div>`;
     case 'bullets':
-      return `<div class="sub-block sub-bullets"><ul style="list-style-type: disc; padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;">${d.items.map((it, i) => `<li data-flow-id="sub-bullet-${i + 1}">${esc(it)}</li>`).join('')}</ul></div>`;
+      return `<div class="sub-block sub-bullets"><ul class="stagger-spring" style="list-style-type: disc; padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;">${d.items.map((it, i) => `<li data-flow-id="sub-bullet-${i + 1}">${esc(it)}</li>`).join('')}</ul></div>`;
     case 'code':
       return `<div class="sub-block sub-code"><pre><code class="language-${d.language || 'javascript'}">${esc(d.code)}</code></pre></div>`;
     case 'image':
