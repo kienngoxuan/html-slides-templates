@@ -630,4 +630,8 @@ function esc(str) {
     .replace(/'/g, '&#39;');
 }
 
-module.exports = { renderSlideHTML };
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { renderSlideHTML };
+} else {
+  window.LectaRenderer = { renderSlideHTML };
+}
