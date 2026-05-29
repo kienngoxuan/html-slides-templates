@@ -6100,301 +6100,7 @@ body.viewport-mode-mobile .table-actions {
   <!-- PRESENTATION CONTAINER -->
   <div class="slides-viewport">
     <div class="slides-track">
-      <section class="slide" id="slide-1" data-speaker-notes="Welcome to the technical deep dive on Multi-Agent architectures." data-transition-preset="fade">
-  <div class="slide-inner slide-title">
-    <span class="badge">Engineering Deep Dive</span>
-    <h1>Scaling Autonomous Multi-Agent Systems</h1>
-    <p class="subtitle">Building, evaluating, and deploying robust LLM agent pipelines.</p>
-  </div>
-</section>
-<section class="slide" id="slide-2" data-speaker-notes="" data-transition-preset="fade">
-  <div class="slide-inner">
-    <div class="block-heading"><span class="icon">🛣️</span><h2>The Road to Artificial General Agents</h2></div>
-    <div class="timeline-h-track stagger">
-      <div class="timeline-h-line"></div>
-      <div class="timeline-h-item" data-flow-id="timeline-h-1">
-        <div class="timeline-h-dot"></div>
-        <div class="timeline-h-card">
-          <div class="timeline-h-year">2022</div>
-          <div class="timeline-h-title">Zero-Shot Prompting</div>
-          
-        </div>
-      </div>
-      <div class="timeline-h-item" data-flow-id="timeline-h-2">
-        <div class="timeline-h-dot"></div>
-        <div class="timeline-h-card">
-          <div class="timeline-h-year">2023</div>
-          <div class="timeline-h-title">RAG &amp; Chaining</div>
-          
-        </div>
-      </div>
-      <div class="timeline-h-item" data-flow-id="timeline-h-3">
-        <div class="timeline-h-dot"></div>
-        <div class="timeline-h-card">
-          <div class="timeline-h-year">2024</div>
-          <div class="timeline-h-title">Tool Use &amp; Planning</div>
-          
-        </div>
-      </div>
-      <div class="timeline-h-item" data-flow-id="timeline-h-4">
-        <div class="timeline-h-dot"></div>
-        <div class="timeline-h-card">
-          <div class="timeline-h-year">2026</div>
-          <div class="timeline-h-title">Multi-Agent Swarms</div>
-          
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="slide" id="slide-3" data-speaker-notes="" data-transition-preset="fade">
-  <div class="slide-inner">
-    <div class="block-heading"><span class="icon">🔄</span><h2>Multi-Agent Routing Pipeline</h2></div>
-    <div class="flow-block-container stagger" data-nodes="[{&quot;id&quot;:&quot;input&quot;,&quot;label&quot;:&quot;User Query&quot;,&quot;details&quot;:&quot;Natural language request.&quot;},{&quot;id&quot;:&quot;router&quot;,&quot;label&quot;:&quot;LLM Router&quot;,&quot;details&quot;:&quot;Determines intent and selects agent.&quot;},{&quot;id&quot;:&quot;agentA&quot;,&quot;label&quot;:&quot;Research Agent&quot;,&quot;details&quot;:&quot;Searches vector DBs.&quot;},{&quot;id&quot;:&quot;agentB&quot;,&quot;label&quot;:&quot;Code Agent&quot;,&quot;details&quot;:&quot;Writes and tests scripts.&quot;},{&quot;id&quot;:&quot;synth&quot;,&quot;label&quot;:&quot;Synthesizer&quot;,&quot;details&quot;:&quot;Combines agent outputs.&quot;}]" data-connections="[{&quot;from&quot;:&quot;input&quot;,&quot;to&quot;:&quot;router&quot;},{&quot;from&quot;:&quot;router&quot;,&quot;to&quot;:&quot;agentA&quot;},{&quot;from&quot;:&quot;router&quot;,&quot;to&quot;:&quot;agentB&quot;},{&quot;from&quot;:&quot;agentA&quot;,&quot;to&quot;:&quot;synth&quot;},{&quot;from&quot;:&quot;agentB&quot;,&quot;to&quot;:&quot;synth&quot;}]">
-      <div class="flow-layout-wrapper">
-        <svg class="flow-svg-canvas" viewBox="0 0 800 350">
-        </svg>
-      </div>
-      <div class="flow-detail-panel glassmorphic-panel">
-        <div class="flow-detail-default-msg">💡 Click on any step in the flowchart to view deep insights.</div>
-        <div class="flow-detail-content" style="display: none;">
-          <h4 class="flow-detail-title"></h4>
-          <p class="flow-detail-desc"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="slide" id="slide-4" data-speaker-notes="" data-transition-preset="zoom-in">
-  <div class="slide-inner">
-    <div class="block-heading"><span class="icon">🧠</span><h2>The Agent Memory Bento Blueprint</h2></div>
-    <div class="bento-grid stagger" style="--grid-template: large | small small">
-      <div class="bento-card bento-size-large bento-card-gradient" style="background: linear-gradient(135deg, oklch(95% 0.05 180), oklch(90% 0.08 190)); border: none;" data-flow-id="bento-1">
-          <span class="bento-badge">Core Memory</span>
-          
-          <div class="bento-card-content">
-            <h3>Vector Store (Long-term)</h3>
-            <p>Semantic search across gigabytes of documents. Embeddings stored in Pinecone/Milvus.</p>
-          </div>
-        </div>
-      <div class="bento-card bento-size-small" style="" data-flow-id="bento-2">
-          
-          <div class="bento-icon">🪟</div>
-          <div class="bento-card-content">
-            <h3>Context Window (Working)</h3>
-            <p>The immediate prompt tokens provided to the LLM per inference.</p>
-          </div>
-        </div>
-      <div class="bento-card bento-size-small" style="" data-flow-id="bento-3">
-          
-          <div class="bento-icon">⚡</div>
-          <div class="bento-card-content">
-            <h3>KV Cache (Episodic)</h3>
-            <p>Fast key-value retrieval for recent conversation turns.</p>
-          </div>
-        </div>
-    </div>
-  </div>
-</section>
-<section class="slide" id="slide-5" data-speaker-notes="" data-transition-preset="fade">
-  <div class="slide-inner slide-transition-fade">
-    <div class="block-heading"><span class="icon">⚖️</span><h2>Synchronous vs Parallel Agents</h2></div>
-    <div class="split-layout-container split-50-50 stagger-spring">
-      <div class="split-column left-column">
-        <div class="sub-block sub-bullets"><ul class="stagger-spring" style="list-style-type: disc; padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;"><li data-flow-id="sub-bullet-1">Easier to debug and trace.</li><li data-flow-id="sub-bullet-2">Strict deterministic execution order.</li><li data-flow-id="sub-bullet-3">Higher overall latency (blocking).</li><li data-flow-id="sub-bullet-4">Prone to single point of failure.</li></ul></div>
-      </div>
-      <div class="split-column right-column">
-        <div class="sub-block sub-bullets"><ul class="stagger-spring" style="list-style-type: disc; padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;"><li data-flow-id="sub-bullet-1">Complex orchestration required (DAGs).</li><li data-flow-id="sub-bullet-2">Massive speedups for independent tasks.</li><li data-flow-id="sub-bullet-3">Requires robust conflict resolution.</li><li data-flow-id="sub-bullet-4">Scales effectively across distributed compute.</li></ul></div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="slide" id="slide-6" data-speaker-notes="" data-transition-preset="fade">
-  <div class="slide-inner">
-    <div class="block-heading"><span class="icon">📝</span><h2>Agentic Prompt Orchestration</h2></div>
-    <div class="code-diff-container stagger">
-      <div class="code-diff-pane" data-flow-id="code-left">
-        <div class="code-diff-header code-diff-before">
-          <span class="code-diff-dot"></span>
-          Basic Prompting
-          <span class="code-diff-lang">python</span>
-        </div>
-        <pre><code class="language-python">prompt = f&quot;&quot;&quot;
-Answer the user&#39;s question:
-{user_input}
-&quot;&quot;&quot;
-response = llm.generate(prompt)</code></pre>
-      </div>
-      <div class="code-diff-pane" data-flow-id="code-right">
-        <div class="code-diff-header code-diff-after">
-          <span class="code-diff-dot"></span>
-          ReAct Framework
-          <span class="code-diff-lang">python</span>
-        </div>
-        <pre><code class="language-python">prompt = f&quot;&quot;&quot;
-Use the following format:
-Thought: you should always think about what to do
-Action: the action to take, should be one of [{tool_names}]
-Action Input: the input to the action
-Observation: the result of the action
-... (this Thought/Action/Action Input/Observation can repeat N times)
-Thought: I now know the final answer
-Final Answer: the final answer to the original input question
-
-Question: {user_input}
-&quot;&quot;&quot;
-response = agent_executor.run(prompt)</code></pre>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="slide" id="slide-7" data-speaker-notes="" data-transition-preset="fade">
-  <div class="slide-inner slide-transition-fade">
-    <div class="block-heading"><span class="icon">⚠️</span><h2>Primary Failure Modes</h2></div>
-    <ul class="bullet-list stagger-spring">
-      <li class="bullet-item" data-flow-id="bullet-1">
-        <div class="bullet-text">Infinite Loops</div>
-        <div class="bullet-detail"><p>Agent gets stuck repeatedly calling the same tool with the same input.</p></div>
-      </li>
-      <li class="bullet-item" data-flow-id="bullet-2">
-        <div class="bullet-text">Hallucinated Tools</div>
-        <div class="bullet-detail"><p>Agent attempts to use a tool that was not provided in its prompt context.</p></div>
-      </li>
-      <li class="bullet-item" data-flow-id="bullet-3">
-        <div class="bullet-text">Context Overflow</div>
-        <div class="bullet-detail"><p>Agent accumulates too much history, exceeding the model&#39;s maximum token limit.</p></div>
-      </li>
-      <li class="bullet-item" data-flow-id="bullet-4">
-        <div class="bullet-text">Premature Termination</div>
-        <div class="bullet-detail"><p>Agent provides a final answer before adequately solving the multi-step problem.</p></div>
-      </li>
-    </ul>
-  </div>
-</section>
-<section class="slide" id="slide-8" data-speaker-notes="" data-transition-preset="zoom-in">
-  <div class="slide-inner slide-transition-zoom-in">
-    <div class="block-heading"><span class="icon">🏎️</span><h2>Agent Performance Under Load</h2></div>
-    <div class="stats-grid stagger">
-      <div class="stat-card" data-flow-id="stat-1">
-        <div class="stat-value"><span class="stat-counter" data-count-target="42" data-count-decimals="0" data-count-original="42">42</span>ms</div>
-        <div class="stat-label">Average Router Latency</div>
-        <div class="stat-trend trend-down">↓ </div>
-      </div>
-      <div class="stat-card" data-flow-id="stat-2">
-        <div class="stat-value"><span class="stat-counter" data-count-target="98.6" data-count-decimals="1" data-count-original="98.6">98.6</span>%</div>
-        <div class="stat-label">Task Success Rate</div>
-        <div class="stat-trend trend-down">↓ </div>
-      </div>
-      <div class="stat-card" data-flow-id="stat-3">
-        <div class="stat-value"><span class="stat-counter" data-count-target="64.2" data-count-decimals="1" data-count-original="64.2">64.2</span>%</div>
-        <div class="stat-label">Compute Savings</div>
-        <div class="stat-trend trend-down">↓ </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="slide" id="slide-9" data-speaker-notes="" data-transition-preset="fade">
-  <div class="slide-inner">
-    <div class="block-heading"><span class="icon">📊</span><h2>Model Benchmarks &amp; LLM Evaluation</h2></div>
-    <div class="table-block-container stagger">
-      <div class="table-actions">
-        <input type="text" class="table-search-input" placeholder="Search rows..." />
-      </div>
-      <div class="table-responsive-wrapper">
-        <table class="glass-table">
-          <thead>
-            <tr>
-              <th data-col-key="model" class="sortable-th">
-                Model
-                <span class="sort-indicator">↕</span>
-              </th><th data-col-key="tool" class="sortable-th">
-                Tool Use (Acc)
-                <span class="sort-indicator">↕</span>
-              </th><th data-col-key="reasoning" class="sortable-th">
-                Reasoning (MMLU)
-                <span class="sort-indicator">↕</span>
-              </th><th data-col-key="cost" class="sortable-th">
-                Cost / 1M Tokens
-                <span class="sort-indicator">↕</span>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td data-label="Model">GPT-4o</td><td data-label="Tool Use (Acc)">96.5%</td><td data-label="Reasoning (MMLU)">88.7</td><td data-label="Cost / 1M Tokens">$5.00</td>
-            </tr>
-            <tr>
-              <td data-label="Model">Claude 3.5 Sonnet</td><td data-label="Tool Use (Acc)">97.2%</td><td data-label="Reasoning (MMLU)">88.3</td><td data-label="Cost / 1M Tokens">$3.00</td>
-            </tr>
-            <tr>
-              <td data-label="Model">Llama 3 (70B)</td><td data-label="Tool Use (Acc)">89.1%</td><td data-label="Reasoning (MMLU)">82.0</td><td data-label="Cost / 1M Tokens">$0.80</td>
-            </tr>
-            <tr>
-              <td data-label="Model">Mixtral 8x22B</td><td data-label="Tool Use (Acc)">86.4%</td><td data-label="Reasoning (MMLU)">79.5</td><td data-label="Cost / 1M Tokens">$0.65</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="slide" id="slide-10" data-speaker-notes="" data-transition-preset="zoom-in">
-  <div class="slide-inner">
-    <div class="block-heading"><span class="icon">✅</span><h2>Multi-Agent Architecture Checkpoint</h2></div>
-    <div class="quiz-container stagger">
-      <div class="quiz-question" data-correct="1">
-        <h4>1. What is the primary purpose of a &#39;Synthesizer&#39; node in a multi-agent workflow?</h4>
-        <div class="quiz-options">
-          <button class="quiz-option">
-            <span class="option-letter">A</span>
-            To route the initial request to the correct agent.
-          </button>
-          <button class="quiz-option">
-            <span class="option-letter">B</span>
-            To aggregate and format the final output from multiple parallel agents.
-          </button>
-          <button class="quiz-option">
-            <span class="option-letter">C</span>
-            To store long-term memories in a vector database.
-          </button>
-          <button class="quiz-option">
-            <span class="option-letter">D</span>
-            To fine-tune the LLM weights based on user feedback.
-          </button>
-        </div>
-        <div class="quiz-explanation">The Synthesizer acts as a reducer, taking the disparate findings of specialized workers (like a research agent and a coding agent) and crafting a single, coherent response.</div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="slide" id="slide-11" data-speaker-notes="" data-transition-preset="fade">
-  <div class="slide-inner slide-transition-fade">
-    <div class="block-heading"><span class="icon">☁️</span><h2>Distributed Deployment Topology</h2></div>
-    <div class="split-layout-container split-50-50 stagger-spring">
-      <div class="split-column left-column">
-        <div class="sub-block sub-bullets"><ul class="stagger-spring" style="list-style-type: disc; padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;"><li data-flow-id="sub-bullet-1">Containerized Agent Workers (Kubernetes)</li><li data-flow-id="sub-bullet-2">Serverless functions for lightweight routing</li><li data-flow-id="sub-bullet-3">Managed Vector DB for shared state</li><li data-flow-id="sub-bullet-4">Redis for ephemeral inter-agent pub/sub</li></ul></div>
-      </div>
-      <div class="split-column right-column">
-        <div class="sub-block sub-bullets"><ul class="stagger-spring" style="list-style-type: disc; padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;"><li data-flow-id="sub-bullet-1">Ensures isolation between agent instances</li><li data-flow-id="sub-bullet-2">Allows auto-scaling specific high-load agents</li><li data-flow-id="sub-bullet-3">Prevents noisy-neighbor memory issues</li><li data-flow-id="sub-bullet-4">Enables polyglot agent ecosystems</li></ul></div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="slide" id="slide-12" data-speaker-notes="" data-transition-preset="fade">
-  <div class="slide-inner">
-    <div class="block-heading"><span class="icon">🎯</span><h2>Engineering Action Items &amp; Roadmap</h2></div>
-    <ul class="summary-items stagger">
-      <li data-flow-id="summary-1">Implement robust retry logic and fallback models for transient API failures.</li>
-      <li data-flow-id="summary-2">Utilize semantic caching to dramatically reduce latency and costs for repeated queries.</li>
-      <li data-flow-id="summary-3">Design agent tools with strict schemas (e.g., Pydantic) to minimize hallucinated arguments.</li>
-      <li data-flow-id="summary-4">Transition from monolithic chains to orchestrator-worker graph topologies.</li>
-    </ul>
-    <div class="summary-cta"><p>Review the GitHub repo for implementation examples.</p></div>
-    <div class="summary-resources">
-      <a href="#" class="resource-link" target="_blank">🔗 LangGraph Documentation</a><a href="#" class="resource-link" target="_blank">🔗 Agent Evaluation Framework</a>
-    </div>
-  </div>
-</section>
+      
     </div>
   </div>
 
@@ -6439,90 +6145,6 @@ response = agent_executor.run(prompt)</code></pre>
         <div class="sidebar-divider">SLIDE SECTIONS</div>
         <div class="slide-thumbnails">
           
-    <div class="slide-thumb active" data-slide="0">
-      <span class="slide-thumb-num">1</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">Scaling Autonomous Multi-Agent Systems</div>
-        <div class="slide-thumb-type">🎬 title</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="1">
-      <span class="slide-thumb-num">2</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">The Road to Artificial General Agents</div>
-        <div class="slide-thumb-type">📄 timeline-horizontal</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="2">
-      <span class="slide-thumb-num">3</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">Multi-Agent Routing Pipeline</div>
-        <div class="slide-thumb-type">🌿 flow</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="3">
-      <span class="slide-thumb-num">4</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">The Agent Memory Bento Blueprint</div>
-        <div class="slide-thumb-type">🍱 bento</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="4">
-      <span class="slide-thumb-num">5</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">Synchronous vs Parallel Agents</div>
-        <div class="slide-thumb-type">📄 split</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="5">
-      <span class="slide-thumb-num">6</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">Agentic Prompt Orchestration</div>
-        <div class="slide-thumb-type">📄 code-diff</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="6">
-      <span class="slide-thumb-num">7</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">Primary Failure Modes</div>
-        <div class="slide-thumb-type">📌 bullets</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="7">
-      <span class="slide-thumb-num">8</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">Agent Performance Under Load</div>
-        <div class="slide-thumb-type">📄 stats</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="8">
-      <span class="slide-thumb-num">9</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">Model Benchmarks & LLM Evaluation</div>
-        <div class="slide-thumb-type">🧮 table</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="9">
-      <span class="slide-thumb-num">10</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">Multi-Agent Architecture Checkpoint</div>
-        <div class="slide-thumb-type">❓ quiz</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="10">
-      <span class="slide-thumb-num">11</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">Distributed Deployment Topology</div>
-        <div class="slide-thumb-type">📄 split</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="11">
-      <span class="slide-thumb-num">12</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">Engineering Action Items & Roadmap</div>
-        <div class="slide-thumb-type">🎓 summary</div>
-      </div>
-    </div>
         </div>
       </div>
 
@@ -6644,127 +6266,7 @@ response = agent_executor.run(prompt)</code></pre>
             <div class="template-title">Use-case Templates</div>
             <div class="template-subtitle">Copy a slide JSON snippet and reuse it in new decks.</div>
           </div>
-          
-      <div class="template-category" data-category-id="concept-intro">
-        <div class="template-category-header">
-          <div class="template-category-title">Concept Intro</div>
-          <div class="template-category-desc">Define a new AI concept with a crisp takeaway and one supporting example.</div>
-        </div>
-        <div class="template-card-grid">
-        <div class="template-card" data-template="{&quot;$ref&quot;:&quot;slide-bullets&quot;,&quot;data&quot;:{&quot;heading&quot;:&quot;What is a Transformer?&quot;,&quot;icon&quot;:&quot;AI&quot;,&quot;items&quot;:[{&quot;text&quot;:&quot;A model that learns attention between tokens&quot;,&quot;detail&quot;:&quot;Self-attention lets each token look at the rest of the sequence.&quot;},{&quot;text&quot;:&quot;Scales well with large data&quot;,&quot;detail&quot;:&quot;Parallel training enables huge model sizes.&quot;},{&quot;text&quot;:&quot;Used in GPT, BERT, and T5&quot;,&quot;detail&quot;:&quot;It is the backbone of modern NLP systems.&quot;}]},&quot;flow&quot;:[{&quot;label&quot;:&quot;Reveal definition&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;fade-up&quot;,&quot;targets&quot;:[&quot;[data-flow-id='bullet-1']&quot;]},{&quot;label&quot;:&quot;Reveal scaling&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;fade-up&quot;,&quot;targets&quot;:[&quot;[data-flow-id='bullet-2']&quot;]},{&quot;label&quot;:&quot;Reveal examples&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;fade-up&quot;,&quot;targets&quot;:[&quot;[data-flow-id='bullet-3']&quot;]}]}">
-          <div class="template-card-title">Concept Hero</div>
-          <div class="template-card-use">Explain a concept</div>
-          <div class="template-card-tags"><span class="template-tag">beginner</span><span class="template-tag">definition</span><span class="template-tag">clarity</span></div>
-          <div class="template-card-actions">
-            <button class="template-copy-btn" type="button">Copy JSON</button>
-          </div>
-        </div></div>
-      </div>
-      <div class="template-category" data-category-id="pipeline">
-        <div class="template-category-header">
-          <div class="template-category-title">Pipeline / Workflow</div>
-          <div class="template-category-desc">Walk through an AI workflow or data pipeline step-by-step.</div>
-        </div>
-        <div class="template-card-grid">
-        <div class="template-card" data-template="{&quot;$ref&quot;:&quot;slide-flow&quot;,&quot;data&quot;:{&quot;heading&quot;:&quot;Training Pipeline&quot;,&quot;icon&quot;:&quot;FLOW&quot;,&quot;nodes&quot;:[{&quot;id&quot;:&quot;data&quot;,&quot;label&quot;:&quot;Data&quot;},{&quot;id&quot;:&quot;clean&quot;,&quot;label&quot;:&quot;Clean&quot;},{&quot;id&quot;:&quot;train&quot;,&quot;label&quot;:&quot;Train&quot;},{&quot;id&quot;:&quot;eval&quot;,&quot;label&quot;:&quot;Evaluate&quot;},{&quot;id&quot;:&quot;deploy&quot;,&quot;label&quot;:&quot;Deploy&quot;}],&quot;connections&quot;:[{&quot;from&quot;:&quot;data&quot;,&quot;to&quot;:&quot;clean&quot;},{&quot;from&quot;:&quot;clean&quot;,&quot;to&quot;:&quot;train&quot;},{&quot;from&quot;:&quot;train&quot;,&quot;to&quot;:&quot;eval&quot;},{&quot;from&quot;:&quot;eval&quot;,&quot;to&quot;:&quot;deploy&quot;}]}}">
-          <div class="template-card-title">AI Pipeline Walkthrough</div>
-          <div class="template-card-use">Walk through a pipeline</div>
-          <div class="template-card-tags"><span class="template-tag">workflow</span><span class="template-tag">step-by-step</span></div>
-          <div class="template-card-actions">
-            <button class="template-copy-btn" type="button">Copy JSON</button>
-          </div>
-        </div></div>
-      </div>
-      <div class="template-category" data-category-id="comparison">
-        <div class="template-category-header">
-          <div class="template-category-title">Comparison</div>
-          <div class="template-category-desc">Show before/after or method A vs method B with a clear verdict.</div>
-        </div>
-        <div class="template-card-grid">
-        <div class="template-card" data-template="{&quot;$ref&quot;:&quot;slide-compare&quot;,&quot;data&quot;:{&quot;heading&quot;:&quot;Bag-of-Words vs. Transformer&quot;,&quot;icon&quot;:&quot;COMPARE&quot;,&quot;left&quot;:{&quot;title&quot;:&quot;Bag-of-Words&quot;,&quot;items&quot;:[&quot;Order ignored&quot;,&quot;Simple features&quot;,&quot;Fast but shallow&quot;],&quot;color&quot;:&quot;blue&quot;},&quot;right&quot;:{&quot;title&quot;:&quot;Transformer&quot;,&quot;items&quot;:[&quot;Context-aware&quot;,&quot;Scales better&quot;,&quot;State-of-the-art&quot;],&quot;color&quot;:&quot;green&quot;},&quot;verdict&quot;:&quot;Transformers win when context matters.&quot;},&quot;flow&quot;:[{&quot;label&quot;:&quot;Reveal left&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;slide-in&quot;,&quot;targets&quot;:[&quot;.compare-side.side-blue&quot;]},{&quot;label&quot;:&quot;Reveal right&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;slide-in&quot;,&quot;targets&quot;:[&quot;.compare-side.side-green&quot;]},{&quot;label&quot;:&quot;Highlight verdict&quot;,&quot;action&quot;:&quot;highlight&quot;,&quot;preset&quot;:&quot;highlight-pulse&quot;,&quot;targets&quot;:[&quot;.compare-verdict&quot;]}]}">
-          <div class="template-card-title">Method Comparison</div>
-          <div class="template-card-use">Compare two methods</div>
-          <div class="template-card-tags"><span class="template-tag">comparison</span><span class="template-tag">decision</span></div>
-          <div class="template-card-actions">
-            <button class="template-copy-btn" type="button">Copy JSON</button>
-          </div>
-        </div></div>
-      </div>
-      <div class="template-category" data-category-id="example-breakdown">
-        <div class="template-category-header">
-          <div class="template-category-title">Example Breakdown</div>
-          <div class="template-category-desc">Step-by-step example with highlights for key moments.</div>
-        </div>
-        <div class="template-card-grid">
-        <div class="template-card" data-template="{&quot;type&quot;:&quot;stepper&quot;,&quot;data&quot;:{&quot;heading&quot;:&quot;Prompt -&gt; Output&quot;,&quot;icon&quot;:&quot;EXAMPLE&quot;,&quot;steps&quot;:[{&quot;title&quot;:&quot;Step 1&quot;,&quot;content&quot;:&quot;Write a clear prompt with constraints.&quot;,&quot;tip&quot;:&quot;Be explicit about format.&quot;},{&quot;title&quot;:&quot;Step 2&quot;,&quot;content&quot;:&quot;Model generates candidate output.&quot;,&quot;tip&quot;:&quot;Check for hallucinations.&quot;},{&quot;title&quot;:&quot;Step 3&quot;,&quot;content&quot;:&quot;Refine with a follow-up prompt.&quot;,&quot;tip&quot;:&quot;Use critique + rewrite.&quot;}]}}">
-          <div class="template-card-title">Example Walkthrough</div>
-          <div class="template-card-use">Teach with example</div>
-          <div class="template-card-tags"><span class="template-tag">example</span><span class="template-tag">step-by-step</span></div>
-          <div class="template-card-actions">
-            <button class="template-copy-btn" type="button">Copy JSON</button>
-          </div>
-        </div></div>
-      </div>
-      <div class="template-category" data-category-id="misconception">
-        <div class="template-category-header">
-          <div class="template-category-title">Common Mistakes</div>
-          <div class="template-category-desc">Highlight misconceptions or pitfalls with a fix.</div>
-        </div>
-        <div class="template-card-grid">
-        <div class="template-card" data-template="{&quot;type&quot;:&quot;bullets&quot;,&quot;data&quot;:{&quot;heading&quot;:&quot;Common Misconceptions&quot;,&quot;icon&quot;:&quot;WARN&quot;,&quot;items&quot;:[{&quot;text&quot;:&quot;Bigger model = always better&quot;,&quot;detail&quot;:&quot;Data quality and evaluation matter more than size alone.&quot;},{&quot;text&quot;:&quot;LLMs understand like humans&quot;,&quot;detail&quot;:&quot;They predict tokens; understanding is not guaranteed.&quot;},{&quot;text&quot;:&quot;Prompting replaces evaluation&quot;,&quot;detail&quot;:&quot;You still need tests and metrics.&quot;}]}}">
-          <div class="template-card-title">Misconception Callout</div>
-          <div class="template-card-use">Mistake / misconception</div>
-          <div class="template-card-tags"><span class="template-tag">mistakes</span><span class="template-tag">clarity</span></div>
-          <div class="template-card-actions">
-            <button class="template-copy-btn" type="button">Copy JSON</button>
-          </div>
-        </div></div>
-      </div>
-      <div class="template-category" data-category-id="recap">
-        <div class="template-category-header">
-          <div class="template-category-title">Recap / Cheat Sheet</div>
-          <div class="template-category-desc">Summarize takeaways for quick recall.</div>
-        </div>
-        <div class="template-card-grid">
-        <div class="template-card" data-template="{&quot;$ref&quot;:&quot;slide-summary&quot;,&quot;data&quot;:{&quot;heading&quot;:&quot;Key Takeaways&quot;,&quot;icon&quot;:&quot;RECAP&quot;,&quot;items&quot;:[&quot;Attention is the core idea.&quot;,&quot;Data quality &gt; model size.&quot;,&quot;Evaluate with real tasks.&quot;]}}">
-          <div class="template-card-title">Cheat Sheet</div>
-          <div class="template-card-use">Recap</div>
-          <div class="template-card-tags"><span class="template-tag">recap</span><span class="template-tag">cheat-sheet</span></div>
-          <div class="template-card-actions">
-            <button class="template-copy-btn" type="button">Copy JSON</button>
-          </div>
-        </div></div>
-      </div>
-      <div class="template-category" data-category-id="code-explain">
-        <div class="template-category-header">
-          <div class="template-category-title">Code + Explanation</div>
-          <div class="template-category-desc">Split view: short code snippet with explanation.</div>
-        </div>
-        <div class="template-card-grid">
-        <div class="template-card" data-template="{&quot;type&quot;:&quot;split&quot;,&quot;data&quot;:{&quot;heading&quot;:&quot;Tokenization Example&quot;,&quot;icon&quot;:&quot;CODE&quot;,&quot;layout&quot;:&quot;split-50-50&quot;,&quot;left&quot;:{&quot;type&quot;:&quot;code&quot;,&quot;data&quot;:{&quot;language&quot;:&quot;python&quot;,&quot;code&quot;:&quot;text = 'AI for beginners'\nprint(text.split())&quot;}},&quot;right&quot;:{&quot;type&quot;:&quot;bullets&quot;,&quot;data&quot;:{&quot;items&quot;:[&quot;Split into tokens&quot;,&quot;Tokens feed into the model&quot;,&quot;Small step, huge impact&quot;]}}}}">
-          <div class="template-card-title">Code + Explanation Split</div>
-          <div class="template-card-use">Teach with code example</div>
-          <div class="template-card-tags"><span class="template-tag">code</span><span class="template-tag">explain</span></div>
-          <div class="template-card-actions">
-            <button class="template-copy-btn" type="button">Copy JSON</button>
-          </div>
-        </div></div>
-      </div>
-      <div class="template-category" data-category-id="chapter-opener">
-        <div class="template-category-header">
-          <div class="template-category-title">Chapter Opener</div>
-          <div class="template-category-desc">Reset attention before a new section.</div>
-        </div>
-        <div class="template-card-grid">
-        <div class="template-card" data-template="{&quot;type&quot;:&quot;title&quot;,&quot;data&quot;:{&quot;heading&quot;:&quot;Chapter 2: How Models Learn&quot;,&quot;subtitle&quot;:&quot;From data to gradients to generalization&quot;,&quot;badge&quot;:&quot;Chapter Opener&quot;}}">
-          <div class="template-card-title">Chapter Title</div>
-          <div class="template-card-use">Chapter opener</div>
-          <div class="template-card-tags"><span class="template-tag">section</span><span class="template-tag">transition</span></div>
-          <div class="template-card-actions">
-            <button class="template-copy-btn" type="button">Copy JSON</button>
-          </div>
-        </div></div>
-      </div>
+          <div id="template-library-container"></div>
         </div>
       </div>
 
@@ -6942,6 +6444,8 @@ response = agent_executor.run(prompt)</code></pre>
   </div>
 
   <script type="application/json" id="lesson-context-data">{"audience":"Software Engineers","topic":"Multi-Agent Systems","lessonLength":30,"tone":"academic","pace":"moderate","rhythmPreset":"deep-dive","textDensity":"high","exampleDensity":"high","primaryColor":"#0f766e","stylePack":"brutalist-clean"}</script>
+  <script type="application/json" id="slide-data">{"meta":{"title":"Scaling Autonomous Multi-Agent Systems","subtitle":"Architectures for next-generation LLM orchestration.","author":"AI Engineering Labs","date":"2026","theme":"nordic","duration":30,"context":{"audience":"Software Engineers","topic":"Multi-Agent Systems","lessonLength":30,"tone":"academic","pace":"moderate","rhythmPreset":"deep-dive","textDensity":"high","exampleDensity":"high","primaryColor":"#0f766e","stylePack":"brutalist-clean"}},"slides":[{"id":"slide-1","type":"title","transitionPreset":"fade","data":{"heading":"Scaling Autonomous Multi-Agent Systems","subtitle":"Building, evaluating, and deploying robust LLM agent pipelines.","badge":"Engineering Deep Dive","speakerNotes":"Welcome to the technical deep dive on Multi-Agent architectures."}},{"id":"slide-2","type":"timeline-horizontal","transitionPreset":"fade","data":{"heading":"The Road to Artificial General Agents","icon":"🛣️","events":[{"year":"2022","title":"Zero-Shot Prompting","description":"Basic conversational AI with limited context windows."},{"year":"2023","title":"RAG &amp; Chaining","description":"Retrieval Augmented Generation and simple LangChain pipelines."},{"year":"2024","title":"Tool Use &amp; Planning","description":"Agents calling external APIs and self-correcting (ReAct)."},{"year":"2026","title":"Multi-Agent Swarms","description":"Distributed networks of specialized agents communicating asynchronously."}]}},{"type":"flow","transitionPreset":"fade","id":"slide-3","data":{"heading":"Multi-Agent Routing Pipeline","icon":"🔄","nodes":[{"id":"input","label":"User Query","details":"Natural language request."},{"id":"router","label":"LLM Router","details":"Determines intent and selects agent."},{"id":"agentA","label":"Research Agent","details":"Searches vector DBs."},{"id":"agentB","label":"Code Agent","details":"Writes and tests scripts."},{"id":"synth","label":"Synthesizer","details":"Combines agent outputs."}],"connections":[{"from":"input","to":"router"},{"from":"router","to":"agentA"},{"from":"router","to":"agentB"},{"from":"agentA","to":"synth"},{"from":"agentB","to":"synth"}]}},{"type":"bento","transitionPreset":"zoom-in","id":"slide-4","data":{"heading":"The Agent Memory Bento Blueprint","icon":"🧠","gridTemplate":"large | small small","items":[{"size":"large","title":"Vector Store (Long-term)","content":"Semantic search across gigabytes of documents. Embeddings stored in Pinecone/Milvus.","badge":"Core Memory","bgGradient":"oklch(95% 0.05 180) to oklch(90% 0.08 190)"},{"size":"small","title":"Context Window (Working)","content":"The immediate prompt tokens provided to the LLM per inference.","icon":"🪟"},{"size":"small","title":"KV Cache (Episodic)","content":"Fast key-value retrieval for recent conversation turns.","icon":"⚡"}]}},{"id":"slide-5","type":"split","transitionPreset":"fade","data":{"heading":"Synchronous vs Parallel Agents","icon":"⚖️","layout":"split-50-50","left":{"type":"bullets","data":{"heading":"Synchronous LLM Routing","items":["Easier to debug and trace.","Strict deterministic execution order.","Higher overall latency (blocking).","Prone to single point of failure."]}},"right":{"type":"bullets","data":{"heading":"Parallel Async Agents","items":["Complex orchestration required (DAGs).","Massive speedups for independent tasks.","Requires robust conflict resolution.","Scales effectively across distributed compute."]}}}},{"type":"code-diff","transitionPreset":"fade","id":"slide-6","data":{"heading":"Agentic Prompt Orchestration","icon":"📝","leftTitle":"Basic Prompting","leftLang":"python","leftCode":"prompt = f\"\"\"\nAnswer the user's question:\n{user_input}\n\"\"\"\nresponse = llm.generate(prompt)","rightTitle":"ReAct Framework","rightLang":"python","rightCode":"prompt = f\"\"\"\nUse the following format:\nThought: you should always think about what to do\nAction: the action to take, should be one of [{tool_names}]\nAction Input: the input to the action\nObservation: the result of the action\n... (this Thought/Action/Action Input/Observation can repeat N times)\nThought: I now know the final answer\nFinal Answer: the final answer to the original input question\n\nQuestion: {user_input}\n\"\"\"\nresponse = agent_executor.run(prompt)"}},{"id":"slide-7","type":"bullets","transitionPreset":"fade","data":{"heading":"Primary Failure Modes","icon":"⚠️","items":[{"text":"Infinite Loops","detail":"Agent gets stuck repeatedly calling the same tool with the same input."},{"text":"Hallucinated Tools","detail":"Agent attempts to use a tool that was not provided in its prompt context."},{"text":"Context Overflow","detail":"Agent accumulates too much history, exceeding the model's maximum token limit."},{"text":"Premature Termination","detail":"Agent provides a final answer before adequately solving the multi-step problem."}]}},{"type":"stats","transitionPreset":"zoom-in","id":"slide-8","data":{"heading":"Agent Performance Under Load","icon":"🏎️","stats":[{"trendUp":false,"value":"42ms","label":"Average Router Latency","trend":"-15ms optimization"},{"trendUp":true,"value":"98.6%","label":"Task Success Rate","trend":"+2.1% MoM"},{"trendUp":true,"value":"64.2%","label":"Compute Savings","trend":"Via Semantic Caching"}]}},{"type":"table","transitionPreset":"fade","id":"slide-9","data":{"heading":"Model Benchmarks &amp; LLM Evaluation","icon":"📊","columns":[{"key":"model","label":"Model"},{"key":"tool","label":"Tool Use (Acc)"},{"key":"reasoning","label":"Reasoning (MMLU)"},{"key":"cost","label":"Cost / 1M Tokens"}],"rows":[{"model":"GPT-4o","tool":"96.5%","reasoning":"88.7","cost":"$5.00"},{"model":"Claude 3.5 Sonnet","tool":"97.2%","reasoning":"88.3","cost":"$3.00"},{"model":"Llama 3 (70B)","tool":"89.1%","reasoning":"82.0","cost":"$0.80"},{"model":"Mixtral 8x22B","tool":"86.4%","reasoning":"79.5","cost":"$0.65"}]}},{"type":"quiz","transitionPreset":"zoom-in","id":"slide-10","data":{"heading":"Multi-Agent Architecture Checkpoint","icon":"✅","questions":[{"question":"What is the primary purpose of a 'Synthesizer' node in a multi-agent workflow?","correct":1,"options":["To route the initial request to the correct agent.","To aggregate and format the final output from multiple parallel agents.","To store long-term memories in a vector database.","To fine-tune the LLM weights based on user feedback."],"explanation":"The Synthesizer acts as a reducer, taking the disparate findings of specialized workers (like a research agent and a coding agent) and crafting a single, coherent response."}]}},{"id":"slide-11","type":"split","transitionPreset":"fade","data":{"heading":"Distributed Deployment Topology","icon":"☁️","layout":"split-50-50","left":{"type":"bullets","data":{"items":["Containerized Agent Workers (Kubernetes)","Serverless functions for lightweight routing","Managed Vector DB for shared state","Redis for ephemeral inter-agent pub/sub"]}},"right":{"type":"bullets","data":{"items":["Ensures isolation between agent instances","Allows auto-scaling specific high-load agents","Prevents noisy-neighbor memory issues","Enables polyglot agent ecosystems"]}}}},{"id":"slide-12","type":"summary","transitionPreset":"fade","data":{"heading":"Engineering Action Items &amp; Roadmap","icon":"🎯","items":["Implement robust retry logic and fallback models for transient API failures.","Utilize semantic caching to dramatically reduce latency and costs for repeated queries.","Design agent tools with strict schemas (e.g., Pydantic) to minimize hallucinated arguments.","Transition from monolithic chains to orchestrator-worker graph topologies."],"callToAction":"Review the GitHub repo for implementation examples.","resources":[{"label":"LangGraph Documentation","url":"#"},{"label":"Agent Evaluation Framework","url":"#"}]}}]}</script>
+  <script type="application/json" id="template-library-data">{"categories":[{"id":"concept-intro","label":"Concept Intro","description":"Define a new AI concept with a crisp takeaway and one supporting example.","templates":[{"id":"concept-hero","title":"Concept Hero","useCase":"Explain a concept","tags":["beginner","definition","clarity"],"slide":{"$ref":"slide-bullets","data":{"heading":"What is a Transformer?","icon":"AI","items":[{"text":"A model that learns attention between tokens","detail":"Self-attention lets each token look at the rest of the sequence."},{"text":"Scales well with large data","detail":"Parallel training enables huge model sizes."},{"text":"Used in GPT, BERT, and T5","detail":"It is the backbone of modern NLP systems."}]},"flow":[{"label":"Reveal definition","action":"reveal","preset":"fade-up","targets":["[data-flow-id='bullet-1']"]},{"label":"Reveal scaling","action":"reveal","preset":"fade-up","targets":["[data-flow-id='bullet-2']"]},{"label":"Reveal examples","action":"reveal","preset":"fade-up","targets":["[data-flow-id='bullet-3']"]}]}}]},{"id":"pipeline","label":"Pipeline / Workflow","description":"Walk through an AI workflow or data pipeline step-by-step.","templates":[{"id":"pipeline-flow","title":"AI Pipeline Walkthrough","useCase":"Walk through a pipeline","tags":["workflow","step-by-step"],"slide":{"$ref":"slide-flow","data":{"heading":"Training Pipeline","icon":"FLOW","nodes":[{"id":"data","label":"Data"},{"id":"clean","label":"Clean"},{"id":"train","label":"Train"},{"id":"eval","label":"Evaluate"},{"id":"deploy","label":"Deploy"}],"connections":[{"from":"data","to":"clean"},{"from":"clean","to":"train"},{"from":"train","to":"eval"},{"from":"eval","to":"deploy"}]}}}]},{"id":"comparison","label":"Comparison","description":"Show before/after or method A vs method B with a clear verdict.","templates":[{"id":"compare-methods","title":"Method Comparison","useCase":"Compare two methods","tags":["comparison","decision"],"slide":{"$ref":"slide-compare","data":{"heading":"Bag-of-Words vs. Transformer","icon":"COMPARE","left":{"title":"Bag-of-Words","items":["Order ignored","Simple features","Fast but shallow"],"color":"blue"},"right":{"title":"Transformer","items":["Context-aware","Scales better","State-of-the-art"],"color":"green"},"verdict":"Transformers win when context matters."},"flow":[{"label":"Reveal left","action":"reveal","preset":"slide-in","targets":[".compare-side.side-blue"]},{"label":"Reveal right","action":"reveal","preset":"slide-in","targets":[".compare-side.side-green"]},{"label":"Highlight verdict","action":"highlight","preset":"highlight-pulse","targets":[".compare-verdict"]}]}}]},{"id":"example-breakdown","label":"Example Breakdown","description":"Step-by-step example with highlights for key moments.","templates":[{"id":"example-steps","title":"Example Walkthrough","useCase":"Teach with example","tags":["example","step-by-step"],"slide":{"type":"stepper","data":{"heading":"Prompt -&gt; Output","icon":"EXAMPLE","steps":[{"title":"Step 1","content":"Write a clear prompt with constraints.","tip":"Be explicit about format."},{"title":"Step 2","content":"Model generates candidate output.","tip":"Check for hallucinations."},{"title":"Step 3","content":"Refine with a follow-up prompt.","tip":"Use critique + rewrite."}]}}}]},{"id":"misconception","label":"Common Mistakes","description":"Highlight misconceptions or pitfalls with a fix.","templates":[{"id":"mistake-callout","title":"Misconception Callout","useCase":"Mistake / misconception","tags":["mistakes","clarity"],"slide":{"type":"bullets","data":{"heading":"Common Misconceptions","icon":"WARN","items":[{"text":"Bigger model = always better","detail":"Data quality and evaluation matter more than size alone."},{"text":"LLMs understand like humans","detail":"They predict tokens; understanding is not guaranteed."},{"text":"Prompting replaces evaluation","detail":"You still need tests and metrics."}]}}}]},{"id":"recap","label":"Recap / Cheat Sheet","description":"Summarize takeaways for quick recall.","templates":[{"id":"recap-summary","title":"Cheat Sheet","useCase":"Recap","tags":["recap","cheat-sheet"],"slide":{"$ref":"slide-summary","data":{"heading":"Key Takeaways","icon":"RECAP","items":["Attention is the core idea.","Data quality &gt; model size.","Evaluate with real tasks."]}}}]},{"id":"code-explain","label":"Code + Explanation","description":"Split view: short code snippet with explanation.","templates":[{"id":"code-split","title":"Code + Explanation Split","useCase":"Teach with code example","tags":["code","explain"],"slide":{"type":"split","data":{"heading":"Tokenization Example","icon":"CODE","layout":"split-50-50","left":{"type":"code","data":{"language":"python","code":"text = 'AI for beginners'\nprint(text.split())"}},"right":{"type":"bullets","data":{"items":["Split into tokens","Tokens feed into the model","Small step, huge impact"]}}}}}]},{"id":"chapter-opener","label":"Chapter Opener","description":"Reset attention before a new section.","templates":[{"id":"chapter-title","title":"Chapter Title","useCase":"Chapter opener","tags":["section","transition"],"slide":{"type":"title","data":{"heading":"Chapter 2: How Models Learn","subtitle":"From data to gradients to generalization","badge":"Chapter Opener"}}}]}]}</script>
 
   <script>
 /**
@@ -7422,6 +6926,645 @@ const SlideEngine = (function () {
 })();
 
 window.SlideEngine = window.SlideEngine || SlideEngine;
+
+
+/**
+ * LECTA AI — HTML Renderer
+ * Converts slide JSON data into semantic HTML blocks
+ */
+
+function renderSlideHTML(slide) {
+  const d = slide.data;
+  const notes = (d.speakerNotes || '').replace(/"/g, '&quot;');
+  const flowAttr = slide.flow ? ` data-flow="${esc(JSON.stringify(slide.flow))}"` : '';
+  const transitionPreset = slide.transitionPreset || '';
+  const transitionClass = transitionPreset ? ` slide-transition-${transitionPreset}` : '';
+  const transitionAttr = transitionPreset ? ` data-transition-preset="${esc(transitionPreset)}"` : '';
+  const sectionAttrs = `class="slide" id="${slide.id}" data-speaker-notes="${notes}"${flowAttr}${transitionAttr}`;
+
+  switch (slide.type) {
+    case 'title':
+        return `<section ${sectionAttrs}>
+  <div class="slide-inner slide-title">
+    <span class="badge">${esc(d.badge || '')}</span>
+    <h1>${esc(d.heading)}</h1>
+    <p class="subtitle">${esc(d.subtitle)}</p>
+  </div>
+</section>`;
+
+    case 'bullets':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner${transitionClass}">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <ul class="bullet-list stagger-spring">
+      ${d.items.map((item, i) => `<li class="bullet-item" data-flow-id="bullet-${i + 1}">
+        <div class="bullet-text">${esc(item.text)}</div>
+        <div class="bullet-detail"><p>${esc(item.detail || '')}</p></div>
+      </li>`).join('\n      ')}
+    </ul>
+  </div>
+</section>`;
+
+    case 'accordion':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="accordion stagger">
+      ${d.items.map((item, i) => `<div class="accordion-item" data-flow-id="accordion-${i + 1}">
+        <button class="accordion-header" role="button" aria-expanded="false" aria-controls="accordion-content-${slide.id}-${i}" id="accordion-header-${slide.id}-${i}">
+          ${esc(item.title)}
+          <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-body" role="region" aria-labelledby="accordion-header-${slide.id}-${i}" id="accordion-content-${slide.id}-${i}">
+          <div class="accordion-content">
+            <p>${esc(item.content)}</p>
+            ${item.example ? `<pre><code>${esc(item.example)}</code></pre>` : ''}
+          </div>
+        </div>
+      </div>`).join('\n      ')}
+    </div>
+  </div>
+</section>`;
+
+    case 'tabs':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="tabs-container">
+      <div class="tabs-header" role="tablist">
+        ${d.tabs.map((t, i) => `<button class="tab-btn${i === 0 ? ' active' : ''}" role="tab" aria-selected="${i === 0 ? 'true' : 'false'}" aria-controls="panel-${slide.id}-${i}" id="tab-${slide.id}-${i}">${esc(t.label)}</button>`).join('')}
+      </div>
+      ${d.tabs.map((t, i) => `<div class="tab-panel${i === 0 ? ' active' : ''}" role="tabpanel" aria-labelledby="tab-${slide.id}-${i}" id="panel-${slide.id}-${i}" data-flow-id="tab-panel-${i + 1}">
+        <p>${esc(t.content)}</p>
+        ${t.features ? `<div class="tab-features">${t.features.map(f => `<span class="tab-feature-tag">${esc(f)}</span>`).join('')}</div>` : ''}
+        ${t.code ? `<pre><code>${esc(t.code)}</code></pre>` : ''}
+      </div>`).join('\n      ')}
+    </div>
+  </div>
+</section>`;
+
+    case 'stepper':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="stepper">
+      <div class="stepper-progress">
+        ${d.steps.map((s, i) => {
+          let html = `<div class="step-dot${i === 0 ? ' active' : ''}">${i + 1}</div>`;
+          if (i < d.steps.length - 1) html += `<div class="step-line"></div>`;
+          return html;
+        }).join('')}
+      </div>
+      ${d.steps.map((s, i) => `<div class="step-content${i === 0 ? ' active' : ''}" data-flow-id="step-${i + 1}">
+        <h4>${esc(s.title)}</h4>
+        <p>${esc(s.content)}</p>
+        ${s.tip ? `<div class="step-tip">${esc(s.tip)}</div>` : ''}
+      </div>`).join('\n      ')}
+      <div class="stepper-nav">
+        <button class="nav-btn step-prev" disabled>← Previous</button>
+        <button class="nav-btn step-next">Next →</button>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+    case 'cards':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="cards-grid stagger">
+      ${d.cards.map((c, i) => `<div class="flip-card" data-flow-id="card-${i + 1}">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">${esc(c.front)}</div>
+          <div class="flip-card-back">${esc(c.back)}</div>
+        </div>
+      </div>`).join('\n      ')}
+    </div>
+    <p class="flip-hint">Click any card to flip it</p>
+  </div>
+</section>`;
+
+    case 'advanced-quiz':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🏆'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="advanced-quiz-container stagger" data-total-questions="${d.questions.length}">
+      ${d.questions.map((q, qi) => `<div class="adv-question" data-question-index="${qi}" data-correct="${q.correct}">
+        <h4>${qi + 1}. ${esc(q.question)}</h4>
+        <div class="adv-options">
+          ${q.options.map((o, oi) => `<button class="adv-option" data-option-index="${oi}">
+            <span class="option-letter">${String.fromCharCode(65 + oi)}</span>
+            ${esc(o)}
+          </button>`).join('\n          ')}
+        </div>
+      </div>`).join('\n      ')}
+      
+      <div class="adv-quiz-action-row">
+        <button class="btn btn-primary adv-submit-btn">📥 Submit Assessment</button>
+      </div>
+      
+      <!-- Modal Overlay Popup -->
+      <div class="adv-quiz-modal-backdrop" style="display: none;">
+        <div class="adv-quiz-modal glassmorphic-panel stagger-item">
+          <button class="adv-quiz-modal-close" aria-label="Close modal">&times;</button>
+          <div class="adv-result-score">Score: <span class="score-fraction">0/0</span></div>
+          <div class="adv-result-feedback"></div>
+          <button class="adv-retry-btn" style="margin-top: 1.5rem;">🔄 Try Again</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+    case 'quiz':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="quiz-container stagger">
+      ${d.questions.map((q, qi) => `<div class="quiz-question" data-correct="${q.correct}">
+        <h4>${qi + 1}. ${esc(q.question)}</h4>
+        <div class="quiz-options">
+          ${q.options.map((o, oi) => `<button class="quiz-option">
+            <span class="option-letter">${String.fromCharCode(65 + oi)}</span>
+            ${esc(o)}
+          </button>`).join('\n          ')}
+        </div>
+        <div class="quiz-explanation">${esc(q.explanation)}</div>
+      </div>`).join('\n      ')}
+    </div>
+  </div>
+</section>`;
+
+    case 'compare':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="compare-container">
+      <div class="compare-side side-${d.left.color || 'blue'}">
+        <h3>${esc(d.left.title)}</h3>
+        <ul class="compare-list">
+          ${d.left.items.map((i, idx) => `<li data-flow-id="compare-left-${idx + 1}">${esc(i)}</li>`).join('\n          ')}
+        </ul>
+      </div>
+      <div class="compare-side side-${d.right.color || 'green'}">
+        <h3>${esc(d.right.title)}</h3>
+        <ul class="compare-list">
+          ${d.right.items.map((i, idx) => `<li data-flow-id="compare-right-${idx + 1}">${esc(i)}</li>`).join('\n          ')}
+        </ul>
+      </div>
+      ${d.verdict ? `<div class="compare-verdict" data-flow-id="compare-verdict">${esc(d.verdict)}</div>` : ''}
+    </div>
+  </div>
+</section>`;
+
+    case 'timeline':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="timeline stagger">
+      ${d.events.map((e, i) => `<div class="timeline-item" data-flow-id="timeline-${i + 1}">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">${esc(e.year)}</div>
+        <div class="timeline-title">${esc(e.title)}</div>
+        <div class="timeline-desc">${esc(e.description)}</div>
+      </div>`).join('\n      ')}
+    </div>
+  </div>
+</section>`;
+
+    case 'summary':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <ul class="summary-items stagger">
+      ${d.items.map((i, idx) => `<li data-flow-id="summary-${idx + 1}">${esc(i)}</li>`).join('\n      ')}
+    </ul>
+    ${d.callToAction ? `<div class="summary-cta"><p>${esc(d.callToAction)}</p></div>` : ''}
+    ${d.resources ? `<div class="summary-resources">
+      ${d.resources.map(r => `<a href="${esc(r.url)}" class="resource-link" target="_blank">🔗 ${esc(r.label)}</a>`).join('')}
+    </div>` : ''}
+  </div>
+</section>`;
+
+    case 'image':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🖼️'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="image-block-container stagger">
+      <div class="image-box-wrapper">
+        <img class="interactive-image" src="${esc(d.url || 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80')}" alt="${esc(d.caption || 'Slide Image')}" />
+        <button class="edit-image-overlay-btn">✏️ Change Image URL</button>
+      </div>
+      ${d.caption ? `<p class="image-caption">${esc(d.caption)}</p>` : ''}
+    </div>
+  </div>
+</section>`;
+
+    case 'chart':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '📊'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="chart-block-container stagger" data-chart-type="${esc(d.chartType || 'bar')}" data-labels="${esc(JSON.stringify(d.labels || [])).replace(/"/g, '&quot;')}" data-datasets="${esc(JSON.stringify(d.datasets || [])).replace(/"/g, '&quot;')}">
+      <div class="chart-canvas-wrapper">
+        <svg class="svg-chart" viewBox="0 0 600 320" preserveAspectRatio="xMidYMid meet"></svg>
+      </div>
+      <div class="chart-legend"></div>
+    </div>
+  </div>
+</section>`;
+
+    case 'table':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🧮'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="table-block-container stagger">
+      <div class="table-actions">
+        <input type="text" class="table-search-input" placeholder="Search rows..." />
+      </div>
+      <div class="table-responsive-wrapper">
+        <table class="glass-table">
+          <thead>
+            <tr>
+              ${(d.columns || []).map(col => `<th data-col-key="${esc(col.key)}" class="sortable-th">
+                ${esc(col.label)}
+                <span class="sort-indicator">↕</span>
+              </th>`).join('')}
+            </tr>
+          </thead>
+          <tbody>
+            ${(d.rows || []).map(row => `<tr>
+              ${(d.columns || []).map(col => {
+                const val = row[col.key];
+                if (col.type === 'progress') {
+                  const percent = Math.min(100, Math.max(0, parseInt(val, 10) || 0));
+                  return `<td data-label="${esc(col.label)}">
+                    <div class="progress-cell-wrapper">
+                      <div class="progress-cell-bar"><div class="progress-cell-fill" style="width: ${percent}%"></div></div>
+                      <span class="progress-cell-text">${percent}%</span>
+                    </div>
+                  </td>`;
+                } else if (col.type === 'badge') {
+                  const parts = String(val || '').split('·');
+                  const text = (parts[0] || '').trim();
+                  const type = (parts[1] || 'primary').trim();
+                  return `<td data-label="${esc(col.label)}"><span class="badge-pill pill-${type}">${esc(text)}</span></td>`;
+                } else if (col.type === 'code') {
+                  return `<td data-label="${esc(col.label)}"><code class="code-cell">${esc(val)}</code></td>`;
+                }
+                return `<td data-label="${esc(col.label)}">${esc(val)}</td>`;
+              }).join('')}
+            </tr>`).join('\n            ')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+    case 'bento':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🍱'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="bento-grid stagger" style="--grid-template: ${esc(d.gridTemplate || 'auto')}">
+      ${(d.items || []).map((item, i) => {
+        const bgStyle = item.bgGradient ? `background: linear-gradient(135deg, ${item.bgGradient.split(' to ')[0]}, ${item.bgGradient.split(' to ')[1] || 'transparent'}); border: none;` : '';
+        const hasBg = item.bgGradient ? ' bento-card-gradient' : '';
+        const sizeClass = `bento-size-${item.size || 'small'}`;
+        return `<div class="bento-card ${sizeClass}${hasBg}" style="${bgStyle}" data-flow-id="bento-${i + 1}">
+          ${item.badge ? `<span class="bento-badge">${esc(item.badge)}</span>` : ''}
+          ${item.icon ? `<div class="bento-icon">${esc(item.icon)}</div>` : ''}
+          <div class="bento-card-content">
+            <h3>${esc(item.title)}</h3>
+            <p>${esc(item.content)}</p>
+          </div>
+        </div>`;
+      }).join('\n      ')}
+    </div>
+  </div>
+</section>`;
+
+    case 'flow':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🌿'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="flow-block-container stagger" data-nodes="${esc(JSON.stringify(d.nodes || [])).replace(/"/g, '&quot;')}" data-connections="${esc(JSON.stringify(d.connections || [])).replace(/"/g, '&quot;')}">
+      <div class="flow-layout-wrapper">
+        <svg class="flow-svg-canvas" viewBox="0 0 800 350">
+        </svg>
+      </div>
+      <div class="flow-detail-panel glassmorphic-panel">
+        <div class="flow-detail-default-msg">💡 Click on any step in the flowchart to view deep insights.</div>
+        <div class="flow-detail-content" style="display: none;">
+          <h4 class="flow-detail-title"></h4>
+          <p class="flow-detail-desc"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+    case 'math':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🧮'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="math-block-container">
+      <div class="math-display-equation" data-latex="${esc(d.latex)}">
+        \\[ ${esc(d.latex)} \\]
+      </div>
+      ${d.explanation ? `<p class="math-explanation">${esc(d.explanation)}</p>` : ''}
+    </div>
+  </div>
+</section>`;
+
+    case 'mermaid':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🌿'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="mermaid-block-container">
+      <div class="mermaid-diagram-wrapper">
+        <div class="mermaid" id="mermaid-${slide.id}">${esc(d.code)}</div>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+    case 'video': {
+      let videoHTML = '';
+      if (d.videoType === 'youtube') {
+        videoHTML = `<a href="https://www.youtube.com/watch?v=${esc(d.videoId)}" target="_blank" class="video-link-card" aria-label="Watch video on YouTube">
+        <div class="video-preview-thumbnail" style="background-image: url('https://img.youtube.com/vi/${esc(d.videoId)}/hqdefault.jpg')">
+          <div class="video-play-overlay">
+            <div class="video-play-btn">▶</div>
+            <span class="video-play-text">Watch on YouTube</span>
+          </div>
+        </div>
+      </a>`;
+      } else if (d.videoType === 'vimeo') {
+        videoHTML = `<a href="https://vimeo.com/${esc(d.videoId)}" target="_blank" class="video-link-card" aria-label="Watch video on Vimeo">
+        <div class="video-preview-thumbnail" style="background: #111;">
+          <div class="video-play-overlay">
+            <div class="video-play-btn" style="background: #00adef; box-shadow: 0 4px 20px rgba(0, 173, 239, 0.5);">▶</div>
+            <span class="video-play-text">Watch on Vimeo</span>
+          </div>
+        </div>
+      </a>`;
+      } else {
+        videoHTML = `<video class="video-player-frame" controls poster="${esc(d.poster || '')}"><source src="${esc(d.videoUrl)}" type="video/mp4"></video>`;
+      }
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🎬'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="video-block-container">
+      ${videoHTML}
+    </div>
+  </div>
+</section>`;
+    }
+
+    case 'split':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner${transitionClass}">
+    <div class="block-heading"><span class="icon">${d.icon || '⚔️'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="split-layout-container ${d.layout || 'split-50-50'} stagger-spring">
+      <div class="split-column left-column">
+        ${renderSubBlock(d.left, slide.id + '-left')}
+      </div>
+      <div class="split-column right-column">
+        ${renderSubBlock(d.right, slide.id + '-right')}
+      </div>
+    </div>
+  </div>
+</section>`;
+
+    /* ============================================
+       NEW PREMIUM BLOCK TYPES — Phase 1 MVP
+       ============================================ */
+
+    case 'quote-card':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="quote-card-container stagger">
+      <div class="quote-card-mark">"</div>
+      <blockquote class="quote-card-text">${esc(d.quote)}</blockquote>
+      <div class="quote-card-attribution">
+        ${d.avatarUrl ? `<img class="quote-avatar" src="${esc(d.avatarUrl)}" alt="${esc(d.author || '')}" />` : `<div class="quote-avatar-placeholder">${esc((d.author || 'A').charAt(0).toUpperCase())}</div>`}
+        <div class="quote-meta">
+          <span class="quote-author">${esc(d.author || '')}</span>
+          ${d.role ? `<span class="quote-role">${esc(d.role)}</span>` : ''}
+        </div>
+      </div>
+      ${d.heading ? `<div class="quote-card-label">${esc(d.heading)}</div>` : ''}
+    </div>
+  </div>
+</section>`;
+
+    case 'definition-card':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="definition-card-container stagger">
+      <div class="definition-header">
+        <span class="definition-type-tag">${esc(d.type || 'noun')}</span>
+        ${d.pronunciation ? `<span class="definition-pronunciation">${esc(d.pronunciation)}</span>` : ''}
+      </div>
+      <h2 class="definition-term">${esc(d.term)}</h2>
+      <p class="definition-body">${esc(d.definition)}</p>
+      ${d.example ? `<div class="definition-example">
+        <span class="definition-example-label">Example</span>
+        <code>${esc(d.example)}</code>
+      </div>` : ''}
+      ${d.heading ? `<div class="definition-context-label">${esc(d.heading)}</div>` : ''}
+    </div>
+  </div>
+</section>`;
+
+    case 'analogy':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🔗'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="analogy-container stagger">
+      <div class="analogy-card analogy-technical" data-flow-id="analogy-left">
+        <div class="analogy-card-label">Technical Concept</div>
+        <p>${esc(d.technicalConcept)}</p>
+      </div>
+      <div class="analogy-bridge">
+        <div class="analogy-bridge-arrow">≈</div>
+        ${d.bridgeText ? `<span class="analogy-bridge-text">${esc(d.bridgeText)}</span>` : ''}
+      </div>
+      <div class="analogy-card analogy-realworld" data-flow-id="analogy-right">
+        <div class="analogy-card-label">Real-World Analogy</div>
+        <p>${esc(d.analogy)}</p>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+    case 'stats':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner${transitionClass}">
+    <div class="block-heading"><span class="icon">${d.icon || '📊'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="stats-grid stagger">
+      ${(d.stats || []).map((s, i) => {
+        // Parse value to extract numeric portion for counter animation
+        const rawValue = String(s.value);
+        const numMatch = rawValue.match(/^([^0-9]*)([0-9][0-9,.]*)(.*)$/);
+        let valueHTML;
+        if (numMatch) {
+          const prefix = esc(numMatch[1]);
+          const numericStr = numMatch[2];
+          const suffix = esc(numMatch[3]);
+          const isDecimal = numericStr.includes('.');
+          const decimalPlaces = isDecimal ? (numericStr.split('.')[1] || '').length : 0;
+          const cleanNum = numericStr.replace(/,/g, '');
+          valueHTML = `${prefix}<span class="stat-counter" data-count-target="${esc(cleanNum)}" data-count-decimals="${decimalPlaces}" data-count-original="${esc(numericStr)}">${esc(numericStr)}</span>${suffix}`;
+        } else {
+          valueHTML = esc(rawValue);
+        }
+        return `<div class="stat-card" data-flow-id="stat-${i + 1}">
+        <div class="stat-value">${valueHTML}</div>
+        <div class="stat-label">${esc(s.label)}</div>
+        ${s.trend ? `<div class="stat-trend trend-${s.trend === 'up' ? 'up' : 'down'}">${s.trend === 'up' ? '↑' : '↓'} ${esc(s.subtext || '')}</div>` : (s.subtext ? `<div class="stat-subtext">${esc(s.subtext)}</div>` : '')}
+      </div>`;
+      }).join('\n      ')}
+    </div>
+  </div>
+</section>`;
+
+    case 'checklist':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '✅'}</span><h2>${esc(d.heading)}</h2></div>
+    <ul class="checklist stagger" role="list">
+      ${(d.items || []).map((item, i) => `<li class="checklist-item${item.completed ? ' checked' : ''}" data-flow-id="check-${i + 1}" data-checklist-id="${esc(item.id || String(i))}" role="listitem">
+        <button class="checklist-toggle" aria-label="Toggle ${esc(item.text)}" aria-pressed="${item.completed ? 'true' : 'false'}">
+          <span class="checklist-box" aria-hidden="true">${item.completed ? '✓' : ''}</span>
+        </button>
+        <span class="checklist-text">${esc(item.text)}</span>
+      </li>`).join('\n      ')}
+    </ul>
+  </div>
+</section>`;
+
+    case 'timeline-horizontal':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🗓️'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="timeline-h-track stagger">
+      <div class="timeline-h-line"></div>
+      ${(d.events || []).map((e, i) => `<div class="timeline-h-item" data-flow-id="timeline-h-${i + 1}">
+        <div class="timeline-h-dot"></div>
+        <div class="timeline-h-card">
+          <div class="timeline-h-year">${esc(e.year)}</div>
+          <div class="timeline-h-title">${esc(e.title)}</div>
+          ${e.desc ? `<div class="timeline-h-desc">${esc(e.desc)}</div>` : ''}
+        </div>
+      </div>`).join('\n      ')}
+    </div>
+  </div>
+</section>`;
+
+    case 'splash':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner splash-inner">
+    <div class="splash-meta-badge">${esc(d.badge || 'Presentation')}</div>
+    <h1 class="splash-title">${esc(d.title)}</h1>
+    ${d.subtitle ? `<p class="splash-subtitle">${esc(d.subtitle)}</p>` : ''}
+    <div class="splash-divider"></div>
+    <div class="splash-profile">
+      ${d.avatarUrl ? `<img class="splash-avatar" src="${esc(d.avatarUrl)}" alt="${esc(d.author || '')}" />` : `<div class="splash-avatar-placeholder">${esc((d.author || 'A').charAt(0).toUpperCase())}</div>`}
+      <div class="splash-author-meta">
+        <span class="splash-author-name">${esc(d.author || '')}</span>
+        ${d.role ? `<span class="splash-author-role">${esc(d.role)}</span>` : ''}
+      </div>
+      ${d.duration ? `<div class="splash-duration">⏱ ${esc(String(d.duration))} min</div>` : ''}
+    </div>
+    ${d.social ? `<div class="splash-social-row">
+      ${d.social.github ? `<a href="https://github.com/${esc(d.social.github)}" class="splash-social-chip" target="_blank">GitHub</a>` : ''}
+      ${d.social.twitter ? `<a href="https://twitter.com/${esc(d.social.twitter)}" class="splash-social-chip" target="_blank">Twitter</a>` : ''}
+      ${d.social.email ? `<a href="mailto:${esc(d.social.email)}" class="splash-social-chip">Email</a>` : ''}
+    </div>` : ''}
+  </div>
+</section>`;
+
+    case 'code-diff':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '⚡'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="code-diff-container stagger">
+      <div class="code-diff-pane" data-flow-id="code-left">
+        <div class="code-diff-header code-diff-before">
+          <span class="code-diff-dot"></span>
+          ${esc(d.leftTitle || 'Before')}
+          <span class="code-diff-lang">${esc(d.leftLang || 'js')}</span>
+        </div>
+        <pre><code class="language-${esc(d.leftLang || 'javascript')}">${esc(d.leftCode || '')}</code></pre>
+      </div>
+      <div class="code-diff-pane" data-flow-id="code-right">
+        <div class="code-diff-header code-diff-after">
+          <span class="code-diff-dot"></span>
+          ${esc(d.rightTitle || 'After')}
+          <span class="code-diff-lang">${esc(d.rightLang || 'js')}</span>
+        </div>
+        <pre><code class="language-${esc(d.rightLang || 'javascript')}">${esc(d.rightCode || '')}</code></pre>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+    default:
+      return `<section ${sectionAttrs}><div class="slide-inner"><p>Unknown block type: ${slide.type}</p></div></section>`;
+  }
+}
+
+function renderSubBlock(b, id) {
+  if (!b) return '';
+  const type = b.type;
+  const d = b.data || {};
+  switch (type) {
+    case 'text':
+      return `<div class="sub-block sub-text"><p>${esc(d.content)}</p></div>`;
+    case 'bullets':
+      return `<div class="sub-block sub-bullets"><ul class="stagger-spring" style="list-style-type: disc; padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;">${d.items.map((it, i) => `<li data-flow-id="sub-bullet-${i + 1}">${esc(it)}</li>`).join('')}</ul></div>`;
+    case 'code':
+      return `<div class="sub-block sub-code"><pre><code class="language-${d.language || 'javascript'}">${esc(d.code)}</code></pre></div>`;
+    case 'image':
+      return `<div class="sub-block sub-image" style="border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md);"><img src="${d.url}" alt="${esc(d.alt || '')}" style="width: 100%; display: block; object-fit: cover;"></div>`;
+    case 'math':
+      return `<div class="sub-block sub-math">
+  <div class="math-block-container">
+    <div class="math-display-equation" data-latex="${esc(d.latex)}">
+      \\[ ${esc(d.latex)} \\]
+    </div>
+    ${d.explanation ? `<p class="math-explanation">${esc(d.explanation)}</p>` : ''}
+  </div>
+</div>`;
+    case 'mermaid':
+      return `<div class="sub-block sub-mermaid">
+  <div class="mermaid-block-container">
+    <div class="mermaid-diagram-wrapper">
+      <div class="mermaid" id="mermaid-${id}">${esc(d.code)}</div>
+    </div>
+  </div>
+</div>`;
+    default:
+      return `<div class="sub-block sub-unknown"><p>${esc(JSON.stringify(b))}</p></div>`;
+  }
+}
+
+function esc(str) {
+  if (str === null || str === undefined) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { renderSlideHTML };
+} else {
+  window.LectaRenderer = { renderSlideHTML };
+}
 
 
 /**
@@ -10740,6 +10883,78 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 document.addEventListener('DOMContentLoaded', () => {
+  // --- Client-Side Hydration ---
+  const slideDataEl = document.getElementById('slide-data');
+  if (slideDataEl && window.LectaRenderer) {
+    try {
+      const slideData = JSON.parse(slideDataEl.textContent);
+      
+      // Hydrate Slides
+      const track = document.querySelector('.slides-track');
+      if (track) {
+        track.innerHTML = slideData.slides.map(s => window.LectaRenderer.renderSlideHTML(s)).join('\n');
+      }
+
+      // Hydrate Sidebar Thumbnails
+      const TYPES = { title:'🎬', bullets:'📌', accordion:'📚', tabs:'🗂', stepper:'🚶', cards:'🃏', quiz:'❓', compare:'⚔️', timeline:'📅', summary:'🎓', image:'🖼️', chart:'📊', table:'🧮', bento:'🍱', flow:'🌿' };
+      const thumbnailsContainer = document.querySelector('.slide-thumbnails');
+      if (thumbnailsContainer) {
+        thumbnailsContainer.innerHTML = slideData.slides.map((s, i) => `
+          <div class="slide-thumb${i === 0 ? ' active' : ''}" data-slide="${i}">
+            <span class="slide-thumb-num">${i + 1}</span>
+            <div class="slide-thumb-info">
+              <div class="slide-thumb-title">${(s.data.heading || s.data.title || 'Slide ' + (i+1)).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
+              <div class="slide-thumb-type">${TYPES[s.type] || '📄'} ${s.type}</div>
+            </div>
+          </div>`).join('');
+      }
+    } catch (err) {
+      console.error('Failed to hydrate slides from JSON:', err);
+    }
+  }
+
+  // --- Hydrate Template Library ---
+  const templateLibraryEl = document.getElementById('template-library-data');
+  const templateLibraryContainer = document.getElementById('template-library-container');
+  if (templateLibraryEl && templateLibraryContainer) {
+    try {
+      const library = JSON.parse(templateLibraryEl.textContent);
+      const categories = Array.isArray(library.categories) ? library.categories : [];
+      if (categories.length === 0) {
+        templateLibraryContainer.innerHTML = '<div class="template-empty">No templates available.</div>';
+      } else {
+        templateLibraryContainer.innerHTML = categories.map(category => {
+          const templates = Array.isArray(category.templates) ? category.templates : [];
+          const categoryAttr = category.id ? ` data-category-id="${category.id.replace(/"/g, '&quot;')}"` : '';
+          const cardsHTML = templates.map(tmpl => {
+            const payload = JSON.stringify(tmpl.slide || {}).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+            const tagsHTML = Array.isArray(tmpl.tags)
+              ? tmpl.tags.map(tag => `<span class="template-tag">${tag.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</span>`).join('')
+              : '';
+            return `
+              <div class="template-card" data-template="${payload}">
+                <div class="template-card-title">${(tmpl.title || 'Template').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
+                <div class="template-card-use">${(tmpl.useCase || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
+                <div class="template-card-tags">${tagsHTML}</div>
+                <div class="template-card-actions">
+                  <button class="template-copy-btn" type="button">Copy JSON</button>
+                </div>
+              </div>`;
+          }).join('');
+          return `
+            <div class="template-category"${categoryAttr}>
+              <div class="template-category-header">
+                <div class="template-category-title">${(category.label || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
+                <div class="template-category-desc">${(category.description || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
+              </div>
+              <div class="template-card-grid">${cardsHTML}</div>
+            </div>`;
+        }).join('');
+      }
+    } catch (err) {
+      console.error('Failed to hydrate template library:', err);
+    }
+  }
   SidebarModule.init();
   SlideEngine.init();
   InteractiveBlocks.init();
