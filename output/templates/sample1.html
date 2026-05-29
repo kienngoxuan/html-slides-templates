@@ -6100,470 +6100,7 @@ body.viewport-mode-mobile .table-actions {
   <!-- PRESENTATION CONTAINER -->
   <div class="slides-viewport">
     <div class="slides-track">
-      <section class="slide" id="slide-1" data-speaker-notes="Welcome everyone! Today we'll explore the fundamentals of modern web development. This workshop is designed for complete beginners. Let's make this interactive and fun!">
-  <div class="slide-inner slide-title">
-    <span class="badge">Workshop · 45 min</span>
-    <h1>Introduction to Modern Web Development</h1>
-    <p class="subtitle">From Zero to Hero — Interactive Workshop</p>
-  </div>
-</section>
-<section class="slide" id="slide-2" data-speaker-notes="Walk through each objective. Click each bullet to reveal the detailed explanation. Ask the audience which topic they're most excited about." data-flow="[{&quot;label&quot;:&quot;Reveal objective 1&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;fade-up&quot;,&quot;targets&quot;:[&quot;[data-flow-id=&#39;bullet-1&#39;]&quot;]},{&quot;label&quot;:&quot;Reveal objective 2&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;fade-up&quot;,&quot;targets&quot;:[&quot;[data-flow-id=&#39;bullet-2&#39;]&quot;]},{&quot;label&quot;:&quot;Reveal objective 3&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;fade-up&quot;,&quot;targets&quot;:[&quot;[data-flow-id=&#39;bullet-3&#39;]&quot;]},{&quot;label&quot;:&quot;Reveal objective 4&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;fade-up&quot;,&quot;targets&quot;:[&quot;[data-flow-id=&#39;bullet-4&#39;]&quot;]},{&quot;label&quot;:&quot;Reveal objective 5&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;fade-up&quot;,&quot;targets&quot;:[&quot;[data-flow-id=&#39;bullet-5&#39;]&quot;]},{&quot;label&quot;:&quot;Highlight deployment&quot;,&quot;action&quot;:&quot;highlight&quot;,&quot;preset&quot;:&quot;highlight-pulse&quot;,&quot;targets&quot;:[&quot;[data-flow-id=&#39;bullet-5&#39;]&quot;]}]">
-  <div class="slide-inner">
-    <div class="block-heading"><span class="icon">🎯</span><h2>Learning Objectives</h2></div>
-    <ul class="bullet-list stagger-spring">
-      <li class="bullet-item" data-flow-id="bullet-1">
-        <div class="bullet-text">Understand HTML structure and semantic elements</div>
-        <div class="bullet-detail"><p>HTML is the skeleton of every webpage. Semantic elements like &lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, and &lt;footer&gt; give meaning to your content.</p></div>
-      </li>
-      <li class="bullet-item" data-flow-id="bullet-2">
-        <div class="bullet-text">Master CSS styling and modern layout techniques</div>
-        <div class="bullet-detail"><p>CSS controls visual presentation. Flexbox and Grid are the two modern layout systems every developer needs to know.</p></div>
-      </li>
-      <li class="bullet-item" data-flow-id="bullet-3">
-        <div class="bullet-text">Write interactive JavaScript for dynamic behavior</div>
-        <div class="bullet-detail"><p>JavaScript brings pages to life with event handling, DOM manipulation, and asynchronous operations.</p></div>
-      </li>
-      <li class="bullet-item" data-flow-id="bullet-4">
-        <div class="bullet-text">Build responsive designs for all devices</div>
-        <div class="bullet-detail"><p>Media queries and fluid layouts ensure your website looks great on phones, tablets, and desktops.</p></div>
-      </li>
-      <li class="bullet-item" data-flow-id="bullet-5">
-        <div class="bullet-text">Deploy your first project to the web</div>
-        <div class="bullet-detail"><p>Services like Netlify, Vercel, and GitHub Pages make deployment free and instant.</p></div>
-      </li>
-    </ul>
-  </div>
-</section>
-<section class="slide" id="slide-3" data-speaker-notes="Open each accordion section one by one. For the code examples, consider showing a live demo in VS Code. Ask students: 'Which layer do you think is the hardest to learn?'">
-  <div class="slide-inner">
-    <div class="block-heading"><span class="icon">📚</span><h2>The Web Technology Stack</h2></div>
-    <div class="accordion stagger">
-      <div class="accordion-item" data-flow-id="accordion-1">
-        <button class="accordion-header" role="button" aria-expanded="false" aria-controls="accordion-content-slide-3-0" id="accordion-header-slide-3-0">
-          HTML — The Structure
-          <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-        <div class="accordion-body" role="region" aria-labelledby="accordion-header-slide-3-0" id="accordion-content-slide-3-0">
-          <div class="accordion-content">
-            <p>HTML (HyperText Markup Language) defines the structure and content of web pages. Think of it as the blueprint of a building — it determines what rooms exist and where they are, but not how they look.</p>
-            <pre><code>&lt;article&gt;
-  &lt;h1&gt;My First Blog Post&lt;/h1&gt;
-  &lt;p&gt;Hello, world!&lt;/p&gt;
-&lt;/article&gt;</code></pre>
-          </div>
-        </div>
-      </div>
-      <div class="accordion-item" data-flow-id="accordion-2">
-        <button class="accordion-header" role="button" aria-expanded="false" aria-controls="accordion-content-slide-3-1" id="accordion-header-slide-3-1">
-          CSS — The Style
-          <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-        <div class="accordion-body" role="region" aria-labelledby="accordion-header-slide-3-1" id="accordion-content-slide-3-1">
-          <div class="accordion-content">
-            <p>CSS (Cascading Style Sheets) controls the visual presentation. Colors, fonts, spacing, animations — everything visual is CSS. Modern CSS includes powerful features like Grid, Custom Properties, and Container Queries.</p>
-            <pre><code>.card {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  border-radius: 16px;
-  padding: 2rem;
-}</code></pre>
-          </div>
-        </div>
-      </div>
-      <div class="accordion-item" data-flow-id="accordion-3">
-        <button class="accordion-header" role="button" aria-expanded="false" aria-controls="accordion-content-slide-3-2" id="accordion-header-slide-3-2">
-          JavaScript — The Behavior
-          <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-        <div class="accordion-body" role="region" aria-labelledby="accordion-header-slide-3-2" id="accordion-content-slide-3-2">
-          <div class="accordion-content">
-            <p>JavaScript makes pages interactive and dynamic. From simple button clicks to complex single-page applications, JS is the programming language of the web. Modern JS (ES2024+) is powerful and expressive.</p>
-            <pre><code>document.querySelector(&#39;.btn&#39;)
-  .addEventListener(&#39;click&#39;, () =&gt; {
-    alert(&#39;You clicked me!&#39;);
-  });</code></pre>
-          </div>
-        </div>
-      </div>
-      <div class="accordion-item" data-flow-id="accordion-4">
-        <button class="accordion-header" role="button" aria-expanded="false" aria-controls="accordion-content-slide-3-3" id="accordion-header-slide-3-3">
-          DevTools — Your Best Friend
-          <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-        <div class="accordion-body" role="region" aria-labelledby="accordion-header-slide-3-3" id="accordion-content-slide-3-3">
-          <div class="accordion-content">
-            <p>Every modern browser includes Developer Tools (F12). The Elements panel lets you inspect HTML/CSS live. The Console lets you run JavaScript. The Network panel shows all HTTP requests. Master these tools early!</p>
-            
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="slide" id="slide-4" data-speaker-notes="Switch between tabs to compare the three layout methods. Emphasize that Flexbox and Grid are complementary, not competing. Container Queries are the newest and most exciting addition.">
-  <div class="slide-inner">
-    <div class="block-heading"><span class="icon">🎨</span><h2>CSS Layout Methods Compared</h2></div>
-    <div class="tabs-container">
-      <div class="tabs-header" role="tablist">
-        <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="panel-slide-4-0" id="tab-slide-4-0">Flexbox</button><button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-slide-4-1" id="tab-slide-4-1">CSS Grid</button><button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-slide-4-2" id="tab-slide-4-2">Container Queries</button>
-      </div>
-      <div class="tab-panel active" role="tabpanel" aria-labelledby="tab-slide-4-0" id="panel-slide-4-0" data-flow-id="tab-panel-1">
-        <p>Flexbox is a one-dimensional layout method for arranging items in rows OR columns. It excels at distributing space and aligning items within a container. Perfect for navigation bars, card rows, and centering content.</p>
-        <div class="tab-features"><span class="tab-feature-tag">One-dimensional (row or column)</span><span class="tab-feature-tag">Easy vertical centering</span><span class="tab-feature-tag">Flexible item sizing with flex-grow/shrink</span><span class="tab-feature-tag">Great for component-level layouts</span></div>
-        <pre><code>display: flex;
-justify-content: space-between;
-align-items: center;
-gap: 1rem;</code></pre>
-      </div>
-      <div class="tab-panel" role="tabpanel" aria-labelledby="tab-slide-4-1" id="panel-slide-4-1" data-flow-id="tab-panel-2">
-        <p>CSS Grid is a two-dimensional layout system for rows AND columns simultaneously. It&#39;s ideal for page-level layouts, complex dashboards, and any design requiring precise placement in both dimensions.</p>
-        <div class="tab-features"><span class="tab-feature-tag">Two-dimensional (rows and columns)</span><span class="tab-feature-tag">Named grid areas</span><span class="tab-feature-tag">Explicit track sizing</span><span class="tab-feature-tag">Great for page-level layouts</span></div>
-        <pre><code>display: grid;
-grid-template-columns: repeat(3, 1fr);
-grid-template-rows: auto 1fr auto;
-gap: 1.5rem;</code></pre>
-      </div>
-      <div class="tab-panel" role="tabpanel" aria-labelledby="tab-slide-4-2" id="panel-slide-4-2" data-flow-id="tab-panel-3">
-        <p>Container Queries let components adapt based on their parent container&#39;s size, not the viewport. This is a game-changer for reusable components that need to work in different contexts.</p>
-        <div class="tab-features"><span class="tab-feature-tag">Component-level responsiveness</span><span class="tab-feature-tag">Based on parent size, not viewport</span><span class="tab-feature-tag">Supported in all modern browsers</span><span class="tab-feature-tag">Perfect for design systems</span></div>
-        <pre><code>.card-container {
-  container-type: inline-size;
-}
-@container (min-width: 400px) {
-  .card { flex-direction: row; }
-}</code></pre>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="slide" id="slide-5" data-speaker-notes="Walk through each step one at a time. At each step, show the corresponding code on screen. Give students 2 minutes per step to follow along on their own laptops.">
-  <div class="slide-inner">
-    <div class="block-heading"><span class="icon">🚀</span><h2>Building Your First Webpage</h2></div>
-    <div class="stepper">
-      <div class="stepper-progress">
-        <div class="step-dot active">1</div><div class="step-line"></div><div class="step-dot">2</div><div class="step-line"></div><div class="step-dot">3</div><div class="step-line"></div><div class="step-dot">4</div><div class="step-line"></div><div class="step-dot">5</div>
-      </div>
-      <div class="step-content active" data-flow-id="step-1">
-        <h4>Step 1: Create the HTML file</h4>
-        <p>Create a new file called index.html. Add the basic HTML5 boilerplate with &lt;!DOCTYPE html&gt;, &lt;html&gt;, &lt;head&gt;, and &lt;body&gt; tags. This is the foundation of every web page.</p>
-        <div class="step-tip">Use the &#39;!&#39; shortcut in VS Code to generate boilerplate instantly.</div>
-      </div>
-      <div class="step-content" data-flow-id="step-2">
-        <h4>Step 2: Add your content</h4>
-        <p>Inside the &lt;body&gt; tag, add semantic HTML elements: a &lt;header&gt; with your site title, a &lt;main&gt; section with an &lt;article&gt; containing your content, and a &lt;footer&gt; with copyright info.</p>
-        <div class="step-tip">Always use semantic elements instead of generic &lt;div&gt; tags — it improves accessibility and SEO.</div>
-      </div>
-      <div class="step-content" data-flow-id="step-3">
-        <h4>Step 3: Style with CSS</h4>
-        <p>Create a styles.css file and link it in your &lt;head&gt;. Start with a CSS reset, then add your custom styles using modern features like custom properties, flexbox, and gradients.</p>
-        <div class="step-tip">Set box-sizing: border-box on everything first — it makes sizing much more intuitive.</div>
-      </div>
-      <div class="step-content" data-flow-id="step-4">
-        <h4>Step 4: Add interactivity</h4>
-        <p>Create a script.js file and link it before the closing &lt;/body&gt; tag. Add event listeners for user interactions like clicks, hover effects, and form submissions.</p>
-        <div class="step-tip">Use &#39;defer&#39; attribute on your &lt;script&gt; tag so it doesn&#39;t block page rendering.</div>
-      </div>
-      <div class="step-content" data-flow-id="step-5">
-        <h4>Step 5: Deploy to the web</h4>
-        <p>Push your code to GitHub, then connect the repository to Netlify or Vercel for instant, free deployment. Every push to main will automatically update your live site.</p>
-        <div class="step-tip">Add a custom domain later — most registrars offer .dev domains for around $12/year.</div>
-      </div>
-      <div class="stepper-nav">
-        <button class="nav-btn step-prev" disabled>← Previous</button>
-        <button class="nav-btn step-next">Next →</button>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="slide" id="slide-6" data-speaker-notes="Have students click each card to flip it. After revealing all definitions, ask them to close their eyes and quiz them: 'What does SPA stand for?'">
-  <div class="slide-inner">
-    <div class="block-heading"><span class="icon">🃏</span><h2>Key Concepts — Flip to Learn</h2></div>
-    <div class="cards-grid stagger">
-      <div class="flip-card" data-flow-id="card-1">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">DOM</div>
-          <div class="flip-card-back">Document Object Model — the tree-like representation of your HTML that JavaScript can read and modify in real time.</div>
-        </div>
-      </div>
-      <div class="flip-card" data-flow-id="card-2">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">API</div>
-          <div class="flip-card-back">Application Programming Interface — a contract that allows two software systems to communicate. REST and GraphQL are the most common web API patterns.</div>
-        </div>
-      </div>
-      <div class="flip-card" data-flow-id="card-3">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">SPA</div>
-          <div class="flip-card-back">Single Page Application — a web app that loads once and dynamically updates content without full page reloads. React, Vue, and Angular build SPAs.</div>
-        </div>
-      </div>
-      <div class="flip-card" data-flow-id="card-4">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">SSR</div>
-          <div class="flip-card-back">Server-Side Rendering — HTML is generated on the server for each request. Improves SEO and initial load time. Next.js and Nuxt.js support SSR.</div>
-        </div>
-      </div>
-      <div class="flip-card" data-flow-id="card-5">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">PWA</div>
-          <div class="flip-card-back">Progressive Web App — a website that can be installed like a native app, works offline, and sends push notifications. Uses Service Workers and Web Manifests.</div>
-        </div>
-      </div>
-      <div class="flip-card" data-flow-id="card-6">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">a11y</div>
-          <div class="flip-card-back">Accessibility — designing websites usable by everyone, including people with disabilities. Use semantic HTML, ARIA labels, and keyboard navigation.</div>
-        </div>
-      </div>
-    </div>
-    <p class="flip-hint">Click any card to flip it</p>
-  </div>
-</section>
-<section class="slide" id="slide-7" data-speaker-notes="Run through the quiz interactively. Have students vote by raising hands before revealing answers. Celebrate correct answers!">
-  <div class="slide-inner">
-    <div class="block-heading"><span class="icon">❓</span><h2>Quick Check — Test Your Knowledge</h2></div>
-    <div class="quiz-container stagger">
-      <div class="quiz-question" data-correct="2">
-        <h4>1. Which language is used to define the STRUCTURE of a web page?</h4>
-        <div class="quiz-options">
-          <button class="quiz-option">
-            <span class="option-letter">A</span>
-            CSS
-          </button>
-          <button class="quiz-option">
-            <span class="option-letter">B</span>
-            JavaScript
-          </button>
-          <button class="quiz-option">
-            <span class="option-letter">C</span>
-            HTML
-          </button>
-          <button class="quiz-option">
-            <span class="option-letter">D</span>
-            Python
-          </button>
-        </div>
-        <div class="quiz-explanation">HTML (HyperText Markup Language) defines the structure and content of web pages. CSS handles styling, and JavaScript handles behavior.</div>
-      </div>
-      <div class="quiz-question" data-correct="1">
-        <h4>2. What CSS property creates a two-dimensional layout?</h4>
-        <div class="quiz-options">
-          <button class="quiz-option">
-            <span class="option-letter">A</span>
-            display: flex
-          </button>
-          <button class="quiz-option">
-            <span class="option-letter">B</span>
-            display: grid
-          </button>
-          <button class="quiz-option">
-            <span class="option-letter">C</span>
-            display: block
-          </button>
-          <button class="quiz-option">
-            <span class="option-letter">D</span>
-            display: table
-          </button>
-        </div>
-        <div class="quiz-explanation">CSS Grid (display: grid) is the two-dimensional layout system. Flexbox is one-dimensional (row OR column).</div>
-      </div>
-      <div class="quiz-question" data-correct="1">
-        <h4>3. What does &#39;responsive design&#39; mean?</h4>
-        <div class="quiz-options">
-          <button class="quiz-option">
-            <span class="option-letter">A</span>
-            Fast loading speed
-          </button>
-          <button class="quiz-option">
-            <span class="option-letter">B</span>
-            Adapts to different screen sizes
-          </button>
-          <button class="quiz-option">
-            <span class="option-letter">C</span>
-            Uses animations
-          </button>
-          <button class="quiz-option">
-            <span class="option-letter">D</span>
-            Works without JavaScript
-          </button>
-        </div>
-        <div class="quiz-explanation">Responsive design means the layout adapts to different viewport sizes — from mobile phones to wide desktop monitors — using media queries and fluid layouts.</div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="slide" id="slide-8" data-speaker-notes="Present this as a friendly comparison, not a competition. Emphasize that the best framework is the one you enjoy using. Ask students which they'd like to try first.">
-  <div class="slide-inner">
-    <div class="block-heading"><span class="icon">⚔️</span><h2>React vs. Vue — Framework Comparison</h2></div>
-    <div class="compare-container">
-      <div class="compare-side side-blue">
-        <h3>React</h3>
-        <ul class="compare-list">
-          <li data-flow-id="compare-left-1">Library (UI layer only)</li>
-          <li data-flow-id="compare-left-2">JSX syntax</li>
-          <li data-flow-id="compare-left-3">Massive ecosystem</li>
-          <li data-flow-id="compare-left-4">Backed by Meta</li>
-          <li data-flow-id="compare-left-5">Steep learning curve</li>
-          <li data-flow-id="compare-left-6">One-way data flow</li>
-        </ul>
-      </div>
-      <div class="compare-side side-green">
-        <h3>Vue</h3>
-        <ul class="compare-list">
-          <li data-flow-id="compare-right-1">Progressive framework</li>
-          <li data-flow-id="compare-right-2">Template syntax</li>
-          <li data-flow-id="compare-right-3">Curated ecosystem</li>
-          <li data-flow-id="compare-right-4">Community-driven</li>
-          <li data-flow-id="compare-right-5">Gentle learning curve</li>
-          <li data-flow-id="compare-right-6">Two-way data binding</li>
-        </ul>
-      </div>
-      <div class="compare-verdict" data-flow-id="compare-verdict">Both are excellent choices. React offers more flexibility and job opportunities. Vue offers a smoother learning experience and better documentation.</div>
-    </div>
-  </div>
-</section>
-<section class="slide" id="slide-9" data-speaker-notes="Scroll through the timeline slowly. At each milestone, share a fun fact or personal anecdote about that era. Ask senior developers in the audience to share their experiences.">
-  <div class="slide-inner">
-    <div class="block-heading"><span class="icon">📅</span><h2>Web Development Evolution</h2></div>
-    <div class="timeline stagger">
-      <div class="timeline-item" data-flow-id="timeline-1">
-        <div class="timeline-dot"></div>
-        <div class="timeline-year">1991</div>
-        <div class="timeline-title">The First Website</div>
-        <div class="timeline-desc">Tim Berners-Lee publishes the first-ever website at CERN. It was a simple text page explaining the World Wide Web project.</div>
-      </div>
-      <div class="timeline-item" data-flow-id="timeline-2">
-        <div class="timeline-dot"></div>
-        <div class="timeline-year">1996</div>
-        <div class="timeline-title">CSS Is Born</div>
-        <div class="timeline-desc">CSS1 is released, finally separating content (HTML) from presentation (CSS). Web design becomes a real discipline.</div>
-      </div>
-      <div class="timeline-item" data-flow-id="timeline-3">
-        <div class="timeline-dot"></div>
-        <div class="timeline-year">2006</div>
-        <div class="timeline-title">jQuery Revolution</div>
-        <div class="timeline-desc">jQuery simplifies DOM manipulation and AJAX. &#39;Write less, do more&#39; becomes the mantra. It dominated for a decade.</div>
-      </div>
-      <div class="timeline-item" data-flow-id="timeline-4">
-        <div class="timeline-dot"></div>
-        <div class="timeline-year">2013</div>
-        <div class="timeline-title">React Changes Everything</div>
-        <div class="timeline-desc">Facebook releases React with its virtual DOM and component model. The era of modern SPA frameworks begins.</div>
-      </div>
-      <div class="timeline-item" data-flow-id="timeline-5">
-        <div class="timeline-dot"></div>
-        <div class="timeline-year">2020</div>
-        <div class="timeline-title">Jamstack &amp; Edge</div>
-        <div class="timeline-desc">Static site generators, serverless functions, and edge computing reshape how we build and deploy web applications.</div>
-      </div>
-      <div class="timeline-item" data-flow-id="timeline-6">
-        <div class="timeline-dot"></div>
-        <div class="timeline-year">2025</div>
-        <div class="timeline-title">AI-Powered Development</div>
-        <div class="timeline-desc">AI coding assistants, automated testing, and intelligent design tools transform the developer experience.</div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="slide" id="slide-10" data-speaker-notes="Recap the key points. Encourage students to start a personal project this week. Share the resource links. Open the floor for Q&A.">
-  <div class="slide-inner">
-    <div class="block-heading"><span class="icon">🎓</span><h2>Key Takeaways</h2></div>
-    <ul class="summary-items stagger">
-      <li data-flow-id="summary-1">HTML, CSS, and JavaScript form the core web technology stack</li>
-      <li data-flow-id="summary-2">Modern layout uses Flexbox (1D) and Grid (2D)</li>
-      <li data-flow-id="summary-3">Semantic HTML improves accessibility and SEO</li>
-      <li data-flow-id="summary-4">Start simple, deploy early, iterate often</li>
-      <li data-flow-id="summary-5">The web platform is more powerful than ever</li>
-    </ul>
-    <div class="summary-cta"><p>Start building today — your first website is just 3 files away!</p></div>
-    <div class="summary-resources">
-      <a href="https://developer.mozilla.org" class="resource-link" target="_blank">🔗 MDN Web Docs</a><a href="https://freecodecamp.org" class="resource-link" target="_blank">🔗 freeCodeCamp</a><a href="https://css-tricks.com" class="resource-link" target="_blank">🔗 CSS-Tricks</a>
-    </div>
-  </div>
-</section>
-<section class="slide" id="slide-11" data-speaker-notes="Assess the class's understanding of the basic web technologies. Let them answer and click submit.">
-  <div class="slide-inner">
-    <div class="block-heading"><span class="icon">🏆</span><h2>Final Web Core Assessment</h2></div>
-    <div class="advanced-quiz-container stagger" data-total-questions="3">
-      <div class="adv-question" data-question-index="0" data-correct="2">
-        <h4>1. Which HTML tag is used for the largest structural heading?</h4>
-        <div class="adv-options">
-          <button class="adv-option" data-option-index="0">
-            <span class="option-letter">A</span>
-            &lt;head&gt;
-          </button>
-          <button class="adv-option" data-option-index="1">
-            <span class="option-letter">B</span>
-            &lt;h6&gt;
-          </button>
-          <button class="adv-option" data-option-index="2">
-            <span class="option-letter">C</span>
-            &lt;h1&gt;
-          </button>
-          <button class="adv-option" data-option-index="3">
-            <span class="option-letter">D</span>
-            &lt;header&gt;
-          </button>
-        </div>
-      </div>
-      <div class="adv-question" data-question-index="1" data-correct="0">
-        <h4>2. What is the primary purpose of CSS?</h4>
-        <div class="adv-options">
-          <button class="adv-option" data-option-index="0">
-            <span class="option-letter">A</span>
-            To define document styles and layouts
-          </button>
-          <button class="adv-option" data-option-index="1">
-            <span class="option-letter">B</span>
-            To structure backend databases
-          </button>
-          <button class="adv-option" data-option-index="2">
-            <span class="option-letter">C</span>
-            To handle user input events dynamically
-          </button>
-          <button class="adv-option" data-option-index="3">
-            <span class="option-letter">D</span>
-            To encrypt client-side network connections
-          </button>
-        </div>
-      </div>
-      <div class="adv-question" data-question-index="2" data-correct="1">
-        <h4>3. Which symbol represents the ID selector in CSS?</h4>
-        <div class="adv-options">
-          <button class="adv-option" data-option-index="0">
-            <span class="option-letter">A</span>
-            .
-          </button>
-          <button class="adv-option" data-option-index="1">
-            <span class="option-letter">B</span>
-            #
-          </button>
-          <button class="adv-option" data-option-index="2">
-            <span class="option-letter">C</span>
-            *
-          </button>
-          <button class="adv-option" data-option-index="3">
-            <span class="option-letter">D</span>
-            @
-          </button>
-        </div>
-      </div>
       
-      <div class="adv-quiz-action-row">
-        <button class="btn btn-primary adv-submit-btn">📥 Submit Assessment</button>
-      </div>
-      
-      <!-- Modal Overlay Popup -->
-      <div class="adv-quiz-modal-backdrop" style="display: none;">
-        <div class="adv-quiz-modal glassmorphic-panel stagger-item">
-          <button class="adv-quiz-modal-close" aria-label="Close modal">&times;</button>
-          <div class="adv-result-score">Score: <span class="score-fraction">0/0</span></div>
-          <div class="adv-result-feedback"></div>
-          <button class="adv-retry-btn" style="margin-top: 1.5rem;">🔄 Try Again</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
     </div>
   </div>
 
@@ -6608,83 +6145,6 @@ gap: 1.5rem;</code></pre>
         <div class="sidebar-divider">SLIDE SECTIONS</div>
         <div class="slide-thumbnails">
           
-    <div class="slide-thumb active" data-slide="0">
-      <span class="slide-thumb-num">1</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">Introduction to Modern Web Development</div>
-        <div class="slide-thumb-type">🎬 title</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="1">
-      <span class="slide-thumb-num">2</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">Learning Objectives</div>
-        <div class="slide-thumb-type">📌 bullets</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="2">
-      <span class="slide-thumb-num">3</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">The Web Technology Stack</div>
-        <div class="slide-thumb-type">📚 accordion</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="3">
-      <span class="slide-thumb-num">4</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">CSS Layout Methods Compared</div>
-        <div class="slide-thumb-type">🗂 tabs</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="4">
-      <span class="slide-thumb-num">5</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">Building Your First Webpage</div>
-        <div class="slide-thumb-type">🚶 stepper</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="5">
-      <span class="slide-thumb-num">6</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">Key Concepts — Flip to Learn</div>
-        <div class="slide-thumb-type">🃏 cards</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="6">
-      <span class="slide-thumb-num">7</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">Quick Check — Test Your Knowledge</div>
-        <div class="slide-thumb-type">❓ quiz</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="7">
-      <span class="slide-thumb-num">8</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">React vs. Vue — Framework Comparison</div>
-        <div class="slide-thumb-type">⚔️ compare</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="8">
-      <span class="slide-thumb-num">9</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">Web Development Evolution</div>
-        <div class="slide-thumb-type">📅 timeline</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="9">
-      <span class="slide-thumb-num">10</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">Key Takeaways</div>
-        <div class="slide-thumb-type">🎓 summary</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="10">
-      <span class="slide-thumb-num">11</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">Final Web Core Assessment</div>
-        <div class="slide-thumb-type">📄 advanced-quiz</div>
-      </div>
-    </div>
         </div>
       </div>
 
@@ -6806,127 +6266,7 @@ gap: 1.5rem;</code></pre>
             <div class="template-title">Use-case Templates</div>
             <div class="template-subtitle">Copy a slide JSON snippet and reuse it in new decks.</div>
           </div>
-          
-      <div class="template-category" data-category-id="concept-intro">
-        <div class="template-category-header">
-          <div class="template-category-title">Concept Intro</div>
-          <div class="template-category-desc">Define a new AI concept with a crisp takeaway and one supporting example.</div>
-        </div>
-        <div class="template-card-grid">
-        <div class="template-card" data-template="{&quot;$ref&quot;:&quot;slide-bullets&quot;,&quot;data&quot;:{&quot;heading&quot;:&quot;What is a Transformer?&quot;,&quot;icon&quot;:&quot;AI&quot;,&quot;items&quot;:[{&quot;text&quot;:&quot;A model that learns attention between tokens&quot;,&quot;detail&quot;:&quot;Self-attention lets each token look at the rest of the sequence.&quot;},{&quot;text&quot;:&quot;Scales well with large data&quot;,&quot;detail&quot;:&quot;Parallel training enables huge model sizes.&quot;},{&quot;text&quot;:&quot;Used in GPT, BERT, and T5&quot;,&quot;detail&quot;:&quot;It is the backbone of modern NLP systems.&quot;}]},&quot;flow&quot;:[{&quot;label&quot;:&quot;Reveal definition&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;fade-up&quot;,&quot;targets&quot;:[&quot;[data-flow-id='bullet-1']&quot;]},{&quot;label&quot;:&quot;Reveal scaling&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;fade-up&quot;,&quot;targets&quot;:[&quot;[data-flow-id='bullet-2']&quot;]},{&quot;label&quot;:&quot;Reveal examples&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;fade-up&quot;,&quot;targets&quot;:[&quot;[data-flow-id='bullet-3']&quot;]}]}">
-          <div class="template-card-title">Concept Hero</div>
-          <div class="template-card-use">Explain a concept</div>
-          <div class="template-card-tags"><span class="template-tag">beginner</span><span class="template-tag">definition</span><span class="template-tag">clarity</span></div>
-          <div class="template-card-actions">
-            <button class="template-copy-btn" type="button">Copy JSON</button>
-          </div>
-        </div></div>
-      </div>
-      <div class="template-category" data-category-id="pipeline">
-        <div class="template-category-header">
-          <div class="template-category-title">Pipeline / Workflow</div>
-          <div class="template-category-desc">Walk through an AI workflow or data pipeline step-by-step.</div>
-        </div>
-        <div class="template-card-grid">
-        <div class="template-card" data-template="{&quot;$ref&quot;:&quot;slide-flow&quot;,&quot;data&quot;:{&quot;heading&quot;:&quot;Training Pipeline&quot;,&quot;icon&quot;:&quot;FLOW&quot;,&quot;nodes&quot;:[{&quot;id&quot;:&quot;data&quot;,&quot;label&quot;:&quot;Data&quot;},{&quot;id&quot;:&quot;clean&quot;,&quot;label&quot;:&quot;Clean&quot;},{&quot;id&quot;:&quot;train&quot;,&quot;label&quot;:&quot;Train&quot;},{&quot;id&quot;:&quot;eval&quot;,&quot;label&quot;:&quot;Evaluate&quot;},{&quot;id&quot;:&quot;deploy&quot;,&quot;label&quot;:&quot;Deploy&quot;}],&quot;connections&quot;:[{&quot;from&quot;:&quot;data&quot;,&quot;to&quot;:&quot;clean&quot;},{&quot;from&quot;:&quot;clean&quot;,&quot;to&quot;:&quot;train&quot;},{&quot;from&quot;:&quot;train&quot;,&quot;to&quot;:&quot;eval&quot;},{&quot;from&quot;:&quot;eval&quot;,&quot;to&quot;:&quot;deploy&quot;}]}}">
-          <div class="template-card-title">AI Pipeline Walkthrough</div>
-          <div class="template-card-use">Walk through a pipeline</div>
-          <div class="template-card-tags"><span class="template-tag">workflow</span><span class="template-tag">step-by-step</span></div>
-          <div class="template-card-actions">
-            <button class="template-copy-btn" type="button">Copy JSON</button>
-          </div>
-        </div></div>
-      </div>
-      <div class="template-category" data-category-id="comparison">
-        <div class="template-category-header">
-          <div class="template-category-title">Comparison</div>
-          <div class="template-category-desc">Show before/after or method A vs method B with a clear verdict.</div>
-        </div>
-        <div class="template-card-grid">
-        <div class="template-card" data-template="{&quot;$ref&quot;:&quot;slide-compare&quot;,&quot;data&quot;:{&quot;heading&quot;:&quot;Bag-of-Words vs. Transformer&quot;,&quot;icon&quot;:&quot;COMPARE&quot;,&quot;left&quot;:{&quot;title&quot;:&quot;Bag-of-Words&quot;,&quot;items&quot;:[&quot;Order ignored&quot;,&quot;Simple features&quot;,&quot;Fast but shallow&quot;],&quot;color&quot;:&quot;blue&quot;},&quot;right&quot;:{&quot;title&quot;:&quot;Transformer&quot;,&quot;items&quot;:[&quot;Context-aware&quot;,&quot;Scales better&quot;,&quot;State-of-the-art&quot;],&quot;color&quot;:&quot;green&quot;},&quot;verdict&quot;:&quot;Transformers win when context matters.&quot;},&quot;flow&quot;:[{&quot;label&quot;:&quot;Reveal left&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;slide-in&quot;,&quot;targets&quot;:[&quot;.compare-side.side-blue&quot;]},{&quot;label&quot;:&quot;Reveal right&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;slide-in&quot;,&quot;targets&quot;:[&quot;.compare-side.side-green&quot;]},{&quot;label&quot;:&quot;Highlight verdict&quot;,&quot;action&quot;:&quot;highlight&quot;,&quot;preset&quot;:&quot;highlight-pulse&quot;,&quot;targets&quot;:[&quot;.compare-verdict&quot;]}]}">
-          <div class="template-card-title">Method Comparison</div>
-          <div class="template-card-use">Compare two methods</div>
-          <div class="template-card-tags"><span class="template-tag">comparison</span><span class="template-tag">decision</span></div>
-          <div class="template-card-actions">
-            <button class="template-copy-btn" type="button">Copy JSON</button>
-          </div>
-        </div></div>
-      </div>
-      <div class="template-category" data-category-id="example-breakdown">
-        <div class="template-category-header">
-          <div class="template-category-title">Example Breakdown</div>
-          <div class="template-category-desc">Step-by-step example with highlights for key moments.</div>
-        </div>
-        <div class="template-card-grid">
-        <div class="template-card" data-template="{&quot;type&quot;:&quot;stepper&quot;,&quot;data&quot;:{&quot;heading&quot;:&quot;Prompt -&gt; Output&quot;,&quot;icon&quot;:&quot;EXAMPLE&quot;,&quot;steps&quot;:[{&quot;title&quot;:&quot;Step 1&quot;,&quot;content&quot;:&quot;Write a clear prompt with constraints.&quot;,&quot;tip&quot;:&quot;Be explicit about format.&quot;},{&quot;title&quot;:&quot;Step 2&quot;,&quot;content&quot;:&quot;Model generates candidate output.&quot;,&quot;tip&quot;:&quot;Check for hallucinations.&quot;},{&quot;title&quot;:&quot;Step 3&quot;,&quot;content&quot;:&quot;Refine with a follow-up prompt.&quot;,&quot;tip&quot;:&quot;Use critique + rewrite.&quot;}]}}">
-          <div class="template-card-title">Example Walkthrough</div>
-          <div class="template-card-use">Teach with example</div>
-          <div class="template-card-tags"><span class="template-tag">example</span><span class="template-tag">step-by-step</span></div>
-          <div class="template-card-actions">
-            <button class="template-copy-btn" type="button">Copy JSON</button>
-          </div>
-        </div></div>
-      </div>
-      <div class="template-category" data-category-id="misconception">
-        <div class="template-category-header">
-          <div class="template-category-title">Common Mistakes</div>
-          <div class="template-category-desc">Highlight misconceptions or pitfalls with a fix.</div>
-        </div>
-        <div class="template-card-grid">
-        <div class="template-card" data-template="{&quot;type&quot;:&quot;bullets&quot;,&quot;data&quot;:{&quot;heading&quot;:&quot;Common Misconceptions&quot;,&quot;icon&quot;:&quot;WARN&quot;,&quot;items&quot;:[{&quot;text&quot;:&quot;Bigger model = always better&quot;,&quot;detail&quot;:&quot;Data quality and evaluation matter more than size alone.&quot;},{&quot;text&quot;:&quot;LLMs understand like humans&quot;,&quot;detail&quot;:&quot;They predict tokens; understanding is not guaranteed.&quot;},{&quot;text&quot;:&quot;Prompting replaces evaluation&quot;,&quot;detail&quot;:&quot;You still need tests and metrics.&quot;}]}}">
-          <div class="template-card-title">Misconception Callout</div>
-          <div class="template-card-use">Mistake / misconception</div>
-          <div class="template-card-tags"><span class="template-tag">mistakes</span><span class="template-tag">clarity</span></div>
-          <div class="template-card-actions">
-            <button class="template-copy-btn" type="button">Copy JSON</button>
-          </div>
-        </div></div>
-      </div>
-      <div class="template-category" data-category-id="recap">
-        <div class="template-category-header">
-          <div class="template-category-title">Recap / Cheat Sheet</div>
-          <div class="template-category-desc">Summarize takeaways for quick recall.</div>
-        </div>
-        <div class="template-card-grid">
-        <div class="template-card" data-template="{&quot;$ref&quot;:&quot;slide-summary&quot;,&quot;data&quot;:{&quot;heading&quot;:&quot;Key Takeaways&quot;,&quot;icon&quot;:&quot;RECAP&quot;,&quot;items&quot;:[&quot;Attention is the core idea.&quot;,&quot;Data quality &gt; model size.&quot;,&quot;Evaluate with real tasks.&quot;]}}">
-          <div class="template-card-title">Cheat Sheet</div>
-          <div class="template-card-use">Recap</div>
-          <div class="template-card-tags"><span class="template-tag">recap</span><span class="template-tag">cheat-sheet</span></div>
-          <div class="template-card-actions">
-            <button class="template-copy-btn" type="button">Copy JSON</button>
-          </div>
-        </div></div>
-      </div>
-      <div class="template-category" data-category-id="code-explain">
-        <div class="template-category-header">
-          <div class="template-category-title">Code + Explanation</div>
-          <div class="template-category-desc">Split view: short code snippet with explanation.</div>
-        </div>
-        <div class="template-card-grid">
-        <div class="template-card" data-template="{&quot;type&quot;:&quot;split&quot;,&quot;data&quot;:{&quot;heading&quot;:&quot;Tokenization Example&quot;,&quot;icon&quot;:&quot;CODE&quot;,&quot;layout&quot;:&quot;split-50-50&quot;,&quot;left&quot;:{&quot;type&quot;:&quot;code&quot;,&quot;data&quot;:{&quot;language&quot;:&quot;python&quot;,&quot;code&quot;:&quot;text = 'AI for beginners'\nprint(text.split())&quot;}},&quot;right&quot;:{&quot;type&quot;:&quot;bullets&quot;,&quot;data&quot;:{&quot;items&quot;:[&quot;Split into tokens&quot;,&quot;Tokens feed into the model&quot;,&quot;Small step, huge impact&quot;]}}}}">
-          <div class="template-card-title">Code + Explanation Split</div>
-          <div class="template-card-use">Teach with code example</div>
-          <div class="template-card-tags"><span class="template-tag">code</span><span class="template-tag">explain</span></div>
-          <div class="template-card-actions">
-            <button class="template-copy-btn" type="button">Copy JSON</button>
-          </div>
-        </div></div>
-      </div>
-      <div class="template-category" data-category-id="chapter-opener">
-        <div class="template-category-header">
-          <div class="template-category-title">Chapter Opener</div>
-          <div class="template-category-desc">Reset attention before a new section.</div>
-        </div>
-        <div class="template-card-grid">
-        <div class="template-card" data-template="{&quot;type&quot;:&quot;title&quot;,&quot;data&quot;:{&quot;heading&quot;:&quot;Chapter 2: How Models Learn&quot;,&quot;subtitle&quot;:&quot;From data to gradients to generalization&quot;,&quot;badge&quot;:&quot;Chapter Opener&quot;}}">
-          <div class="template-card-title">Chapter Title</div>
-          <div class="template-card-use">Chapter opener</div>
-          <div class="template-card-tags"><span class="template-tag">section</span><span class="template-tag">transition</span></div>
-          <div class="template-card-actions">
-            <button class="template-copy-btn" type="button">Copy JSON</button>
-          </div>
-        </div></div>
-      </div>
+          <div id="template-library-container"></div>
         </div>
       </div>
 
@@ -7104,6 +6444,8 @@ gap: 1.5rem;</code></pre>
   </div>
 
   <script type="application/json" id="lesson-context-data">{"audience":"Web dev beginner","topic":"Modern Web Development","lessonLength":45,"tone":"clear","pace":"standard","rhythmPreset":"beginner-friendly","textDensity":"medium","exampleDensity":"medium","primaryColor":"#3b82f6","stylePack":"editorial-clean"}</script>
+  <script type="application/json" id="slide-data">{"meta":{"title":"Introduction to Modern Web Development","subtitle":"A Comprehensive Workshop for Beginners","author":"Lecta AI","date":"2026","theme":"ocean","duration":45,"context":{"audience":"Web dev beginner","topic":"Modern Web Development","lessonLength":45,"tone":"clear","pace":"standard","rhythmPreset":"beginner-friendly","textDensity":"medium","exampleDensity":"medium","primaryColor":"#3b82f6","stylePack":"editorial-clean"}},"slides":[{"id":"slide-1","type":"title","data":{"heading":"Introduction to Modern Web Development","subtitle":"From Zero to Hero — Interactive Workshop","badge":"Workshop · 45 min","speakerNotes":"Welcome everyone! Today we'll explore the fundamentals of modern web development. This workshop is designed for complete beginners. Let's make this interactive and fun!"}},{"id":"slide-2","type":"bullets","flow":[{"label":"Reveal objective 1","action":"reveal","preset":"fade-up","targets":["[data-flow-id='bullet-1']"]},{"label":"Reveal objective 2","action":"reveal","preset":"fade-up","targets":["[data-flow-id='bullet-2']"]},{"label":"Reveal objective 3","action":"reveal","preset":"fade-up","targets":["[data-flow-id='bullet-3']"]},{"label":"Reveal objective 4","action":"reveal","preset":"fade-up","targets":["[data-flow-id='bullet-4']"]},{"label":"Reveal objective 5","action":"reveal","preset":"fade-up","targets":["[data-flow-id='bullet-5']"]},{"label":"Highlight deployment","action":"highlight","preset":"highlight-pulse","targets":["[data-flow-id='bullet-5']"]}],"data":{"heading":"Learning Objectives","icon":"🎯","items":[{"text":"Understand HTML structure and semantic elements","detail":"HTML is the skeleton of every webpage. Semantic elements like &lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, and &lt;footer&gt; give meaning to your content."},{"text":"Master CSS styling and modern layout techniques","detail":"CSS controls visual presentation. Flexbox and Grid are the two modern layout systems every developer needs to know."},{"text":"Write interactive JavaScript for dynamic behavior","detail":"JavaScript brings pages to life with event handling, DOM manipulation, and asynchronous operations."},{"text":"Build responsive designs for all devices","detail":"Media queries and fluid layouts ensure your website looks great on phones, tablets, and desktops."},{"text":"Deploy your first project to the web","detail":"Services like Netlify, Vercel, and GitHub Pages make deployment free and instant."}],"speakerNotes":"Walk through each objective. Click each bullet to reveal the detailed explanation. Ask the audience which topic they're most excited about."}},{"id":"slide-3","type":"accordion","data":{"heading":"The Web Technology Stack","icon":"📚","items":[{"title":"HTML — The Structure","content":"HTML (HyperText Markup Language) defines the structure and content of web pages. Think of it as the blueprint of a building — it determines what rooms exist and where they are, but not how they look.","example":"&lt;article&gt;\n  &lt;h1&gt;My First Blog Post&lt;/h1&gt;\n  &lt;p&gt;Hello, world!&lt;/p&gt;\n&lt;/article&gt;"},{"title":"CSS — The Style","content":"CSS (Cascading Style Sheets) controls the visual presentation. Colors, fonts, spacing, animations — everything visual is CSS. Modern CSS includes powerful features like Grid, Custom Properties, and Container Queries.","example":".card {\n  background: linear-gradient(135deg, #667eea, #764ba2);\n  border-radius: 16px;\n  padding: 2rem;\n}"},{"title":"JavaScript — The Behavior","content":"JavaScript makes pages interactive and dynamic. From simple button clicks to complex single-page applications, JS is the programming language of the web. Modern JS (ES2024+) is powerful and expressive.","example":"document.querySelector('.btn')\n  .addEventListener('click', () =&gt; {\n    alert('You clicked me!');\n  });"},{"title":"DevTools — Your Best Friend","content":"Every modern browser includes Developer Tools (F12). The Elements panel lets you inspect HTML/CSS live. The Console lets you run JavaScript. The Network panel shows all HTTP requests. Master these tools early!"}],"speakerNotes":"Open each accordion section one by one. For the code examples, consider showing a live demo in VS Code. Ask students: 'Which layer do you think is the hardest to learn?'"}},{"id":"slide-4","type":"tabs","data":{"heading":"CSS Layout Methods Compared","icon":"🎨","tabs":[{"label":"Flexbox","content":"Flexbox is a one-dimensional layout method for arranging items in rows OR columns. It excels at distributing space and aligning items within a container. Perfect for navigation bars, card rows, and centering content.","features":["One-dimensional (row or column)","Easy vertical centering","Flexible item sizing with flex-grow/shrink","Great for component-level layouts"],"code":"display: flex;\njustify-content: space-between;\nalign-items: center;\ngap: 1rem;"},{"label":"CSS Grid","content":"CSS Grid is a two-dimensional layout system for rows AND columns simultaneously. It's ideal for page-level layouts, complex dashboards, and any design requiring precise placement in both dimensions.","features":["Two-dimensional (rows and columns)","Named grid areas","Explicit track sizing","Great for page-level layouts"],"code":"display: grid;\ngrid-template-columns: repeat(3, 1fr);\ngrid-template-rows: auto 1fr auto;\ngap: 1.5rem;"},{"label":"Container Queries","content":"Container Queries let components adapt based on their parent container's size, not the viewport. This is a game-changer for reusable components that need to work in different contexts.","features":["Component-level responsiveness","Based on parent size, not viewport","Supported in all modern browsers","Perfect for design systems"],"code":".card-container {\n  container-type: inline-size;\n}\n@container (min-width: 400px) {\n  .card { flex-direction: row; }\n}"}],"speakerNotes":"Switch between tabs to compare the three layout methods. Emphasize that Flexbox and Grid are complementary, not competing. Container Queries are the newest and most exciting addition."}},{"id":"slide-5","type":"stepper","data":{"heading":"Building Your First Webpage","icon":"🚀","steps":[{"title":"Step 1: Create the HTML file","content":"Create a new file called index.html. Add the basic HTML5 boilerplate with &lt;!DOCTYPE html&gt;, &lt;html&gt;, &lt;head&gt;, and &lt;body&gt; tags. This is the foundation of every web page.","tip":"Use the '!' shortcut in VS Code to generate boilerplate instantly."},{"title":"Step 2: Add your content","content":"Inside the &lt;body&gt; tag, add semantic HTML elements: a &lt;header&gt; with your site title, a &lt;main&gt; section with an &lt;article&gt; containing your content, and a &lt;footer&gt; with copyright info.","tip":"Always use semantic elements instead of generic &lt;div&gt; tags — it improves accessibility and SEO."},{"title":"Step 3: Style with CSS","content":"Create a styles.css file and link it in your &lt;head&gt;. Start with a CSS reset, then add your custom styles using modern features like custom properties, flexbox, and gradients.","tip":"Set box-sizing: border-box on everything first — it makes sizing much more intuitive."},{"title":"Step 4: Add interactivity","content":"Create a script.js file and link it before the closing &lt;/body&gt; tag. Add event listeners for user interactions like clicks, hover effects, and form submissions.","tip":"Use 'defer' attribute on your &lt;script&gt; tag so it doesn't block page rendering."},{"title":"Step 5: Deploy to the web","content":"Push your code to GitHub, then connect the repository to Netlify or Vercel for instant, free deployment. Every push to main will automatically update your live site.","tip":"Add a custom domain later — most registrars offer .dev domains for around $12/year."}],"speakerNotes":"Walk through each step one at a time. At each step, show the corresponding code on screen. Give students 2 minutes per step to follow along on their own laptops."}},{"id":"slide-6","type":"cards","data":{"heading":"Key Concepts — Flip to Learn","icon":"🃏","cards":[{"front":"DOM","back":"Document Object Model — the tree-like representation of your HTML that JavaScript can read and modify in real time."},{"front":"API","back":"Application Programming Interface — a contract that allows two software systems to communicate. REST and GraphQL are the most common web API patterns."},{"front":"SPA","back":"Single Page Application — a web app that loads once and dynamically updates content without full page reloads. React, Vue, and Angular build SPAs."},{"front":"SSR","back":"Server-Side Rendering — HTML is generated on the server for each request. Improves SEO and initial load time. Next.js and Nuxt.js support SSR."},{"front":"PWA","back":"Progressive Web App — a website that can be installed like a native app, works offline, and sends push notifications. Uses Service Workers and Web Manifests."},{"front":"a11y","back":"Accessibility — designing websites usable by everyone, including people with disabilities. Use semantic HTML, ARIA labels, and keyboard navigation."}],"speakerNotes":"Have students click each card to flip it. After revealing all definitions, ask them to close their eyes and quiz them: 'What does SPA stand for?'"}},{"id":"slide-7","type":"quiz","data":{"heading":"Quick Check — Test Your Knowledge","icon":"❓","questions":[{"question":"Which language is used to define the STRUCTURE of a web page?","options":["CSS","JavaScript","HTML","Python"],"correct":2,"explanation":"HTML (HyperText Markup Language) defines the structure and content of web pages. CSS handles styling, and JavaScript handles behavior."},{"question":"What CSS property creates a two-dimensional layout?","options":["display: flex","display: grid","display: block","display: table"],"correct":1,"explanation":"CSS Grid (display: grid) is the two-dimensional layout system. Flexbox is one-dimensional (row OR column)."},{"question":"What does 'responsive design' mean?","options":["Fast loading speed","Adapts to different screen sizes","Uses animations","Works without JavaScript"],"correct":1,"explanation":"Responsive design means the layout adapts to different viewport sizes — from mobile phones to wide desktop monitors — using media queries and fluid layouts."}],"speakerNotes":"Run through the quiz interactively. Have students vote by raising hands before revealing answers. Celebrate correct answers!"}},{"id":"slide-8","type":"compare","data":{"heading":"React vs. Vue — Framework Comparison","icon":"⚔️","left":{"title":"React","items":["Library (UI layer only)","JSX syntax","Massive ecosystem","Backed by Meta","Steep learning curve","One-way data flow"],"color":"blue"},"right":{"title":"Vue","items":["Progressive framework","Template syntax","Curated ecosystem","Community-driven","Gentle learning curve","Two-way data binding"],"color":"green"},"verdict":"Both are excellent choices. React offers more flexibility and job opportunities. Vue offers a smoother learning experience and better documentation.","speakerNotes":"Present this as a friendly comparison, not a competition. Emphasize that the best framework is the one you enjoy using. Ask students which they'd like to try first."}},{"id":"slide-9","type":"timeline","data":{"heading":"Web Development Evolution","icon":"📅","events":[{"year":"1991","title":"The First Website","description":"Tim Berners-Lee publishes the first-ever website at CERN. It was a simple text page explaining the World Wide Web project."},{"year":"1996","title":"CSS Is Born","description":"CSS1 is released, finally separating content (HTML) from presentation (CSS). Web design becomes a real discipline."},{"year":"2006","title":"jQuery Revolution","description":"jQuery simplifies DOM manipulation and AJAX. 'Write less, do more' becomes the mantra. It dominated for a decade."},{"year":"2013","title":"React Changes Everything","description":"Facebook releases React with its virtual DOM and component model. The era of modern SPA frameworks begins."},{"year":"2020","title":"Jamstack &amp; Edge","description":"Static site generators, serverless functions, and edge computing reshape how we build and deploy web applications."},{"year":"2025","title":"AI-Powered Development","description":"AI coding assistants, automated testing, and intelligent design tools transform the developer experience."}],"speakerNotes":"Scroll through the timeline slowly. At each milestone, share a fun fact or personal anecdote about that era. Ask senior developers in the audience to share their experiences."}},{"id":"slide-10","type":"summary","data":{"heading":"Key Takeaways","icon":"🎓","items":["HTML, CSS, and JavaScript form the core web technology stack","Modern layout uses Flexbox (1D) and Grid (2D)","Semantic HTML improves accessibility and SEO","Start simple, deploy early, iterate often","The web platform is more powerful than ever"],"callToAction":"Start building today — your first website is just 3 files away!","resources":[{"label":"MDN Web Docs","url":"https://developer.mozilla.org"},{"label":"freeCodeCamp","url":"https://freecodecamp.org"},{"label":"CSS-Tricks","url":"https://css-tricks.com"}],"speakerNotes":"Recap the key points. Encourage students to start a personal project this week. Share the resource links. Open the floor for Q&amp;A."}},{"id":"slide-11","type":"advanced-quiz","data":{"heading":"Final Web Core Assessment","icon":"🏆","questions":[{"question":"Which HTML tag is used for the largest structural heading?","options":["&lt;head&gt;","&lt;h6&gt;","&lt;h1&gt;","&lt;header&gt;"],"correct":2},{"question":"What is the primary purpose of CSS?","options":["To define document styles and layouts","To structure backend databases","To handle user input events dynamically","To encrypt client-side network connections"],"correct":0},{"question":"Which symbol represents the ID selector in CSS?","options":[".","#","*","@"],"correct":1}],"speakerNotes":"Assess the class's understanding of the basic web technologies. Let them answer and click submit."}}]}</script>
+  <script type="application/json" id="template-library-data">{"categories":[{"id":"concept-intro","label":"Concept Intro","description":"Define a new AI concept with a crisp takeaway and one supporting example.","templates":[{"id":"concept-hero","title":"Concept Hero","useCase":"Explain a concept","tags":["beginner","definition","clarity"],"slide":{"$ref":"slide-bullets","data":{"heading":"What is a Transformer?","icon":"AI","items":[{"text":"A model that learns attention between tokens","detail":"Self-attention lets each token look at the rest of the sequence."},{"text":"Scales well with large data","detail":"Parallel training enables huge model sizes."},{"text":"Used in GPT, BERT, and T5","detail":"It is the backbone of modern NLP systems."}]},"flow":[{"label":"Reveal definition","action":"reveal","preset":"fade-up","targets":["[data-flow-id='bullet-1']"]},{"label":"Reveal scaling","action":"reveal","preset":"fade-up","targets":["[data-flow-id='bullet-2']"]},{"label":"Reveal examples","action":"reveal","preset":"fade-up","targets":["[data-flow-id='bullet-3']"]}]}}]},{"id":"pipeline","label":"Pipeline / Workflow","description":"Walk through an AI workflow or data pipeline step-by-step.","templates":[{"id":"pipeline-flow","title":"AI Pipeline Walkthrough","useCase":"Walk through a pipeline","tags":["workflow","step-by-step"],"slide":{"$ref":"slide-flow","data":{"heading":"Training Pipeline","icon":"FLOW","nodes":[{"id":"data","label":"Data"},{"id":"clean","label":"Clean"},{"id":"train","label":"Train"},{"id":"eval","label":"Evaluate"},{"id":"deploy","label":"Deploy"}],"connections":[{"from":"data","to":"clean"},{"from":"clean","to":"train"},{"from":"train","to":"eval"},{"from":"eval","to":"deploy"}]}}}]},{"id":"comparison","label":"Comparison","description":"Show before/after or method A vs method B with a clear verdict.","templates":[{"id":"compare-methods","title":"Method Comparison","useCase":"Compare two methods","tags":["comparison","decision"],"slide":{"$ref":"slide-compare","data":{"heading":"Bag-of-Words vs. Transformer","icon":"COMPARE","left":{"title":"Bag-of-Words","items":["Order ignored","Simple features","Fast but shallow"],"color":"blue"},"right":{"title":"Transformer","items":["Context-aware","Scales better","State-of-the-art"],"color":"green"},"verdict":"Transformers win when context matters."},"flow":[{"label":"Reveal left","action":"reveal","preset":"slide-in","targets":[".compare-side.side-blue"]},{"label":"Reveal right","action":"reveal","preset":"slide-in","targets":[".compare-side.side-green"]},{"label":"Highlight verdict","action":"highlight","preset":"highlight-pulse","targets":[".compare-verdict"]}]}}]},{"id":"example-breakdown","label":"Example Breakdown","description":"Step-by-step example with highlights for key moments.","templates":[{"id":"example-steps","title":"Example Walkthrough","useCase":"Teach with example","tags":["example","step-by-step"],"slide":{"type":"stepper","data":{"heading":"Prompt -&gt; Output","icon":"EXAMPLE","steps":[{"title":"Step 1","content":"Write a clear prompt with constraints.","tip":"Be explicit about format."},{"title":"Step 2","content":"Model generates candidate output.","tip":"Check for hallucinations."},{"title":"Step 3","content":"Refine with a follow-up prompt.","tip":"Use critique + rewrite."}]}}}]},{"id":"misconception","label":"Common Mistakes","description":"Highlight misconceptions or pitfalls with a fix.","templates":[{"id":"mistake-callout","title":"Misconception Callout","useCase":"Mistake / misconception","tags":["mistakes","clarity"],"slide":{"type":"bullets","data":{"heading":"Common Misconceptions","icon":"WARN","items":[{"text":"Bigger model = always better","detail":"Data quality and evaluation matter more than size alone."},{"text":"LLMs understand like humans","detail":"They predict tokens; understanding is not guaranteed."},{"text":"Prompting replaces evaluation","detail":"You still need tests and metrics."}]}}}]},{"id":"recap","label":"Recap / Cheat Sheet","description":"Summarize takeaways for quick recall.","templates":[{"id":"recap-summary","title":"Cheat Sheet","useCase":"Recap","tags":["recap","cheat-sheet"],"slide":{"$ref":"slide-summary","data":{"heading":"Key Takeaways","icon":"RECAP","items":["Attention is the core idea.","Data quality &gt; model size.","Evaluate with real tasks."]}}}]},{"id":"code-explain","label":"Code + Explanation","description":"Split view: short code snippet with explanation.","templates":[{"id":"code-split","title":"Code + Explanation Split","useCase":"Teach with code example","tags":["code","explain"],"slide":{"type":"split","data":{"heading":"Tokenization Example","icon":"CODE","layout":"split-50-50","left":{"type":"code","data":{"language":"python","code":"text = 'AI for beginners'\nprint(text.split())"}},"right":{"type":"bullets","data":{"items":["Split into tokens","Tokens feed into the model","Small step, huge impact"]}}}}}]},{"id":"chapter-opener","label":"Chapter Opener","description":"Reset attention before a new section.","templates":[{"id":"chapter-title","title":"Chapter Title","useCase":"Chapter opener","tags":["section","transition"],"slide":{"type":"title","data":{"heading":"Chapter 2: How Models Learn","subtitle":"From data to gradients to generalization","badge":"Chapter Opener"}}}]}]}</script>
 
   <script>
 /**
@@ -7584,6 +6926,645 @@ const SlideEngine = (function () {
 })();
 
 window.SlideEngine = window.SlideEngine || SlideEngine;
+
+
+/**
+ * LECTA AI — HTML Renderer
+ * Converts slide JSON data into semantic HTML blocks
+ */
+
+function renderSlideHTML(slide) {
+  const d = slide.data;
+  const notes = (d.speakerNotes || '').replace(/"/g, '&quot;');
+  const flowAttr = slide.flow ? ` data-flow="${esc(JSON.stringify(slide.flow))}"` : '';
+  const transitionPreset = slide.transitionPreset || '';
+  const transitionClass = transitionPreset ? ` slide-transition-${transitionPreset}` : '';
+  const transitionAttr = transitionPreset ? ` data-transition-preset="${esc(transitionPreset)}"` : '';
+  const sectionAttrs = `class="slide" id="${slide.id}" data-speaker-notes="${notes}"${flowAttr}${transitionAttr}`;
+
+  switch (slide.type) {
+    case 'title':
+        return `<section ${sectionAttrs}>
+  <div class="slide-inner slide-title">
+    <span class="badge">${esc(d.badge || '')}</span>
+    <h1>${esc(d.heading)}</h1>
+    <p class="subtitle">${esc(d.subtitle)}</p>
+  </div>
+</section>`;
+
+    case 'bullets':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner${transitionClass}">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <ul class="bullet-list stagger-spring">
+      ${d.items.map((item, i) => `<li class="bullet-item" data-flow-id="bullet-${i + 1}">
+        <div class="bullet-text">${esc(item.text)}</div>
+        <div class="bullet-detail"><p>${esc(item.detail || '')}</p></div>
+      </li>`).join('\n      ')}
+    </ul>
+  </div>
+</section>`;
+
+    case 'accordion':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="accordion stagger">
+      ${d.items.map((item, i) => `<div class="accordion-item" data-flow-id="accordion-${i + 1}">
+        <button class="accordion-header" role="button" aria-expanded="false" aria-controls="accordion-content-${slide.id}-${i}" id="accordion-header-${slide.id}-${i}">
+          ${esc(item.title)}
+          <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-body" role="region" aria-labelledby="accordion-header-${slide.id}-${i}" id="accordion-content-${slide.id}-${i}">
+          <div class="accordion-content">
+            <p>${esc(item.content)}</p>
+            ${item.example ? `<pre><code>${esc(item.example)}</code></pre>` : ''}
+          </div>
+        </div>
+      </div>`).join('\n      ')}
+    </div>
+  </div>
+</section>`;
+
+    case 'tabs':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="tabs-container">
+      <div class="tabs-header" role="tablist">
+        ${d.tabs.map((t, i) => `<button class="tab-btn${i === 0 ? ' active' : ''}" role="tab" aria-selected="${i === 0 ? 'true' : 'false'}" aria-controls="panel-${slide.id}-${i}" id="tab-${slide.id}-${i}">${esc(t.label)}</button>`).join('')}
+      </div>
+      ${d.tabs.map((t, i) => `<div class="tab-panel${i === 0 ? ' active' : ''}" role="tabpanel" aria-labelledby="tab-${slide.id}-${i}" id="panel-${slide.id}-${i}" data-flow-id="tab-panel-${i + 1}">
+        <p>${esc(t.content)}</p>
+        ${t.features ? `<div class="tab-features">${t.features.map(f => `<span class="tab-feature-tag">${esc(f)}</span>`).join('')}</div>` : ''}
+        ${t.code ? `<pre><code>${esc(t.code)}</code></pre>` : ''}
+      </div>`).join('\n      ')}
+    </div>
+  </div>
+</section>`;
+
+    case 'stepper':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="stepper">
+      <div class="stepper-progress">
+        ${d.steps.map((s, i) => {
+          let html = `<div class="step-dot${i === 0 ? ' active' : ''}">${i + 1}</div>`;
+          if (i < d.steps.length - 1) html += `<div class="step-line"></div>`;
+          return html;
+        }).join('')}
+      </div>
+      ${d.steps.map((s, i) => `<div class="step-content${i === 0 ? ' active' : ''}" data-flow-id="step-${i + 1}">
+        <h4>${esc(s.title)}</h4>
+        <p>${esc(s.content)}</p>
+        ${s.tip ? `<div class="step-tip">${esc(s.tip)}</div>` : ''}
+      </div>`).join('\n      ')}
+      <div class="stepper-nav">
+        <button class="nav-btn step-prev" disabled>← Previous</button>
+        <button class="nav-btn step-next">Next →</button>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+    case 'cards':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="cards-grid stagger">
+      ${d.cards.map((c, i) => `<div class="flip-card" data-flow-id="card-${i + 1}">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">${esc(c.front)}</div>
+          <div class="flip-card-back">${esc(c.back)}</div>
+        </div>
+      </div>`).join('\n      ')}
+    </div>
+    <p class="flip-hint">Click any card to flip it</p>
+  </div>
+</section>`;
+
+    case 'advanced-quiz':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🏆'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="advanced-quiz-container stagger" data-total-questions="${d.questions.length}">
+      ${d.questions.map((q, qi) => `<div class="adv-question" data-question-index="${qi}" data-correct="${q.correct}">
+        <h4>${qi + 1}. ${esc(q.question)}</h4>
+        <div class="adv-options">
+          ${q.options.map((o, oi) => `<button class="adv-option" data-option-index="${oi}">
+            <span class="option-letter">${String.fromCharCode(65 + oi)}</span>
+            ${esc(o)}
+          </button>`).join('\n          ')}
+        </div>
+      </div>`).join('\n      ')}
+      
+      <div class="adv-quiz-action-row">
+        <button class="btn btn-primary adv-submit-btn">📥 Submit Assessment</button>
+      </div>
+      
+      <!-- Modal Overlay Popup -->
+      <div class="adv-quiz-modal-backdrop" style="display: none;">
+        <div class="adv-quiz-modal glassmorphic-panel stagger-item">
+          <button class="adv-quiz-modal-close" aria-label="Close modal">&times;</button>
+          <div class="adv-result-score">Score: <span class="score-fraction">0/0</span></div>
+          <div class="adv-result-feedback"></div>
+          <button class="adv-retry-btn" style="margin-top: 1.5rem;">🔄 Try Again</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+    case 'quiz':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="quiz-container stagger">
+      ${d.questions.map((q, qi) => `<div class="quiz-question" data-correct="${q.correct}">
+        <h4>${qi + 1}. ${esc(q.question)}</h4>
+        <div class="quiz-options">
+          ${q.options.map((o, oi) => `<button class="quiz-option">
+            <span class="option-letter">${String.fromCharCode(65 + oi)}</span>
+            ${esc(o)}
+          </button>`).join('\n          ')}
+        </div>
+        <div class="quiz-explanation">${esc(q.explanation)}</div>
+      </div>`).join('\n      ')}
+    </div>
+  </div>
+</section>`;
+
+    case 'compare':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="compare-container">
+      <div class="compare-side side-${d.left.color || 'blue'}">
+        <h3>${esc(d.left.title)}</h3>
+        <ul class="compare-list">
+          ${d.left.items.map((i, idx) => `<li data-flow-id="compare-left-${idx + 1}">${esc(i)}</li>`).join('\n          ')}
+        </ul>
+      </div>
+      <div class="compare-side side-${d.right.color || 'green'}">
+        <h3>${esc(d.right.title)}</h3>
+        <ul class="compare-list">
+          ${d.right.items.map((i, idx) => `<li data-flow-id="compare-right-${idx + 1}">${esc(i)}</li>`).join('\n          ')}
+        </ul>
+      </div>
+      ${d.verdict ? `<div class="compare-verdict" data-flow-id="compare-verdict">${esc(d.verdict)}</div>` : ''}
+    </div>
+  </div>
+</section>`;
+
+    case 'timeline':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="timeline stagger">
+      ${d.events.map((e, i) => `<div class="timeline-item" data-flow-id="timeline-${i + 1}">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">${esc(e.year)}</div>
+        <div class="timeline-title">${esc(e.title)}</div>
+        <div class="timeline-desc">${esc(e.description)}</div>
+      </div>`).join('\n      ')}
+    </div>
+  </div>
+</section>`;
+
+    case 'summary':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <ul class="summary-items stagger">
+      ${d.items.map((i, idx) => `<li data-flow-id="summary-${idx + 1}">${esc(i)}</li>`).join('\n      ')}
+    </ul>
+    ${d.callToAction ? `<div class="summary-cta"><p>${esc(d.callToAction)}</p></div>` : ''}
+    ${d.resources ? `<div class="summary-resources">
+      ${d.resources.map(r => `<a href="${esc(r.url)}" class="resource-link" target="_blank">🔗 ${esc(r.label)}</a>`).join('')}
+    </div>` : ''}
+  </div>
+</section>`;
+
+    case 'image':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🖼️'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="image-block-container stagger">
+      <div class="image-box-wrapper">
+        <img class="interactive-image" src="${esc(d.url || 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80')}" alt="${esc(d.caption || 'Slide Image')}" />
+        <button class="edit-image-overlay-btn">✏️ Change Image URL</button>
+      </div>
+      ${d.caption ? `<p class="image-caption">${esc(d.caption)}</p>` : ''}
+    </div>
+  </div>
+</section>`;
+
+    case 'chart':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '📊'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="chart-block-container stagger" data-chart-type="${esc(d.chartType || 'bar')}" data-labels="${esc(JSON.stringify(d.labels || [])).replace(/"/g, '&quot;')}" data-datasets="${esc(JSON.stringify(d.datasets || [])).replace(/"/g, '&quot;')}">
+      <div class="chart-canvas-wrapper">
+        <svg class="svg-chart" viewBox="0 0 600 320" preserveAspectRatio="xMidYMid meet"></svg>
+      </div>
+      <div class="chart-legend"></div>
+    </div>
+  </div>
+</section>`;
+
+    case 'table':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🧮'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="table-block-container stagger">
+      <div class="table-actions">
+        <input type="text" class="table-search-input" placeholder="Search rows..." />
+      </div>
+      <div class="table-responsive-wrapper">
+        <table class="glass-table">
+          <thead>
+            <tr>
+              ${(d.columns || []).map(col => `<th data-col-key="${esc(col.key)}" class="sortable-th">
+                ${esc(col.label)}
+                <span class="sort-indicator">↕</span>
+              </th>`).join('')}
+            </tr>
+          </thead>
+          <tbody>
+            ${(d.rows || []).map(row => `<tr>
+              ${(d.columns || []).map(col => {
+                const val = row[col.key];
+                if (col.type === 'progress') {
+                  const percent = Math.min(100, Math.max(0, parseInt(val, 10) || 0));
+                  return `<td data-label="${esc(col.label)}">
+                    <div class="progress-cell-wrapper">
+                      <div class="progress-cell-bar"><div class="progress-cell-fill" style="width: ${percent}%"></div></div>
+                      <span class="progress-cell-text">${percent}%</span>
+                    </div>
+                  </td>`;
+                } else if (col.type === 'badge') {
+                  const parts = String(val || '').split('·');
+                  const text = (parts[0] || '').trim();
+                  const type = (parts[1] || 'primary').trim();
+                  return `<td data-label="${esc(col.label)}"><span class="badge-pill pill-${type}">${esc(text)}</span></td>`;
+                } else if (col.type === 'code') {
+                  return `<td data-label="${esc(col.label)}"><code class="code-cell">${esc(val)}</code></td>`;
+                }
+                return `<td data-label="${esc(col.label)}">${esc(val)}</td>`;
+              }).join('')}
+            </tr>`).join('\n            ')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+    case 'bento':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🍱'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="bento-grid stagger" style="--grid-template: ${esc(d.gridTemplate || 'auto')}">
+      ${(d.items || []).map((item, i) => {
+        const bgStyle = item.bgGradient ? `background: linear-gradient(135deg, ${item.bgGradient.split(' to ')[0]}, ${item.bgGradient.split(' to ')[1] || 'transparent'}); border: none;` : '';
+        const hasBg = item.bgGradient ? ' bento-card-gradient' : '';
+        const sizeClass = `bento-size-${item.size || 'small'}`;
+        return `<div class="bento-card ${sizeClass}${hasBg}" style="${bgStyle}" data-flow-id="bento-${i + 1}">
+          ${item.badge ? `<span class="bento-badge">${esc(item.badge)}</span>` : ''}
+          ${item.icon ? `<div class="bento-icon">${esc(item.icon)}</div>` : ''}
+          <div class="bento-card-content">
+            <h3>${esc(item.title)}</h3>
+            <p>${esc(item.content)}</p>
+          </div>
+        </div>`;
+      }).join('\n      ')}
+    </div>
+  </div>
+</section>`;
+
+    case 'flow':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🌿'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="flow-block-container stagger" data-nodes="${esc(JSON.stringify(d.nodes || [])).replace(/"/g, '&quot;')}" data-connections="${esc(JSON.stringify(d.connections || [])).replace(/"/g, '&quot;')}">
+      <div class="flow-layout-wrapper">
+        <svg class="flow-svg-canvas" viewBox="0 0 800 350">
+        </svg>
+      </div>
+      <div class="flow-detail-panel glassmorphic-panel">
+        <div class="flow-detail-default-msg">💡 Click on any step in the flowchart to view deep insights.</div>
+        <div class="flow-detail-content" style="display: none;">
+          <h4 class="flow-detail-title"></h4>
+          <p class="flow-detail-desc"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+    case 'math':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🧮'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="math-block-container">
+      <div class="math-display-equation" data-latex="${esc(d.latex)}">
+        \\[ ${esc(d.latex)} \\]
+      </div>
+      ${d.explanation ? `<p class="math-explanation">${esc(d.explanation)}</p>` : ''}
+    </div>
+  </div>
+</section>`;
+
+    case 'mermaid':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🌿'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="mermaid-block-container">
+      <div class="mermaid-diagram-wrapper">
+        <div class="mermaid" id="mermaid-${slide.id}">${esc(d.code)}</div>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+    case 'video': {
+      let videoHTML = '';
+      if (d.videoType === 'youtube') {
+        videoHTML = `<a href="https://www.youtube.com/watch?v=${esc(d.videoId)}" target="_blank" class="video-link-card" aria-label="Watch video on YouTube">
+        <div class="video-preview-thumbnail" style="background-image: url('https://img.youtube.com/vi/${esc(d.videoId)}/hqdefault.jpg')">
+          <div class="video-play-overlay">
+            <div class="video-play-btn">▶</div>
+            <span class="video-play-text">Watch on YouTube</span>
+          </div>
+        </div>
+      </a>`;
+      } else if (d.videoType === 'vimeo') {
+        videoHTML = `<a href="https://vimeo.com/${esc(d.videoId)}" target="_blank" class="video-link-card" aria-label="Watch video on Vimeo">
+        <div class="video-preview-thumbnail" style="background: #111;">
+          <div class="video-play-overlay">
+            <div class="video-play-btn" style="background: #00adef; box-shadow: 0 4px 20px rgba(0, 173, 239, 0.5);">▶</div>
+            <span class="video-play-text">Watch on Vimeo</span>
+          </div>
+        </div>
+      </a>`;
+      } else {
+        videoHTML = `<video class="video-player-frame" controls poster="${esc(d.poster || '')}"><source src="${esc(d.videoUrl)}" type="video/mp4"></video>`;
+      }
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🎬'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="video-block-container">
+      ${videoHTML}
+    </div>
+  </div>
+</section>`;
+    }
+
+    case 'split':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner${transitionClass}">
+    <div class="block-heading"><span class="icon">${d.icon || '⚔️'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="split-layout-container ${d.layout || 'split-50-50'} stagger-spring">
+      <div class="split-column left-column">
+        ${renderSubBlock(d.left, slide.id + '-left')}
+      </div>
+      <div class="split-column right-column">
+        ${renderSubBlock(d.right, slide.id + '-right')}
+      </div>
+    </div>
+  </div>
+</section>`;
+
+    /* ============================================
+       NEW PREMIUM BLOCK TYPES — Phase 1 MVP
+       ============================================ */
+
+    case 'quote-card':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="quote-card-container stagger">
+      <div class="quote-card-mark">"</div>
+      <blockquote class="quote-card-text">${esc(d.quote)}</blockquote>
+      <div class="quote-card-attribution">
+        ${d.avatarUrl ? `<img class="quote-avatar" src="${esc(d.avatarUrl)}" alt="${esc(d.author || '')}" />` : `<div class="quote-avatar-placeholder">${esc((d.author || 'A').charAt(0).toUpperCase())}</div>`}
+        <div class="quote-meta">
+          <span class="quote-author">${esc(d.author || '')}</span>
+          ${d.role ? `<span class="quote-role">${esc(d.role)}</span>` : ''}
+        </div>
+      </div>
+      ${d.heading ? `<div class="quote-card-label">${esc(d.heading)}</div>` : ''}
+    </div>
+  </div>
+</section>`;
+
+    case 'definition-card':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="definition-card-container stagger">
+      <div class="definition-header">
+        <span class="definition-type-tag">${esc(d.type || 'noun')}</span>
+        ${d.pronunciation ? `<span class="definition-pronunciation">${esc(d.pronunciation)}</span>` : ''}
+      </div>
+      <h2 class="definition-term">${esc(d.term)}</h2>
+      <p class="definition-body">${esc(d.definition)}</p>
+      ${d.example ? `<div class="definition-example">
+        <span class="definition-example-label">Example</span>
+        <code>${esc(d.example)}</code>
+      </div>` : ''}
+      ${d.heading ? `<div class="definition-context-label">${esc(d.heading)}</div>` : ''}
+    </div>
+  </div>
+</section>`;
+
+    case 'analogy':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🔗'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="analogy-container stagger">
+      <div class="analogy-card analogy-technical" data-flow-id="analogy-left">
+        <div class="analogy-card-label">Technical Concept</div>
+        <p>${esc(d.technicalConcept)}</p>
+      </div>
+      <div class="analogy-bridge">
+        <div class="analogy-bridge-arrow">≈</div>
+        ${d.bridgeText ? `<span class="analogy-bridge-text">${esc(d.bridgeText)}</span>` : ''}
+      </div>
+      <div class="analogy-card analogy-realworld" data-flow-id="analogy-right">
+        <div class="analogy-card-label">Real-World Analogy</div>
+        <p>${esc(d.analogy)}</p>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+    case 'stats':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner${transitionClass}">
+    <div class="block-heading"><span class="icon">${d.icon || '📊'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="stats-grid stagger">
+      ${(d.stats || []).map((s, i) => {
+        // Parse value to extract numeric portion for counter animation
+        const rawValue = String(s.value);
+        const numMatch = rawValue.match(/^([^0-9]*)([0-9][0-9,.]*)(.*)$/);
+        let valueHTML;
+        if (numMatch) {
+          const prefix = esc(numMatch[1]);
+          const numericStr = numMatch[2];
+          const suffix = esc(numMatch[3]);
+          const isDecimal = numericStr.includes('.');
+          const decimalPlaces = isDecimal ? (numericStr.split('.')[1] || '').length : 0;
+          const cleanNum = numericStr.replace(/,/g, '');
+          valueHTML = `${prefix}<span class="stat-counter" data-count-target="${esc(cleanNum)}" data-count-decimals="${decimalPlaces}" data-count-original="${esc(numericStr)}">${esc(numericStr)}</span>${suffix}`;
+        } else {
+          valueHTML = esc(rawValue);
+        }
+        return `<div class="stat-card" data-flow-id="stat-${i + 1}">
+        <div class="stat-value">${valueHTML}</div>
+        <div class="stat-label">${esc(s.label)}</div>
+        ${s.trend ? `<div class="stat-trend trend-${s.trend === 'up' ? 'up' : 'down'}">${s.trend === 'up' ? '↑' : '↓'} ${esc(s.subtext || '')}</div>` : (s.subtext ? `<div class="stat-subtext">${esc(s.subtext)}</div>` : '')}
+      </div>`;
+      }).join('\n      ')}
+    </div>
+  </div>
+</section>`;
+
+    case 'checklist':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '✅'}</span><h2>${esc(d.heading)}</h2></div>
+    <ul class="checklist stagger" role="list">
+      ${(d.items || []).map((item, i) => `<li class="checklist-item${item.completed ? ' checked' : ''}" data-flow-id="check-${i + 1}" data-checklist-id="${esc(item.id || String(i))}" role="listitem">
+        <button class="checklist-toggle" aria-label="Toggle ${esc(item.text)}" aria-pressed="${item.completed ? 'true' : 'false'}">
+          <span class="checklist-box" aria-hidden="true">${item.completed ? '✓' : ''}</span>
+        </button>
+        <span class="checklist-text">${esc(item.text)}</span>
+      </li>`).join('\n      ')}
+    </ul>
+  </div>
+</section>`;
+
+    case 'timeline-horizontal':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🗓️'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="timeline-h-track stagger">
+      <div class="timeline-h-line"></div>
+      ${(d.events || []).map((e, i) => `<div class="timeline-h-item" data-flow-id="timeline-h-${i + 1}">
+        <div class="timeline-h-dot"></div>
+        <div class="timeline-h-card">
+          <div class="timeline-h-year">${esc(e.year)}</div>
+          <div class="timeline-h-title">${esc(e.title)}</div>
+          ${e.desc ? `<div class="timeline-h-desc">${esc(e.desc)}</div>` : ''}
+        </div>
+      </div>`).join('\n      ')}
+    </div>
+  </div>
+</section>`;
+
+    case 'splash':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner splash-inner">
+    <div class="splash-meta-badge">${esc(d.badge || 'Presentation')}</div>
+    <h1 class="splash-title">${esc(d.title)}</h1>
+    ${d.subtitle ? `<p class="splash-subtitle">${esc(d.subtitle)}</p>` : ''}
+    <div class="splash-divider"></div>
+    <div class="splash-profile">
+      ${d.avatarUrl ? `<img class="splash-avatar" src="${esc(d.avatarUrl)}" alt="${esc(d.author || '')}" />` : `<div class="splash-avatar-placeholder">${esc((d.author || 'A').charAt(0).toUpperCase())}</div>`}
+      <div class="splash-author-meta">
+        <span class="splash-author-name">${esc(d.author || '')}</span>
+        ${d.role ? `<span class="splash-author-role">${esc(d.role)}</span>` : ''}
+      </div>
+      ${d.duration ? `<div class="splash-duration">⏱ ${esc(String(d.duration))} min</div>` : ''}
+    </div>
+    ${d.social ? `<div class="splash-social-row">
+      ${d.social.github ? `<a href="https://github.com/${esc(d.social.github)}" class="splash-social-chip" target="_blank">GitHub</a>` : ''}
+      ${d.social.twitter ? `<a href="https://twitter.com/${esc(d.social.twitter)}" class="splash-social-chip" target="_blank">Twitter</a>` : ''}
+      ${d.social.email ? `<a href="mailto:${esc(d.social.email)}" class="splash-social-chip">Email</a>` : ''}
+    </div>` : ''}
+  </div>
+</section>`;
+
+    case 'code-diff':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '⚡'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="code-diff-container stagger">
+      <div class="code-diff-pane" data-flow-id="code-left">
+        <div class="code-diff-header code-diff-before">
+          <span class="code-diff-dot"></span>
+          ${esc(d.leftTitle || 'Before')}
+          <span class="code-diff-lang">${esc(d.leftLang || 'js')}</span>
+        </div>
+        <pre><code class="language-${esc(d.leftLang || 'javascript')}">${esc(d.leftCode || '')}</code></pre>
+      </div>
+      <div class="code-diff-pane" data-flow-id="code-right">
+        <div class="code-diff-header code-diff-after">
+          <span class="code-diff-dot"></span>
+          ${esc(d.rightTitle || 'After')}
+          <span class="code-diff-lang">${esc(d.rightLang || 'js')}</span>
+        </div>
+        <pre><code class="language-${esc(d.rightLang || 'javascript')}">${esc(d.rightCode || '')}</code></pre>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+    default:
+      return `<section ${sectionAttrs}><div class="slide-inner"><p>Unknown block type: ${slide.type}</p></div></section>`;
+  }
+}
+
+function renderSubBlock(b, id) {
+  if (!b) return '';
+  const type = b.type;
+  const d = b.data || {};
+  switch (type) {
+    case 'text':
+      return `<div class="sub-block sub-text"><p>${esc(d.content)}</p></div>`;
+    case 'bullets':
+      return `<div class="sub-block sub-bullets"><ul class="stagger-spring" style="list-style-type: disc; padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;">${d.items.map((it, i) => `<li data-flow-id="sub-bullet-${i + 1}">${esc(it)}</li>`).join('')}</ul></div>`;
+    case 'code':
+      return `<div class="sub-block sub-code"><pre><code class="language-${d.language || 'javascript'}">${esc(d.code)}</code></pre></div>`;
+    case 'image':
+      return `<div class="sub-block sub-image" style="border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md);"><img src="${d.url}" alt="${esc(d.alt || '')}" style="width: 100%; display: block; object-fit: cover;"></div>`;
+    case 'math':
+      return `<div class="sub-block sub-math">
+  <div class="math-block-container">
+    <div class="math-display-equation" data-latex="${esc(d.latex)}">
+      \\[ ${esc(d.latex)} \\]
+    </div>
+    ${d.explanation ? `<p class="math-explanation">${esc(d.explanation)}</p>` : ''}
+  </div>
+</div>`;
+    case 'mermaid':
+      return `<div class="sub-block sub-mermaid">
+  <div class="mermaid-block-container">
+    <div class="mermaid-diagram-wrapper">
+      <div class="mermaid" id="mermaid-${id}">${esc(d.code)}</div>
+    </div>
+  </div>
+</div>`;
+    default:
+      return `<div class="sub-block sub-unknown"><p>${esc(JSON.stringify(b))}</p></div>`;
+  }
+}
+
+function esc(str) {
+  if (str === null || str === undefined) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { renderSlideHTML };
+} else {
+  window.LectaRenderer = { renderSlideHTML };
+}
 
 
 /**
@@ -10902,6 +10883,78 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 document.addEventListener('DOMContentLoaded', () => {
+  // --- Client-Side Hydration ---
+  const slideDataEl = document.getElementById('slide-data');
+  if (slideDataEl && window.LectaRenderer) {
+    try {
+      const slideData = JSON.parse(slideDataEl.textContent);
+      
+      // Hydrate Slides
+      const track = document.querySelector('.slides-track');
+      if (track) {
+        track.innerHTML = slideData.slides.map(s => window.LectaRenderer.renderSlideHTML(s)).join('\n');
+      }
+
+      // Hydrate Sidebar Thumbnails
+      const TYPES = { title:'🎬', bullets:'📌', accordion:'📚', tabs:'🗂', stepper:'🚶', cards:'🃏', quiz:'❓', compare:'⚔️', timeline:'📅', summary:'🎓', image:'🖼️', chart:'📊', table:'🧮', bento:'🍱', flow:'🌿' };
+      const thumbnailsContainer = document.querySelector('.slide-thumbnails');
+      if (thumbnailsContainer) {
+        thumbnailsContainer.innerHTML = slideData.slides.map((s, i) => `
+          <div class="slide-thumb${i === 0 ? ' active' : ''}" data-slide="${i}">
+            <span class="slide-thumb-num">${i + 1}</span>
+            <div class="slide-thumb-info">
+              <div class="slide-thumb-title">${(s.data.heading || s.data.title || 'Slide ' + (i+1)).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
+              <div class="slide-thumb-type">${TYPES[s.type] || '📄'} ${s.type}</div>
+            </div>
+          </div>`).join('');
+      }
+    } catch (err) {
+      console.error('Failed to hydrate slides from JSON:', err);
+    }
+  }
+
+  // --- Hydrate Template Library ---
+  const templateLibraryEl = document.getElementById('template-library-data');
+  const templateLibraryContainer = document.getElementById('template-library-container');
+  if (templateLibraryEl && templateLibraryContainer) {
+    try {
+      const library = JSON.parse(templateLibraryEl.textContent);
+      const categories = Array.isArray(library.categories) ? library.categories : [];
+      if (categories.length === 0) {
+        templateLibraryContainer.innerHTML = '<div class="template-empty">No templates available.</div>';
+      } else {
+        templateLibraryContainer.innerHTML = categories.map(category => {
+          const templates = Array.isArray(category.templates) ? category.templates : [];
+          const categoryAttr = category.id ? ` data-category-id="${category.id.replace(/"/g, '&quot;')}"` : '';
+          const cardsHTML = templates.map(tmpl => {
+            const payload = JSON.stringify(tmpl.slide || {}).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+            const tagsHTML = Array.isArray(tmpl.tags)
+              ? tmpl.tags.map(tag => `<span class="template-tag">${tag.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</span>`).join('')
+              : '';
+            return `
+              <div class="template-card" data-template="${payload}">
+                <div class="template-card-title">${(tmpl.title || 'Template').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
+                <div class="template-card-use">${(tmpl.useCase || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
+                <div class="template-card-tags">${tagsHTML}</div>
+                <div class="template-card-actions">
+                  <button class="template-copy-btn" type="button">Copy JSON</button>
+                </div>
+              </div>`;
+          }).join('');
+          return `
+            <div class="template-category"${categoryAttr}>
+              <div class="template-category-header">
+                <div class="template-category-title">${(category.label || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
+                <div class="template-category-desc">${(category.description || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
+              </div>
+              <div class="template-card-grid">${cardsHTML}</div>
+            </div>`;
+        }).join('');
+      }
+    } catch (err) {
+      console.error('Failed to hydrate template library:', err);
+    }
+  }
   SidebarModule.init();
   SlideEngine.init();
   InteractiveBlocks.init();
