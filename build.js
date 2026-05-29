@@ -90,42 +90,7 @@ function buildLessonContext(meta) {
   };
 }
 
-function renderTemplateLibraryHTML(library) {
-  const categories = Array.isArray(library.categories) ? library.categories : [];
-  if (categories.length === 0) {
-    return '<div class="template-empty">No templates available.</div>';
-  }
-
-  return categories.map((category) => {
-    const templates = Array.isArray(category.templates) ? category.templates : [];
-    const categoryId = escapeAttr(category.id || '');
-    const cardsHTML = templates.map((tmpl) => {
-      const payload = escapeAttr(JSON.stringify(tmpl.slide || {}));
-      const tagsHTML = Array.isArray(tmpl.tags)
-        ? tmpl.tags.map((tag) => `<span class="template-tag">${escapeHtml(tag)}</span>`).join('')
-        : '';
-      return `
-        <div class="template-card" data-template="${payload}">
-          <div class="template-card-title">${escapeHtml(tmpl.title || 'Template')}</div>
-          <div class="template-card-use">${escapeHtml(tmpl.useCase || '')}</div>
-          <div class="template-card-tags">${tagsHTML}</div>
-          <div class="template-card-actions">
-            <button class="template-copy-btn" type="button">Copy JSON</button>
-          </div>
-        </div>`;
-    }).join('');
-
-    const categoryAttr = categoryId ? ` data-category-id="${categoryId}"` : '';
-    return `
-      <div class="template-category"${categoryAttr}>
-        <div class="template-category-header">
-          <div class="template-category-title">${escapeHtml(category.label || '')}</div>
-          <div class="template-category-desc">${escapeHtml(category.description || '')}</div>
-        </div>
-        <div class="template-card-grid">${cardsHTML}</div>
-      </div>`;
-  }).join('');
-}
+// Template Library rendering moved to client-side
 
 // Validation function for robust slide structure verification
 function validateSlideSchema(slideData, dataFile) {
@@ -340,7 +305,8 @@ function buildSlideDeck(dataFile, outputFile) {
   const meta = slideData.meta;
   const lessonContext = buildLessonContext(meta);
   const templateLibrary = loadTemplateLibrary(ROOT);
-  const templateLibraryHTML = renderTemplateLibraryHTML(templateLibrary);
+  const templateLibraryJSON = escapeHtml(JSON.stringify(templateLibrary));
+  const templateLibraryHTML = '<div id="template-library-container"></div>'; // Hydrated client-side
 
   // Load favicon if available
   const faviconDataURI = loadFaviconDataURI(ROOT);
@@ -350,20 +316,10 @@ function buildSlideDeck(dataFile, outputFile) {
   const allCSS = readFiles(ROOT, getDeckCssFiles());
   const allJS = readFiles(ROOT, getDeckJsFiles());
 
-  // Slides HTML
-  const { renderSlideHTML } = require('./src/js/renderer.js');
-  const slidesHTML = slideData.slides.map(s => renderSlideHTML(s)).join('\n');
-
-  // Build overview thumbnails for sidebar
-  const TYPES = { title:'🎬', bullets:'📌', accordion:'📚', tabs:'🗂', stepper:'🚶', cards:'🃏', quiz:'❓', compare:'⚔️', timeline:'📅', summary:'🎓', image:'🖼️', chart:'📊', table:'🧮', bento:'🍱', flow:'🌿' };
-  const thumbsHTML = slideData.slides.map((s, i) => `
-    <div class="slide-thumb${i === 0 ? ' active' : ''}" data-slide="${i}">
-      <span class="slide-thumb-num">${i + 1}</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">${s.data.heading || s.data.title || 'Slide ' + (i+1)}</div>
-        <div class="slide-thumb-type">${TYPES[s.type] || '📄'} ${s.type}</div>
-      </div>
-    </div>`).join('');
+  // Slides HTML & Thumbnails will now be rendered client-side
+  const slideDataJSON = escapeHtml(JSON.stringify(slideData));
+  const slidesHTML = ''; // Hydrated client-side
+  const thumbsHTML = ''; // Hydrated client-side
 
   // Light themes for gear panel
   const lightThemeDotItems = renderThemeDots(LIGHT_THEMES, meta.theme);
@@ -784,11 +740,85 @@ ${allCSS}</style>
   </div>
 
   <script type="application/json" id="lesson-context-data">${lessonContextJSON}</script>
+  <script type="application/json" id="slide-data">${slideDataJSON}</script>
+  <script type="application/json" id="template-library-data">${templateLibraryJSON}</script>
 
   <script>
 ${allJS}
 
 document.addEventListener('DOMContentLoaded', () => {
+  // --- Client-Side Hydration ---
+  const slideDataEl = document.getElementById('slide-data');
+  if (slideDataEl && window.LectaRenderer) {
+    try {
+      const slideData = JSON.parse(slideDataEl.textContent);
+      
+      // Hydrate Slides
+      const track = document.querySelector('.slides-track');
+      if (track) {
+        track.innerHTML = slideData.slides.map(s => window.LectaRenderer.renderSlideHTML(s)).join('\\n');
+      }
+
+      // Hydrate Sidebar Thumbnails
+      const TYPES = { title:'🎬', bullets:'📌', accordion:'📚', tabs:'🗂', stepper:'🚶', cards:'🃏', quiz:'❓', compare:'⚔️', timeline:'📅', summary:'🎓', image:'🖼️', chart:'📊', table:'🧮', bento:'🍱', flow:'🌿' };
+      const thumbnailsContainer = document.querySelector('.slide-thumbnails');
+      if (thumbnailsContainer) {
+        thumbnailsContainer.innerHTML = slideData.slides.map((s, i) => \`
+          <div class="slide-thumb\${i === 0 ? ' active' : ''}" data-slide="\${i}">
+            <span class="slide-thumb-num">\${i + 1}</span>
+            <div class="slide-thumb-info">
+              <div class="slide-thumb-title">\${(s.data.heading || s.data.title || 'Slide ' + (i+1)).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
+              <div class="slide-thumb-type">\${TYPES[s.type] || '📄'} \${s.type}</div>
+            </div>
+          </div>\`).join('');
+      }
+    } catch (err) {
+      console.error('Failed to hydrate slides from JSON:', err);
+    }
+  }
+
+  // --- Hydrate Template Library ---
+  const templateLibraryEl = document.getElementById('template-library-data');
+  const templateLibraryContainer = document.getElementById('template-library-container');
+  if (templateLibraryEl && templateLibraryContainer) {
+    try {
+      const library = JSON.parse(templateLibraryEl.textContent);
+      const categories = Array.isArray(library.categories) ? library.categories : [];
+      if (categories.length === 0) {
+        templateLibraryContainer.innerHTML = '<div class="template-empty">No templates available.</div>';
+      } else {
+        templateLibraryContainer.innerHTML = categories.map(category => {
+          const templates = Array.isArray(category.templates) ? category.templates : [];
+          const categoryAttr = category.id ? \` data-category-id="\${category.id.replace(/"/g, '&quot;')}"\` : '';
+          const cardsHTML = templates.map(tmpl => {
+            const payload = JSON.stringify(tmpl.slide || {}).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+            const tagsHTML = Array.isArray(tmpl.tags)
+              ? tmpl.tags.map(tag => \`<span class="template-tag">\${tag.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</span>\`).join('')
+              : '';
+            return \`
+              <div class="template-card" data-template="\${payload}">
+                <div class="template-card-title">\${(tmpl.title || 'Template').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
+                <div class="template-card-use">\${(tmpl.useCase || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
+                <div class="template-card-tags">\${tagsHTML}</div>
+                <div class="template-card-actions">
+                  <button class="template-copy-btn" type="button">Copy JSON</button>
+                </div>
+              </div>\`;
+          }).join('');
+          return \`
+            <div class="template-category"\${categoryAttr}>
+              <div class="template-category-header">
+                <div class="template-category-title">\${(category.label || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
+                <div class="template-category-desc">\${(category.description || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
+              </div>
+              <div class="template-card-grid">\${cardsHTML}</div>
+            </div>\`;
+        }).join('');
+      }
+    } catch (err) {
+      console.error('Failed to hydrate template library:', err);
+    }
+  }
   SidebarModule.init();
   SlideEngine.init();
   InteractiveBlocks.init();
