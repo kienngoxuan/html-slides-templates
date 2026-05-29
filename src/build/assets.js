@@ -16,6 +16,7 @@ const EMULATOR_CSS = [
 ];
 
 const CORE_BLOCK_JS = [
+  'src/js/renderer.js',
   'src/js/blocks-core.js',
   'src/js/blocks-data.js',
   'src/js/presenter-overlay.js',
