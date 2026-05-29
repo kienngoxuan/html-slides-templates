@@ -6100,434 +6100,7 @@ body.viewport-mode-mobile .table-actions {
   <!-- PRESENTATION CONTAINER -->
   <div class="slides-viewport">
     <div class="slides-track">
-      <section class="slide" id="slide-1" data-speaker-notes="Welcome back! Today we are exploring visual design, premium layouts, and how OKLCH allows us to build state-of-the-art websites. Let's dive in!">
-  <div class="slide-inner slide-title">
-    <span class="badge">Masterclass · 30 min</span>
-    <h1>Mastering Modern CSS &amp; Visual Aesthetics</h1>
-    <p class="subtitle">Discovering OKLCH, Premium Layouts, and High-fidelity Web Animations</p>
-  </div>
-</section>
-<section class="slide" id="slide-2" data-speaker-notes="Discuss the 50ms rule of web aesthetics. Click each item to show detailed insights.">
-  <div class="slide-inner">
-    <div class="block-heading"><span class="icon">✨</span><h2>Why Visual Aesthetics Matter</h2></div>
-    <ul class="bullet-list stagger-spring">
-      <li class="bullet-item" data-flow-id="bullet-1">
-        <div class="bullet-text">First Impressions are Instantaneous</div>
-        <div class="bullet-detail"><p>Users judge a website within 50 milliseconds. Premium colors, balanced typography, and clean spacing establish trust immediately.</p></div>
-      </li>
-      <li class="bullet-item" data-flow-id="bullet-2">
-        <div class="bullet-text">OKLCH Delivers Perfect Perceptual Balance</div>
-        <div class="bullet-detail"><p>Unlike RGB or HSL, OKLCH matches how human eyes perceive brightness. Changing hue doesn&#39;t make colors look muddy or overly bright.</p></div>
-      </li>
-      <li class="bullet-item" data-flow-id="bullet-3">
-        <div class="bullet-text">Micro-animations Increase Engagement</div>
-        <div class="bullet-detail"><p>Subtle hover offsets, smooth spring transitions, and interactive visual cards keep users delighted and highly focused.</p></div>
-      </li>
-    </ul>
-  </div>
-</section>
-<section class="slide" id="slide-3" data-speaker-notes="Toggle between the tabs to compare the code and benefits of each system. Emphasize that OKLCH is now supported in all major browsers.">
-  <div class="slide-inner">
-    <div class="block-heading"><span class="icon">🌈</span><h2>Color Space Comparison</h2></div>
-    <div class="tabs-container">
-      <div class="tabs-header" role="tablist">
-        <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="panel-slide-3-0" id="tab-slide-3-0">HEX / RGB</button><button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-slide-3-1" id="tab-slide-3-1">HSL Color Space</button><button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-slide-3-2" id="tab-slide-3-2">OKLCH Color Space</button>
-      </div>
-      <div class="tab-panel active" role="tabpanel" aria-labelledby="tab-slide-3-0" id="panel-slide-3-0" data-flow-id="tab-panel-1">
-        <p>Hexadecimal and RGB are standard format options in classical CSS. However, they represent how hardware screens display color, not how humans perceive it. Adjusting brightness or contrast mathematically is extremely difficult.</p>
-        <div class="tab-features"><span class="tab-feature-tag">Hardware-centric</span><span class="tab-feature-tag">Hard to read manually</span><span class="tab-feature-tag">No perceptual consistency</span></div>
-        <pre><code>color: #4b6cb7;
-color: rgb(75, 108, 183);</code></pre>
-      </div>
-      <div class="tab-panel" role="tabpanel" aria-labelledby="tab-slide-3-1" id="panel-slide-3-1" data-flow-id="tab-panel-2">
-        <p>HSL (Hue, Saturation, Lightness) was a massive leap forward for readability. However, it suffers from a major flaw: yellow looks perceptually much brighter than blue at the same lightness value, leading to unpredictable contrasts.</p>
-        <div class="tab-features"><span class="tab-feature-tag">Human-readable</span><span class="tab-feature-tag">Perceptually inconsistent</span><span class="tab-feature-tag">Can cause accessibility issues</span></div>
-        <pre><code>color: hsl(220, 60%, 50%);</code></pre>
-      </div>
-      <div class="tab-panel" role="tabpanel" aria-labelledby="tab-slide-3-2" id="panel-slide-3-2" data-flow-id="tab-panel-3">
-        <p>OKLCH (Lightness, Chroma, Hue) is the modern standard. It ensures consistent perceptual lightness across all hues. A lightness of 70% will always look equally bright to the human eye, regardless of hue color selection.</p>
-        <div class="tab-features"><span class="tab-feature-tag">Consistent contrast</span><span class="tab-feature-tag">Wide color gamuts (P3)</span><span class="tab-feature-tag">Perfect for design systems</span></div>
-        <pre><code>color: oklch(70% 0.16 250);</code></pre>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="slide" id="slide-4" data-speaker-notes="Scroll through the timeline. Note how fast technology has evolved from restricted 256 colors to modern wide P3 color spaces.">
-  <div class="slide-inner">
-    <div class="block-heading"><span class="icon">📅</span><h2>Evolution of Web Colors</h2></div>
-    <div class="timeline stagger">
-      <div class="timeline-item" data-flow-id="timeline-1">
-        <div class="timeline-dot"></div>
-        <div class="timeline-year">1996</div>
-        <div class="timeline-title">Web-Safe Hex Colors</div>
-        <div class="timeline-desc">Screens only supported 256 colors. Developers were restricted to 216 &#39;web-safe&#39; hex codes to avoid visual dithering.</div>
-      </div>
-      <div class="timeline-item" data-flow-id="timeline-2">
-        <div class="timeline-dot"></div>
-        <div class="timeline-year">2002</div>
-        <div class="timeline-title">16-Million Colors (RGB)</div>
-        <div class="timeline-desc">TrueColor displays become standard. CSS introduces rgba() allowing transparent overlays.</div>
-      </div>
-      <div class="timeline-item" data-flow-id="timeline-3">
-        <div class="timeline-dot"></div>
-        <div class="timeline-year">2011</div>
-        <div class="timeline-title">HSL Support Arrives</div>
-        <div class="timeline-desc">CSS3 introduces HSL, allowing designers to tweak lightness and saturation naturally.</div>
-      </div>
-      <div class="timeline-item" data-flow-id="timeline-4">
-        <div class="timeline-dot"></div>
-        <div class="timeline-year">2023</div>
-        <div class="timeline-title">OKLCH &amp; Wide Gamuts</div>
-        <div class="timeline-desc">CSS Color Module Level 4 introduces OKLCH, enabling P3 wide gamuts and uniform color lightness.</div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="slide" id="slide-5" data-speaker-notes="Walk students through the color wheel math. Show how easily OKLCH solves color theory.">
-  <div class="slide-inner">
-    <div class="block-heading"><span class="icon">🎨</span><h2>Building an Aesthetic Palette</h2></div>
-    <div class="stepper">
-      <div class="stepper-progress">
-        <div class="step-dot active">1</div><div class="step-line"></div><div class="step-dot">2</div><div class="step-line"></div><div class="step-dot">3</div>
-      </div>
-      <div class="step-content active" data-flow-id="step-1">
-        <h4>1. Pick a Lightness Range</h4>
-        <p>Define your surface background lightness and primary text lightness to ensure accessible contrast values (at least 4.5:1 ratio).</p>
-        <div class="step-tip">Aim for a Lightness of 98% for clean light surfaces, and 18% for deep rich dark backgrounds.</div>
-      </div>
-      <div class="step-content" data-flow-id="step-2">
-        <h4>2. Define a Semantic Primary Hue</h4>
-        <p>Choose a main signature color for accents, links, active states, and buttons.</p>
-        <div class="step-tip">Sunset theme uses oklch(55% 0.18 25) which gives a gorgeous rich coral hue!</div>
-      </div>
-      <div class="step-content" data-flow-id="step-3">
-        <h4>3. Derive Secondary Colors via Hue Shifting</h4>
-        <p>Create complementary colors by shifting the hue parameter (e.g. add or subtract 30-40 degrees on the hue wheel).</p>
-        <div class="step-tip">This guarantees a matching aesthetic harmony without random color selection.</div>
-      </div>
-      <div class="stepper-nav">
-        <button class="nav-btn step-prev" disabled>← Previous</button>
-        <button class="nav-btn step-next">Next →</button>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="slide" id="slide-6" data-speaker-notes="Instruct students to click 'Change Image URL' and paste a beautiful unsplash URL to see instant image formatting!">
-  <div class="slide-inner">
-    <div class="block-heading"><span class="icon">🖼️</span><h2>Visualizing Aesthetic Contrast</h2></div>
-    <div class="image-block-container stagger">
-      <div class="image-box-wrapper">
-        <img class="interactive-image" src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Color Contrast &amp; Harmony — Paste an image link to see how the slide dynamically frames it!" />
-        <button class="edit-image-overlay-btn">✏️ Change Image URL</button>
-      </div>
-      <p class="image-caption">Color Contrast &amp; Harmony — Paste an image link to see how the slide dynamically frames it!</p>
-    </div>
-  </div>
-</section>
-<section class="slide" id="slide-7" data-speaker-notes="Assess the class's understanding. Prompt them to raise their hands and vote.">
-  <div class="slide-inner">
-    <div class="block-heading"><span class="icon">❓</span><h2>Visual Design Check</h2></div>
-    <div class="quiz-container stagger">
-      <div class="quiz-question" data-correct="2">
-        <h4>1. Which color parameter determines how humans perceive brightness consistently?</h4>
-        <div class="quiz-options">
-          <button class="quiz-option">
-            <span class="option-letter">A</span>
-            Hue (H)
-          </button>
-          <button class="quiz-option">
-            <span class="option-letter">B</span>
-            Chroma / Saturation (C)
-          </button>
-          <button class="quiz-option">
-            <span class="option-letter">C</span>
-            Lightness (L)
-          </button>
-          <button class="quiz-option">
-            <span class="option-letter">D</span>
-            RGB Ratio
-          </button>
-        </div>
-        <div class="quiz-explanation">Lightness in OKLCH ensures uniform perceived brightness, preventing yellow from looking brighter than blue at identical settings.</div>
-      </div>
-      <div class="quiz-question" data-correct="1">
-        <h4>2. What is the primary benefit of Wide Gamut P3 colors?</h4>
-        <div class="quiz-options">
-          <button class="quiz-option">
-            <span class="option-letter">A</span>
-            Faster rendering times
-          </button>
-          <button class="quiz-option">
-            <span class="option-letter">B</span>
-            30% more vibrant and deep colors on modern displays
-          </button>
-          <button class="quiz-option">
-            <span class="option-letter">C</span>
-            Better print compatibility
-          </button>
-          <button class="quiz-option">
-            <span class="option-letter">D</span>
-            Lower file sizes
-          </button>
-        </div>
-        <div class="quiz-explanation">P3 gamuts unlock extremely saturated shades of green, red, and blue that were completely unrenderable on older sRGB screens.</div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="slide" id="slide-8" data-speaker-notes="Walk through HSL flaws vs OKLCH solutions. Ask: 'Has anyone seen contrast issues on their screens?'">
-  <div class="slide-inner">
-    <div class="block-heading"><span class="icon">⚔️</span><h2>HSL vs. OKLCH Side-by-Side</h2></div>
-    <div class="compare-container">
-      <div class="compare-side side-blue">
-        <h3>HSL Space</h3>
-        <ul class="compare-list">
-          <li data-flow-id="compare-left-1">Simple hue circles</li>
-          <li data-flow-id="compare-left-2">Non-uniform perceived brightness</li>
-          <li data-flow-id="compare-left-3">Yellow is perceptually brighter than blue</li>
-          <li data-flow-id="compare-left-4">Prone to contrast failures during mode switches</li>
-        </ul>
-      </div>
-      <div class="compare-side side-green">
-        <h3>OKLCH Space</h3>
-        <ul class="compare-list">
-          <li data-flow-id="compare-right-1">Uniform perceptual lightness</li>
-          <li data-flow-id="compare-right-2">Consistent accessible contrast</li>
-          <li data-flow-id="compare-right-3">Access to wide P3 gamuts</li>
-          <li data-flow-id="compare-right-4">Mathematical hue shifting is predictable</li>
-        </ul>
-      </div>
-      <div class="compare-verdict" data-flow-id="compare-verdict">OKLCH is highly recommended for modern design systems and automated color generation pipelines.</div>
-    </div>
-  </div>
-</section>
-<section class="slide" id="slide-9" data-speaker-notes="Let students click the cards to memorize these definitions. A vital glossary for visual web designers!">
-  <div class="slide-inner">
-    <div class="block-heading"><span class="icon">🃏</span><h2>Aesthetic Core Terms</h2></div>
-    <div class="cards-grid stagger">
-      <div class="flip-card" data-flow-id="card-1">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">Lightness (L)</div>
-          <div class="flip-card-back">The perceptual brightness of a color, ranging from 0% (black) to 100% (white).</div>
-        </div>
-      </div>
-      <div class="flip-card" data-flow-id="card-2">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">Chroma (C)</div>
-          <div class="flip-card-back">The saturation or intensity of the color. 0 represents pure gray, and 0.4 represents highly intense colors.</div>
-        </div>
-      </div>
-      <div class="flip-card" data-flow-id="card-3">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">Hue (H)</div>
-          <div class="flip-card-back">The color type or angle on the color wheel, ranging from 0 to 360 degrees (0 is red, 120 green, 240 blue).</div>
-        </div>
-      </div>
-      <div class="flip-card" data-flow-id="card-4">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">Gamut Mapping</div>
-          <div class="flip-card-back">Fitting vivid colors into screen limits cleanly without causing ugly visual clipping or pixelation.</div>
-        </div>
-      </div>
-    </div>
-    <p class="flip-hint">Click any card to flip it</p>
-  </div>
-</section>
-<section class="slide" id="slide-bento-demo" data-speaker-notes="Giới thiệu xu hướng Bento Grid trong thiết kế hiện đại. Chỉ ra cách sắp xếp các ô có kích thước linh hoạt.">
-  <div class="slide-inner">
-    <div class="block-heading"><span class="icon">🍱</span><h2>Thiết kế Bento Grid Đột phá</h2></div>
-    <div class="bento-grid stagger" style="--grid-template: large | small small">
-      <div class="bento-card bento-size-large bento-card-gradient" style="background: linear-gradient(135deg, oklch(60% 0.15 320), oklch(50% 0.15 250)); border: none;" data-flow-id="bento-1">
-          <span class="bento-badge">Xu Hướng Thiết Kế</span>
-          
-          <div class="bento-card-content">
-            <h3>Bố cục bất đối xứng cao cấp</h3>
-            <p>Sắp xếp thông tin linh hoạt dưới dạng các ô lưới kính mờ Glassmorphism. Mỗi ô đại diện cho một chủ thể khác nhau, giúp tối ưu diện tích hiển thị và thu hút ánh nhìn.</p>
-          </div>
-        </div>
-      <div class="bento-card bento-size-small" style="" data-flow-id="bento-2">
-          
-          <div class="bento-icon">⚡</div>
-          <div class="bento-card-content">
-            <h3>Hiệu ứng Neon Glow</h3>
-            <p>Tự động phát sáng mờ khi di chuột, nâng cấp trải nghiệm tương tác trực giác.</p>
-          </div>
-        </div>
-      <div class="bento-card bento-size-small" style="" data-flow-id="bento-3">
-          
-          <div class="bento-icon">🎨</div>
-          <div class="bento-card-content">
-            <h3>Màu sắc OKLCH</h3>
-            <p>Đảm bảo độ tương phản hoàn hảo và chuyển màu mượt mà trên mọi màn hình rộng.</p>
-          </div>
-        </div>
-    </div>
-  </div>
-</section>
-<section class="slide" id="slide-chart-demo" data-speaker-notes="Di chuột vào các điểm mốc trên đường để xem giá trị tooltip, hoặc nhấp vào chú thích (Legend) để ẩn/hiện dữ liệu tương ứng.">
-  <div class="slide-inner">
-    <div class="block-heading"><span class="icon">📊</span><h2>Trực quan hóa Dữ liệu Tương tác</h2></div>
-    <div class="chart-block-container stagger" data-chart-type="line" data-labels="[&quot;Q1&quot;,&quot;Q2&quot;,&quot;Q3&quot;,&quot;Q4&quot;]" data-datasets="[{&quot;label&quot;:&quot;Độ phổ biến OKLCH (%)&quot;,&quot;data&quot;:[12,38,70,95],&quot;color&quot;:&quot;primary&quot;},{&quot;label&quot;:&quot;Học viên hài lòng (%)&quot;,&quot;data&quot;:[45,68,85,98],&quot;color&quot;:&quot;success&quot;}]">
-      <div class="chart-canvas-wrapper">
-        <svg class="svg-chart" viewBox="0 0 600 320" preserveAspectRatio="xMidYMid meet"></svg>
-      </div>
-      <div class="chart-legend"></div>
-    </div>
-  </div>
-</section>
-<section class="slide" id="slide-table-demo" data-speaker-notes="Trình bày cách sử dụng bảng số liệu: Bạn có thể gõ vào ô tìm kiếm nhanh hoặc nhấp vào tiêu đề để sắp xếp các cột.">
-  <div class="slide-inner">
-    <div class="block-heading"><span class="icon">🧮</span><h2>Bảng Số Liệu Kính Mờ Đa Năng</h2></div>
-    <div class="table-block-container stagger">
-      <div class="table-actions">
-        <input type="text" class="table-search-input" placeholder="Search rows..." />
-      </div>
-      <div class="table-responsive-wrapper">
-        <table class="glass-table">
-          <thead>
-            <tr>
-              <th data-col-key="framework" class="sortable-th">
-                Thư viện
-                <span class="sort-indicator">↕</span>
-              </th><th data-col-key="colors" class="sortable-th">
-                Không gian màu
-                <span class="sort-indicator">↕</span>
-              </th><th data-col-key="renderSpeed" class="sortable-th">
-                Tốc độ
-                <span class="sort-indicator">↕</span>
-              </th><th data-col-key="satisfaction" class="sortable-th">
-                Độ hài lòng
-                <span class="sort-indicator">↕</span>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td data-label="Thư viện">Lecta AI Engine</td><td data-label="Không gian màu"><span class="badge-pill pill-success">OKLCH</span></td><td data-label="Tốc độ"><code class="code-cell">12ms</code></td><td data-label="Độ hài lòng">
-                    <div class="progress-cell-wrapper">
-                      <div class="progress-cell-bar"><div class="progress-cell-fill" style="width: 98%"></div></div>
-                      <span class="progress-cell-text">98%</span>
-                    </div>
-                  </td>
-            </tr>
-            <tr>
-              <td data-label="Thư viện">Legacy CSS Core</td><td data-label="Không gian màu"><span class="badge-pill pill-warning">HSL</span></td><td data-label="Tốc độ"><code class="code-cell">48ms</code></td><td data-label="Độ hài lòng">
-                    <div class="progress-cell-wrapper">
-                      <div class="progress-cell-bar"><div class="progress-cell-fill" style="width: 72%"></div></div>
-                      <span class="progress-cell-text">72%</span>
-                    </div>
-                  </td>
-            </tr>
-            <tr>
-              <td data-label="Thư viện">Basic HTML Deck</td><td data-label="Không gian màu"><span class="badge-pill pill-danger">RGB</span></td><td data-label="Tốc độ"><code class="code-cell">110ms</code></td><td data-label="Độ hài lòng">
-                    <div class="progress-cell-wrapper">
-                      <div class="progress-cell-bar"><div class="progress-cell-fill" style="width: 35%"></div></div>
-                      <span class="progress-cell-text">35%</span>
-                    </div>
-                  </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="slide" id="slide-flow-demo" data-speaker-notes="Nhấp chuột vào từng node trên sơ đồ để hiển thị chi tiết các bước vận hành của hệ thống.">
-  <div class="slide-inner">
-    <div class="block-heading"><span class="icon">🌿</span><h2>Sơ đồ Quy trình Hoạt động</h2></div>
-    <div class="flow-block-container stagger" data-nodes="[{&quot;id&quot;:&quot;n1&quot;,&quot;label&quot;:&quot;1. slide.json&quot;,&quot;details&quot;:&quot;Định nghĩa nội dung slide tối giản dưới dạng cấu trúc dữ liệu JSON.&quot;},{&quot;id&quot;:&quot;n2&quot;,&quot;label&quot;:&quot;2. build.js&quot;,&quot;details&quot;:&quot;Compiler đóng gói các thành phần CSS/JS thành một tệp HTML duy nhất.&quot;},{&quot;id&quot;:&quot;n3&quot;,&quot;label&quot;:&quot;3. renderer.js&quot;,&quot;details&quot;:&quot;Chuyển các khối dữ liệu JSON thành cấu trúc HTML ngữ nghĩa.&quot;},{&quot;id&quot;:&quot;n4&quot;,&quot;label&quot;:&quot;4. Slide Deck&quot;,&quot;details&quot;:&quot;Tệp slide HTML hoàn thiện, chạy offline với đầy đủ hiệu ứng tương tác.&quot;}]" data-connections="[{&quot;from&quot;:&quot;n1&quot;,&quot;to&quot;:&quot;n2&quot;},{&quot;from&quot;:&quot;n2&quot;,&quot;to&quot;:&quot;n3&quot;},{&quot;from&quot;:&quot;n3&quot;,&quot;to&quot;:&quot;n4&quot;}]">
-      <div class="flow-layout-wrapper">
-        <svg class="flow-svg-canvas" viewBox="0 0 800 350">
-        </svg>
-      </div>
-      <div class="flow-detail-panel glassmorphic-panel">
-        <div class="flow-detail-default-msg">💡 Click on any step in the flowchart to view deep insights.</div>
-        <div class="flow-detail-content" style="display: none;">
-          <h4 class="flow-detail-title"></h4>
-          <p class="flow-detail-desc"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="slide" id="slide-10" data-speaker-notes="Summarize key points. Give direct encouragement to the classroom! Open the floor to interactive Q&A.">
-  <div class="slide-inner">
-    <div class="block-heading"><span class="icon">🎓</span><h2>Visual Masterclass Wrap-up</h2></div>
-    <ul class="summary-items stagger">
-      <li data-flow-id="summary-1">Always prioritize accessible color contrast ratios (4.5:1 minimum)</li>
-      <li data-flow-id="summary-2">Utilize OKLCH to build predictable dark/light mode adaptations</li>
-      <li data-flow-id="summary-3">Keep animations micro and smooth (between 150ms and 300ms)</li>
-      <li data-flow-id="summary-4">Leverage modern layouts (CSS Grid + Container Queries) for clean hierarchy</li>
-    </ul>
-    <div class="summary-cta"><p>Go design beautiful digital products today!</p></div>
-    <div class="summary-resources">
-      <a href="https://oklch.com" class="resource-link" target="_blank">🔗 OKLCH Color Picker</a><a href="https://w3.org/WAI" class="resource-link" target="_blank">🔗 W3C Accessibility Guidelines</a>
-    </div>
-  </div>
-</section>
-<section class="slide" id="slide-11" data-speaker-notes="Kiểm tra kiến thức về thiết kế thẩm mỹ hiện đại và các nguyên tắc thiết kế OKLCH.">
-  <div class="slide-inner">
-    <div class="block-heading"><span class="icon">🏆</span><h2>Đánh giá Thẩm mỹ Thiết kế</h2></div>
-    <div class="advanced-quiz-container stagger" data-total-questions="2">
-      <div class="adv-question" data-question-index="0" data-correct="2">
-        <h4>1. Không gian màu nào được thiết kế tối ưu dựa trên cảm nhận độ sáng thực tế của mắt người?</h4>
-        <div class="adv-options">
-          <button class="adv-option" data-option-index="0">
-            <span class="option-letter">A</span>
-            sRGB
-          </button>
-          <button class="adv-option" data-option-index="1">
-            <span class="option-letter">B</span>
-            HSL
-          </button>
-          <button class="adv-option" data-option-index="2">
-            <span class="option-letter">C</span>
-            OKLCH
-          </button>
-          <button class="adv-option" data-option-index="3">
-            <span class="option-letter">D</span>
-            HEX
-          </button>
-        </div>
-      </div>
-      <div class="adv-question" data-question-index="1" data-correct="1">
-        <h4>2. Tỷ lệ tương phản tối thiểu đề xuất cho văn bản dễ tiếp cận là bao nhiêu?</h4>
-        <div class="adv-options">
-          <button class="adv-option" data-option-index="0">
-            <span class="option-letter">A</span>
-            2.0:1
-          </button>
-          <button class="adv-option" data-option-index="1">
-            <span class="option-letter">B</span>
-            4.5:1
-          </button>
-          <button class="adv-option" data-option-index="2">
-            <span class="option-letter">C</span>
-            1.0:1
-          </button>
-          <button class="adv-option" data-option-index="3">
-            <span class="option-letter">D</span>
-            10:1
-          </button>
-        </div>
-      </div>
       
-      <div class="adv-quiz-action-row">
-        <button class="btn btn-primary adv-submit-btn">📥 Submit Assessment</button>
-      </div>
-      
-      <!-- Modal Overlay Popup -->
-      <div class="adv-quiz-modal-backdrop" style="display: none;">
-        <div class="adv-quiz-modal glassmorphic-panel stagger-item">
-          <button class="adv-quiz-modal-close" aria-label="Close modal">&times;</button>
-          <div class="adv-result-score">Score: <span class="score-fraction">0/0</span></div>
-          <div class="adv-result-feedback"></div>
-          <button class="adv-retry-btn" style="margin-top: 1.5rem;">🔄 Try Again</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
     </div>
   </div>
 
@@ -6572,111 +6145,6 @@ color: rgb(75, 108, 183);</code></pre>
         <div class="sidebar-divider">SLIDE SECTIONS</div>
         <div class="slide-thumbnails">
           
-    <div class="slide-thumb active" data-slide="0">
-      <span class="slide-thumb-num">1</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">Mastering Modern CSS & Visual Aesthetics</div>
-        <div class="slide-thumb-type">🎬 title</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="1">
-      <span class="slide-thumb-num">2</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">Why Visual Aesthetics Matter</div>
-        <div class="slide-thumb-type">📌 bullets</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="2">
-      <span class="slide-thumb-num">3</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">Color Space Comparison</div>
-        <div class="slide-thumb-type">🗂 tabs</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="3">
-      <span class="slide-thumb-num">4</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">Evolution of Web Colors</div>
-        <div class="slide-thumb-type">📅 timeline</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="4">
-      <span class="slide-thumb-num">5</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">Building an Aesthetic Palette</div>
-        <div class="slide-thumb-type">🚶 stepper</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="5">
-      <span class="slide-thumb-num">6</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">Visualizing Aesthetic Contrast</div>
-        <div class="slide-thumb-type">🖼️ image</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="6">
-      <span class="slide-thumb-num">7</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">Visual Design Check</div>
-        <div class="slide-thumb-type">❓ quiz</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="7">
-      <span class="slide-thumb-num">8</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">HSL vs. OKLCH Side-by-Side</div>
-        <div class="slide-thumb-type">⚔️ compare</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="8">
-      <span class="slide-thumb-num">9</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">Aesthetic Core Terms</div>
-        <div class="slide-thumb-type">🃏 cards</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="9">
-      <span class="slide-thumb-num">10</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">Thiết kế Bento Grid Đột phá</div>
-        <div class="slide-thumb-type">🍱 bento</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="10">
-      <span class="slide-thumb-num">11</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">Trực quan hóa Dữ liệu Tương tác</div>
-        <div class="slide-thumb-type">📊 chart</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="11">
-      <span class="slide-thumb-num">12</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">Bảng Số Liệu Kính Mờ Đa Năng</div>
-        <div class="slide-thumb-type">🧮 table</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="12">
-      <span class="slide-thumb-num">13</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">Sơ đồ Quy trình Hoạt động</div>
-        <div class="slide-thumb-type">🌿 flow</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="13">
-      <span class="slide-thumb-num">14</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">Visual Masterclass Wrap-up</div>
-        <div class="slide-thumb-type">🎓 summary</div>
-      </div>
-    </div>
-    <div class="slide-thumb" data-slide="14">
-      <span class="slide-thumb-num">15</span>
-      <div class="slide-thumb-info">
-        <div class="slide-thumb-title">Đánh giá Thẩm mỹ Thiết kế</div>
-        <div class="slide-thumb-type">📄 advanced-quiz</div>
-      </div>
-    </div>
         </div>
       </div>
 
@@ -6798,127 +6266,7 @@ color: rgb(75, 108, 183);</code></pre>
             <div class="template-title">Use-case Templates</div>
             <div class="template-subtitle">Copy a slide JSON snippet and reuse it in new decks.</div>
           </div>
-          
-      <div class="template-category" data-category-id="concept-intro">
-        <div class="template-category-header">
-          <div class="template-category-title">Concept Intro</div>
-          <div class="template-category-desc">Define a new AI concept with a crisp takeaway and one supporting example.</div>
-        </div>
-        <div class="template-card-grid">
-        <div class="template-card" data-template="{&quot;$ref&quot;:&quot;slide-bullets&quot;,&quot;data&quot;:{&quot;heading&quot;:&quot;What is a Transformer?&quot;,&quot;icon&quot;:&quot;AI&quot;,&quot;items&quot;:[{&quot;text&quot;:&quot;A model that learns attention between tokens&quot;,&quot;detail&quot;:&quot;Self-attention lets each token look at the rest of the sequence.&quot;},{&quot;text&quot;:&quot;Scales well with large data&quot;,&quot;detail&quot;:&quot;Parallel training enables huge model sizes.&quot;},{&quot;text&quot;:&quot;Used in GPT, BERT, and T5&quot;,&quot;detail&quot;:&quot;It is the backbone of modern NLP systems.&quot;}]},&quot;flow&quot;:[{&quot;label&quot;:&quot;Reveal definition&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;fade-up&quot;,&quot;targets&quot;:[&quot;[data-flow-id='bullet-1']&quot;]},{&quot;label&quot;:&quot;Reveal scaling&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;fade-up&quot;,&quot;targets&quot;:[&quot;[data-flow-id='bullet-2']&quot;]},{&quot;label&quot;:&quot;Reveal examples&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;fade-up&quot;,&quot;targets&quot;:[&quot;[data-flow-id='bullet-3']&quot;]}]}">
-          <div class="template-card-title">Concept Hero</div>
-          <div class="template-card-use">Explain a concept</div>
-          <div class="template-card-tags"><span class="template-tag">beginner</span><span class="template-tag">definition</span><span class="template-tag">clarity</span></div>
-          <div class="template-card-actions">
-            <button class="template-copy-btn" type="button">Copy JSON</button>
-          </div>
-        </div></div>
-      </div>
-      <div class="template-category" data-category-id="pipeline">
-        <div class="template-category-header">
-          <div class="template-category-title">Pipeline / Workflow</div>
-          <div class="template-category-desc">Walk through an AI workflow or data pipeline step-by-step.</div>
-        </div>
-        <div class="template-card-grid">
-        <div class="template-card" data-template="{&quot;$ref&quot;:&quot;slide-flow&quot;,&quot;data&quot;:{&quot;heading&quot;:&quot;Training Pipeline&quot;,&quot;icon&quot;:&quot;FLOW&quot;,&quot;nodes&quot;:[{&quot;id&quot;:&quot;data&quot;,&quot;label&quot;:&quot;Data&quot;},{&quot;id&quot;:&quot;clean&quot;,&quot;label&quot;:&quot;Clean&quot;},{&quot;id&quot;:&quot;train&quot;,&quot;label&quot;:&quot;Train&quot;},{&quot;id&quot;:&quot;eval&quot;,&quot;label&quot;:&quot;Evaluate&quot;},{&quot;id&quot;:&quot;deploy&quot;,&quot;label&quot;:&quot;Deploy&quot;}],&quot;connections&quot;:[{&quot;from&quot;:&quot;data&quot;,&quot;to&quot;:&quot;clean&quot;},{&quot;from&quot;:&quot;clean&quot;,&quot;to&quot;:&quot;train&quot;},{&quot;from&quot;:&quot;train&quot;,&quot;to&quot;:&quot;eval&quot;},{&quot;from&quot;:&quot;eval&quot;,&quot;to&quot;:&quot;deploy&quot;}]}}">
-          <div class="template-card-title">AI Pipeline Walkthrough</div>
-          <div class="template-card-use">Walk through a pipeline</div>
-          <div class="template-card-tags"><span class="template-tag">workflow</span><span class="template-tag">step-by-step</span></div>
-          <div class="template-card-actions">
-            <button class="template-copy-btn" type="button">Copy JSON</button>
-          </div>
-        </div></div>
-      </div>
-      <div class="template-category" data-category-id="comparison">
-        <div class="template-category-header">
-          <div class="template-category-title">Comparison</div>
-          <div class="template-category-desc">Show before/after or method A vs method B with a clear verdict.</div>
-        </div>
-        <div class="template-card-grid">
-        <div class="template-card" data-template="{&quot;$ref&quot;:&quot;slide-compare&quot;,&quot;data&quot;:{&quot;heading&quot;:&quot;Bag-of-Words vs. Transformer&quot;,&quot;icon&quot;:&quot;COMPARE&quot;,&quot;left&quot;:{&quot;title&quot;:&quot;Bag-of-Words&quot;,&quot;items&quot;:[&quot;Order ignored&quot;,&quot;Simple features&quot;,&quot;Fast but shallow&quot;],&quot;color&quot;:&quot;blue&quot;},&quot;right&quot;:{&quot;title&quot;:&quot;Transformer&quot;,&quot;items&quot;:[&quot;Context-aware&quot;,&quot;Scales better&quot;,&quot;State-of-the-art&quot;],&quot;color&quot;:&quot;green&quot;},&quot;verdict&quot;:&quot;Transformers win when context matters.&quot;},&quot;flow&quot;:[{&quot;label&quot;:&quot;Reveal left&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;slide-in&quot;,&quot;targets&quot;:[&quot;.compare-side.side-blue&quot;]},{&quot;label&quot;:&quot;Reveal right&quot;,&quot;action&quot;:&quot;reveal&quot;,&quot;preset&quot;:&quot;slide-in&quot;,&quot;targets&quot;:[&quot;.compare-side.side-green&quot;]},{&quot;label&quot;:&quot;Highlight verdict&quot;,&quot;action&quot;:&quot;highlight&quot;,&quot;preset&quot;:&quot;highlight-pulse&quot;,&quot;targets&quot;:[&quot;.compare-verdict&quot;]}]}">
-          <div class="template-card-title">Method Comparison</div>
-          <div class="template-card-use">Compare two methods</div>
-          <div class="template-card-tags"><span class="template-tag">comparison</span><span class="template-tag">decision</span></div>
-          <div class="template-card-actions">
-            <button class="template-copy-btn" type="button">Copy JSON</button>
-          </div>
-        </div></div>
-      </div>
-      <div class="template-category" data-category-id="example-breakdown">
-        <div class="template-category-header">
-          <div class="template-category-title">Example Breakdown</div>
-          <div class="template-category-desc">Step-by-step example with highlights for key moments.</div>
-        </div>
-        <div class="template-card-grid">
-        <div class="template-card" data-template="{&quot;type&quot;:&quot;stepper&quot;,&quot;data&quot;:{&quot;heading&quot;:&quot;Prompt -&gt; Output&quot;,&quot;icon&quot;:&quot;EXAMPLE&quot;,&quot;steps&quot;:[{&quot;title&quot;:&quot;Step 1&quot;,&quot;content&quot;:&quot;Write a clear prompt with constraints.&quot;,&quot;tip&quot;:&quot;Be explicit about format.&quot;},{&quot;title&quot;:&quot;Step 2&quot;,&quot;content&quot;:&quot;Model generates candidate output.&quot;,&quot;tip&quot;:&quot;Check for hallucinations.&quot;},{&quot;title&quot;:&quot;Step 3&quot;,&quot;content&quot;:&quot;Refine with a follow-up prompt.&quot;,&quot;tip&quot;:&quot;Use critique + rewrite.&quot;}]}}">
-          <div class="template-card-title">Example Walkthrough</div>
-          <div class="template-card-use">Teach with example</div>
-          <div class="template-card-tags"><span class="template-tag">example</span><span class="template-tag">step-by-step</span></div>
-          <div class="template-card-actions">
-            <button class="template-copy-btn" type="button">Copy JSON</button>
-          </div>
-        </div></div>
-      </div>
-      <div class="template-category" data-category-id="misconception">
-        <div class="template-category-header">
-          <div class="template-category-title">Common Mistakes</div>
-          <div class="template-category-desc">Highlight misconceptions or pitfalls with a fix.</div>
-        </div>
-        <div class="template-card-grid">
-        <div class="template-card" data-template="{&quot;type&quot;:&quot;bullets&quot;,&quot;data&quot;:{&quot;heading&quot;:&quot;Common Misconceptions&quot;,&quot;icon&quot;:&quot;WARN&quot;,&quot;items&quot;:[{&quot;text&quot;:&quot;Bigger model = always better&quot;,&quot;detail&quot;:&quot;Data quality and evaluation matter more than size alone.&quot;},{&quot;text&quot;:&quot;LLMs understand like humans&quot;,&quot;detail&quot;:&quot;They predict tokens; understanding is not guaranteed.&quot;},{&quot;text&quot;:&quot;Prompting replaces evaluation&quot;,&quot;detail&quot;:&quot;You still need tests and metrics.&quot;}]}}">
-          <div class="template-card-title">Misconception Callout</div>
-          <div class="template-card-use">Mistake / misconception</div>
-          <div class="template-card-tags"><span class="template-tag">mistakes</span><span class="template-tag">clarity</span></div>
-          <div class="template-card-actions">
-            <button class="template-copy-btn" type="button">Copy JSON</button>
-          </div>
-        </div></div>
-      </div>
-      <div class="template-category" data-category-id="recap">
-        <div class="template-category-header">
-          <div class="template-category-title">Recap / Cheat Sheet</div>
-          <div class="template-category-desc">Summarize takeaways for quick recall.</div>
-        </div>
-        <div class="template-card-grid">
-        <div class="template-card" data-template="{&quot;$ref&quot;:&quot;slide-summary&quot;,&quot;data&quot;:{&quot;heading&quot;:&quot;Key Takeaways&quot;,&quot;icon&quot;:&quot;RECAP&quot;,&quot;items&quot;:[&quot;Attention is the core idea.&quot;,&quot;Data quality &gt; model size.&quot;,&quot;Evaluate with real tasks.&quot;]}}">
-          <div class="template-card-title">Cheat Sheet</div>
-          <div class="template-card-use">Recap</div>
-          <div class="template-card-tags"><span class="template-tag">recap</span><span class="template-tag">cheat-sheet</span></div>
-          <div class="template-card-actions">
-            <button class="template-copy-btn" type="button">Copy JSON</button>
-          </div>
-        </div></div>
-      </div>
-      <div class="template-category" data-category-id="code-explain">
-        <div class="template-category-header">
-          <div class="template-category-title">Code + Explanation</div>
-          <div class="template-category-desc">Split view: short code snippet with explanation.</div>
-        </div>
-        <div class="template-card-grid">
-        <div class="template-card" data-template="{&quot;type&quot;:&quot;split&quot;,&quot;data&quot;:{&quot;heading&quot;:&quot;Tokenization Example&quot;,&quot;icon&quot;:&quot;CODE&quot;,&quot;layout&quot;:&quot;split-50-50&quot;,&quot;left&quot;:{&quot;type&quot;:&quot;code&quot;,&quot;data&quot;:{&quot;language&quot;:&quot;python&quot;,&quot;code&quot;:&quot;text = 'AI for beginners'\nprint(text.split())&quot;}},&quot;right&quot;:{&quot;type&quot;:&quot;bullets&quot;,&quot;data&quot;:{&quot;items&quot;:[&quot;Split into tokens&quot;,&quot;Tokens feed into the model&quot;,&quot;Small step, huge impact&quot;]}}}}">
-          <div class="template-card-title">Code + Explanation Split</div>
-          <div class="template-card-use">Teach with code example</div>
-          <div class="template-card-tags"><span class="template-tag">code</span><span class="template-tag">explain</span></div>
-          <div class="template-card-actions">
-            <button class="template-copy-btn" type="button">Copy JSON</button>
-          </div>
-        </div></div>
-      </div>
-      <div class="template-category" data-category-id="chapter-opener">
-        <div class="template-category-header">
-          <div class="template-category-title">Chapter Opener</div>
-          <div class="template-category-desc">Reset attention before a new section.</div>
-        </div>
-        <div class="template-card-grid">
-        <div class="template-card" data-template="{&quot;type&quot;:&quot;title&quot;,&quot;data&quot;:{&quot;heading&quot;:&quot;Chapter 2: How Models Learn&quot;,&quot;subtitle&quot;:&quot;From data to gradients to generalization&quot;,&quot;badge&quot;:&quot;Chapter Opener&quot;}}">
-          <div class="template-card-title">Chapter Title</div>
-          <div class="template-card-use">Chapter opener</div>
-          <div class="template-card-tags"><span class="template-tag">section</span><span class="template-tag">transition</span></div>
-          <div class="template-card-actions">
-            <button class="template-copy-btn" type="button">Copy JSON</button>
-          </div>
-        </div></div>
-      </div>
+          <div id="template-library-container"></div>
         </div>
       </div>
 
@@ -7096,6 +6444,8 @@ color: rgb(75, 108, 183);</code></pre>
   </div>
 
   <script type="application/json" id="lesson-context-data">{"audience":"CSS intermediate","topic":"Modern CSS &amp; Visual Aesthetics","lessonLength":30,"tone":"warm","pace":"standard","rhythmPreset":"example-heavy","textDensity":"medium","exampleDensity":"high","primaryColor":"#f97316","stylePack":"soft-glass"}</script>
+  <script type="application/json" id="slide-data">{"meta":{"title":"Mastering Modern CSS &amp; Visual Aesthetics","subtitle":"OKLCH Color Space, Premium Layouts &amp; Micro-animations","author":"Lecta AI Academy","date":"2026","theme":"sunset","duration":30,"context":{"audience":"CSS intermediate","topic":"Modern CSS &amp; Visual Aesthetics","lessonLength":30,"tone":"warm","pace":"standard","rhythmPreset":"example-heavy","textDensity":"medium","exampleDensity":"high","primaryColor":"#f97316","stylePack":"soft-glass"}},"slides":[{"id":"slide-1","type":"title","data":{"heading":"Mastering Modern CSS &amp; Visual Aesthetics","subtitle":"Discovering OKLCH, Premium Layouts, and High-fidelity Web Animations","badge":"Masterclass · 30 min","speakerNotes":"Welcome back! Today we are exploring visual design, premium layouts, and how OKLCH allows us to build state-of-the-art websites. Let's dive in!"}},{"id":"slide-2","type":"bullets","data":{"heading":"Why Visual Aesthetics Matter","icon":"✨","items":[{"text":"First Impressions are Instantaneous","detail":"Users judge a website within 50 milliseconds. Premium colors, balanced typography, and clean spacing establish trust immediately."},{"text":"OKLCH Delivers Perfect Perceptual Balance","detail":"Unlike RGB or HSL, OKLCH matches how human eyes perceive brightness. Changing hue doesn't make colors look muddy or overly bright."},{"text":"Micro-animations Increase Engagement","detail":"Subtle hover offsets, smooth spring transitions, and interactive visual cards keep users delighted and highly focused."}],"speakerNotes":"Discuss the 50ms rule of web aesthetics. Click each item to show detailed insights."}},{"id":"slide-3","type":"tabs","data":{"heading":"Color Space Comparison","icon":"🌈","tabs":[{"label":"HEX / RGB","content":"Hexadecimal and RGB are standard format options in classical CSS. However, they represent how hardware screens display color, not how humans perceive it. Adjusting brightness or contrast mathematically is extremely difficult.","features":["Hardware-centric","Hard to read manually","No perceptual consistency"],"code":"color: #4b6cb7;\ncolor: rgb(75, 108, 183);"},{"label":"HSL Color Space","content":"HSL (Hue, Saturation, Lightness) was a massive leap forward for readability. However, it suffers from a major flaw: yellow looks perceptually much brighter than blue at the same lightness value, leading to unpredictable contrasts.","features":["Human-readable","Perceptually inconsistent","Can cause accessibility issues"],"code":"color: hsl(220, 60%, 50%);"},{"label":"OKLCH Color Space","content":"OKLCH (Lightness, Chroma, Hue) is the modern standard. It ensures consistent perceptual lightness across all hues. A lightness of 70% will always look equally bright to the human eye, regardless of hue color selection.","features":["Consistent contrast","Wide color gamuts (P3)","Perfect for design systems"],"code":"color: oklch(70% 0.16 250);"}],"speakerNotes":"Toggle between the tabs to compare the code and benefits of each system. Emphasize that OKLCH is now supported in all major browsers."}},{"id":"slide-4","type":"timeline","data":{"heading":"Evolution of Web Colors","icon":"📅","events":[{"year":"1996","title":"Web-Safe Hex Colors","description":"Screens only supported 256 colors. Developers were restricted to 216 'web-safe' hex codes to avoid visual dithering."},{"year":"2002","title":"16-Million Colors (RGB)","description":"TrueColor displays become standard. CSS introduces rgba() allowing transparent overlays."},{"year":"2011","title":"HSL Support Arrives","description":"CSS3 introduces HSL, allowing designers to tweak lightness and saturation naturally."},{"year":"2023","title":"OKLCH &amp; Wide Gamuts","description":"CSS Color Module Level 4 introduces OKLCH, enabling P3 wide gamuts and uniform color lightness."}],"speakerNotes":"Scroll through the timeline. Note how fast technology has evolved from restricted 256 colors to modern wide P3 color spaces."}},{"id":"slide-5","type":"stepper","data":{"heading":"Building an Aesthetic Palette","icon":"🎨","steps":[{"title":"1. Pick a Lightness Range","content":"Define your surface background lightness and primary text lightness to ensure accessible contrast values (at least 4.5:1 ratio).","tip":"Aim for a Lightness of 98% for clean light surfaces, and 18% for deep rich dark backgrounds."},{"title":"2. Define a Semantic Primary Hue","content":"Choose a main signature color for accents, links, active states, and buttons.","tip":"Sunset theme uses oklch(55% 0.18 25) which gives a gorgeous rich coral hue!"},{"title":"3. Derive Secondary Colors via Hue Shifting","content":"Create complementary colors by shifting the hue parameter (e.g. add or subtract 30-40 degrees on the hue wheel).","tip":"This guarantees a matching aesthetic harmony without random color selection."}],"speakerNotes":"Walk students through the color wheel math. Show how easily OKLCH solves color theory."}},{"id":"slide-6","type":"image","data":{"heading":"Visualizing Aesthetic Contrast","icon":"🖼️","url":"https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&amp;fit=crop&amp;w=800&amp;q=80","caption":"Color Contrast &amp; Harmony — Paste an image link to see how the slide dynamically frames it!","speakerNotes":"Instruct students to click 'Change Image URL' and paste a beautiful unsplash URL to see instant image formatting!"}},{"id":"slide-7","type":"quiz","data":{"heading":"Visual Design Check","icon":"❓","questions":[{"question":"Which color parameter determines how humans perceive brightness consistently?","options":["Hue (H)","Chroma / Saturation (C)","Lightness (L)","RGB Ratio"],"correct":2,"explanation":"Lightness in OKLCH ensures uniform perceived brightness, preventing yellow from looking brighter than blue at identical settings."},{"question":"What is the primary benefit of Wide Gamut P3 colors?","options":["Faster rendering times","30% more vibrant and deep colors on modern displays","Better print compatibility","Lower file sizes"],"correct":1,"explanation":"P3 gamuts unlock extremely saturated shades of green, red, and blue that were completely unrenderable on older sRGB screens."}],"speakerNotes":"Assess the class's understanding. Prompt them to raise their hands and vote."}},{"id":"slide-8","type":"compare","data":{"heading":"HSL vs. OKLCH Side-by-Side","icon":"⚔️","left":{"title":"HSL Space","items":["Simple hue circles","Non-uniform perceived brightness","Yellow is perceptually brighter than blue","Prone to contrast failures during mode switches"],"color":"blue"},"right":{"title":"OKLCH Space","items":["Uniform perceptual lightness","Consistent accessible contrast","Access to wide P3 gamuts","Mathematical hue shifting is predictable"],"color":"green"},"verdict":"OKLCH is highly recommended for modern design systems and automated color generation pipelines.","speakerNotes":"Walk through HSL flaws vs OKLCH solutions. Ask: 'Has anyone seen contrast issues on their screens?'"}},{"id":"slide-9","type":"cards","data":{"heading":"Aesthetic Core Terms","icon":"🃏","cards":[{"front":"Lightness (L)","back":"The perceptual brightness of a color, ranging from 0% (black) to 100% (white)."},{"front":"Chroma (C)","back":"The saturation or intensity of the color. 0 represents pure gray, and 0.4 represents highly intense colors."},{"front":"Hue (H)","back":"The color type or angle on the color wheel, ranging from 0 to 360 degrees (0 is red, 120 green, 240 blue)."},{"front":"Gamut Mapping","back":"Fitting vivid colors into screen limits cleanly without causing ugly visual clipping or pixelation."}],"speakerNotes":"Let students click the cards to memorize these definitions. A vital glossary for visual web designers!"}},{"id":"slide-bento-demo","type":"bento","data":{"heading":"Thiết kế Bento Grid Đột phá","icon":"🍱","gridTemplate":"large | small small","items":[{"size":"large","title":"Bố cục bất đối xứng cao cấp","content":"Sắp xếp thông tin linh hoạt dưới dạng các ô lưới kính mờ Glassmorphism. Mỗi ô đại diện cho một chủ thể khác nhau, giúp tối ưu diện tích hiển thị và thu hút ánh nhìn.","badge":"Xu Hướng Thiết Kế","bgGradient":"oklch(60% 0.15 320) to oklch(50% 0.15 250)"},{"size":"small","title":"Hiệu ứng Neon Glow","content":"Tự động phát sáng mờ khi di chuột, nâng cấp trải nghiệm tương tác trực giác.","icon":"⚡"},{"size":"small","title":"Màu sắc OKLCH","content":"Đảm bảo độ tương phản hoàn hảo và chuyển màu mượt mà trên mọi màn hình rộng.","icon":"🎨"}],"speakerNotes":"Giới thiệu xu hướng Bento Grid trong thiết kế hiện đại. Chỉ ra cách sắp xếp các ô có kích thước linh hoạt."}},{"id":"slide-chart-demo","type":"chart","data":{"heading":"Trực quan hóa Dữ liệu Tương tác","icon":"📊","chartType":"line","labels":["Q1","Q2","Q3","Q4"],"datasets":[{"label":"Độ phổ biến OKLCH (%)","data":[12,38,70,95],"color":"primary"},{"label":"Học viên hài lòng (%)","data":[45,68,85,98],"color":"success"}],"speakerNotes":"Di chuột vào các điểm mốc trên đường để xem giá trị tooltip, hoặc nhấp vào chú thích (Legend) để ẩn/hiện dữ liệu tương ứng."}},{"id":"slide-table-demo","type":"table","data":{"heading":"Bảng Số Liệu Kính Mờ Đa Năng","icon":"🧮","columns":[{"key":"framework","label":"Thư viện","type":"text"},{"key":"colors","label":"Không gian màu","type":"badge"},{"key":"renderSpeed","label":"Tốc độ","type":"code"},{"key":"satisfaction","label":"Độ hài lòng","type":"progress"}],"rows":[{"framework":"Lecta AI Engine","colors":"OKLCH · success","renderSpeed":"12ms","satisfaction":98},{"framework":"Legacy CSS Core","colors":"HSL · warning","renderSpeed":"48ms","satisfaction":72},{"framework":"Basic HTML Deck","colors":"RGB · danger","renderSpeed":"110ms","satisfaction":35}],"speakerNotes":"Trình bày cách sử dụng bảng số liệu: Bạn có thể gõ vào ô tìm kiếm nhanh hoặc nhấp vào tiêu đề để sắp xếp các cột."}},{"id":"slide-flow-demo","type":"flow","data":{"heading":"Sơ đồ Quy trình Hoạt động","icon":"🌿","nodes":[{"id":"n1","label":"1. slide.json","details":"Định nghĩa nội dung slide tối giản dưới dạng cấu trúc dữ liệu JSON."},{"id":"n2","label":"2. build.js","details":"Compiler đóng gói các thành phần CSS/JS thành một tệp HTML duy nhất."},{"id":"n3","label":"3. renderer.js","details":"Chuyển các khối dữ liệu JSON thành cấu trúc HTML ngữ nghĩa."},{"id":"n4","label":"4. Slide Deck","details":"Tệp slide HTML hoàn thiện, chạy offline với đầy đủ hiệu ứng tương tác."}],"connections":[{"from":"n1","to":"n2"},{"from":"n2","to":"n3"},{"from":"n3","to":"n4"}],"speakerNotes":"Nhấp chuột vào từng node trên sơ đồ để hiển thị chi tiết các bước vận hành của hệ thống."}},{"id":"slide-10","type":"summary","data":{"heading":"Visual Masterclass Wrap-up","icon":"🎓","items":["Always prioritize accessible color contrast ratios (4.5:1 minimum)","Utilize OKLCH to build predictable dark/light mode adaptations","Keep animations micro and smooth (between 150ms and 300ms)","Leverage modern layouts (CSS Grid + Container Queries) for clean hierarchy"],"callToAction":"Go design beautiful digital products today!","resources":[{"label":"OKLCH Color Picker","url":"https://oklch.com"},{"label":"W3C Accessibility Guidelines","url":"https://w3.org/WAI"}],"speakerNotes":"Summarize key points. Give direct encouragement to the classroom! Open the floor to interactive Q&amp;A."}},{"id":"slide-11","type":"advanced-quiz","data":{"heading":"Đánh giá Thẩm mỹ Thiết kế","icon":"🏆","questions":[{"question":"Không gian màu nào được thiết kế tối ưu dựa trên cảm nhận độ sáng thực tế của mắt người?","options":["sRGB","HSL","OKLCH","HEX"],"correct":2},{"question":"Tỷ lệ tương phản tối thiểu đề xuất cho văn bản dễ tiếp cận là bao nhiêu?","options":["2.0:1","4.5:1","1.0:1","10:1"],"correct":1}],"speakerNotes":"Kiểm tra kiến thức về thiết kế thẩm mỹ hiện đại và các nguyên tắc thiết kế OKLCH."}}]}</script>
+  <script type="application/json" id="template-library-data">{"categories":[{"id":"concept-intro","label":"Concept Intro","description":"Define a new AI concept with a crisp takeaway and one supporting example.","templates":[{"id":"concept-hero","title":"Concept Hero","useCase":"Explain a concept","tags":["beginner","definition","clarity"],"slide":{"$ref":"slide-bullets","data":{"heading":"What is a Transformer?","icon":"AI","items":[{"text":"A model that learns attention between tokens","detail":"Self-attention lets each token look at the rest of the sequence."},{"text":"Scales well with large data","detail":"Parallel training enables huge model sizes."},{"text":"Used in GPT, BERT, and T5","detail":"It is the backbone of modern NLP systems."}]},"flow":[{"label":"Reveal definition","action":"reveal","preset":"fade-up","targets":["[data-flow-id='bullet-1']"]},{"label":"Reveal scaling","action":"reveal","preset":"fade-up","targets":["[data-flow-id='bullet-2']"]},{"label":"Reveal examples","action":"reveal","preset":"fade-up","targets":["[data-flow-id='bullet-3']"]}]}}]},{"id":"pipeline","label":"Pipeline / Workflow","description":"Walk through an AI workflow or data pipeline step-by-step.","templates":[{"id":"pipeline-flow","title":"AI Pipeline Walkthrough","useCase":"Walk through a pipeline","tags":["workflow","step-by-step"],"slide":{"$ref":"slide-flow","data":{"heading":"Training Pipeline","icon":"FLOW","nodes":[{"id":"data","label":"Data"},{"id":"clean","label":"Clean"},{"id":"train","label":"Train"},{"id":"eval","label":"Evaluate"},{"id":"deploy","label":"Deploy"}],"connections":[{"from":"data","to":"clean"},{"from":"clean","to":"train"},{"from":"train","to":"eval"},{"from":"eval","to":"deploy"}]}}}]},{"id":"comparison","label":"Comparison","description":"Show before/after or method A vs method B with a clear verdict.","templates":[{"id":"compare-methods","title":"Method Comparison","useCase":"Compare two methods","tags":["comparison","decision"],"slide":{"$ref":"slide-compare","data":{"heading":"Bag-of-Words vs. Transformer","icon":"COMPARE","left":{"title":"Bag-of-Words","items":["Order ignored","Simple features","Fast but shallow"],"color":"blue"},"right":{"title":"Transformer","items":["Context-aware","Scales better","State-of-the-art"],"color":"green"},"verdict":"Transformers win when context matters."},"flow":[{"label":"Reveal left","action":"reveal","preset":"slide-in","targets":[".compare-side.side-blue"]},{"label":"Reveal right","action":"reveal","preset":"slide-in","targets":[".compare-side.side-green"]},{"label":"Highlight verdict","action":"highlight","preset":"highlight-pulse","targets":[".compare-verdict"]}]}}]},{"id":"example-breakdown","label":"Example Breakdown","description":"Step-by-step example with highlights for key moments.","templates":[{"id":"example-steps","title":"Example Walkthrough","useCase":"Teach with example","tags":["example","step-by-step"],"slide":{"type":"stepper","data":{"heading":"Prompt -&gt; Output","icon":"EXAMPLE","steps":[{"title":"Step 1","content":"Write a clear prompt with constraints.","tip":"Be explicit about format."},{"title":"Step 2","content":"Model generates candidate output.","tip":"Check for hallucinations."},{"title":"Step 3","content":"Refine with a follow-up prompt.","tip":"Use critique + rewrite."}]}}}]},{"id":"misconception","label":"Common Mistakes","description":"Highlight misconceptions or pitfalls with a fix.","templates":[{"id":"mistake-callout","title":"Misconception Callout","useCase":"Mistake / misconception","tags":["mistakes","clarity"],"slide":{"type":"bullets","data":{"heading":"Common Misconceptions","icon":"WARN","items":[{"text":"Bigger model = always better","detail":"Data quality and evaluation matter more than size alone."},{"text":"LLMs understand like humans","detail":"They predict tokens; understanding is not guaranteed."},{"text":"Prompting replaces evaluation","detail":"You still need tests and metrics."}]}}}]},{"id":"recap","label":"Recap / Cheat Sheet","description":"Summarize takeaways for quick recall.","templates":[{"id":"recap-summary","title":"Cheat Sheet","useCase":"Recap","tags":["recap","cheat-sheet"],"slide":{"$ref":"slide-summary","data":{"heading":"Key Takeaways","icon":"RECAP","items":["Attention is the core idea.","Data quality &gt; model size.","Evaluate with real tasks."]}}}]},{"id":"code-explain","label":"Code + Explanation","description":"Split view: short code snippet with explanation.","templates":[{"id":"code-split","title":"Code + Explanation Split","useCase":"Teach with code example","tags":["code","explain"],"slide":{"type":"split","data":{"heading":"Tokenization Example","icon":"CODE","layout":"split-50-50","left":{"type":"code","data":{"language":"python","code":"text = 'AI for beginners'\nprint(text.split())"}},"right":{"type":"bullets","data":{"items":["Split into tokens","Tokens feed into the model","Small step, huge impact"]}}}}}]},{"id":"chapter-opener","label":"Chapter Opener","description":"Reset attention before a new section.","templates":[{"id":"chapter-title","title":"Chapter Title","useCase":"Chapter opener","tags":["section","transition"],"slide":{"type":"title","data":{"heading":"Chapter 2: How Models Learn","subtitle":"From data to gradients to generalization","badge":"Chapter Opener"}}}]}]}</script>
 
   <script>
 /**
@@ -7576,6 +6926,645 @@ const SlideEngine = (function () {
 })();
 
 window.SlideEngine = window.SlideEngine || SlideEngine;
+
+
+/**
+ * LECTA AI — HTML Renderer
+ * Converts slide JSON data into semantic HTML blocks
+ */
+
+function renderSlideHTML(slide) {
+  const d = slide.data;
+  const notes = (d.speakerNotes || '').replace(/"/g, '&quot;');
+  const flowAttr = slide.flow ? ` data-flow="${esc(JSON.stringify(slide.flow))}"` : '';
+  const transitionPreset = slide.transitionPreset || '';
+  const transitionClass = transitionPreset ? ` slide-transition-${transitionPreset}` : '';
+  const transitionAttr = transitionPreset ? ` data-transition-preset="${esc(transitionPreset)}"` : '';
+  const sectionAttrs = `class="slide" id="${slide.id}" data-speaker-notes="${notes}"${flowAttr}${transitionAttr}`;
+
+  switch (slide.type) {
+    case 'title':
+        return `<section ${sectionAttrs}>
+  <div class="slide-inner slide-title">
+    <span class="badge">${esc(d.badge || '')}</span>
+    <h1>${esc(d.heading)}</h1>
+    <p class="subtitle">${esc(d.subtitle)}</p>
+  </div>
+</section>`;
+
+    case 'bullets':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner${transitionClass}">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <ul class="bullet-list stagger-spring">
+      ${d.items.map((item, i) => `<li class="bullet-item" data-flow-id="bullet-${i + 1}">
+        <div class="bullet-text">${esc(item.text)}</div>
+        <div class="bullet-detail"><p>${esc(item.detail || '')}</p></div>
+      </li>`).join('\n      ')}
+    </ul>
+  </div>
+</section>`;
+
+    case 'accordion':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="accordion stagger">
+      ${d.items.map((item, i) => `<div class="accordion-item" data-flow-id="accordion-${i + 1}">
+        <button class="accordion-header" role="button" aria-expanded="false" aria-controls="accordion-content-${slide.id}-${i}" id="accordion-header-${slide.id}-${i}">
+          ${esc(item.title)}
+          <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-body" role="region" aria-labelledby="accordion-header-${slide.id}-${i}" id="accordion-content-${slide.id}-${i}">
+          <div class="accordion-content">
+            <p>${esc(item.content)}</p>
+            ${item.example ? `<pre><code>${esc(item.example)}</code></pre>` : ''}
+          </div>
+        </div>
+      </div>`).join('\n      ')}
+    </div>
+  </div>
+</section>`;
+
+    case 'tabs':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="tabs-container">
+      <div class="tabs-header" role="tablist">
+        ${d.tabs.map((t, i) => `<button class="tab-btn${i === 0 ? ' active' : ''}" role="tab" aria-selected="${i === 0 ? 'true' : 'false'}" aria-controls="panel-${slide.id}-${i}" id="tab-${slide.id}-${i}">${esc(t.label)}</button>`).join('')}
+      </div>
+      ${d.tabs.map((t, i) => `<div class="tab-panel${i === 0 ? ' active' : ''}" role="tabpanel" aria-labelledby="tab-${slide.id}-${i}" id="panel-${slide.id}-${i}" data-flow-id="tab-panel-${i + 1}">
+        <p>${esc(t.content)}</p>
+        ${t.features ? `<div class="tab-features">${t.features.map(f => `<span class="tab-feature-tag">${esc(f)}</span>`).join('')}</div>` : ''}
+        ${t.code ? `<pre><code>${esc(t.code)}</code></pre>` : ''}
+      </div>`).join('\n      ')}
+    </div>
+  </div>
+</section>`;
+
+    case 'stepper':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="stepper">
+      <div class="stepper-progress">
+        ${d.steps.map((s, i) => {
+          let html = `<div class="step-dot${i === 0 ? ' active' : ''}">${i + 1}</div>`;
+          if (i < d.steps.length - 1) html += `<div class="step-line"></div>`;
+          return html;
+        }).join('')}
+      </div>
+      ${d.steps.map((s, i) => `<div class="step-content${i === 0 ? ' active' : ''}" data-flow-id="step-${i + 1}">
+        <h4>${esc(s.title)}</h4>
+        <p>${esc(s.content)}</p>
+        ${s.tip ? `<div class="step-tip">${esc(s.tip)}</div>` : ''}
+      </div>`).join('\n      ')}
+      <div class="stepper-nav">
+        <button class="nav-btn step-prev" disabled>← Previous</button>
+        <button class="nav-btn step-next">Next →</button>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+    case 'cards':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="cards-grid stagger">
+      ${d.cards.map((c, i) => `<div class="flip-card" data-flow-id="card-${i + 1}">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">${esc(c.front)}</div>
+          <div class="flip-card-back">${esc(c.back)}</div>
+        </div>
+      </div>`).join('\n      ')}
+    </div>
+    <p class="flip-hint">Click any card to flip it</p>
+  </div>
+</section>`;
+
+    case 'advanced-quiz':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🏆'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="advanced-quiz-container stagger" data-total-questions="${d.questions.length}">
+      ${d.questions.map((q, qi) => `<div class="adv-question" data-question-index="${qi}" data-correct="${q.correct}">
+        <h4>${qi + 1}. ${esc(q.question)}</h4>
+        <div class="adv-options">
+          ${q.options.map((o, oi) => `<button class="adv-option" data-option-index="${oi}">
+            <span class="option-letter">${String.fromCharCode(65 + oi)}</span>
+            ${esc(o)}
+          </button>`).join('\n          ')}
+        </div>
+      </div>`).join('\n      ')}
+      
+      <div class="adv-quiz-action-row">
+        <button class="btn btn-primary adv-submit-btn">📥 Submit Assessment</button>
+      </div>
+      
+      <!-- Modal Overlay Popup -->
+      <div class="adv-quiz-modal-backdrop" style="display: none;">
+        <div class="adv-quiz-modal glassmorphic-panel stagger-item">
+          <button class="adv-quiz-modal-close" aria-label="Close modal">&times;</button>
+          <div class="adv-result-score">Score: <span class="score-fraction">0/0</span></div>
+          <div class="adv-result-feedback"></div>
+          <button class="adv-retry-btn" style="margin-top: 1.5rem;">🔄 Try Again</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+    case 'quiz':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="quiz-container stagger">
+      ${d.questions.map((q, qi) => `<div class="quiz-question" data-correct="${q.correct}">
+        <h4>${qi + 1}. ${esc(q.question)}</h4>
+        <div class="quiz-options">
+          ${q.options.map((o, oi) => `<button class="quiz-option">
+            <span class="option-letter">${String.fromCharCode(65 + oi)}</span>
+            ${esc(o)}
+          </button>`).join('\n          ')}
+        </div>
+        <div class="quiz-explanation">${esc(q.explanation)}</div>
+      </div>`).join('\n      ')}
+    </div>
+  </div>
+</section>`;
+
+    case 'compare':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="compare-container">
+      <div class="compare-side side-${d.left.color || 'blue'}">
+        <h3>${esc(d.left.title)}</h3>
+        <ul class="compare-list">
+          ${d.left.items.map((i, idx) => `<li data-flow-id="compare-left-${idx + 1}">${esc(i)}</li>`).join('\n          ')}
+        </ul>
+      </div>
+      <div class="compare-side side-${d.right.color || 'green'}">
+        <h3>${esc(d.right.title)}</h3>
+        <ul class="compare-list">
+          ${d.right.items.map((i, idx) => `<li data-flow-id="compare-right-${idx + 1}">${esc(i)}</li>`).join('\n          ')}
+        </ul>
+      </div>
+      ${d.verdict ? `<div class="compare-verdict" data-flow-id="compare-verdict">${esc(d.verdict)}</div>` : ''}
+    </div>
+  </div>
+</section>`;
+
+    case 'timeline':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="timeline stagger">
+      ${d.events.map((e, i) => `<div class="timeline-item" data-flow-id="timeline-${i + 1}">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">${esc(e.year)}</div>
+        <div class="timeline-title">${esc(e.title)}</div>
+        <div class="timeline-desc">${esc(e.description)}</div>
+      </div>`).join('\n      ')}
+    </div>
+  </div>
+</section>`;
+
+    case 'summary':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || ''}</span><h2>${esc(d.heading)}</h2></div>
+    <ul class="summary-items stagger">
+      ${d.items.map((i, idx) => `<li data-flow-id="summary-${idx + 1}">${esc(i)}</li>`).join('\n      ')}
+    </ul>
+    ${d.callToAction ? `<div class="summary-cta"><p>${esc(d.callToAction)}</p></div>` : ''}
+    ${d.resources ? `<div class="summary-resources">
+      ${d.resources.map(r => `<a href="${esc(r.url)}" class="resource-link" target="_blank">🔗 ${esc(r.label)}</a>`).join('')}
+    </div>` : ''}
+  </div>
+</section>`;
+
+    case 'image':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🖼️'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="image-block-container stagger">
+      <div class="image-box-wrapper">
+        <img class="interactive-image" src="${esc(d.url || 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80')}" alt="${esc(d.caption || 'Slide Image')}" />
+        <button class="edit-image-overlay-btn">✏️ Change Image URL</button>
+      </div>
+      ${d.caption ? `<p class="image-caption">${esc(d.caption)}</p>` : ''}
+    </div>
+  </div>
+</section>`;
+
+    case 'chart':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '📊'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="chart-block-container stagger" data-chart-type="${esc(d.chartType || 'bar')}" data-labels="${esc(JSON.stringify(d.labels || [])).replace(/"/g, '&quot;')}" data-datasets="${esc(JSON.stringify(d.datasets || [])).replace(/"/g, '&quot;')}">
+      <div class="chart-canvas-wrapper">
+        <svg class="svg-chart" viewBox="0 0 600 320" preserveAspectRatio="xMidYMid meet"></svg>
+      </div>
+      <div class="chart-legend"></div>
+    </div>
+  </div>
+</section>`;
+
+    case 'table':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🧮'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="table-block-container stagger">
+      <div class="table-actions">
+        <input type="text" class="table-search-input" placeholder="Search rows..." />
+      </div>
+      <div class="table-responsive-wrapper">
+        <table class="glass-table">
+          <thead>
+            <tr>
+              ${(d.columns || []).map(col => `<th data-col-key="${esc(col.key)}" class="sortable-th">
+                ${esc(col.label)}
+                <span class="sort-indicator">↕</span>
+              </th>`).join('')}
+            </tr>
+          </thead>
+          <tbody>
+            ${(d.rows || []).map(row => `<tr>
+              ${(d.columns || []).map(col => {
+                const val = row[col.key];
+                if (col.type === 'progress') {
+                  const percent = Math.min(100, Math.max(0, parseInt(val, 10) || 0));
+                  return `<td data-label="${esc(col.label)}">
+                    <div class="progress-cell-wrapper">
+                      <div class="progress-cell-bar"><div class="progress-cell-fill" style="width: ${percent}%"></div></div>
+                      <span class="progress-cell-text">${percent}%</span>
+                    </div>
+                  </td>`;
+                } else if (col.type === 'badge') {
+                  const parts = String(val || '').split('·');
+                  const text = (parts[0] || '').trim();
+                  const type = (parts[1] || 'primary').trim();
+                  return `<td data-label="${esc(col.label)}"><span class="badge-pill pill-${type}">${esc(text)}</span></td>`;
+                } else if (col.type === 'code') {
+                  return `<td data-label="${esc(col.label)}"><code class="code-cell">${esc(val)}</code></td>`;
+                }
+                return `<td data-label="${esc(col.label)}">${esc(val)}</td>`;
+              }).join('')}
+            </tr>`).join('\n            ')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+    case 'bento':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🍱'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="bento-grid stagger" style="--grid-template: ${esc(d.gridTemplate || 'auto')}">
+      ${(d.items || []).map((item, i) => {
+        const bgStyle = item.bgGradient ? `background: linear-gradient(135deg, ${item.bgGradient.split(' to ')[0]}, ${item.bgGradient.split(' to ')[1] || 'transparent'}); border: none;` : '';
+        const hasBg = item.bgGradient ? ' bento-card-gradient' : '';
+        const sizeClass = `bento-size-${item.size || 'small'}`;
+        return `<div class="bento-card ${sizeClass}${hasBg}" style="${bgStyle}" data-flow-id="bento-${i + 1}">
+          ${item.badge ? `<span class="bento-badge">${esc(item.badge)}</span>` : ''}
+          ${item.icon ? `<div class="bento-icon">${esc(item.icon)}</div>` : ''}
+          <div class="bento-card-content">
+            <h3>${esc(item.title)}</h3>
+            <p>${esc(item.content)}</p>
+          </div>
+        </div>`;
+      }).join('\n      ')}
+    </div>
+  </div>
+</section>`;
+
+    case 'flow':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🌿'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="flow-block-container stagger" data-nodes="${esc(JSON.stringify(d.nodes || [])).replace(/"/g, '&quot;')}" data-connections="${esc(JSON.stringify(d.connections || [])).replace(/"/g, '&quot;')}">
+      <div class="flow-layout-wrapper">
+        <svg class="flow-svg-canvas" viewBox="0 0 800 350">
+        </svg>
+      </div>
+      <div class="flow-detail-panel glassmorphic-panel">
+        <div class="flow-detail-default-msg">💡 Click on any step in the flowchart to view deep insights.</div>
+        <div class="flow-detail-content" style="display: none;">
+          <h4 class="flow-detail-title"></h4>
+          <p class="flow-detail-desc"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+    case 'math':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🧮'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="math-block-container">
+      <div class="math-display-equation" data-latex="${esc(d.latex)}">
+        \\[ ${esc(d.latex)} \\]
+      </div>
+      ${d.explanation ? `<p class="math-explanation">${esc(d.explanation)}</p>` : ''}
+    </div>
+  </div>
+</section>`;
+
+    case 'mermaid':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🌿'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="mermaid-block-container">
+      <div class="mermaid-diagram-wrapper">
+        <div class="mermaid" id="mermaid-${slide.id}">${esc(d.code)}</div>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+    case 'video': {
+      let videoHTML = '';
+      if (d.videoType === 'youtube') {
+        videoHTML = `<a href="https://www.youtube.com/watch?v=${esc(d.videoId)}" target="_blank" class="video-link-card" aria-label="Watch video on YouTube">
+        <div class="video-preview-thumbnail" style="background-image: url('https://img.youtube.com/vi/${esc(d.videoId)}/hqdefault.jpg')">
+          <div class="video-play-overlay">
+            <div class="video-play-btn">▶</div>
+            <span class="video-play-text">Watch on YouTube</span>
+          </div>
+        </div>
+      </a>`;
+      } else if (d.videoType === 'vimeo') {
+        videoHTML = `<a href="https://vimeo.com/${esc(d.videoId)}" target="_blank" class="video-link-card" aria-label="Watch video on Vimeo">
+        <div class="video-preview-thumbnail" style="background: #111;">
+          <div class="video-play-overlay">
+            <div class="video-play-btn" style="background: #00adef; box-shadow: 0 4px 20px rgba(0, 173, 239, 0.5);">▶</div>
+            <span class="video-play-text">Watch on Vimeo</span>
+          </div>
+        </div>
+      </a>`;
+      } else {
+        videoHTML = `<video class="video-player-frame" controls poster="${esc(d.poster || '')}"><source src="${esc(d.videoUrl)}" type="video/mp4"></video>`;
+      }
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🎬'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="video-block-container">
+      ${videoHTML}
+    </div>
+  </div>
+</section>`;
+    }
+
+    case 'split':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner${transitionClass}">
+    <div class="block-heading"><span class="icon">${d.icon || '⚔️'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="split-layout-container ${d.layout || 'split-50-50'} stagger-spring">
+      <div class="split-column left-column">
+        ${renderSubBlock(d.left, slide.id + '-left')}
+      </div>
+      <div class="split-column right-column">
+        ${renderSubBlock(d.right, slide.id + '-right')}
+      </div>
+    </div>
+  </div>
+</section>`;
+
+    /* ============================================
+       NEW PREMIUM BLOCK TYPES — Phase 1 MVP
+       ============================================ */
+
+    case 'quote-card':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="quote-card-container stagger">
+      <div class="quote-card-mark">"</div>
+      <blockquote class="quote-card-text">${esc(d.quote)}</blockquote>
+      <div class="quote-card-attribution">
+        ${d.avatarUrl ? `<img class="quote-avatar" src="${esc(d.avatarUrl)}" alt="${esc(d.author || '')}" />` : `<div class="quote-avatar-placeholder">${esc((d.author || 'A').charAt(0).toUpperCase())}</div>`}
+        <div class="quote-meta">
+          <span class="quote-author">${esc(d.author || '')}</span>
+          ${d.role ? `<span class="quote-role">${esc(d.role)}</span>` : ''}
+        </div>
+      </div>
+      ${d.heading ? `<div class="quote-card-label">${esc(d.heading)}</div>` : ''}
+    </div>
+  </div>
+</section>`;
+
+    case 'definition-card':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="definition-card-container stagger">
+      <div class="definition-header">
+        <span class="definition-type-tag">${esc(d.type || 'noun')}</span>
+        ${d.pronunciation ? `<span class="definition-pronunciation">${esc(d.pronunciation)}</span>` : ''}
+      </div>
+      <h2 class="definition-term">${esc(d.term)}</h2>
+      <p class="definition-body">${esc(d.definition)}</p>
+      ${d.example ? `<div class="definition-example">
+        <span class="definition-example-label">Example</span>
+        <code>${esc(d.example)}</code>
+      </div>` : ''}
+      ${d.heading ? `<div class="definition-context-label">${esc(d.heading)}</div>` : ''}
+    </div>
+  </div>
+</section>`;
+
+    case 'analogy':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🔗'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="analogy-container stagger">
+      <div class="analogy-card analogy-technical" data-flow-id="analogy-left">
+        <div class="analogy-card-label">Technical Concept</div>
+        <p>${esc(d.technicalConcept)}</p>
+      </div>
+      <div class="analogy-bridge">
+        <div class="analogy-bridge-arrow">≈</div>
+        ${d.bridgeText ? `<span class="analogy-bridge-text">${esc(d.bridgeText)}</span>` : ''}
+      </div>
+      <div class="analogy-card analogy-realworld" data-flow-id="analogy-right">
+        <div class="analogy-card-label">Real-World Analogy</div>
+        <p>${esc(d.analogy)}</p>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+    case 'stats':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner${transitionClass}">
+    <div class="block-heading"><span class="icon">${d.icon || '📊'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="stats-grid stagger">
+      ${(d.stats || []).map((s, i) => {
+        // Parse value to extract numeric portion for counter animation
+        const rawValue = String(s.value);
+        const numMatch = rawValue.match(/^([^0-9]*)([0-9][0-9,.]*)(.*)$/);
+        let valueHTML;
+        if (numMatch) {
+          const prefix = esc(numMatch[1]);
+          const numericStr = numMatch[2];
+          const suffix = esc(numMatch[3]);
+          const isDecimal = numericStr.includes('.');
+          const decimalPlaces = isDecimal ? (numericStr.split('.')[1] || '').length : 0;
+          const cleanNum = numericStr.replace(/,/g, '');
+          valueHTML = `${prefix}<span class="stat-counter" data-count-target="${esc(cleanNum)}" data-count-decimals="${decimalPlaces}" data-count-original="${esc(numericStr)}">${esc(numericStr)}</span>${suffix}`;
+        } else {
+          valueHTML = esc(rawValue);
+        }
+        return `<div class="stat-card" data-flow-id="stat-${i + 1}">
+        <div class="stat-value">${valueHTML}</div>
+        <div class="stat-label">${esc(s.label)}</div>
+        ${s.trend ? `<div class="stat-trend trend-${s.trend === 'up' ? 'up' : 'down'}">${s.trend === 'up' ? '↑' : '↓'} ${esc(s.subtext || '')}</div>` : (s.subtext ? `<div class="stat-subtext">${esc(s.subtext)}</div>` : '')}
+      </div>`;
+      }).join('\n      ')}
+    </div>
+  </div>
+</section>`;
+
+    case 'checklist':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '✅'}</span><h2>${esc(d.heading)}</h2></div>
+    <ul class="checklist stagger" role="list">
+      ${(d.items || []).map((item, i) => `<li class="checklist-item${item.completed ? ' checked' : ''}" data-flow-id="check-${i + 1}" data-checklist-id="${esc(item.id || String(i))}" role="listitem">
+        <button class="checklist-toggle" aria-label="Toggle ${esc(item.text)}" aria-pressed="${item.completed ? 'true' : 'false'}">
+          <span class="checklist-box" aria-hidden="true">${item.completed ? '✓' : ''}</span>
+        </button>
+        <span class="checklist-text">${esc(item.text)}</span>
+      </li>`).join('\n      ')}
+    </ul>
+  </div>
+</section>`;
+
+    case 'timeline-horizontal':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '🗓️'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="timeline-h-track stagger">
+      <div class="timeline-h-line"></div>
+      ${(d.events || []).map((e, i) => `<div class="timeline-h-item" data-flow-id="timeline-h-${i + 1}">
+        <div class="timeline-h-dot"></div>
+        <div class="timeline-h-card">
+          <div class="timeline-h-year">${esc(e.year)}</div>
+          <div class="timeline-h-title">${esc(e.title)}</div>
+          ${e.desc ? `<div class="timeline-h-desc">${esc(e.desc)}</div>` : ''}
+        </div>
+      </div>`).join('\n      ')}
+    </div>
+  </div>
+</section>`;
+
+    case 'splash':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner splash-inner">
+    <div class="splash-meta-badge">${esc(d.badge || 'Presentation')}</div>
+    <h1 class="splash-title">${esc(d.title)}</h1>
+    ${d.subtitle ? `<p class="splash-subtitle">${esc(d.subtitle)}</p>` : ''}
+    <div class="splash-divider"></div>
+    <div class="splash-profile">
+      ${d.avatarUrl ? `<img class="splash-avatar" src="${esc(d.avatarUrl)}" alt="${esc(d.author || '')}" />` : `<div class="splash-avatar-placeholder">${esc((d.author || 'A').charAt(0).toUpperCase())}</div>`}
+      <div class="splash-author-meta">
+        <span class="splash-author-name">${esc(d.author || '')}</span>
+        ${d.role ? `<span class="splash-author-role">${esc(d.role)}</span>` : ''}
+      </div>
+      ${d.duration ? `<div class="splash-duration">⏱ ${esc(String(d.duration))} min</div>` : ''}
+    </div>
+    ${d.social ? `<div class="splash-social-row">
+      ${d.social.github ? `<a href="https://github.com/${esc(d.social.github)}" class="splash-social-chip" target="_blank">GitHub</a>` : ''}
+      ${d.social.twitter ? `<a href="https://twitter.com/${esc(d.social.twitter)}" class="splash-social-chip" target="_blank">Twitter</a>` : ''}
+      ${d.social.email ? `<a href="mailto:${esc(d.social.email)}" class="splash-social-chip">Email</a>` : ''}
+    </div>` : ''}
+  </div>
+</section>`;
+
+    case 'code-diff':
+      return `<section ${sectionAttrs}>
+  <div class="slide-inner">
+    <div class="block-heading"><span class="icon">${d.icon || '⚡'}</span><h2>${esc(d.heading)}</h2></div>
+    <div class="code-diff-container stagger">
+      <div class="code-diff-pane" data-flow-id="code-left">
+        <div class="code-diff-header code-diff-before">
+          <span class="code-diff-dot"></span>
+          ${esc(d.leftTitle || 'Before')}
+          <span class="code-diff-lang">${esc(d.leftLang || 'js')}</span>
+        </div>
+        <pre><code class="language-${esc(d.leftLang || 'javascript')}">${esc(d.leftCode || '')}</code></pre>
+      </div>
+      <div class="code-diff-pane" data-flow-id="code-right">
+        <div class="code-diff-header code-diff-after">
+          <span class="code-diff-dot"></span>
+          ${esc(d.rightTitle || 'After')}
+          <span class="code-diff-lang">${esc(d.rightLang || 'js')}</span>
+        </div>
+        <pre><code class="language-${esc(d.rightLang || 'javascript')}">${esc(d.rightCode || '')}</code></pre>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+    default:
+      return `<section ${sectionAttrs}><div class="slide-inner"><p>Unknown block type: ${slide.type}</p></div></section>`;
+  }
+}
+
+function renderSubBlock(b, id) {
+  if (!b) return '';
+  const type = b.type;
+  const d = b.data || {};
+  switch (type) {
+    case 'text':
+      return `<div class="sub-block sub-text"><p>${esc(d.content)}</p></div>`;
+    case 'bullets':
+      return `<div class="sub-block sub-bullets"><ul class="stagger-spring" style="list-style-type: disc; padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;">${d.items.map((it, i) => `<li data-flow-id="sub-bullet-${i + 1}">${esc(it)}</li>`).join('')}</ul></div>`;
+    case 'code':
+      return `<div class="sub-block sub-code"><pre><code class="language-${d.language || 'javascript'}">${esc(d.code)}</code></pre></div>`;
+    case 'image':
+      return `<div class="sub-block sub-image" style="border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md);"><img src="${d.url}" alt="${esc(d.alt || '')}" style="width: 100%; display: block; object-fit: cover;"></div>`;
+    case 'math':
+      return `<div class="sub-block sub-math">
+  <div class="math-block-container">
+    <div class="math-display-equation" data-latex="${esc(d.latex)}">
+      \\[ ${esc(d.latex)} \\]
+    </div>
+    ${d.explanation ? `<p class="math-explanation">${esc(d.explanation)}</p>` : ''}
+  </div>
+</div>`;
+    case 'mermaid':
+      return `<div class="sub-block sub-mermaid">
+  <div class="mermaid-block-container">
+    <div class="mermaid-diagram-wrapper">
+      <div class="mermaid" id="mermaid-${id}">${esc(d.code)}</div>
+    </div>
+  </div>
+</div>`;
+    default:
+      return `<div class="sub-block sub-unknown"><p>${esc(JSON.stringify(b))}</p></div>`;
+  }
+}
+
+function esc(str) {
+  if (str === null || str === undefined) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { renderSlideHTML };
+} else {
+  window.LectaRenderer = { renderSlideHTML };
+}
 
 
 /**
@@ -10894,6 +10883,78 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 document.addEventListener('DOMContentLoaded', () => {
+  // --- Client-Side Hydration ---
+  const slideDataEl = document.getElementById('slide-data');
+  if (slideDataEl && window.LectaRenderer) {
+    try {
+      const slideData = JSON.parse(slideDataEl.textContent);
+      
+      // Hydrate Slides
+      const track = document.querySelector('.slides-track');
+      if (track) {
+        track.innerHTML = slideData.slides.map(s => window.LectaRenderer.renderSlideHTML(s)).join('\n');
+      }
+
+      // Hydrate Sidebar Thumbnails
+      const TYPES = { title:'🎬', bullets:'📌', accordion:'📚', tabs:'🗂', stepper:'🚶', cards:'🃏', quiz:'❓', compare:'⚔️', timeline:'📅', summary:'🎓', image:'🖼️', chart:'📊', table:'🧮', bento:'🍱', flow:'🌿' };
+      const thumbnailsContainer = document.querySelector('.slide-thumbnails');
+      if (thumbnailsContainer) {
+        thumbnailsContainer.innerHTML = slideData.slides.map((s, i) => `
+          <div class="slide-thumb${i === 0 ? ' active' : ''}" data-slide="${i}">
+            <span class="slide-thumb-num">${i + 1}</span>
+            <div class="slide-thumb-info">
+              <div class="slide-thumb-title">${(s.data.heading || s.data.title || 'Slide ' + (i+1)).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
+              <div class="slide-thumb-type">${TYPES[s.type] || '📄'} ${s.type}</div>
+            </div>
+          </div>`).join('');
+      }
+    } catch (err) {
+      console.error('Failed to hydrate slides from JSON:', err);
+    }
+  }
+
+  // --- Hydrate Template Library ---
+  const templateLibraryEl = document.getElementById('template-library-data');
+  const templateLibraryContainer = document.getElementById('template-library-container');
+  if (templateLibraryEl && templateLibraryContainer) {
+    try {
+      const library = JSON.parse(templateLibraryEl.textContent);
+      const categories = Array.isArray(library.categories) ? library.categories : [];
+      if (categories.length === 0) {
+        templateLibraryContainer.innerHTML = '<div class="template-empty">No templates available.</div>';
+      } else {
+        templateLibraryContainer.innerHTML = categories.map(category => {
+          const templates = Array.isArray(category.templates) ? category.templates : [];
+          const categoryAttr = category.id ? ` data-category-id="${category.id.replace(/"/g, '&quot;')}"` : '';
+          const cardsHTML = templates.map(tmpl => {
+            const payload = JSON.stringify(tmpl.slide || {}).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+            const tagsHTML = Array.isArray(tmpl.tags)
+              ? tmpl.tags.map(tag => `<span class="template-tag">${tag.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</span>`).join('')
+              : '';
+            return `
+              <div class="template-card" data-template="${payload}">
+                <div class="template-card-title">${(tmpl.title || 'Template').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
+                <div class="template-card-use">${(tmpl.useCase || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
+                <div class="template-card-tags">${tagsHTML}</div>
+                <div class="template-card-actions">
+                  <button class="template-copy-btn" type="button">Copy JSON</button>
+                </div>
+              </div>`;
+          }).join('');
+          return `
+            <div class="template-category"${categoryAttr}>
+              <div class="template-category-header">
+                <div class="template-category-title">${(category.label || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
+                <div class="template-category-desc">${(category.description || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
+              </div>
+              <div class="template-card-grid">${cardsHTML}</div>
+            </div>`;
+        }).join('');
+      }
+    } catch (err) {
+      console.error('Failed to hydrate template library:', err);
+    }
+  }
   SidebarModule.init();
   SlideEngine.init();
   InteractiveBlocks.init();
