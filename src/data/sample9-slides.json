@@ -4,7 +4,7 @@
     "subtitle": "SPAs vs Server Components",
     "author": "Frontend Engineering Guild",
     "date": "2026",
-    "theme": "sunset",
+    "theme": "editorial",
     "duration": 25,
     "context": {
       "audience": "Web Developers",
@@ -15,8 +15,8 @@
       "rhythmPreset": "conference-talk",
       "textDensity": "medium",
       "exampleDensity": "high",
-      "primaryColor": "#f97316",
-      "stylePack": "editorial-clean"
+      "primaryColor": "#c2410c",
+      "stylePack": "editorial-poster"
     }
   },
   "slides": [
