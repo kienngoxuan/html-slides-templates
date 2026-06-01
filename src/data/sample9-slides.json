@@ -45,22 +45,16 @@
     },
     {
       "id": "slide-3",
-      "$ref": "slide-table",
+      "type": "definition-card",
+      "transitionPreset": "flip-y",
       "data": {
-        "heading": "Meta-Framework Comparison Matrix",
-        "icon": "📊",
-        "columns": [
-          {"key": "fw", "label": "Framework"},
-          {"key": "paradigm", "label": "Default Paradigm"},
-          {"key": "stream", "label": "Streaming HTML"},
-          {"key": "form", "label": "Form Actions"}
-        ],
-        "rows": [
-          {"fw": "Next.js (App Router)", "paradigm": "Server Components", "stream": "Yes (Suspense)", "form": "Native Support"},
-          {"fw": "Remix", "paradigm": "SSR (Loaders/Actions)", "stream": "Yes", "form": "Native Support"},
-          {"fw": "Astro", "paradigm": "Island Architecture", "stream": "Yes (via Islands)", "form": "Manual setup"},
-          {"fw": "Vite (React SPA)", "paradigm": "Client-Side Rendering", "stream": "No", "form": "Manual API calls"}
-        ]
+        "heading": "Core Lexicon",
+        "icon": "📖",
+        "term": "Hydration",
+        "pronunciation": "/haɪˈdreɪ.ʃən/",
+        "type": "Noun, Computing",
+        "definition": "The process of attaching React event listeners to a pre-rendered static HTML document, converting it into a fully interactive dynamic Single Page Application (SPA).",
+        "example": "\"Server Components dramatically reduce the amount of JavaScript needed for hydration, speeding up the Time To Interactive (TTI).\""
       }
     },
     {
@@ -94,21 +88,13 @@
     },
     {
       "id": "slide-6",
-      "$ref": "slide-flow",
+      "type": "math",
+      "transitionPreset": "fade",
       "data": {
-        "heading": "Server Actions Roundtrip",
-        "icon": "🔄",
-        "nodes": [
-          {"id": "client", "label": "Client Form Submit", "details": "User clicks 'Save'"},
-          {"id": "network", "label": "Multipart Request", "details": "Data sent to server"},
-          {"id": "server", "label": "Server Action Exec", "details": "DB Mutation"},
-          {"id": "stream", "label": "RSC Payload Stream", "details": "Updated UI chunks sent back"}
-        ],
-        "connections": [
-          {"from": "client", "to": "network"},
-          {"from": "network", "to": "server"},
-          {"from": "server", "to": "stream"}
-        ]
+        "heading": "Bundle Size Complexity (Big-O)",
+        "icon": "🧮",
+        "latex": "O(N) \\xrightarrow{\\text{Server Components}} O(1)",
+        "explanation": "In traditional SPAs, the client-side JavaScript bundle size grows linearly O(N) as your application adds more components and dependencies. With Server Components, the client-side JS bundle remains near-constant O(1), as dependencies remain strictly on the server."
       }
     },
     {
