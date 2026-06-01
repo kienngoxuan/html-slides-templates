@@ -4,12 +4,13 @@
     "subtitle": "Global Infrastructure & Product Rollout",
     "author": "VP of Engineering & Strategy",
     "date": "2026",
-    "theme": "forest",
+    "theme": "newspaper",
     "duration": 20,
     "context": {
       "$ref": "context-executive",
       "topic": "Global SaaS Expansion",
-      "primaryColor": "#16a34a"
+      "primaryColor": "#78350f",
+      "stylePack": "museum-label"
     }
   },
   "slides": [
