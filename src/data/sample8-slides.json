@@ -4,7 +4,7 @@
     "subtitle": "Architectures for next-generation LLM orchestration.",
     "author": "AI Engineering Labs",
     "date": "2026",
-    "theme": "nordic",
+    "theme": "terminal",
     "duration": 30,
     "context": {
       "audience": "Software Engineers",
@@ -15,8 +15,8 @@
       "rhythmPreset": "deep-dive",
       "textDensity": "high",
       "exampleDensity": "high",
-      "primaryColor": "#0f766e",
-      "stylePack": "brutalist-clean"
+      "primaryColor": "#22c55e",
+      "stylePack": "retro-terminal"
     }
   },
   "slides": [
