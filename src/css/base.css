@@ -198,58 +198,6 @@ pre code {
   gap: var(--space-sm);
 }
 
-/* === Theme Switcher === */
-.theme-switcher {
-  position: fixed;
-  top: var(--space-md);
-  right: var(--space-md);
-  z-index: 1002;
-  display: flex;
-  gap: var(--space-xs);
-  padding: var(--space-xs);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--radius-full);
-  backdrop-filter: blur(12px);
-  box-shadow: var(--shadow-md);
-}
-
-.theme-dot {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 2px solid transparent;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-  position: relative;
-}
-
-.theme-dot:hover {
-  transform: scale(1.2);
-}
-
-.theme-dot.active {
-  border-color: var(--color-text);
-  box-shadow: 0 0 0 2px var(--color-surface), 0 0 0 4px var(--color-text);
-}
-
-.theme-dot[data-theme="ocean"]      { background: oklch(55% 0.12 250); }
-.theme-dot[data-theme="forest"]     { background: oklch(55% 0.15 150); }
-.theme-dot[data-theme="berry"]      { background: oklch(55% 0.22 350); }
-.theme-dot[data-theme="slate"]      { background: oklch(45% 0.05 260); }
-.theme-dot[data-theme="neon"]       { background: oklch(60% 0.25 280); }
-.theme-dot[data-theme="paper"]      { background: oklch(50% 0.12 45); }
-.theme-dot[data-theme="nordic"]     { background: oklch(55% 0.08 230); }
-.theme-dot[data-theme="sunset"]     { background: oklch(55% 0.18 25); }
-/* Design Language Packs */
-.theme-dot[data-theme="editorial"]  { background: oklch(52% 0.22 30); }
-.theme-dot[data-theme="newspaper"]  { background: oklch(25% 0.02 60); }
-.theme-dot[data-theme="brutalist"]  { background: oklch(62% 0.30 0); }
-.theme-dot[data-theme="pastel"]     { background: oklch(62% 0.16 300); }
-.theme-dot[data-theme="monochrome"] { background: oklch(25% 0 0); }
-.theme-dot[data-theme="terminal"]   { background: oklch(70% 0.25 145); }
-.theme-dot[data-theme="blueprint"]  { background: oklch(72% 0.06 220); }
-.theme-dot[data-theme="blackboard"] { background: oklch(88% 0.04 165); }
 
 /* === Presenter Toggle === */
 .presenter-toggle {
