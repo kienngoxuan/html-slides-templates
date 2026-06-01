@@ -49,18 +49,16 @@
     },
     {
       "id": "slide-3",
-      "type": "bullets",
+      "type": "quote-card",
       "transitionPreset": "flip-y",
       "data": {
-        "heading": "Core Cinematic Mechanics",
-        "icon": "⚙️",
-        "items": [
-          {"text": "3D Cinematic Space Rotation", "detail": "Lifting the slide canvas with real perspective calculations creates instant production value."},
-          {"text": "Spring-Based Fluid Reveal", "detail": "Bullet items use custom bezier keyframes that simulate spring mass physics on entry."},
-          {"text": "High-Contrast Glass Panels", "detail": "Combining glassmorphism backgrounds with deep color themes ensures excellent readable contrast."},
-          {"text": "Dynamic Neon Glows", "detail": "Using CSS drop-shadows and box-shadows to simulate light emitting from elements."}
-        ],
-        "speakerNotes": "Notice how all elements cascade on entering. Every single item springs upward individually."
+        "heading": "The Director's Perspective",
+        "icon": "🎥",
+        "quote": "Good design is like a good film score. You shouldn't notice it until it makes you feel something profound.",
+        "author": "Denis Villeneuve",
+        "role": "Cinematic Visionary",
+        "avatarUrl": "https://i.pravatar.cc/150?u=a042581f4e29026704d",
+        "speakerNotes": "A great quote sets the tone. Our quote-card block automatically parses the avatar and styles the attribution."
       }
     },
     {
@@ -79,23 +77,16 @@
       }
     },
     {
-      "$ref": "slide-flow",
       "id": "slide-5",
+      "type": "video",
+      "transitionPreset": "zoom-in",
       "data": {
-        "heading": "Rendering Pipeline",
-        "icon": "🔄",
-        "nodes": [
-          {"id": "data", "label": "Data Ingestion", "details": "Real-time telemetry streams from sensors."},
-          {"id": "parse", "label": "Parser Engine", "details": "Normalizing data into unified JSON structures."},
-          {"id": "render", "label": "WebGL Renderer", "details": "Hardware-accelerated drawing of complex geometries."},
-          {"id": "post", "label": "Post-Processing", "details": "Applying bloom, chromatic aberration, and film grain."}
-        ],
-        "connections": [
-          {"from": "data", "to": "parse"},
-          {"from": "parse", "to": "render"},
-          {"from": "render", "to": "post"}
-        ],
-        "speakerNotes": "Watch the connections draw themselves. This simulates data flowing through the system."
+        "heading": "Cinematic B-Roll Showcase",
+        "icon": "🎬",
+        "videoType": "youtube",
+        "videoId": "1La4QzGeaaQ",
+        "caption": "Example of high-end cinematic drone footage establishing the scene.",
+        "speakerNotes": "We integrated the video block here. It effortlessly frames native HTML5 video or YouTube embeds with our beautiful glass borders."
       }
     },
     {
@@ -175,17 +166,18 @@
     },
     {
       "id": "slide-10",
-      "type": "timeline-horizontal",
+      "type": "stepper",
       "transitionPreset": "fade",
       "data": {
-        "heading": "Timeline of the Neo-Tokyo Rollout",
-        "icon": "🚀",
-        "events": [
-          {"year": "Phase 1", "title": "Concept & Moodboards", "description": "Defining the visual language and color palette."},
-          {"year": "Phase 2", "title": "Component Library", "description": "Building reusable SVG and CSS elements."},
-          {"year": "Phase 3", "title": "Animation Prototyping", "description": "Tuning spring physics and transition timings."},
-          {"year": "Phase 4", "title": "Integration & Launch", "description": "Deploying the interface to production environments."}
-        ]
+        "heading": "Production Lifecycle Steps",
+        "icon": "🎬",
+        "steps": [
+          {"title": "1. Storyboarding", "content": "Mapping out the visual sequence and keyframes before touching any code."},
+          {"title": "2. Block Assembly", "content": "Selecting the right primitive layouts and composites from the Lecta component registry."},
+          {"title": "3. Motion Design", "content": "Tuning the cubic-bezier easing curves and adding high-contrast cinematic CSS filters."},
+          {"title": "4. Final Render", "content": "Compiling the final JSON presentation into optimized, client-side rendered HTML."}
+        ],
+        "speakerNotes": "This stepper block allows you to interactively step through the production lifecycle. Click 'Next' to advance the step."
       }
     },
     {

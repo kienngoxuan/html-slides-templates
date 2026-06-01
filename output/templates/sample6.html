@@ -3452,694 +3452,6 @@ body.sidebar-open .slides-viewport {
   border-color: var(--color-primary);
 }
 
-/* === IMAGE BLOCK === */
-.image-block-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-md);
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.image-box-wrapper {
-  position: relative;
-  width: 100%;
-  height: 380px;
-  background: var(--color-bg-alt);
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-md);
-  transition: all var(--transition-base);
-}
-
-.image-box-wrapper:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--color-primary-alpha);
-}
-
-.interactive-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.image-box-wrapper:hover .interactive-image {
-  transform: scale(1.03);
-}
-
-.edit-image-overlay-btn {
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-  background: rgba(0, 0, 0, 0.75);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  padding: 0.6rem 1.1rem;
-  border-radius: var(--radius-full);
-  font-family: var(--font-body);
-  font-size: 0.8rem;
-  font-weight: 600;
-  cursor: pointer;
-  backdrop-filter: blur(8px);
-  transition: all var(--transition-fast);
-  opacity: 0.85;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.edit-image-overlay-btn:hover {
-  opacity: 1;
-  background: var(--color-primary);
-  border-color: var(--color-primary);
-  transform: scale(1.05);
-}
-
-.image-url-editor {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.55);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-lg);
-  z-index: 5;
-}
-
-.image-url-editor-panel {
-  width: min(520px, 92%);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-  padding: var(--space-lg);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
-}
-
-.image-url-editor-label {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--color-text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-.image-url-editor-input {
-  width: 100%;
-  padding: var(--space-sm) var(--space-md);
-  border-radius: var(--radius-md);
-  border: 1px solid var(--color-border);
-  background: var(--color-bg-alt);
-  color: var(--color-text);
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-}
-
-.image-url-editor-input:focus {
-  outline: none;
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px var(--color-primary-alpha);
-}
-
-.image-url-editor-actions {
-  display: flex;
-  gap: var(--space-sm);
-  justify-content: flex-end;
-  margin-top: var(--space-sm);
-}
-
-.image-caption {
-  font-size: 0.9rem;
-  color: var(--color-text-muted);
-  font-style: italic;
-  text-align: center;
-}
-
-
-/* === CHARTS BLOCK === */
-.chart-block-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-lg);
-  width: 100%;
-  max-width: 750px;
-  margin: 0 auto;
-}
-
-.chart-canvas-wrapper {
-  width: 100%;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--radius-lg);
-  padding: var(--space-lg);
-  box-shadow: var(--shadow-md);
-  backdrop-filter: blur(12px);
-  overflow: visible;
-}
-
-.svg-chart {
-  width: 100%;
-  height: auto;
-  overflow: visible;
-}
-
-.chart-legend {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: var(--space-md);
-  margin-top: var(--space-sm);
-}
-
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: var(--space-xs);
-  cursor: pointer;
-  padding: var(--space-xs) var(--space-sm);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--radius-full);
-  font-size: 0.85rem;
-  font-weight: 500;
-  transition: all var(--transition-fast);
-}
-
-.legend-item:hover {
-  background: var(--color-surface-hover);
-  border-color: var(--color-primary-alpha);
-}
-
-.legend-item.inactive {
-  opacity: 0.5;
-  text-decoration: line-through;
-}
-
-.legend-color {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-}
-
-
-/* === TABLES BLOCK === */
-.table-block-container {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
-  width: 100%;
-  max-width: 850px;
-  margin: 0 auto;
-}
-
-.table-actions {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.table-search-input {
-  width: 250px;
-  padding: var(--space-sm) var(--space-md);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  color: var(--color-text);
-  font-family: var(--font-body);
-  font-size: 0.9rem;
-  transition: all var(--transition-fast);
-}
-
-.table-search-input:focus {
-  outline: none;
-  border-color: var(--color-primary);
-  box-shadow: var(--shadow-glow);
-}
-
-.table-responsive-wrapper {
-  width: 100%;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-md);
-  backdrop-filter: blur(12px);
-}
-
-.glass-table {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: left;
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-}
-
-.glass-table th,
-.glass-table td {
-  padding: var(--space-md) var(--space-lg);
-  border-bottom: 1px solid var(--color-border-light);
-}
-
-.glass-table th {
-  background: color-mix(in oklch, var(--color-bg-alt) 60%, transparent);
-  font-weight: 600;
-  color: var(--color-text);
-  cursor: pointer;
-  user-select: none;
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  transition: all var(--transition-fast);
-}
-
-.glass-table th:hover {
-  background: var(--color-surface-hover);
-  color: var(--color-primary);
-}
-
-.sort-indicator {
-  margin-left: var(--space-xs);
-  color: var(--color-text-muted);
-  font-size: 0.75rem;
-}
-
-.asc-sort .sort-indicator,
-.desc-sort .sort-indicator {
-  color: var(--color-primary);
-}
-
-.glass-table tbody tr {
-  transition: background var(--transition-fast);
-}
-
-.glass-table tbody tr:hover {
-  background: var(--color-surface-hover);
-}
-
-.progress-cell-wrapper {
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-  min-width: 120px;
-}
-
-.progress-cell-bar {
-  flex: 1;
-  height: 8px;
-  background: var(--color-border-light);
-  border-radius: var(--radius-full);
-  overflow: hidden;
-}
-
-.progress-cell-fill {
-  height: 100%;
-  background: var(--gradient-primary);
-  border-radius: var(--radius-full);
-  transition: width 0.8s ease-out;
-}
-
-.progress-cell-text {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--color-text-secondary);
-  font-weight: 600;
-  width: 35px;
-  text-align: right;
-}
-
-.badge-pill {
-  display: inline-flex;
-  padding: var(--space-xs) var(--space-sm);
-  border-radius: var(--radius-full);
-  font-size: 0.75rem;
-  font-weight: 600;
-}
-
-.badge-pill.pill-success {
-  background: color-mix(in oklch, var(--color-success) 12%, var(--color-surface));
-  color: var(--color-success);
-  border: 1px solid color-mix(in oklch, var(--color-success) 30%, transparent);
-}
-
-.badge-pill.pill-warning {
-  background: color-mix(in oklch, var(--color-warning) 12%, var(--color-surface));
-  color: var(--color-warning);
-  border: 1px solid color-mix(in oklch, var(--color-warning) 30%, transparent);
-}
-
-.badge-pill.pill-danger {
-  background: color-mix(in oklch, var(--color-error) 12%, var(--color-surface));
-  color: var(--color-error);
-  border: 1px solid color-mix(in oklch, var(--color-error) 30%, transparent);
-}
-
-.badge-pill.pill-primary {
-  background: color-mix(in oklch, var(--color-primary) 12%, var(--color-surface));
-  color: var(--color-primary);
-  border: 1px solid color-mix(in oklch, var(--color-primary) 30%, transparent);
-}
-
-.code-cell {
-  background: var(--color-bg-alt);
-  border: 1px solid var(--color-border-light);
-  padding: var(--space-xs) var(--space-sm);
-  border-radius: var(--radius-sm);
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  color: var(--color-text-secondary);
-}
-
-
-/* === BENTO GRID BLOCK === */
-.bento-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: minmax(140px, auto);
-  gap: var(--space-md);
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.bento-card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border-light);
-  border-radius: 20px;
-  padding: var(--space-lg);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  position: relative;
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  transition: all var(--transition-base);
-  min-height: 150px;
-}
-
-.bento-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.45));
-  opacity: 0.5;
-  transition: opacity var(--transition-base);
-  z-index: 1;
-  pointer-events: none;
-}
-
-.bento-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--color-primary-alpha);
-}
-
-.bento-card:hover::before {
-  opacity: 0.7;
-}
-
-.bento-card-content {
-  position: relative;
-  z-index: 2;
-  margin-top: auto;
-}
-
-.bento-card-content h3 {
-  font-family: var(--font-heading);
-  font-size: 1.15rem;
-  font-weight: 700;
-  margin-bottom: var(--space-xs);
-  color: var(--color-text);
-  transition: color var(--transition-fast);
-}
-
-.bento-card-content p {
-  font-size: 0.85rem;
-  color: var(--color-text-secondary);
-  line-height: 1.5;
-  margin: 0;
-}
-
-.bento-badge {
-  position: absolute;
-  top: var(--space-md);
-  right: var(--space-md);
-  padding: var(--space-xs) var(--space-sm);
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(4px);
-  border-radius: var(--radius-full);
-  font-size: 0.7rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  z-index: 2;
-}
-
-.bento-icon {
-  font-size: 1.8rem;
-  margin-bottom: var(--space-sm);
-  z-index: 2;
-  display: block;
-}
-
-/* Auto Contrast Overrides for Bento Cards with Custom Background Gradients */
-.bento-card-gradient {
-  color: #ffffff !important;
-  border-color: rgba(255, 255, 255, 0.15) !important;
-}
-.bento-card-gradient .bento-card-content h3 {
-  color: #ffffff !important;
-}
-.bento-card-gradient .bento-card-content p {
-  color: rgba(255, 255, 255, 0.85) !important;
-}
-.bento-card-gradient .bento-icon {
-  color: #ffffff !important;
-}
-.bento-card-gradient::before {
-  background: linear-gradient(180deg, transparent 30%, rgba(0, 0, 0, 0.65)) !important;
-}
-
-/* Bento size variants based on templates */
-.bento-card.bento-size-large {
-  grid-column: span 2;
-  grid-row: span 2;
-  min-height: 300px;
-}
-
-.bento-card.bento-size-medium {
-  grid-column: span 2;
-}
-
-.bento-card.bento-size-small {
-  grid-column: span 1;
-}
-
-@media (max-width: 768px) {
-  .bento-grid {
-    grid-template-columns: 1fr;
-    grid-auto-rows: auto;
-  }
-  .bento-card.bento-size-large,
-  .bento-card.bento-size-medium,
-  .bento-card.bento-size-small {
-    grid-column: span 1;
-    grid-row: span 1;
-    min-height: 180px;
-  }
-}
-
-
-/* === FLOW BLOCK === */
-.flow-block-container {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.flow-layout-wrapper {
-  width: 100%;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
-  overflow: hidden;
-  backdrop-filter: blur(12px);
-}
-
-.flow-svg-canvas {
-  width: 100%;
-  height: auto;
-  overflow: visible;
-}
-
-.flow-detail-panel {
-  padding: var(--space-lg);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border-light);
-  background: var(--color-surface);
-  min-height: 90px;
-  display: flex;
-  align-items: center;
-}
-
-.flow-detail-default-msg {
-  color: var(--color-text-muted);
-  font-style: italic;
-  font-size: 0.9rem;
-  width: 100%;
-  text-align: center;
-}
-
-.flow-detail-content {
-  animation: fadeSlideUp 300ms ease;
-  width: 100%;
-}
-
-.flow-detail-title {
-  color: var(--color-primary);
-  font-family: var(--font-heading);
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin-bottom: var(--space-xs);
-}
-
-.flow-detail-desc {
-  font-size: 0.9rem;
-  color: var(--color-text-secondary);
-  line-height: 1.6;
-  margin: 0;
-}
-
-.flow-node-group rect:hover {
-  stroke: var(--color-primary);
-  fill: var(--color-surface-hover);
-}
-
-/* === Canva-style Chart Tooltips === */
-.chart-tooltip {
-  position: fixed;
-  pointer-events: none;
-  background: color-mix(in oklch, var(--color-surface) 85%, black);
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--radius-md);
-  padding: var(--space-xs) var(--space-sm);
-  font-size: 0.8rem;
-  font-family: var(--font-body);
-  color: var(--color-text);
-  box-shadow: var(--shadow-md);
-  backdrop-filter: blur(12px);
-  z-index: 100050;
-  opacity: 0;
-  transform: scale(0.9) translate(-50%, -100%);
-  transition: opacity 0.15s ease, transform 0.15s ease;
-  margin-top: -12px;
-  white-space: nowrap;
-}
-
-.chart-tooltip.visible {
-  opacity: 1;
-  transform: scale(1) translate(-50%, -100%);
-}
-
-/* Split Grid Layouts */
-.split-layout-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-xl);
-  align-items: center;
-  margin-top: var(--space-md);
-}
-
-.split-layout-container.split-40-60 { grid-template-columns: 4fr 6fr; }
-.split-layout-container.split-60-40 { grid-template-columns: 6fr 4fr; }
-
-.split-column {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
-  height: 100%;
-  justify-content: center;
-}
-
-@media (max-width: 768px) {
-  .split-layout-container {
-    grid-template-columns: 1fr !important;
-    gap: var(--space-lg);
-  }
-}
-
-/* Math (KaTeX Equation) Block Styling */
-.math-block-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-xl);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  margin: var(--space-md) auto;
-  max-width: 650px;
-  box-shadow: var(--shadow-sm);
-}
-
-.math-display-equation {
-  font-size: 1.8rem;
-  color: var(--color-primary);
-  margin: var(--space-md) 0;
-  overflow-x: auto;
-  width: 100%;
-  text-align: center;
-}
-
-.math-explanation {
-  font-size: 0.9rem;
-  color: var(--color-text-secondary);
-  text-align: center;
-}
-
-/* Mermaid Flowcharts Block Styling */
-.mermaid-block-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-md);
-  margin: var(--space-md) auto;
-  width: 100%;
-  max-width: 800px;
-  box-shadow: var(--shadow-sm);
-  overflow: auto;
-}
-
-.mermaid-diagram-wrapper {
-  width: 100%;
-  min-height: 250px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.mermaid {
-  white-space: pre;
-}
-
-
-
 /* ============================================
    LECTA AI — Premium Block Styles (Phase 1 MVP)
    quote-card, definition-card, analogy, stats,
@@ -5028,6 +4340,694 @@ body.sidebar-open .slides-viewport {
 [data-theme="pastel"] .bullet-item {
   box-shadow: 0 4px 20px oklch(62% 0.16 300 / 0.10);
 }
+
+
+/* === IMAGE BLOCK === */
+.image-block-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.image-box-wrapper {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-base);
+}
+
+.image-box-wrapper:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary-alpha);
+}
+
+.interactive-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.image-box-wrapper:hover .interactive-image {
+  transform: scale(1.03);
+}
+
+.edit-image-overlay-btn {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 0.6rem 1.1rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: all var(--transition-fast);
+  opacity: 0.85;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.edit-image-overlay-btn:hover {
+  opacity: 1;
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  transform: scale(1.05);
+}
+
+.image-url-editor {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+  z-index: 5;
+}
+
+.image-url-editor-panel {
+  width: min(520px, 92%);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.image-url-editor-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.image-url-editor-input {
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-alt);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+}
+
+.image-url-editor-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-alpha);
+}
+
+.image-url-editor-actions {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: flex-end;
+  margin-top: var(--space-sm);
+}
+
+.image-caption {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+  text-align: center;
+}
+
+
+/* === CHARTS BLOCK === */
+.chart-block-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  width: 100%;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.chart-canvas-wrapper {
+  width: 100%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(12px);
+  overflow: visible;
+}
+
+.svg-chart {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.chart-legend {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin-top: var(--space-sm);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  cursor: pointer;
+  padding: var(--space-xs) var(--space-sm);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.legend-item:hover {
+  background: var(--color-surface-hover);
+  border-color: var(--color-primary-alpha);
+}
+
+.legend-item.inactive {
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+
+/* === TABLES BLOCK === */
+.table-block-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.table-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.table-search-input {
+  width: 250px;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  transition: all var(--transition-fast);
+}
+
+.table-search-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-glow);
+}
+
+.table-responsive-wrapper {
+  width: 100%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(12px);
+}
+
+.glass-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+}
+
+.glass-table th,
+.glass-table td {
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.glass-table th {
+  background: color-mix(in oklch, var(--color-bg-alt) 60%, transparent);
+  font-weight: 600;
+  color: var(--color-text);
+  cursor: pointer;
+  user-select: none;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all var(--transition-fast);
+}
+
+.glass-table th:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-primary);
+}
+
+.sort-indicator {
+  margin-left: var(--space-xs);
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+}
+
+.asc-sort .sort-indicator,
+.desc-sort .sort-indicator {
+  color: var(--color-primary);
+}
+
+.glass-table tbody tr {
+  transition: background var(--transition-fast);
+}
+
+.glass-table tbody tr:hover {
+  background: var(--color-surface-hover);
+}
+
+.progress-cell-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  min-width: 120px;
+}
+
+.progress-cell-bar {
+  flex: 1;
+  height: 8px;
+  background: var(--color-border-light);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progress-cell-fill {
+  height: 100%;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-full);
+  transition: width 0.8s ease-out;
+}
+
+.progress-cell-text {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  font-weight: 600;
+  width: 35px;
+  text-align: right;
+}
+
+.badge-pill {
+  display: inline-flex;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badge-pill.pill-success {
+  background: color-mix(in oklch, var(--color-success) 12%, var(--color-surface));
+  color: var(--color-success);
+  border: 1px solid color-mix(in oklch, var(--color-success) 30%, transparent);
+}
+
+.badge-pill.pill-warning {
+  background: color-mix(in oklch, var(--color-warning) 12%, var(--color-surface));
+  color: var(--color-warning);
+  border: 1px solid color-mix(in oklch, var(--color-warning) 30%, transparent);
+}
+
+.badge-pill.pill-danger {
+  background: color-mix(in oklch, var(--color-error) 12%, var(--color-surface));
+  color: var(--color-error);
+  border: 1px solid color-mix(in oklch, var(--color-error) 30%, transparent);
+}
+
+.badge-pill.pill-primary {
+  background: color-mix(in oklch, var(--color-primary) 12%, var(--color-surface));
+  color: var(--color-primary);
+  border: 1px solid color-mix(in oklch, var(--color-primary) 30%, transparent);
+}
+
+.code-cell {
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border-light);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
+
+/* === BENTO GRID BLOCK === */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(140px, auto);
+  gap: var(--space-md);
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.bento-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: 20px;
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-base);
+  min-height: 150px;
+}
+
+.bento-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.45));
+  opacity: 0.5;
+  transition: opacity var(--transition-base);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.bento-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary-alpha);
+}
+
+.bento-card:hover::before {
+  opacity: 0.7;
+}
+
+.bento-card-content {
+  position: relative;
+  z-index: 2;
+  margin-top: auto;
+}
+
+.bento-card-content h3 {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: var(--space-xs);
+  color: var(--color-text);
+  transition: color var(--transition-fast);
+}
+
+.bento-card-content p {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.bento-badge {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  padding: var(--space-xs) var(--space-sm);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(4px);
+  border-radius: var(--radius-full);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 2;
+}
+
+.bento-icon {
+  font-size: 1.8rem;
+  margin-bottom: var(--space-sm);
+  z-index: 2;
+  display: block;
+}
+
+/* Auto Contrast Overrides for Bento Cards with Custom Background Gradients */
+.bento-card-gradient {
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+.bento-card-gradient .bento-card-content h3 {
+  color: #ffffff !important;
+}
+.bento-card-gradient .bento-card-content p {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+.bento-card-gradient .bento-icon {
+  color: #ffffff !important;
+}
+.bento-card-gradient::before {
+  background: linear-gradient(180deg, transparent 30%, rgba(0, 0, 0, 0.65)) !important;
+}
+
+/* Bento size variants based on templates */
+.bento-card.bento-size-large {
+  grid-column: span 2;
+  grid-row: span 2;
+  min-height: 300px;
+}
+
+.bento-card.bento-size-medium {
+  grid-column: span 2;
+}
+
+.bento-card.bento-size-small {
+  grid-column: span 1;
+}
+
+@media (max-width: 768px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+  }
+  .bento-card.bento-size-large,
+  .bento-card.bento-size-medium,
+  .bento-card.bento-size-small {
+    grid-column: span 1;
+    grid-row: span 1;
+    min-height: 180px;
+  }
+}
+
+
+/* === FLOW BLOCK === */
+.flow-block-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.flow-layout-wrapper {
+  width: 100%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+}
+
+.flow-svg-canvas {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.flow-detail-panel {
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-light);
+  background: var(--color-surface);
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+}
+
+.flow-detail-default-msg {
+  color: var(--color-text-muted);
+  font-style: italic;
+  font-size: 0.9rem;
+  width: 100%;
+  text-align: center;
+}
+
+.flow-detail-content {
+  animation: fadeSlideUp 300ms ease;
+  width: 100%;
+}
+
+.flow-detail-title {
+  color: var(--color-primary);
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: var(--space-xs);
+}
+
+.flow-detail-desc {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.flow-node-group rect:hover {
+  stroke: var(--color-primary);
+  fill: var(--color-surface-hover);
+}
+
+/* === Canva-style Chart Tooltips === */
+.chart-tooltip {
+  position: fixed;
+  pointer-events: none;
+  background: color-mix(in oklch, var(--color-surface) 85%, black);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-xs) var(--space-sm);
+  font-size: 0.8rem;
+  font-family: var(--font-body);
+  color: var(--color-text);
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(12px);
+  z-index: 100050;
+  opacity: 0;
+  transform: scale(0.9) translate(-50%, -100%);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  margin-top: -12px;
+  white-space: nowrap;
+}
+
+.chart-tooltip.visible {
+  opacity: 1;
+  transform: scale(1) translate(-50%, -100%);
+}
+
+/* Split Grid Layouts */
+.split-layout-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+  margin-top: var(--space-md);
+}
+
+.split-layout-container.split-40-60 { grid-template-columns: 4fr 6fr; }
+.split-layout-container.split-60-40 { grid-template-columns: 6fr 4fr; }
+
+.split-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  height: 100%;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .split-layout-container {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-lg);
+  }
+}
+
+/* Math (KaTeX Equation) Block Styling */
+.math-block-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  margin: var(--space-md) auto;
+  max-width: 650px;
+  box-shadow: var(--shadow-sm);
+}
+
+.math-display-equation {
+  font-size: 1.8rem;
+  color: var(--color-primary);
+  margin: var(--space-md) 0;
+  overflow-x: auto;
+  width: 100%;
+  text-align: center;
+}
+
+.math-explanation {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+/* Mermaid Flowcharts Block Styling */
+.mermaid-block-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  margin: var(--space-md) auto;
+  width: 100%;
+  max-width: 800px;
+  box-shadow: var(--shadow-sm);
+  overflow: auto;
+}
+
+.mermaid-diagram-wrapper {
+  width: 100%;
+  min-height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mermaid {
+  white-space: pre;
+}
+
 
 
 /* ==========================================================================
@@ -5958,7 +5958,7 @@ body.viewport-mode-mobile .table-actions {
   </div>
 
   <script type="application/json" id="lesson-context-data">{"audience":"Creative Designers","topic":"Cinematic Presenter Masterclass","lessonLength":15,"tone":"warm","pace":"slow","rhythmPreset":"beginner-friendly","textDensity":"low","exampleDensity":"high","primaryColor":"#ef0000","stylePack":"brutalist-bold"}</script>
-  <script type="application/json" id="slide-data">{"meta":{"title":"Cinematic Presenter Masterclass","subtitle":"High-Impact Visuals & 3D Transitions","author":"Lecta AI Creative Suite","date":"2026","theme":"brutalist","duration":15,"context":{"audience":"Creative Designers","topic":"Cinematic Presenter Masterclass","lessonLength":15,"tone":"warm","pace":"slow","rhythmPreset":"beginner-friendly","textDensity":"low","exampleDensity":"high","primaryColor":"#ef0000","stylePack":"brutalist-bold"}},"slides":[{"id":"slide-1","type":"title","transitionPreset":"flip-y","data":{"heading":"Hollywood HUDs in the Browser","subtitle":"Bringing 3D perspective and key-frame physics to web slides.","badge":"Masterclass · Cinematic Flow","speakerNotes":"Press next to trigger the high-end 3D perspective Flip-Y transition. Notice the sheer depth and organic feel of the motion."}},{"id":"slide-2","type":"timeline","transitionPreset":"fade","data":{"heading":"History of UI in Films","icon":"🎬","events":[{"year":"1999","title":"The Matrix","description":"Green falling code became the universal symbol for hacking and cyberpunk interfaces."},{"year":"2002","title":"Minority Report","description":"Popularized gesture-based spatial interfaces and predictive analytics dashboards."},{"year":"2008","title":"Iron Man","description":"Introduced highly complex, layered, glowing holographic user interfaces (HUDs)."},{"year":"2013","title":"Oblivion","description":"Showcased sleek, minimal, data-dense interfaces with smooth glassmorphic elements."}],"speakerNotes":"Walk through the timeline. Note how film UI has influenced real-world interface design."}},{"id":"slide-3","type":"bullets","transitionPreset":"flip-y","data":{"heading":"Core Cinematic Mechanics","icon":"⚙️","items":[{"text":"3D Cinematic Space Rotation","detail":"Lifting the slide canvas with real perspective calculations creates instant production value."},{"text":"Spring-Based Fluid Reveal","detail":"Bullet items use custom bezier keyframes that simulate spring mass physics on entry."},{"text":"High-Contrast Glass Panels","detail":"Combining glassmorphism backgrounds with deep color themes ensures excellent readable contrast."},{"text":"Dynamic Neon Glows","detail":"Using CSS drop-shadows and box-shadows to simulate light emitting from elements."}],"speakerNotes":"Notice how all elements cascade on entering. Every single item springs upward individually."}},{"type":"bento","transitionPreset":"zoom-in","id":"slide-4","data":{"heading":"The Bento Hud Blueprint","icon":"🍱","gridTemplate":"large | small small","items":[{"size":"large","title":"Central Data Hub","content":"The primary focus area, utilizing deep glowing borders and high-contrast typography to draw the eye immediately.","badge":"Core Interface","bgGradient":"oklch(25% 0.2 300) to oklch(15% 0.1 280)"},{"size":"small","title":"Peripheral Metrics","content":"Secondary data streams pulsing with neon accents.","icon":"📊"},{"size":"small","title":"System Status","content":"Minimalist indicators reflecting real-time operational health.","icon":"⚡"}],"speakerNotes":"Explain the bento layout. It's asymmetric, which is a hallmark of modern sci-fi interfaces."}},{"type":"flow","transitionPreset":"fade","id":"slide-5","data":{"heading":"Rendering Pipeline","icon":"🔄","nodes":[{"id":"data","label":"Data Ingestion","details":"Real-time telemetry streams from sensors."},{"id":"parse","label":"Parser Engine","details":"Normalizing data into unified JSON structures."},{"id":"render","label":"WebGL Renderer","details":"Hardware-accelerated drawing of complex geometries."},{"id":"post","label":"Post-Processing","details":"Applying bloom, chromatic aberration, and film grain."}],"connections":[{"from":"data","to":"parse"},{"from":"parse","to":"render"},{"from":"render","to":"post"}],"speakerNotes":"Watch the connections draw themselves. This simulates data flowing through the system."}},{"id":"slide-6","type":"split","transitionPreset":"flip-y","data":{"heading":"HTML5 Canvas vs SVG Drawing","icon":"⚖️","layout":"split-50-50","left":{"type":"bullets","data":{"heading":"HTML5 Canvas","items":["Pixel-based, incredibly fast for thousands of objects.","Requires manual redraw loops for animation.","No DOM nodes, harder to attach events.","Best for particles, complex shaders, and games."]}},"right":{"type":"bullets","data":{"heading":"SVG Drawing","items":["Vector-based, infinitely scalable without blur.","Native DOM integration for CSS styling and events.","Can be sluggish with too many complex paths.","Perfect for charts, graphs, and UI components."]}},"speakerNotes":"A classic debate for UI engineers. We use SVG for structural clarity and Canvas for high-performance visual effects."}},{"type":"code-diff","transitionPreset":"fade","id":"slide-7","data":{"heading":"Prism Code Snippets","icon":"💻","leftTitle":"Standard CSS","leftLang":"css","leftCode":".hud-element {\n  border: 1px solid blue;\n  background: rgba(0,0,255,0.1);\n}","rightTitle":"Cinematic CSS","rightLang":"css","rightCode":".hud-element {\n  border: 1px solid var(--neon-blue);\n  background: color-mix(in oklch, var(--neon-blue) 10%, transparent);\n  box-shadow: 0 0 15px var(--neon-blue);\n  backdrop-filter: blur(8px);\n}"}},{"type":"quiz","transitionPreset":"zoom-in","id":"slide-8","data":{"heading":"HUD Usability Challenge","icon":"❓","questions":[{"question":"What is the primary risk of using highly stylized, cinematic interfaces in functional applications?","correct":2,"options":["They require too much server bandwidth.","They are impossible to build with standard web technologies.","They can prioritize aesthetics over readability and user efficiency.","They cause hardware damage to older monitors."],"explanation":"While beautiful, excessive glows, low contrast, and complex animations can fatigue users and obscure critical data."}]}},{"id":"slide-9","type":"bento","transitionPreset":"flip-y","data":{"heading":"Case Study: The Neo-Tokyo HUD","icon":"🏙️","gridTemplate":"large | small small","items":[{"size":"large","title":"Cyberpunk Aesthetics","content":"Deep purples and harsh neon cyans create a classic dystopian metropolis feel, utilizing sharp angles and glitch animations.","badge":"Design System","bgGradient":"oklch(30% 0.25 320) to oklch(20% 0.15 260)"},{"size":"small","title":"Glitch Effects","content":"CSS keyframes displacing text to simulate signal interference.","icon":"🌩️"},{"size":"small","title":"Holographic Grids","content":"Background patterns using repeating linear gradients.","icon":"🌐"}]}},{"id":"slide-10","type":"timeline-horizontal","transitionPreset":"fade","data":{"heading":"Timeline of the Neo-Tokyo Rollout","icon":"🚀","events":[{"year":"Phase 1","title":"Concept & Moodboards","description":"Defining the visual language and color palette."},{"year":"Phase 2","title":"Component Library","description":"Building reusable SVG and CSS elements."},{"year":"Phase 3","title":"Animation Prototyping","description":"Tuning spring physics and transition timings."},{"year":"Phase 4","title":"Integration & Launch","description":"Deploying the interface to production environments."}]}},{"id":"slide-11","type":"summary","transitionPreset":"flip-y","data":{"heading":"Cinematic Wrap-Up","icon":"🏁","items":["Cinematic UI elevates the user experience through depth and motion.","Balance aesthetics with usability; don't let design obscure data.","Leverage modern CSS (OKLCH, filters) for performant visual effects.","Use spring physics for organic, satisfying interactions."],"callToAction":"Start building your own futuristic interfaces!","resources":[{"label":"UI/UX Design Principles","url":"#"},{"label":"Advanced CSS Animation Guide","url":"#"}]}}]}</script>
+  <script type="application/json" id="slide-data">{"meta":{"title":"Cinematic Presenter Masterclass","subtitle":"High-Impact Visuals & 3D Transitions","author":"Lecta AI Creative Suite","date":"2026","theme":"brutalist","duration":15,"context":{"audience":"Creative Designers","topic":"Cinematic Presenter Masterclass","lessonLength":15,"tone":"warm","pace":"slow","rhythmPreset":"beginner-friendly","textDensity":"low","exampleDensity":"high","primaryColor":"#ef0000","stylePack":"brutalist-bold"}},"slides":[{"id":"slide-1","type":"title","transitionPreset":"flip-y","data":{"heading":"Hollywood HUDs in the Browser","subtitle":"Bringing 3D perspective and key-frame physics to web slides.","badge":"Masterclass · Cinematic Flow","speakerNotes":"Press next to trigger the high-end 3D perspective Flip-Y transition. Notice the sheer depth and organic feel of the motion."}},{"id":"slide-2","type":"timeline","transitionPreset":"fade","data":{"heading":"History of UI in Films","icon":"🎬","events":[{"year":"1999","title":"The Matrix","description":"Green falling code became the universal symbol for hacking and cyberpunk interfaces."},{"year":"2002","title":"Minority Report","description":"Popularized gesture-based spatial interfaces and predictive analytics dashboards."},{"year":"2008","title":"Iron Man","description":"Introduced highly complex, layered, glowing holographic user interfaces (HUDs)."},{"year":"2013","title":"Oblivion","description":"Showcased sleek, minimal, data-dense interfaces with smooth glassmorphic elements."}],"speakerNotes":"Walk through the timeline. Note how film UI has influenced real-world interface design."}},{"id":"slide-3","type":"quote-card","transitionPreset":"flip-y","data":{"heading":"The Director's Perspective","icon":"🎥","quote":"Good design is like a good film score. You shouldn't notice it until it makes you feel something profound.","author":"Denis Villeneuve","role":"Cinematic Visionary","avatarUrl":"https://i.pravatar.cc/150?u=a042581f4e29026704d","speakerNotes":"A great quote sets the tone. Our quote-card block automatically parses the avatar and styles the attribution."}},{"type":"bento","transitionPreset":"zoom-in","id":"slide-4","data":{"heading":"The Bento Hud Blueprint","icon":"🍱","gridTemplate":"large | small small","items":[{"size":"large","title":"Central Data Hub","content":"The primary focus area, utilizing deep glowing borders and high-contrast typography to draw the eye immediately.","badge":"Core Interface","bgGradient":"oklch(25% 0.2 300) to oklch(15% 0.1 280)"},{"size":"small","title":"Peripheral Metrics","content":"Secondary data streams pulsing with neon accents.","icon":"📊"},{"size":"small","title":"System Status","content":"Minimalist indicators reflecting real-time operational health.","icon":"⚡"}],"speakerNotes":"Explain the bento layout. It's asymmetric, which is a hallmark of modern sci-fi interfaces."}},{"id":"slide-5","type":"video","transitionPreset":"zoom-in","data":{"heading":"Cinematic B-Roll Showcase","icon":"🎬","videoType":"youtube","videoId":"1La4QzGeaaQ","caption":"Example of high-end cinematic drone footage establishing the scene.","speakerNotes":"We integrated the video block here. It effortlessly frames native HTML5 video or YouTube embeds with our beautiful glass borders."}},{"id":"slide-6","type":"split","transitionPreset":"flip-y","data":{"heading":"HTML5 Canvas vs SVG Drawing","icon":"⚖️","layout":"split-50-50","left":{"type":"bullets","data":{"heading":"HTML5 Canvas","items":["Pixel-based, incredibly fast for thousands of objects.","Requires manual redraw loops for animation.","No DOM nodes, harder to attach events.","Best for particles, complex shaders, and games."]}},"right":{"type":"bullets","data":{"heading":"SVG Drawing","items":["Vector-based, infinitely scalable without blur.","Native DOM integration for CSS styling and events.","Can be sluggish with too many complex paths.","Perfect for charts, graphs, and UI components."]}},"speakerNotes":"A classic debate for UI engineers. We use SVG for structural clarity and Canvas for high-performance visual effects."}},{"type":"code-diff","transitionPreset":"fade","id":"slide-7","data":{"heading":"Prism Code Snippets","icon":"💻","leftTitle":"Standard CSS","leftLang":"css","leftCode":".hud-element {\n  border: 1px solid blue;\n  background: rgba(0,0,255,0.1);\n}","rightTitle":"Cinematic CSS","rightLang":"css","rightCode":".hud-element {\n  border: 1px solid var(--neon-blue);\n  background: color-mix(in oklch, var(--neon-blue) 10%, transparent);\n  box-shadow: 0 0 15px var(--neon-blue);\n  backdrop-filter: blur(8px);\n}"}},{"type":"quiz","transitionPreset":"zoom-in","id":"slide-8","data":{"heading":"HUD Usability Challenge","icon":"❓","questions":[{"question":"What is the primary risk of using highly stylized, cinematic interfaces in functional applications?","correct":2,"options":["They require too much server bandwidth.","They are impossible to build with standard web technologies.","They can prioritize aesthetics over readability and user efficiency.","They cause hardware damage to older monitors."],"explanation":"While beautiful, excessive glows, low contrast, and complex animations can fatigue users and obscure critical data."}]}},{"id":"slide-9","type":"bento","transitionPreset":"flip-y","data":{"heading":"Case Study: The Neo-Tokyo HUD","icon":"🏙️","gridTemplate":"large | small small","items":[{"size":"large","title":"Cyberpunk Aesthetics","content":"Deep purples and harsh neon cyans create a classic dystopian metropolis feel, utilizing sharp angles and glitch animations.","badge":"Design System","bgGradient":"oklch(30% 0.25 320) to oklch(20% 0.15 260)"},{"size":"small","title":"Glitch Effects","content":"CSS keyframes displacing text to simulate signal interference.","icon":"🌩️"},{"size":"small","title":"Holographic Grids","content":"Background patterns using repeating linear gradients.","icon":"🌐"}]}},{"id":"slide-10","type":"stepper","transitionPreset":"fade","data":{"heading":"Production Lifecycle Steps","icon":"🎬","steps":[{"title":"1. Storyboarding","content":"Mapping out the visual sequence and keyframes before touching any code."},{"title":"2. Block Assembly","content":"Selecting the right primitive layouts and composites from the Lecta component registry."},{"title":"3. Motion Design","content":"Tuning the cubic-bezier easing curves and adding high-contrast cinematic CSS filters."},{"title":"4. Final Render","content":"Compiling the final JSON presentation into optimized, client-side rendered HTML."}],"speakerNotes":"This stepper block allows you to interactively step through the production lifecycle. Click 'Next' to advance the step."}},{"id":"slide-11","type":"summary","transitionPreset":"flip-y","data":{"heading":"Cinematic Wrap-Up","icon":"🏁","items":["Cinematic UI elevates the user experience through depth and motion.","Balance aesthetics with usability; don't let design obscure data.","Leverage modern CSS (OKLCH, filters) for performant visual effects.","Use spring physics for organic, satisfying interactions."],"callToAction":"Start building your own futuristic interfaces!","resources":[{"label":"UI/UX Design Principles","url":"#"},{"label":"Advanced CSS Animation Guide","url":"#"}]}}]}</script>
   <script type="application/json" id="template-library-data">{"categories":[{"id":"concept-intro","label":"Concept Intro","description":"Define a new AI concept with a crisp takeaway and one supporting example.","templates":[{"id":"concept-hero","title":"Concept Hero","useCase":"Explain a concept","tags":["beginner","definition","clarity"],"slide":{"$ref":"slide-bullets","data":{"heading":"What is a Transformer?","icon":"AI","items":[{"text":"A model that learns attention between tokens","detail":"Self-attention lets each token look at the rest of the sequence."},{"text":"Scales well with large data","detail":"Parallel training enables huge model sizes."},{"text":"Used in GPT, BERT, and T5","detail":"It is the backbone of modern NLP systems."}]},"flow":[{"label":"Reveal definition","action":"reveal","preset":"fade-up","targets":["[data-flow-id='bullet-1']"]},{"label":"Reveal scaling","action":"reveal","preset":"fade-up","targets":["[data-flow-id='bullet-2']"]},{"label":"Reveal examples","action":"reveal","preset":"fade-up","targets":["[data-flow-id='bullet-3']"]}]}}]},{"id":"pipeline","label":"Pipeline / Workflow","description":"Walk through an AI workflow or data pipeline step-by-step.","templates":[{"id":"pipeline-flow","title":"AI Pipeline Walkthrough","useCase":"Walk through a pipeline","tags":["workflow","step-by-step"],"slide":{"$ref":"slide-flow","data":{"heading":"Training Pipeline","icon":"FLOW","nodes":[{"id":"data","label":"Data"},{"id":"clean","label":"Clean"},{"id":"train","label":"Train"},{"id":"eval","label":"Evaluate"},{"id":"deploy","label":"Deploy"}],"connections":[{"from":"data","to":"clean"},{"from":"clean","to":"train"},{"from":"train","to":"eval"},{"from":"eval","to":"deploy"}]}}}]},{"id":"comparison","label":"Comparison","description":"Show before/after or method A vs method B with a clear verdict.","templates":[{"id":"compare-methods","title":"Method Comparison","useCase":"Compare two methods","tags":["comparison","decision"],"slide":{"$ref":"slide-compare","data":{"heading":"Bag-of-Words vs. Transformer","icon":"COMPARE","left":{"title":"Bag-of-Words","items":["Order ignored","Simple features","Fast but shallow"],"color":"blue"},"right":{"title":"Transformer","items":["Context-aware","Scales better","State-of-the-art"],"color":"green"},"verdict":"Transformers win when context matters."},"flow":[{"label":"Reveal left","action":"reveal","preset":"slide-in","targets":[".compare-side.side-blue"]},{"label":"Reveal right","action":"reveal","preset":"slide-in","targets":[".compare-side.side-green"]},{"label":"Highlight verdict","action":"highlight","preset":"highlight-pulse","targets":[".compare-verdict"]}]}}]},{"id":"example-breakdown","label":"Example Breakdown","description":"Step-by-step example with highlights for key moments.","templates":[{"id":"example-steps","title":"Example Walkthrough","useCase":"Teach with example","tags":["example","step-by-step"],"slide":{"type":"stepper","data":{"heading":"Prompt -> Output","icon":"EXAMPLE","steps":[{"title":"Step 1","content":"Write a clear prompt with constraints.","tip":"Be explicit about format."},{"title":"Step 2","content":"Model generates candidate output.","tip":"Check for hallucinations."},{"title":"Step 3","content":"Refine with a follow-up prompt.","tip":"Use critique + rewrite."}]}}}]},{"id":"misconception","label":"Common Mistakes","description":"Highlight misconceptions or pitfalls with a fix.","templates":[{"id":"mistake-callout","title":"Misconception Callout","useCase":"Mistake / misconception","tags":["mistakes","clarity"],"slide":{"type":"bullets","data":{"heading":"Common Misconceptions","icon":"WARN","items":[{"text":"Bigger model = always better","detail":"Data quality and evaluation matter more than size alone."},{"text":"LLMs understand like humans","detail":"They predict tokens; understanding is not guaranteed."},{"text":"Prompting replaces evaluation","detail":"You still need tests and metrics."}]}}}]},{"id":"recap","label":"Recap / Cheat Sheet","description":"Summarize takeaways for quick recall.","templates":[{"id":"recap-summary","title":"Cheat Sheet","useCase":"Recap","tags":["recap","cheat-sheet"],"slide":{"$ref":"slide-summary","data":{"heading":"Key Takeaways","icon":"RECAP","items":["Attention is the core idea.","Data quality > model size.","Evaluate with real tasks."]}}}]},{"id":"code-explain","label":"Code + Explanation","description":"Split view: short code snippet with explanation.","templates":[{"id":"code-split","title":"Code + Explanation Split","useCase":"Teach with code example","tags":["code","explain"],"slide":{"type":"split","data":{"heading":"Tokenization Example","icon":"CODE","layout":"split-50-50","left":{"type":"code","data":{"language":"python","code":"text = 'AI for beginners'\nprint(text.split())"}},"right":{"type":"bullets","data":{"items":["Split into tokens","Tokens feed into the model","Small step, huge impact"]}}}}}]},{"id":"chapter-opener","label":"Chapter Opener","description":"Reset attention before a new section.","templates":[{"id":"chapter-title","title":"Chapter Title","useCase":"Chapter opener","tags":["section","transition"],"slide":{"type":"title","data":{"heading":"Chapter 2: How Models Learn","subtitle":"From data to gradients to generalization","badge":"Chapter Opener"}}}]}]}</script>
 
   <script>
