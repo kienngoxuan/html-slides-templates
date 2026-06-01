@@ -2,6 +2,7 @@
 /**
  * LECTA AI — Build Script
  * Assembles modular CSS/JS/data into a single self-contained HTML file.
+ * Uses registry-first pipeline (Phase 2) for alias resolution, validation, and dependency analysis.
  */
 
 const fs = require('fs');
@@ -11,6 +12,8 @@ const { readFiles, loadFaviconDataURI, renderThemeDots, renderFontFaceCSS } = re
 const { getDeckCssFiles, getDeckJsFiles } = require('./src/build/assets');
 const { LIGHT_THEMES, DARK_THEMES } = require('./src/build/themes');
 const { FONT_FILES } = require('./src/build/fonts');
+// Phase 2: Registry-first pipeline
+const { resolveManifest } = require('./src/core/manifest-resolver');
 
 function escapeHtml(value) {
   return String(value)
@@ -293,19 +296,13 @@ function validateSlideSchema(slideData, dataFile) {
 
 // Assembles a specific JSON file into a target HTML file
 function buildSlideDeck(dataFile, outputFile) {
-  let slideData = JSON.parse(fs.readFileSync(dataFile, 'utf-8'));
-  
-  // Expand $ref primitives at build time
-  const primitives = loadPrimitives(ROOT);
-  slideData = expandRefs(slideData, primitives);
-  
-  // Validate schema before compiling to report mistakes instantly
-  validateSlideSchema(slideData, dataFile);
+  // Phase 2: Registry-first pipeline — resolve aliases, validate, analyze dependencies
+  const { slideData, dependencies, report } = resolveManifest(dataFile, ROOT);
   
   const meta = slideData.meta;
   const lessonContext = buildLessonContext(meta);
   const templateLibrary = loadTemplateLibrary(ROOT);
-  const templateLibraryJSON = escapeHtml(JSON.stringify(templateLibrary));
+  const templateLibraryJSON = JSON.stringify(templateLibrary).replace(/<\/script/gi, '<\\/script');
   const templateLibraryHTML = '<div id="template-library-container"></div>'; // Hydrated client-side
 
   // Load favicon if available
@@ -313,11 +310,11 @@ function buildSlideDeck(dataFile, outputFile) {
 
   // CSS
   const fontFaceCSS = renderFontFaceCSS(ROOT, FONT_FILES);
-  const allCSS = readFiles(ROOT, getDeckCssFiles());
-  const allJS = readFiles(ROOT, getDeckJsFiles());
+  const allCSS = readFiles(ROOT, getDeckCssFiles(dependencies));
+  const allJS = readFiles(ROOT, getDeckJsFiles(dependencies));
 
   // Slides HTML & Thumbnails will now be rendered client-side
-  const slideDataJSON = escapeHtml(JSON.stringify(slideData));
+  const slideDataJSON = JSON.stringify(slideData).replace(/<\/script/gi, '<\\/script');
   const slidesHTML = ''; // Hydrated client-side
   const thumbsHTML = ''; // Hydrated client-side
 
@@ -328,7 +325,7 @@ function buildSlideDeck(dataFile, outputFile) {
   const studentAttr = meta.students ? ` data-students="${JSON.stringify(meta.students).replace(/"/g, '&quot;')}"` : '';
   const deckId = meta.id || meta.title || 'lecta-deck';
   const deckIdAttr = ` data-deck-id="${escapeAttr(deckId)}"`;
-  const lessonContextJSON = escapeHtml(JSON.stringify(lessonContext));
+  const lessonContextJSON = JSON.stringify(lessonContext).replace(/<\/script/gi, '<\\/script');
 
   const html = `<!DOCTYPE html>
 <html lang="en" data-theme="${meta.theme || 'ocean'}">
