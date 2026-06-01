@@ -85,55 +85,43 @@
       }
     },
     {
-      "$ref": "slide-split",
       "id": "slide-6",
+      "type": "analogy",
+      "transitionPreset": "zoom-in",
       "data": {
-        "heading": "Centralized SaaS vs Edge Topology",
+        "heading": "The Edge Topography Analogy",
         "icon": "⚖️",
-        "layout": "split-50-50",
-        "left": {
-          "type": "bullets",
-          "data": {
-            "heading": "Legacy Centralized Model",
-            "items": [
-              "High latency for international users.",
-              "Single point of failure during regional outages.",
-              "Difficult to comply with strict data residency laws.",
-              "Easier to manage, but harder to scale globally."
-            ]
-          }
-        },
-        "right": {
-          "type": "bullets",
-          "data": {
-            "heading": "Our New Edge Topology",
-            "items": [
-              "Sub-50ms latency for 95% of global users.",
-              "Highly resilient active-active multi-region failover.",
-              "Data localized to comply with GDPR/CCPA natively.",
-              "Complex orchestration handled by automated IaC."
-            ]
-          }
-        }
+        "technicalConcept": "Deploying stateless compute functions and static caching to 200+ PoPs at the network edge to eliminate round-trip latency.",
+        "bridgeText": "Is Like...",
+        "analogy": "Building a global network of local distribution warehouses so products can be delivered same-day anywhere in the world, instead of shipping everything from a single mega-factory."
       }
     },
     {
       "id": "slide-7",
-      "$ref": "slide-table",
+      "type": "cards",
+      "transitionPreset": "flip-y",
       "data": {
-        "heading": "Phase 1 - Phase 3 Delivery Matrix",
-        "icon": "🗓️",
-        "columns": [
-          {"key": "phase", "label": "Phase"},
-          {"key": "region", "label": "Region"},
-          {"key": "deliverable", "label": "Primary Deliverable"},
-          {"key": "date", "label": "Target Date"}
-        ],
-        "rows": [
-          {"phase": "Phase 1", "region": "North America", "deliverable": "Core API Upgrades & Sec Audit", "date": "March 15, 2026"},
-          {"phase": "Phase 2", "region": "EMEA", "deliverable": "GDPR Compliant Data Silos", "date": "July 1, 2026"},
-          {"phase": "Phase 3", "region": "APAC", "deliverable": "Edge Caching & Localized Support", "date": "October 30, 2026"},
-          {"phase": "Phase 4", "region": "Global", "deliverable": "Unified AI Management Plane", "date": "December 15, 2026"}
+        "heading": "Global Regional Objectives",
+        "icon": "🌐",
+        "cards": [
+          {
+            "front": "North America (NA)",
+            "frontIcon": "🦅",
+            "back": "Focus on high-compute AI models. Launch two new hyper-scale data centers in Texas and Virginia.",
+            "color": "primary"
+          },
+          {
+            "front": "Europe (EMEA)",
+            "frontIcon": "🇪🇺",
+            "back": "Ensure stringent GDPR adherence. Finalize Frankfurt and Paris data silo isolation projects.",
+            "color": "success"
+          },
+          {
+            "front": "Asia Pacific (APAC)",
+            "frontIcon": "🌏",
+            "back": "Massive edge-caching rollout. Establish 50 new PoPs across Singapore, Tokyo, and Sydney.",
+            "color": "warning"
+          }
         ]
       }
     },
