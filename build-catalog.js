@@ -917,6 +917,116 @@ flowchart TD
         </div>
       </div>
     </div></div>
+
+  <!-- Bento Grid Layout -->
+  <div class="comp-card"><div class="comp-card-header">Bento Box Grid <span class="card-type">bento</span></div>
+    <div class="comp-card-body">
+      <div class="bento-grid" style="grid-template-areas: 'large small1' 'large small2'; gap: 1rem;">
+        <div class="bento-card bento-large" style="grid-area: large; background: linear-gradient(135deg, var(--color-primary), var(--color-accent)); color: white; padding: 1.5rem; border-radius: var(--radius-md);">
+          <span class="badge" style="background: rgba(0,0,0,0.3); color: white; margin-bottom: 0.5rem; display: inline-block;">Primary Hub</span>
+          <h3 style="margin: 0 0 0.5rem; color: white;">Central Focus Area</h3>
+          <p style="margin: 0; font-size: 0.9rem; opacity: 0.9;">The main bento cell draws the user's eye and contains core metadata.</p>
+        </div>
+        <div class="bento-card bento-small" style="grid-area: small1; background: var(--color-surface-hover); padding: 1.5rem; border-radius: var(--radius-md);">
+          <h4 style="margin: 0 0 0.25rem;"><span style="font-size: 1.25rem; margin-right: 0.5rem;">⚡</span> Quick Stat</h4>
+          <p style="margin: 0; font-size: 0.85rem; color: var(--color-text-secondary);">Secondary peripheral data stream.</p>
+        </div>
+        <div class="bento-card bento-small" style="grid-area: small2; background: var(--color-surface-hover); padding: 1.5rem; border-radius: var(--radius-md);">
+          <h4 style="margin: 0 0 0.25rem;"><span style="font-size: 1.25rem; margin-right: 0.5rem;">🌐</span> Global State</h4>
+          <p style="margin: 0; font-size: 0.85rem; color: var(--color-text-secondary);">System status and alerts.</p>
+        </div>
+      </div>
+    </div></div>
+
+  <!-- Quote Card -->
+  <div class="comp-card"><div class="comp-card-header">Quote Card <span class="card-type">quote-card</span></div>
+    <div class="comp-card-body">
+      <div class="quote-card-container stagger">
+        <blockquote class="quote-text stagger-item">"Good design is like a good film score. You shouldn't notice it until it makes you feel something profound."</blockquote>
+        <div class="quote-author-row stagger-item">
+          <div class="avatar quote-avatar" style="background-image: url('https://i.pravatar.cc/150?u=a042581f4e29026704d');"></div>
+          <div class="quote-author-meta">
+            <div class="quote-author-name">Denis Villeneuve</div>
+            <div class="quote-author-role">Cinematic Visionary</div>
+          </div>
+        </div>
+      </div>
+    </div></div>
+
+  <!-- Definition Card -->
+  <div class="comp-card"><div class="comp-card-header">Definition Card <span class="card-type">definition-card</span></div>
+    <div class="comp-card-body">
+      <div class="definition-card-container stagger">
+        <div class="definition-header stagger-item">
+          <h3 class="definition-term">Hydration</h3>
+          <span class="badge badge-pill pill-accent">Noun, Computing</span>
+          <span class="definition-pronunciation">/haɪˈdreɪ.ʃən/</span>
+        </div>
+        <div class="definition-body stagger-item">
+          <p class="definition-desc">The process of attaching React event listeners to a pre-rendered static HTML document, converting it into a fully interactive dynamic SPA.</p>
+          <blockquote class="definition-example">"Server Components dramatically reduce the amount of JavaScript needed for hydration."</blockquote>
+        </div>
+      </div>
+    </div></div>
+
+  <!-- Analogy -->
+  <div class="comp-card"><div class="comp-card-header">Technical Analogy <span class="card-type">analogy</span></div>
+    <div class="comp-card-body">
+      <div class="analogy-container stagger">
+        <div class="analogy-split" style="display: flex; gap: 1rem; align-items: center;">
+          <div class="analogy-side side-technical stagger-item" style="flex: 1; padding: 1.5rem; background: var(--color-bg-alt); border-left: 4px solid var(--color-primary);">
+            <span class="badge pill-primary" style="margin-bottom: 0.5rem;">⚙️ Technical Concept</span>
+            <p style="margin: 0; font-size: 0.9rem;">Deploying stateless compute functions and static caching to 200+ PoPs at the network edge.</p>
+          </div>
+          <div class="analogy-bridge stagger-item" style="font-weight: bold; color: var(--color-accent); text-align: center;">
+            Is Like...
+          </div>
+          <div class="analogy-side side-realworld stagger-item" style="flex: 1; padding: 1.5rem; background: var(--color-bg-alt); border-left: 4px solid var(--color-warning);">
+            <span class="badge pill-warning" style="margin-bottom: 0.5rem;">🌾 Real-world Analogy</span>
+            <p style="margin: 0; font-size: 0.9rem;">Building a global network of local distribution warehouses so products can be delivered same-day.</p>
+          </div>
+        </div>
+      </div>
+    </div></div>
+
+  <!-- Splash Image Layout -->
+  <div class="comp-card"><div class="comp-card-header">Splash Image Layout <span class="card-type">splash</span></div>
+    <div class="comp-card-body">
+      <div class="splash-layout-container" style="display: flex; gap: 1rem; align-items: center; background: var(--color-bg-alt); padding: 1.5rem; border-radius: var(--radius-md);">
+        <div class="splash-image-col" style="flex: 1; border-radius: var(--radius-md); overflow: hidden; max-height: 200px;">
+          <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" style="width: 100%; height: 100%; object-fit: cover;" alt="Splash">
+        </div>
+        <div class="splash-text-col" style="flex: 1;">
+          <h4 style="margin: 0 0 0.5rem;">Visual Impact</h4>
+          <p style="margin: 0; font-size: 0.9rem; color: var(--color-text-secondary);">Combine striking imagery with bold text to create memorable introductions.</p>
+        </div>
+      </div>
+    </div></div>
+
+  <!-- Horizontal Timeline -->
+  <div class="comp-card"><div class="comp-card-header">Horizontal Timeline <span class="card-type">timeline-horizontal</span></div>
+    <div class="comp-card-body">
+      <div class="timeline-horizontal" style="display: flex; gap: 1rem; align-items: flex-start; padding: 2rem 0;">
+        <div class="hz-timeline-item" style="flex: 1; position: relative;">
+          <div class="hz-dot" style="width: 16px; height: 16px; border-radius: 50%; background: var(--color-primary); margin-bottom: 1rem;"></div>
+          <div class="hz-year" style="font-weight: bold; font-size: 0.85rem; color: var(--color-text-muted);">Q1</div>
+          <div class="hz-title" style="font-weight: 600; margin: 0.25rem 0;">Planning</div>
+          <div class="hz-desc" style="font-size: 0.85rem; color: var(--color-text-secondary);">Requirements gathering.</div>
+        </div>
+        <div class="hz-timeline-item" style="flex: 1; position: relative;">
+          <div class="hz-dot" style="width: 16px; height: 16px; border-radius: 50%; background: var(--color-accent); margin-bottom: 1rem;"></div>
+          <div class="hz-year" style="font-weight: bold; font-size: 0.85rem; color: var(--color-text-muted);">Q2</div>
+          <div class="hz-title" style="font-weight: 600; margin: 0.25rem 0;">Development</div>
+          <div class="hz-desc" style="font-size: 0.85rem; color: var(--color-text-secondary);">Sprint execution.</div>
+        </div>
+        <div class="hz-timeline-item" style="flex: 1; position: relative;">
+          <div class="hz-dot" style="width: 16px; height: 16px; border-radius: 50%; background: var(--color-success); margin-bottom: 1rem;"></div>
+          <div class="hz-year" style="font-weight: bold; font-size: 0.85rem; color: var(--color-text-muted);">Q3</div>
+          <div class="hz-title" style="font-weight: 600; margin: 0.25rem 0;">Launch</div>
+          <div class="hz-desc" style="font-size: 0.85rem; color: var(--color-text-secondary);">Go to market.</div>
+        </div>
+      </div>
+    </div></div>
 </div>
 
 <!-- ===== 9. TYPOGRAPHY ===== -->
