@@ -99,17 +99,60 @@ const LazyLoaders = (function () {
 
   /* === 🌿 Mermaid On-Demand Loader === */
   function initMermaidDiagrams() {
-    const containers = document.querySelectorAll('.mermaid');
+    const containers = document.querySelectorAll('.mermaid-diagram-wrapper .mermaid');
     if (containers.length === 0) return;
 
+    function renderMermaid() {
+      if (!window.mermaid || !window.mermaid.run) return;
+      
+      const slides = document.querySelectorAll('.slide');
+      const activeSlideIdx = window.SlideEngine ? window.SlideEngine.getCurrent() : 0;
+      const activeSlide = slides[activeSlideIdx];
+      if (!activeSlide) return;
+
+      const unrendered = Array.from(activeSlide.querySelectorAll('.mermaid-diagram-wrapper .mermaid')).filter(
+        el => !el.hasAttribute('data-processed')
+      );
+      if (unrendered.length === 0) return;
+      
+      unrendered.forEach(el => {
+        const rawCode = el.dataset.mermaidCode;
+        if (rawCode) {
+          // Restore uncorrupted diagram code
+          el.textContent = rawCode;
+        }
+      });
+      try {
+        window.mermaid.run({
+          nodes: unrendered
+        });
+      } catch (e) {
+        console.error('Mermaid render error:', e);
+      }
+    }
+
     if (!window.mermaid) {
+      // Set global config BEFORE script load to completely disable auto-start/auto-render
+      window.mermaid = {
+        startOnLoad: false,
+        theme: 'neutral'
+      };
+      
       const script = document.createElement('script');
       script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.2.4/dist/mermaid.min.js';
       script.onload = () => {
-        window.mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+        // Ensure initialized with config
+        window.mermaid.initialize({ startOnLoad: false, theme: 'neutral' });
+        renderMermaid();
       };
       document.body.appendChild(script);
+    } else {
+      renderMermaid();
     }
+
+    document.addEventListener('slideChanged', () => {
+      renderMermaid();
+    });
   }
 
   /* === 💻 Prism Syntax Highlighting On-Demand Loader === */

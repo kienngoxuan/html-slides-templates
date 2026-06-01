@@ -578,28 +578,85 @@ const InteractiveBlocksData = (function () {
   }
 
   /* === Tables === */
-  function initTables() {
-    document.querySelectorAll('.table-search-input').forEach(input => {
-      input.addEventListener('input', () => {
-        const query = input.value.toLowerCase().trim();
-        const container = input.closest('.table-block-container');
-        const rows = container.querySelectorAll('tbody tr');
+  function renderTableContainer(container) {
+    let columns = [];
+    let rows = [];
+    try {
+      columns = JSON.parse(container.getAttribute('data-columns') || '[]');
+      rows = JSON.parse(container.getAttribute('data-rows') || '[]');
+    } catch (e) {
+      console.error('Error parsing table data:', e);
+      return;
+    }
 
-        rows.forEach(row => {
-          const cells = Array.from(row.querySelectorAll('td'));
-          const matches = cells.some(cell => cell.textContent.toLowerCase().includes(query));
-          row.style.display = matches ? '' : 'none';
-        });
-      });
-    });
+    const table = container.querySelector('table');
+    if (!table) return;
 
-    document.querySelectorAll('.sortable-th').forEach(th => {
+    // Apply glass-table class if missing
+    table.className = 'glass-table';
+
+    let thead = table.querySelector('thead');
+    if (!thead) {
+      thead = document.createElement('thead');
+      table.appendChild(thead);
+    }
+    let tbody = table.querySelector('tbody');
+    if (!tbody) {
+      tbody = document.createElement('tbody');
+      table.appendChild(tbody);
+    }
+
+    thead.innerHTML = `
+      <tr>
+        ${columns.map(col => `
+          <th class="sortable-th" data-key="${col.key}">
+            ${col.label} <span class="sort-indicator">↕</span>
+          </th>
+        `).join('')}
+      </tr>
+    `;
+
+    tbody.innerHTML = rows.map(row => `
+      <tr>
+        ${columns.map(col => {
+          const val = row[col.key] !== undefined ? row[col.key] : '';
+          let content = '';
+          
+          if (col.type === 'badge') {
+            const parts = String(val).split('·');
+            const badgeText = parts[0].trim();
+            const badgeType = parts[1] ? parts[1].trim() : 'primary';
+            content = `<span class="badge-pill pill-${badgeType}">${badgeText}</span>`;
+          } else if (col.type === 'code') {
+            content = `<span class="code-cell">${val}</span>`;
+          } else if (col.type === 'progress') {
+            content = `
+              <div class="progress-cell-wrapper">
+                <div class="progress-cell-bar">
+                  <div class="progress-cell-fill" style="width: ${val}%"></div>
+                </div>
+                <span class="progress-cell-text">${val}%</span>
+              </div>
+            `;
+          } else {
+            content = val;
+          }
+
+          return `<td>${content}</td>`;
+        }).join('')}
+      </tr>
+    `).join('');
+
+    const rowCountEl = container.querySelector('.table-row-count');
+    if (rowCountEl) {
+      rowCountEl.textContent = `${rows.length} rows`;
+    }
+
+    // Bind sorting on header cells
+    thead.querySelectorAll('.sortable-th').forEach(th => {
       let isAsc = true;
       th.addEventListener('click', () => {
-        const container = th.closest('.table-block-container');
-        const table = container.querySelector('table');
-        const tbody = table.querySelector('tbody');
-        const rows = Array.from(tbody.querySelectorAll('tr'));
+        const rowsArray = Array.from(tbody.querySelectorAll('tr'));
         const index = Array.from(th.parentNode.children).indexOf(th);
         
         th.parentNode.querySelectorAll('.sort-indicator').forEach(ind => ind.textContent = '↕');
@@ -609,7 +666,7 @@ const InteractiveBlocksData = (function () {
         th.classList.add(isAsc ? 'asc-sort' : 'desc-sort');
         th.querySelector('.sort-indicator').textContent = isAsc ? '▲' : '▼';
 
-        rows.sort((a, b) => {
+        rowsArray.sort((a, b) => {
           const aText = a.children[index].textContent.trim();
           const bText = b.children[index].textContent.trim();
 
@@ -625,17 +682,62 @@ const InteractiveBlocksData = (function () {
             : bText.localeCompare(aText);
         });
 
-        rows.forEach(row => tbody.appendChild(row));
+        rowsArray.forEach(row => tbody.appendChild(row));
 
         // Re-apply table search filter query after sorting
         const searchInput = container.querySelector('.table-search-input');
         if (searchInput && searchInput.value) {
           const query = searchInput.value.toLowerCase().trim();
-          rows.forEach(row => {
+          rowsArray.forEach(row => {
             const cells = Array.from(row.querySelectorAll('td'));
             const matches = cells.some(cell => cell.textContent.toLowerCase().includes(query));
             row.style.display = matches ? '' : 'none';
           });
+        }
+      });
+    });
+  }
+
+  function initTables() {
+    // Render tables initially
+    document.querySelectorAll('.table-block-container').forEach(container => {
+      renderTableContainer(container);
+    });
+
+    // Also render when slide changes
+    document.addEventListener('slideChanged', (e) => {
+      const activeSlideIndex = e.detail.index;
+      const slides = document.querySelectorAll('.slide');
+      const activeSlide = slides[activeSlideIndex];
+      if (!activeSlide) return;
+
+      activeSlide.querySelectorAll('.table-block-container').forEach(container => {
+        renderTableContainer(container);
+      });
+    });
+
+    // Bind search inputs
+    document.querySelectorAll('.table-search-input').forEach(input => {
+      input.addEventListener('input', () => {
+        const query = input.value.toLowerCase().trim();
+        const container = input.closest('.table-block-container');
+        const rows = container.querySelectorAll('tbody tr');
+
+        let visibleCount = 0;
+        rows.forEach(row => {
+          const cells = Array.from(row.querySelectorAll('td'));
+          const matches = cells.some(cell => cell.textContent.toLowerCase().includes(query));
+          if (matches) {
+            row.style.display = '';
+            visibleCount++;
+          } else {
+            row.style.display = 'none';
+          }
+        });
+
+        const rowCountEl = container.querySelector('.table-row-count');
+        if (rowCountEl) {
+          rowCountEl.textContent = `${visibleCount} rows`;
         }
       });
     });
@@ -766,7 +868,9 @@ const InteractiveBlocksData = (function () {
         group.appendChild(text);
         svg.appendChild(group);
 
-        group.addEventListener('click', () => {
+        group.addEventListener('click', (e) => {
+          e.stopPropagation();
+          
           svg.querySelectorAll('rect').forEach(r => {
             r.setAttribute('fill', 'var(--color-surface)');
             r.setAttribute('stroke', 'var(--color-border)');
@@ -786,6 +890,29 @@ const InteractiveBlocksData = (function () {
             title.textContent = node.label;
             desc.textContent = node.details || 'No details specified for this step.';
           }
+        });
+      });
+
+      // Bind close button resetting
+      container.querySelectorAll('.flow-side-panel-close').forEach(closeBtn => {
+        closeBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const defaultMsg = container.querySelector('.flow-detail-default-msg');
+          const content = container.querySelector('.flow-detail-content');
+          const title = container.querySelector('.flow-detail-title');
+          const desc = container.querySelector('.flow-detail-desc');
+
+          if (defaultMsg && content && title && desc) {
+            defaultMsg.style.display = 'block';
+            content.style.display = 'none';
+            title.textContent = 'Inspect Element';
+            desc.textContent = 'Click any element in the diagram to inspect its detailed specification.';
+          }
+
+          svg.querySelectorAll('.flow-node-group rect').forEach(r => {
+            r.setAttribute('fill', 'var(--color-surface)');
+            r.setAttribute('stroke', 'var(--color-border)');
+          });
         });
       });
     });

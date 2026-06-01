@@ -116,8 +116,8 @@
   transition: opacity var(--flow-duration) ease, transform var(--flow-duration) ease;
 }
 .flow-revealed {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 .flow-highlight {
   box-shadow: 0 0 0 2px var(--color-primary);

@@ -1,0 +1,14 @@
+{
+  "_meta": { "version": "1.0.0", "description": "Layouts registry — all layout patterns" },
+  "full":                  { "grid": "flex-column",     "responsive": "stacks",      "supportedBlocks": "*" },
+  "split-50-50":           { "grid": "grid-1fr-1fr",    "responsive": "stack-mobile", "supportedBlocks": ["split"], "subBlockTypes": ["text","bullets","code","image","math","mermaid"] },
+  "compare-grid":          { "grid": "grid-1fr-1fr",    "responsive": "stack-mobile", "supportedBlocks": ["compare"] },
+  "bento-grid":            { "grid": "css-grid-custom",  "responsive": "auto-fill",   "supportedBlocks": ["bento"] },
+  "cards-grid":            { "grid": "grid-auto-fill",   "responsive": "auto-fill",   "supportedBlocks": ["cards"] },
+  "stats-grid":            { "grid": "grid-auto-fill",   "responsive": "auto-fill",   "supportedBlocks": ["stats"] },
+  "timeline-vertical":     { "grid": "flex-column-line", "responsive": "single-col",  "supportedBlocks": ["timeline"] },
+  "timeline-h-track":      { "grid": "flex-row-scroll",  "responsive": "h-scroll",    "supportedBlocks": ["timeline-horizontal"] },
+  "flow-layout":           { "grid": "flex-row-60-40",   "responsive": "stack-narrow", "supportedBlocks": ["flow"] },
+  "code-diff-layout":      { "grid": "grid-1fr-1fr",    "responsive": "stack-mobile", "supportedBlocks": ["code-diff"] },
+  "analogy-layout":        { "grid": "flex-row-bridge",  "responsive": "stack-vert",  "supportedBlocks": ["analogy"] }
+}

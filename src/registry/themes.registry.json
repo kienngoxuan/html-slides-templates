@@ -1,0 +1,33 @@
+{
+  "_meta": { "version": "1.0.0", "description": "Themes registry — all theme metadata, tokens shape, font pairings" },
+  "tokenContract": [
+    "color-primary","color-primary-light","color-primary-dark","color-primary-alpha",
+    "color-secondary","color-accent","color-accent-light",
+    "color-bg","color-bg-alt","color-surface","color-surface-hover",
+    "color-text","color-text-secondary","color-text-muted",
+    "color-border","color-border-light",
+    "color-success","color-warning","color-error",
+    "gradient-primary","gradient-accent","gradient-bg"
+  ],
+  "themes": {
+    "ocean":      { "mode": "light", "label": "Ocean",      "fontHeading": "Outfit",           "fontBody": "Inter",        "radiiOverride": false, "shadowOverride": false },
+    "forest":     { "mode": "light", "label": "Forest",     "fontHeading": "Outfit",           "fontBody": "Inter",        "radiiOverride": false, "shadowOverride": false },
+    "berry":      { "mode": "light", "label": "Berry",      "fontHeading": "Outfit",           "fontBody": "Inter",        "radiiOverride": false, "shadowOverride": false },
+    "slate":      { "mode": "light", "label": "Slate",      "fontHeading": "Outfit",           "fontBody": "Inter",        "radiiOverride": false, "shadowOverride": false },
+    "paper":      { "mode": "light", "label": "Paper",      "fontHeading": "Outfit",           "fontBody": "Inter",        "radiiOverride": false, "shadowOverride": false },
+    "nordic":     { "mode": "light", "label": "Nordic",     "fontHeading": "Outfit",           "fontBody": "Inter",        "radiiOverride": false, "shadowOverride": false },
+    "sunset":     { "mode": "light", "label": "Sunset",     "fontHeading": "Outfit",           "fontBody": "Inter",        "radiiOverride": false, "shadowOverride": false },
+    "editorial":  { "mode": "light", "label": "Editorial",  "fontHeading": "Playfair Display", "fontBody": "Inter",        "radiiOverride": true,  "shadowOverride": true  },
+    "newspaper":  { "mode": "light", "label": "Newspaper",  "fontHeading": "Merriweather",     "fontBody": "Lora",         "radiiOverride": true,  "shadowOverride": true  },
+    "brutalist":  { "mode": "light", "label": "Brutalist",  "fontHeading": "Impact",           "fontBody": "Space Grotesk","radiiOverride": true,  "shadowOverride": true  },
+    "pastel":     { "mode": "light", "label": "Pastel",     "fontHeading": "Outfit",           "fontBody": "Inter",        "radiiOverride": true,  "shadowOverride": true  },
+    "monochrome": { "mode": "light", "label": "Mono",       "fontHeading": "Syncopate",        "fontBody": "Inter",        "radiiOverride": false, "shadowOverride": true  },
+    "neon":       { "mode": "dark",  "label": "Neon",       "fontHeading": "Outfit",           "fontBody": "Inter",        "radiiOverride": false, "shadowOverride": false },
+    "midnight":   { "mode": "dark",  "label": "Midnight",   "fontHeading": "Outfit",           "fontBody": "Inter",        "radiiOverride": false, "shadowOverride": false },
+    "evergreen":  { "mode": "dark",  "label": "Evergreen",  "fontHeading": "Outfit",           "fontBody": "Inter",        "radiiOverride": false, "shadowOverride": false },
+    "volcano":    { "mode": "dark",  "label": "Volcano",    "fontHeading": "Outfit",           "fontBody": "Inter",        "radiiOverride": false, "shadowOverride": false },
+    "terminal":   { "mode": "dark",  "label": "Terminal",   "fontHeading": "JetBrains Mono",   "fontBody": "JetBrains Mono","radiiOverride": false,"shadowOverride": true  },
+    "blueprint":  { "mode": "dark",  "label": "Blueprint",  "fontHeading": "Outfit",           "fontBody": "Inter",        "radiiOverride": true,  "shadowOverride": false },
+    "blackboard": { "mode": "dark",  "label": "Blackboard", "fontHeading": "Outfit",           "fontBody": "Inter",        "radiiOverride": false, "shadowOverride": true  }
+  }
+}

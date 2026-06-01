@@ -8,6 +8,10 @@ const LessonStudio = (function () {
   const RECORDING_STATUS_TIMEOUT = 1400;
   let latestFlowState = null;
   let latestHealth = [];
+  let steps = [];
+  let currentStep = 0;
+  let applyFlowStateFn = null;
+  let renderStepListFn = null;
 
   function init() {
     if (location.search.includes('presenter=true')) return;
@@ -222,8 +226,6 @@ const LessonStudio = (function () {
     const nextBtn = panel.querySelector('[data-flow="next"]');
     const resetBtn = panel.querySelector('[data-flow="reset"]');
 
-    let steps = [];
-    let currentStep = 0;
     let currentSlide = null;
 
     function loadForSlide(slide) {
@@ -422,6 +424,9 @@ const LessonStudio = (function () {
       const slide = slides[e.detail.index];
       if (slide) loadForSlide(slide);
     });
+
+    applyFlowStateFn = applyFlowState;
+    renderStepListFn = renderStepList;
 
     const firstSlide = document.querySelector('.slide');
     if (firstSlide) loadForSlide(firstSlide);
@@ -701,7 +706,27 @@ const LessonStudio = (function () {
     return '';
   }
 
-  return { init };
+  function nextStep() {
+    if (steps.length > 0 && currentStep < steps.length) {
+      currentStep += 1;
+      if (applyFlowStateFn) applyFlowStateFn();
+      if (renderStepListFn) renderStepListFn();
+      return true;
+    }
+    return false;
+  }
+
+  function prevStep() {
+    if (steps.length > 0 && currentStep > 0) {
+      currentStep -= 1;
+      if (applyFlowStateFn) applyFlowStateFn();
+      if (renderStepListFn) renderStepListFn();
+      return true;
+    }
+    return false;
+  }
+
+  return { init, nextStep, prevStep };
 })();
 
 window.LessonStudio = window.LessonStudio || LessonStudio;

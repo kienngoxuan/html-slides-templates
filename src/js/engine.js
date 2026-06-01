@@ -316,8 +316,18 @@ const SlideEngine = (function () {
     });
   }
 
-  function next() { updateSlide(currentSlide + 1); }
-  function prev() { updateSlide(currentSlide - 1); }
+  function next() {
+    if (window.LessonStudio && typeof window.LessonStudio.nextStep === 'function' && window.LessonStudio.nextStep()) {
+      return;
+    }
+    updateSlide(currentSlide + 1);
+  }
+  function prev() {
+    if (window.LessonStudio && typeof window.LessonStudio.prevStep === 'function' && window.LessonStudio.prevStep()) {
+      return;
+    }
+    updateSlide(currentSlide - 1);
+  }
   function goTo(index) { updateSlide(index); }
 
   function bindKeyboard() {
@@ -383,10 +393,20 @@ const SlideEngine = (function () {
     }, { passive: true });
   }
 
+  function isInteractiveElement(el) {
+    return el.closest('button, a, input, select, textarea, .quiz-option, .adv-option, .accordion-header, .tab-btn, .step-dot, .flip-card, .drawing-toolbar, .settings-panel, .right-sidebar, .nav-bar, .spotlight-search, .drawing-canvas-overlay, .flow-node-group, .legend-item, .sortable-th, .glass-table td, .table-search-input');
+  }
+
   function bindButtons() {
     document.addEventListener('click', (e) => {
-      if (e.target.closest('.nav-btn.prev')) prev();
-      if (e.target.closest('.nav-btn.next')) next();
+      if (e.target.closest('.nav-btn.prev')) {
+        prev();
+        return;
+      }
+      if (e.target.closest('.nav-btn.next')) {
+        next();
+        return;
+      }
     });
   }
 

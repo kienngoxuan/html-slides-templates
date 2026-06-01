@@ -1,0 +1,102 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "description": "Behavior taxonomy — all animation presets, transitions, interactions",
+    "source": "src/css/animations.css, src/js/engine.js, src/js/blocks-core.js, src/js/blocks-data.js"
+  },
+  "animations": {
+    "keyframes": {
+      "fadeSlideUp": { "css": "animations.css:5", "type": "enter", "description": "Fade + translateY(12px→0)" },
+      "fadeIn": { "css": "animations.css:16", "type": "enter", "description": "Opacity 0→1" },
+      "slideUp": { "css": "animations.css:21", "type": "enter", "description": "translateY(100%→0)" },
+      "scaleIn": { "css": "animations.css:26", "type": "enter", "description": "Scale(0.9→1) + fade" },
+      "shimmer": { "css": "animations.css:37", "type": "continuous", "description": "Background position shimmer" },
+      "pulse": { "css": "animations.css:42", "type": "continuous", "description": "Opacity pulse 1→0.6→1" },
+      "float": { "css": "animations.css:47", "type": "continuous", "description": "translateY float 0→-8px" },
+      "gradientShift": { "css": "animations.css:52", "type": "continuous", "description": "Background gradient animation" },
+      "springSlideUp": { "css": "animations.css:258", "type": "enter", "description": "Bouncy slide up with overshoot" },
+      "flowSlideIn": { "css": "animations.css:129", "type": "flow-step", "description": "translateX(-12px→0) + fade" },
+      "flowZoomFocus": { "css": "animations.css:134", "type": "flow-step", "description": "Scale(0.96→1) + fade" },
+      "flowWipe": { "css": "animations.css:139", "type": "flow-step", "description": "scaleX(0.85→1) + fade" },
+      "flowCardPop": { "css": "animations.css:144", "type": "flow-step", "description": "Pop with overshoot scale" },
+      "flowHighlightPulse": { "css": "animations.css:150", "type": "flow-step", "description": "Box-shadow pulse" },
+      "flowTypeReveal": { "css": "animations.css:155", "type": "flow-step", "description": "Clip-path type reveal" },
+      "transitionFade": { "css": "animations.css:195", "type": "slide-transition", "description": "Simple opacity fade" },
+      "transitionWipeRight": { "css": "animations.css:200", "type": "slide-transition", "description": "Clip-path wipe from left" },
+      "transitionZoomIn": { "css": "animations.css:211", "type": "slide-transition", "description": "Scale(0.75→1) zoom" },
+      "transitionFlipY": { "css": "animations.css:222", "type": "slide-transition", "description": "3D perspective rotateY(-90→0)" }
+    },
+    "staggerPresets": {
+      "stagger": {
+        "css": "animations.css:64-77",
+        "animation": "fadeSlideUp",
+        "timing": "var(--flow-stagger) * nth-child",
+        "maxChildren": 10,
+        "usedBy": ["accordion", "cards", "quiz", "advanced-quiz", "timeline", "summary", "bento", "checklist", "quote-card", "definition-card", "analogy", "code-diff", "image", "chart", "table", "flow"]
+      },
+      "stagger-spring": {
+        "css": "animations.css:276-289",
+        "animation": "springSlideUp (bouncy)",
+        "timing": "var(--flow-stagger) * nth-child",
+        "maxChildren": 10,
+        "usedBy": ["bullets", "split"]
+      }
+    },
+    "slideTransitions": {
+      "fade": { "css": ".slide-transition-fade.slide-enter", "duration": "0.6s", "easing": "ease" },
+      "wipe-right": { "css": ".slide-transition-wipe-right.slide-enter", "duration": "0.65s", "easing": "cubic-bezier(0.25,1,0.5,1)" },
+      "zoom-in": { "css": ".slide-transition-zoom-in.slide-enter", "duration": "0.55s", "easing": "cubic-bezier(0.34,1.56,0.64,1)" },
+      "flip-y": { "css": ".slide-transition-flip-y.slide-enter", "duration": "0.6s", "easing": "cubic-bezier(0.25,1,0.5,1)" }
+    },
+    "flowPresets": {
+      "fade-up": { "class": "flow-preset-fade-up" },
+      "slide-in": { "class": "flow-preset-slide-in" },
+      "zoom-focus": { "class": "flow-preset-zoom-focus" },
+      "wipe": { "class": "flow-preset-wipe" },
+      "card-pop": { "class": "flow-preset-card-pop" },
+      "highlight-pulse": { "class": "flow-preset-highlight-pulse" },
+      "type-reveal": { "class": "flow-preset-type-reveal" }
+    }
+  },
+  "interactions": {
+    "accordion-toggle": { "trigger": "click .accordion-header", "behavior": "open/close panel, close siblings", "js": "blocks-core.js" },
+    "tab-switch": { "trigger": "click .tab-btn", "behavior": "activate panel, deactivate others", "js": "blocks-core.js" },
+    "stepper-nav": { "trigger": "click .step-prev/.step-next/.step-dot", "behavior": "update step dots, lines, content", "js": "blocks-core.js" },
+    "flip-card": { "trigger": "click .flip-card", "behavior": "toggle flipped class (CSS 3D transform)", "js": "blocks-core.js" },
+    "quiz-answer": { "trigger": "click .quiz-option", "behavior": "highlight correct/wrong, show explanation, lock", "js": "blocks-core.js" },
+    "advanced-quiz-submit": { "trigger": "click .adv-submit-btn", "behavior": "score all answers, show modal, allow retry", "js": "blocks-core.js" },
+    "timeline-click": { "trigger": "click .timeline-item", "behavior": "toggle active highlight", "js": "blocks-core.js" },
+    "bullet-expand": { "trigger": "click .bullet-item", "behavior": "toggle expanded detail", "js": "blocks-core.js" },
+    "checklist-toggle": { "trigger": "click .checklist-toggle", "behavior": "toggle checked, micro-bounce, update ARIA", "js": "blocks-core.js" },
+    "chart-tooltip": { "trigger": "hover/touch on chart elements", "behavior": "show/position tooltip, filter brightness", "js": "blocks-data.js" },
+    "chart-legend-toggle": { "trigger": "click .legend-item", "behavior": "toggle dataset visibility", "js": "blocks-data.js" },
+    "table-search": { "trigger": "input .table-search-input", "behavior": "filter rows by text content", "js": "blocks-data.js" },
+    "table-sort": { "trigger": "click .sortable-th", "behavior": "sort rows ascending/descending", "js": "blocks-data.js" },
+    "flow-node-click": { "trigger": "click .flow-node-group", "behavior": "highlight node, show detail panel", "js": "blocks-data.js" },
+    "image-edit": { "trigger": "click .edit-image-overlay-btn", "behavior": "open URL editor overlay, save to localStorage", "js": "blocks-core.js" },
+    "counter-animation": { "trigger": "slideChanged event", "behavior": "count-up from 0 with easeOutQuart", "js": "engine.js" },
+    "flow-redraw": { "trigger": "slideChanged event", "behavior": "re-animate connection paths", "js": "blocks-data.js" }
+  },
+  "cssUtilities": {
+    "hover-lift": { "css": "animations.css:92", "effect": "translateY(-4px) + shadow-lg on hover" },
+    "glass": { "css": "animations.css:100", "effect": "backdrop-filter blur(20px) glassmorphism" },
+    "animated-gradient": { "css": "animations.css:80", "effect": "Moving gradient background" },
+    "flow-controlled": { "css": "animations.css:109", "effect": "Disable animation" },
+    "flow-hidden": { "css": "animations.css:112", "effect": "Hidden with transform" },
+    "flow-revealed": { "css": "animations.css:118", "effect": "Revealed state" },
+    "flow-highlight": { "css": "animations.css:122", "effect": "Primary color box-shadow highlight" }
+  },
+  "timingTokens": {
+    "--flow-duration": { "default": "360ms", "purpose": "Animation duration for all stagger/flow" },
+    "--flow-stagger": { "default": "60ms", "purpose": "Delay between staggered children" },
+    "--transition-fast": { "default": "150ms", "purpose": "Quick micro-interactions" },
+    "--transition-base": { "default": "250ms", "purpose": "Standard transitions" },
+    "--transition-slow": { "default": "400ms", "purpose": "Deliberate transitions" },
+    "--transition-spring": { "default": "500ms", "purpose": "Bouncy spring easing" }
+  },
+  "lazyDependencies": {
+    "katex": { "version": "0.16.8", "trigger": ".math-display-equation exists", "loader": "lazy-loaders.js" },
+    "mermaid": { "version": "10.2.4", "trigger": ".mermaid exists", "loader": "lazy-loaders.js" },
+    "prism": { "version": "1.29.0", "trigger": "pre code exists", "loader": "lazy-loaders.js" }
+  }
+}

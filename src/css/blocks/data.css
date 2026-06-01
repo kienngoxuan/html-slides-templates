@@ -680,3 +680,7 @@
   align-items: center;
 }
 
+.mermaid {
+  white-space: pre;
+}
+

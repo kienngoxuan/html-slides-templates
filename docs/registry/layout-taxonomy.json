@@ -1,0 +1,153 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "description": "Layout taxonomy — all layout patterns used across blocks and slides",
+    "source": "src/css/base.css, src/css/blocks/data.css, src/css/blocks/core.css, src/css/blocks/new-blocks.css"
+  },
+  "layouts": {
+    "slide-shell": {
+      "description": "Root slide container: section.slide > div.slide-inner",
+      "cssFile": "src/css/base.css",
+      "grid": "100vw horizontal track translateX",
+      "alignment": "center",
+      "responsive": "viewport-locked, no scroll",
+      "status": "frozen",
+      "usedBy": ["ALL blocks"]
+    },
+    "full": {
+      "description": "Single column, full-width content within slide-inner",
+      "cssFile": "src/css/base.css",
+      "grid": "flex column",
+      "alignment": "stretch",
+      "spacing": "var(--space-lg)",
+      "density": "default",
+      "responsive": "stacks naturally",
+      "usedBy": ["title", "bullets", "accordion", "tabs", "stepper", "quiz", "advanced-quiz", "compare", "timeline", "summary", "chart", "table", "flow", "stats", "checklist", "code-diff", "quote-card", "definition-card", "analogy", "splash", "image", "video", "math", "mermaid", "bento"]
+    },
+    "split-50-50": {
+      "description": "Two equal-width columns for split block type",
+      "cssFile": "src/css/blocks/data.css",
+      "grid": "grid 1fr 1fr",
+      "alignment": "stretch",
+      "spacing": "var(--space-lg)",
+      "density": "default",
+      "responsive": "stacks to single column on narrow viewports",
+      "usedBy": ["split"],
+      "supportedSubBlocks": ["text", "bullets", "code", "image", "math", "mermaid"]
+    },
+    "compare-grid": {
+      "description": "Two-column comparison with color-coded sides",
+      "cssFile": "src/css/blocks/core.css",
+      "grid": "grid 1fr 1fr",
+      "alignment": "stretch top",
+      "spacing": "var(--space-md)",
+      "density": "default",
+      "responsive": "stacks on mobile",
+      "usedBy": ["compare"]
+    },
+    "bento-grid": {
+      "description": "CSS grid masonry with configurable --grid-template",
+      "cssFile": "src/css/blocks/data.css",
+      "grid": "CSS grid with custom template",
+      "alignment": "stretch",
+      "spacing": "var(--space-md)",
+      "density": "variable (small/large cards)",
+      "responsive": "auto-fill with minmax",
+      "usedBy": ["bento"]
+    },
+    "cards-grid": {
+      "description": "Responsive card grid for flip cards",
+      "cssFile": "src/css/blocks/core.css",
+      "grid": "grid auto-fill minmax",
+      "alignment": "center",
+      "spacing": "var(--space-md)",
+      "density": "default",
+      "responsive": "auto-fill columns",
+      "usedBy": ["cards"]
+    },
+    "stats-grid": {
+      "description": "Responsive grid for stat cards",
+      "cssFile": "src/css/blocks/new-blocks.css",
+      "grid": "grid auto-fill",
+      "alignment": "stretch",
+      "spacing": "var(--space-md)",
+      "density": "default",
+      "responsive": "auto-fill columns",
+      "usedBy": ["stats"]
+    },
+    "timeline-vertical": {
+      "description": "Vertical timeline with left-aligned dots and content",
+      "cssFile": "src/css/blocks/core.css",
+      "grid": "flex column with pseudo-element line",
+      "alignment": "left",
+      "spacing": "var(--space-lg)",
+      "density": "default",
+      "responsive": "single column",
+      "usedBy": ["timeline"]
+    },
+    "timeline-horizontal-track": {
+      "description": "Horizontal scrollable timeline with top line and cards below",
+      "cssFile": "src/css/blocks/new-blocks.css",
+      "grid": "flex row overflow-x",
+      "alignment": "top",
+      "spacing": "var(--space-lg)",
+      "density": "default",
+      "responsive": "horizontal scroll",
+      "usedBy": ["timeline-horizontal"]
+    },
+    "flow-layout": {
+      "description": "SVG canvas + detail panel side by side",
+      "cssFile": "src/css/blocks/data.css",
+      "grid": "flex row (svg 60%, panel 40%)",
+      "alignment": "stretch",
+      "spacing": "var(--space-md)",
+      "density": "default",
+      "responsive": "stacks on narrow",
+      "usedBy": ["flow"]
+    },
+    "code-diff-layout": {
+      "description": "Side-by-side code panes (before/after)",
+      "cssFile": "src/css/blocks/new-blocks.css",
+      "grid": "grid 1fr 1fr",
+      "alignment": "stretch",
+      "spacing": "var(--space-md)",
+      "density": "default",
+      "responsive": "stacks on mobile",
+      "usedBy": ["code-diff"]
+    },
+    "analogy-layout": {
+      "description": "Two cards with bridge element in between",
+      "cssFile": "src/css/blocks/new-blocks.css",
+      "grid": "flex row with center bridge",
+      "alignment": "center",
+      "spacing": "var(--space-lg)",
+      "density": "default",
+      "responsive": "stacks vertically",
+      "usedBy": ["analogy"]
+    },
+    "nav-bar": {
+      "description": "Bottom navigation bar with prev/next buttons, counter, progress bar",
+      "cssFile": "src/css/base.css",
+      "grid": "flex row space-between",
+      "alignment": "center",
+      "status": "frozen",
+      "usedBy": ["engine navigation"]
+    },
+    "sidebar": {
+      "description": "Right sidebar panel with tabs for settings, notes, picker, Q&A",
+      "cssFile": "src/css/sidebar.css",
+      "grid": "flex column",
+      "alignment": "stretch",
+      "status": "frozen",
+      "usedBy": ["presenter tools"]
+    },
+    "presenter-view": {
+      "description": "Two-column presenter dashboard with notes and iframe previews",
+      "cssFile": "src/css/blocks/presenter.css",
+      "grid": "grid 40% 60%",
+      "alignment": "stretch",
+      "status": "frozen",
+      "usedBy": ["engine presenter mode"]
+    }
+  }
+}

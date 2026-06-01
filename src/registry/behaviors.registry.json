@@ -1,0 +1,35 @@
+{
+  "_meta": { "version": "1.0.0", "description": "Behaviors registry — animations, transitions, interaction presets" },
+  "slideTransitions": {
+    "fade":       { "keyframe": "transitionFade",      "duration": "0.6s",  "easing": "ease" },
+    "wipe-right": { "keyframe": "transitionWipeRight", "duration": "0.65s", "easing": "cubic-bezier(0.25,1,0.5,1)" },
+    "zoom-in":    { "keyframe": "transitionZoomIn",    "duration": "0.55s", "easing": "cubic-bezier(0.34,1.56,0.64,1)" },
+    "flip-y":     { "keyframe": "transitionFlipY",     "duration": "0.6s",  "easing": "cubic-bezier(0.25,1,0.5,1)" }
+  },
+  "staggerPresets": {
+    "stagger":        { "keyframe": "fadeSlideUp",   "maxChildren": 10, "easing": "ease" },
+    "stagger-spring": { "keyframe": "springSlideUp", "maxChildren": 10, "easing": "cubic-bezier(0.175,0.885,0.32,1.275)" }
+  },
+  "flowPresets": {
+    "fade-up":         { "class": "flow-preset-fade-up",        "keyframe": "fadeSlideUp" },
+    "slide-in":        { "class": "flow-preset-slide-in",       "keyframe": "flowSlideIn" },
+    "zoom-focus":      { "class": "flow-preset-zoom-focus",     "keyframe": "flowZoomFocus" },
+    "wipe":            { "class": "flow-preset-wipe",           "keyframe": "flowWipe" },
+    "card-pop":        { "class": "flow-preset-card-pop",       "keyframe": "flowCardPop" },
+    "highlight-pulse": { "class": "flow-preset-highlight-pulse","keyframe": "flowHighlightPulse" },
+    "type-reveal":     { "class": "flow-preset-type-reveal",    "keyframe": "flowTypeReveal" }
+  },
+  "timingTokens": {
+    "flow-duration":    "360ms",
+    "flow-stagger":     "60ms",
+    "transition-fast":  "150ms",
+    "transition-base":  "250ms",
+    "transition-slow":  "400ms",
+    "transition-spring":"500ms"
+  },
+  "lazyDependencies": {
+    "katex":   { "version": "0.16.8", "css": "https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" },
+    "mermaid": { "version": "10.2.4", "js": "https://cdn.jsdelivr.net/npm/mermaid@10.2.4/dist/mermaid.min.js" },
+    "prism":   { "version": "1.29.0", "css": "https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" }
+  }
+}

@@ -678,6 +678,7 @@
 }
 
 /* === SUMMARY === */
+.summary-points,
 .summary-items {
   list-style: none;
   display: flex;
@@ -686,6 +687,7 @@
   margin-bottom: var(--space-xl);
 }
 
+.summary-points li,
 .summary-items li {
   display: flex;
   align-items: center;
@@ -697,6 +699,7 @@
   font-weight: 500;
 }
 
+.summary-points li::before,
 .summary-items li::before {
   content: '✓';
   width: 24px;
@@ -730,9 +733,19 @@
 
 .summary-resources {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  text-align: center;
+  width: 100%;
+}
+
+.resources-grid {
+  display: flex;
   gap: var(--space-sm);
   flex-wrap: wrap;
   justify-content: center;
+  width: 100%;
 }
 
 .resource-link {

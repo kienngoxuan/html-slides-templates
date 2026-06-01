@@ -1,0 +1,53 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "description": "Migration aliases — maps duplicate/variant names to canonical block/layout/behavior IDs"
+  },
+  "blockAliases": {
+    "slide-code": "code-diff",
+    "slide-code-diff": "code-diff",
+    "slide-timeline": "timeline-horizontal",
+    "slide-timeline-horizontal": "timeline-horizontal",
+    "slide-quiz": "quiz",
+    "slide-advanced-quiz": "advanced-quiz",
+    "slide-flow": "flow",
+    "slide-bullets": "bullets",
+    "slide-bento": "bento",
+    "slide-stats": "stats",
+    "slide-compare": "compare",
+    "slide-table": "table",
+    "slide-summary": "summary",
+    "slide-title": "title",
+    "slide-split": "split",
+    "slide-cards": "cards",
+    "slide-image": "image",
+    "slide-quote-card": "quote-card",
+    "slide-definition-card": "definition-card",
+    "slide-analogy": "analogy",
+    "slide-checklist": "checklist",
+    "slide-splash": "splash",
+    "slide-stepper": "stepper",
+    "slide-accordion": "accordion",
+    "slide-tabs": "tabs",
+    "slide-chart": "chart"
+  },
+  "primitiveAliases": {
+    "_note": "These primitives.json keys are aliases that map to canonical block types + default transitionPreset",
+    "slide-code → slide-code-diff": "Both resolve to type: code-diff, transitionPreset: fade. DUPLICATE in primitives.json.",
+    "slide-timeline → slide-timeline-horizontal": "Both resolve to type: timeline-horizontal, transitionPreset: wipe-right. DUPLICATE in primitives.json."
+  },
+  "layoutAliases": {
+    "split-50-50": "split (default variant)",
+    "compare-container": "compare-grid"
+  },
+  "transitionAliases": {
+    "fade": "transitionFade",
+    "wipe-right": "transitionWipeRight",
+    "zoom-in": "transitionZoomIn",
+    "flip-y": "transitionFlipY"
+  },
+  "themeGroupAliases": {
+    "light": ["ocean", "forest", "berry", "slate", "paper", "nordic", "sunset", "editorial", "newspaper", "brutalist", "pastel", "monochrome"],
+    "dark": ["neon", "midnight", "evergreen", "volcano", "terminal", "blueprint", "blackboard"]
+  }
+}
