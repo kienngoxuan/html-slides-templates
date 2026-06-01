@@ -47,25 +47,13 @@
       }
     },
     {
-      "$ref": "slide-flow",
       "id": "slide-3",
+      "type": "mermaid",
+      "transitionPreset": "fade",
       "data": {
-        "heading": "Multi-Agent Routing Pipeline",
-        "icon": "🔄",
-        "nodes": [
-          {"id": "input", "label": "User Query", "details": "Natural language request."},
-          {"id": "router", "label": "LLM Router", "details": "Determines intent and selects agent."},
-          {"id": "agentA", "label": "Research Agent", "details": "Searches vector DBs."},
-          {"id": "agentB", "label": "Code Agent", "details": "Writes and tests scripts."},
-          {"id": "synth", "label": "Synthesizer", "details": "Combines agent outputs."}
-        ],
-        "connections": [
-          {"from": "input", "to": "router"},
-          {"from": "router", "to": "agentA"},
-          {"from": "router", "to": "agentB"},
-          {"from": "agentA", "to": "synth"},
-          {"from": "agentB", "to": "synth"}
-        ]
+        "heading": "Multi-Agent Swarm Topology",
+        "icon": "🕸️",
+        "code": "graph TD\n  User[\"👤 User Request\"] --> Router{\"LLM Router\"}\n  Router -->|Web Search| Res[\"🔍 Research Agent\"]\n  Router -->|Data processing| Code[\"💻 Python Agent\"]\n  Router -->|Math solver| Math[\"🧮 Math Agent\"]\n  Res -.-> Synth((\"Synthesizer\"))\n  Code -.-> Synth\n  Math -.-> Synth\n  Synth ==>|Final Answer| User\n\n  classDef agent fill:#111827,stroke:#10b981,stroke-width:2px,color:#fff;\n  classDef core fill:#0f172a,stroke:#3b82f6,stroke-width:2px,color:#fff;\n  class Res,Code,Math agent;\n  class Router,Synth core;"
       }
     },
     {
@@ -132,16 +120,24 @@
     },
     {
       "id": "slide-7",
-      "type": "bullets",
+      "type": "accordion",
       "transitionPreset": "fade",
       "data": {
-        "heading": "Primary Failure Modes",
-        "icon": "⚠️",
+        "heading": "Execution Logs & Failure Modes",
+        "icon": "📜",
         "items": [
-          {"text": "Infinite Loops", "detail": "Agent gets stuck repeatedly calling the same tool with the same input."},
-          {"text": "Hallucinated Tools", "detail": "Agent attempts to use a tool that was not provided in its prompt context."},
-          {"text": "Context Overflow", "detail": "Agent accumulates too much history, exceeding the model's maximum token limit."},
-          {"text": "Premature Termination", "detail": "Agent provides a final answer before adequately solving the multi-step problem."}
+          {
+            "title": "[ERROR 0x01] Infinite Tool Loop",
+            "content": "Agent gets stuck repeatedly calling the same tool with the exact same input string. Mitigation: Implement a maximum iteration limit (e.g., max_steps=5) in the executor."
+          },
+          {
+            "title": "[WARN 0x02] Hallucinated Tool Call",
+            "content": "Agent outputs an Action pointing to a tool that doesn't exist. Mitigation: Use strict grammar constraints or a parsing retry loop."
+          },
+          {
+            "title": "[FATAL 0x03] Context Window Overflow",
+            "content": "Observation logs grow too large, pushing the total token count past the model's maximum (e.g., 128k). Mitigation: Summarize old observations dynamically."
+          }
         ]
       }
     },
