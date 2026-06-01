@@ -16,6 +16,7 @@ const InteractiveBlocksCore = (function () {
     initTimeline();
     initBullets();
     initChecklist();
+    initStats();
   }
 
   /* === Interactive Image URL Customizer === */
@@ -572,6 +573,15 @@ const InteractiveBlocksCore = (function () {
       // Micro-bounce animation
       item.style.transform = 'scale(1.02)';
       setTimeout(() => { item.style.transform = ''; }, 200);
+    });
+  }
+
+  /* === Expandable Stats Cards === */
+  function initStats() {
+    document.addEventListener('click', (e) => {
+      const card = e.target.closest('.stat-card.expandable');
+      if (!card) return;
+      card.classList.toggle('expanded');
     });
   }
 
