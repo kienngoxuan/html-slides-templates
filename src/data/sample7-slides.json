@@ -62,36 +62,32 @@
     },
     {
       "id": "slide-4",
-      "type": "split",
+      "type": "compare",
       "transitionPreset": "zoom-in",
       "data": {
-        "heading": "Disrupting Traditional Banking Stack",
+        "heading": "Disrupting Traditional Banking Stacks",
         "icon": "🏢",
-        "layout": "split-50-50",
         "left": {
-          "type": "bullets",
-          "data": {
-            "heading": "Legacy Banking Stack",
-            "items": [
-              "Batch processing overnight.",
-              "Siloed mainframe databases.",
-              "Manual compliance checks.",
-              "High transaction fees."
-            ]
-          }
+          "title": "Legacy Core Systems",
+          "color": "danger",
+          "items": [
+            "Batch processing overnight (T+1/T+2)",
+            "Siloed mainframe architecture",
+            "Manual compliance interventions",
+            "Prohibitive cross-border fees"
+          ]
         },
         "right": {
-          "type": "bullets",
-          "data": {
-            "heading": "Our FinTech Stack",
-            "items": [
-              "Real-time event streaming.",
-              "Distributed ledger technology.",
-              "Automated AI-driven compliance.",
-              "Micro-transaction viability."
-            ]
-          }
-        }
+          "title": "Our FinTech Pipeline",
+          "color": "success",
+          "items": [
+            "Real-time event streaming (<50ms)",
+            "Distributed ledger technology",
+            "AI-driven automated compliance",
+            "Fractional micro-transaction viability"
+          ]
+        },
+        "verdict": "Migrating to the modern event-driven stack reduces operational costs by up to 80% while scaling globally."
       }
     },
     {
@@ -148,28 +144,38 @@
       }
     },
     {
-      "$ref": "slide-quiz",
       "id": "slide-8",
+      "type": "advanced-quiz",
+      "transitionPreset": "slide-up",
       "data": {
-        "heading": "FinTech Compliance & SLA Assessment",
-        "icon": "🛡️",
+        "heading": "Institutional Compliance Exam",
+        "icon": "🔐",
         "questions": [
-          {"question": "What is the industry standard requirement for High Availability (HA) in critical financial infrastructure?", "correct": 2, "options": ["99.0% Uptime (Down 3.65 days/year)", "99.9% Uptime (Down 8.76 hours/year)", "99.999% Uptime (Down 5.26 minutes/year)", "100% Guaranteed Uptime"], "explanation": "Five nines (99.999%) is the gold standard for critical infrastructure, allowing only about 5 minutes of downtime per year."}
+          {"question": "What is the industry standard requirement for High Availability (HA) in critical financial infrastructure?", "correct": 2, "options": ["99.0% Uptime (Down 3.65 days/year)", "99.9% Uptime (Down 8.76 hours/year)", "99.999% Uptime (Down 5.26 minutes/year)", "100% Guaranteed Uptime"], "explanation": "Five nines (99.999%) is the gold standard for critical infrastructure, allowing only about 5 minutes of downtime per year."},
+          {"question": "Which security standard is mandatory for processing credit card transactions?", "correct": 1, "options": ["SOC 2 Type II", "PCI-DSS Level 1", "ISO 9001", "HIPAA"], "explanation": "PCI-DSS is the Payment Card Industry Data Security Standard."}
         ]
       }
     },
     {
       "id": "slide-9",
-      "type": "bullets",
+      "type": "tabs",
       "transitionPreset": "fade",
       "data": {
-        "heading": "Regulatory & Compliance Milestones",
+        "heading": "Global Regulatory Operations",
         "icon": "⚖️",
-        "items": [
-          {"text": "SOC 2 Type II Certification", "detail": "Completed audit verifying security, availability, and processing integrity."},
-          {"text": "GDPR & CCPA Compliant", "detail": "Robust data privacy frameworks implemented across all regions."},
-          {"text": "PCI-DSS Level 1", "detail": "Highest level of certification for handling credit card data securely."},
-          {"text": "ISO 27001", "detail": "Information security management system standard achieved."}
+        "tabs": [
+          {
+            "label": "🇺🇸 US Operations",
+            "content": "Fully compliant with CCPA. Core data centers audited and achieved SOC 2 Type II Certification for security, availability, and processing integrity."
+          },
+          {
+            "label": "🇪🇺 EU Operations",
+            "content": "Strict adherence to GDPR data privacy frameworks. Localized data sharding ensures European customer data never leaves the EU zones."
+          },
+          {
+            "label": "🌏 APAC Expansion",
+            "content": "Acquired Major Payment Institution licenses in Singapore (MAS) and Hong Kong (HKMA) to process cross-border B2B transactions."
+          }
         ]
       }
     },

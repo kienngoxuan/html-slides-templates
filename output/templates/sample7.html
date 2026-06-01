@@ -5030,6 +5030,569 @@ body.sidebar-open .slides-viewport {
 
 
 
+/* === ADVANCED QUIZ === */
+.advanced-quiz-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.adv-question {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.adv-question h4 {
+  margin-bottom: var(--space-md);
+  font-size: 1.05rem;
+}
+
+.adv-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.adv-option {
+  padding: var(--space-md);
+  background: var(--color-bg-alt);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--color-text);
+  text-align: left;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.adv-option:hover:not(.correct):not(.wrong) {
+  border-color: var(--color-primary-alpha);
+  background: var(--color-surface-hover);
+}
+
+.adv-option .option-letter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  transition: all var(--transition-fast);
+  user-select: none;
+  -webkit-user-select: none;
+  flex-shrink: 0;
+}
+
+.adv-option.selected {
+  border-color: var(--color-primary);
+  background: color-mix(in oklch, var(--color-primary) 8%, var(--color-bg));
+}
+
+.adv-option.selected .option-letter {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.adv-option.correct {
+  border-color: var(--color-success);
+  background: color-mix(in oklch, var(--color-success) 12%, var(--color-bg));
+}
+
+.adv-option.correct .option-letter {
+  background: var(--color-success);
+  color: white;
+  border-color: var(--color-success);
+}
+
+.adv-option.wrong {
+  border-color: var(--color-error);
+  background: color-mix(in oklch, var(--color-error) 12%, var(--color-bg));
+}
+
+.adv-option.wrong .option-letter {
+  background: var(--color-error);
+  color: white;
+  border-color: var(--color-error);
+}
+
+.adv-quiz-action-row {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-md);
+}
+
+/* === ADVANCED QUIZ POPUP MODAL === */
+.adv-quiz-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999;
+  animation: fadeIn 300ms ease;
+  padding: var(--space-md);
+  box-sizing: border-box;
+}
+
+.adv-quiz-modal {
+  position: relative;
+  width: 90%;
+  max-width: 440px;
+  background: var(--color-surface);
+  border: 2px solid var(--color-primary-alpha);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl) var(--space-lg);
+  box-shadow: var(--shadow-xl), var(--shadow-glow);
+  text-align: center;
+  animation: scaleUp 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+/* Close Button */
+.adv-quiz-modal-close {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-md);
+  background: transparent;
+  border: none;
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color var(--transition-fast);
+  padding: 0.25rem;
+  line-height: 1;
+}
+
+.adv-quiz-modal-close:hover {
+  color: var(--color-error);
+}
+
+.adv-result-score {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-bottom: var(--space-xs);
+  font-family: var(--font-heading);
+}
+
+.adv-result-feedback {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+  from { transform: scale(0.9) translateY(10px); opacity: 0; }
+  to { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+/* === PREMIUM COMPONENT BUTTONS === */
+.adv-submit-btn,
+.adv-retry-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: 0.8rem 2.2rem;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-spring);
+  user-select: none;
+  -webkit-user-select: none;
+  box-shadow: var(--shadow-sm);
+  outline: none;
+  border: none;
+}
+
+/* Premium Gradient Submit Button */
+.adv-submit-btn {
+  background: var(--gradient-primary);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.adv-submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--color-primary-alpha), var(--shadow-glow);
+  filter: brightness(1.06);
+}
+
+.adv-submit-btn:active:not(:disabled) {
+  transform: translateY(0) scale(0.96);
+}
+
+.adv-submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Premium Glassmorphic Outline Retry Button */
+.adv-retry-btn {
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  backdrop-filter: blur(8px);
+}
+
+.adv-retry-btn:hover {
+  background: var(--color-primary);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--color-primary-alpha);
+}
+
+.adv-retry-btn:active {
+  transform: translateY(0) scale(0.96);
+}
+
+/* Scroll locking when Advanced Quiz Modal is open */
+body.adv-quiz-modal-open {
+  overflow: hidden !important;
+}
+body.adv-quiz-modal-open .catalog,
+body.adv-quiz-modal-open .slide-deck,
+body.adv-quiz-modal-open .slide {
+  overflow: hidden !important;
+}
+
+
+/* 1. Global Drawing Canvas & Floating Toolbar */
+.drawing-canvas-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  cursor: crosshair;
+  pointer-events: none; /* Managed dynamically via JS */
+  display: block;
+}
+
+.drawing-toolbar {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(120%);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: 0.5rem 1.25rem;
+  box-shadow: var(--shadow-xl), var(--shadow-glow);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  z-index: 1000000;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: transform var(--transition-spring), opacity var(--transition-base);
+  opacity: 0;
+}
+
+.drawing-toolbar.active {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.draw-tool-btn {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-text);
+  font-size: 0.95rem;
+  transition: all var(--transition-fast);
+}
+
+.draw-tool-btn:hover {
+  background: var(--color-surface-hover);
+  transform: scale(1.08);
+}
+
+.draw-tool-btn.active {
+  background: var(--color-primary-alpha);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  transform: scale(1.05);
+}
+
+.draw-color-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+  border: 2px solid transparent;
+}
+
+.draw-color-dot:hover {
+  transform: scale(1.2);
+}
+
+.draw-color-dot.active {
+  transform: scale(1.25);
+  border-color: var(--color-text);
+}
+
+.draw-color-red { background-color: var(--brush-red); }
+.draw-color-blue { background-color: var(--brush-blue); }
+.draw-color-yellow { background-color: var(--brush-yellow); } /* Highlighter */
+.draw-color-green { background-color: var(--brush-green); }
+
+.draw-divider {
+  width: 1px;
+  height: 24px;
+  background-color: var(--color-border);
+}
+
+.draw-brush-indicator {
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  color: var(--color-text-secondary);
+}
+
+/* 2. Spotlight Command Palette (Search Box Overlay) */
+.search-palette-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  z-index: 10000001;
+  padding-top: 15vh;
+  animation: fadeIn 200ms ease;
+}
+
+.search-palette {
+  width: 90%;
+  max-width: 580px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-primary-alpha);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl), var(--shadow-glow);
+  padding: var(--space-md);
+  animation: slideDown 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  background: var(--color-bg-alt);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.5rem 1rem;
+  transition: border-color var(--transition-fast);
+}
+
+.search-input-wrapper:focus-within {
+  border-color: var(--color-primary);
+}
+
+.search-input-wrapper span {
+  font-size: 1.2rem;
+}
+
+.search-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+}
+
+.search-results-list {
+  max-height: 300px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.search-result-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  background: transparent;
+  border: none;
+  text-align: left;
+  width: 100%;
+  font-family: var(--font-body);
+  color: var(--color-text);
+}
+
+.search-result-item:hover, .search-result-item.selected {
+  background: var(--color-primary-alpha);
+  color: var(--color-primary);
+}
+
+.search-result-num {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+}
+
+.search-result-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-result-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.search-result-snippet {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+}
+
+
+@keyframes blink {
+  0% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+@keyframes slideDown {
+  0% { transform: translateY(-50px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Safe-zone overlay for recording */
+.safe-zone-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1200;
+  display: none;
+}
+
+body.safe-zone-enabled .safe-zone-overlay {
+  display: block;
+}
+
+.safe-zone-box {
+  position: absolute;
+  border: 2px dashed color-mix(in oklch, var(--color-primary) 70%, transparent);
+  border-radius: var(--radius-lg);
+  background: color-mix(in oklch, var(--color-primary) 6%, transparent);
+  color: var(--color-primary);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  display: none;
+}
+
+.safe-zone-label {
+  position: absolute;
+  top: 0.4rem;
+  left: 0.6rem;
+  background: var(--color-bg);
+  padding: 0.1rem 0.4rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+
+body.safe-zone-camera-left .safe-zone-camera,
+body.safe-zone-camera-right .safe-zone-camera,
+body.safe-zone-subtitle-on .safe-zone-subtitle {
+  display: block;
+}
+
+body.safe-zone-camera-left .safe-zone-camera {
+  left: 4%;
+  top: 16%;
+  width: 26%;
+  height: 42%;
+}
+
+body.safe-zone-camera-right .safe-zone-camera {
+  right: 4%;
+  top: 16%;
+  width: 26%;
+  height: 42%;
+}
+
+body.safe-zone-subtitle-on .safe-zone-subtitle {
+  left: 8%;
+  right: 8%;
+  bottom: 6%;
+  height: 18%;
+}
+
+
+
 /* ==========================================================================
    LECTA AI — Viewport Emulator Chassis Styles
    YouTube Shorts style device frame with immersive scaling and deep shadows.
@@ -5958,7 +6521,7 @@ body.viewport-mode-mobile .table-actions {
   </div>
 
   <script type="application/json" id="lesson-context-data">{"audience":"Executive Board","topic":"Company Performance & Infrastructure","lessonLength":20,"tone":"professional","pace":"fast","rhythmPreset":"executive-brief","textDensity":"medium","exampleDensity":"high","primaryColor":"#5eadd6","stylePack":"tech-blueprint"}</script>
-  <script type="application/json" id="slide-data">{"meta":{"title":"FinTech 2026: Hyper-Growth","subtitle":"Live Wealth & Market Intelligence","author":"Global FinTech Exec Team","date":"2026","theme":"blueprint","duration":20,"context":{"audience":"Executive Board","topic":"Company Performance & Infrastructure","lessonLength":20,"tone":"professional","pace":"fast","rhythmPreset":"executive-brief","textDensity":"medium","exampleDensity":"high","primaryColor":"#5eadd6","stylePack":"tech-blueprint"}},"slides":[{"id":"slide-1","type":"title","transitionPreset":"zoom-in","data":{"heading":"FinTech 2026: Hyper-Growth Performance","subtitle":"A technical and financial review of our live transaction pipeline.","badge":"Q4 Executive Review","speakerNotes":"Welcome board members. Today we review our staggering Q4 growth and the underlying architecture supporting it."}},{"type":"stats","transitionPreset":"zoom-in","id":"slide-2","data":{"heading":"Key Milestones & Growth Metrics","icon":"📈","stats":[{"trendUp":true,"value":"$12.45M","label":"Annual Recurring Revenue","trend":"+145% YoY"},{"trendUp":true,"value":"99.999%","label":"SLA Uptime","trend":"Consistent"},{"trendUp":true,"value":"12.5M","label":"Transactions Processed","trend":"+320% YoY"}],"speakerNotes":"Notice the live count-up effect. These figures represent real-time milestones achieved as of this morning."}},{"id":"slide-3","type":"timeline","transitionPreset":"fade","data":{"heading":"Our Strategic Evolution","icon":"🗺️","events":[{"year":"2023","title":"Series A & Platform Launch","description":"Initial release of the core ledger and payment gateway APIs."},{"year":"2024","title":"International Expansion","description":"Obtained licenses in EU and APAC regions; launched multi-currency support."},{"year":"2025","title":"AI Risk Engine Integration","description":"Deployed machine learning models for real-time fraud detection."},{"year":"2026","title":"Hyper-Growth & Institutional Adoption","description":"Onboarded top-tier banks and surpassed $10B in processed volume."}]}},{"id":"slide-4","type":"split","transitionPreset":"zoom-in","data":{"heading":"Disrupting Traditional Banking Stack","icon":"🏢","layout":"split-50-50","left":{"type":"bullets","data":{"heading":"Legacy Banking Stack","items":["Batch processing overnight.","Siloed mainframe databases.","Manual compliance checks.","High transaction fees."]}},"right":{"type":"bullets","data":{"heading":"Our FinTech Stack","items":["Real-time event streaming.","Distributed ledger technology.","Automated AI-driven compliance.","Micro-transaction viability."]}}}},{"type":"flow","transitionPreset":"fade","id":"slide-5","data":{"heading":"Real-time Transaction Pipeline","icon":"⚙️","nodes":[{"id":"gateway","label":"API Gateway","details":"Ingests payment requests."},{"id":"risk","label":"Risk Engine (AI)","details":"Fraud analysis < 5ms."},{"id":"ledger","label":"Core Ledger","details":"Atomic transaction commit."},{"id":"settle","label":"Settlement Network","details":"Funds routed to destination."}],"connections":[{"from":"gateway","to":"risk"},{"from":"risk","to":"ledger"},{"from":"ledger","to":"settle"}]}},{"type":"bento","transitionPreset":"zoom-in","id":"slide-6","data":{"heading":"Dashboard Components Blueprint","icon":"📱","gridTemplate":"large | small small","items":[{"size":"large","title":"Command Center View","content":"Aggregate view of global transaction volume, system health, and active threat mitigation.","badge":"Primary Interface","bgGradient":"oklch(40% 0.1 250) to oklch(30% 0.1 230)"},{"size":"small","title":"Live Ledger","content":"Streaming feed of settled transactions.","icon":"🧾"},{"size":"small","title":"Alert Matrix","content":"Prioritized security and operational alerts.","icon":"⚠️"}]}},{"type":"table","transitionPreset":"fade","id":"slide-7","data":{"heading":"Comparative Market Analytics","icon":"📊","columns":[{"key":"provider","label":"Provider"},{"key":"latency","label":"Avg Latency"},{"key":"uptime","label":"Uptime"},{"key":"fee","label":"Fee Structure"}],"rows":[{"provider":"Our Platform","latency":"42ms","uptime":"99.999%","fee":"0.5% + $0.10"},{"provider":"Competitor A","latency":"250ms","uptime":"99.9%","fee":"2.9% + $0.30"},{"provider":"Competitor B","latency":"120ms","uptime":"99.95%","fee":"1.5% + $0.25"},{"provider":"Legacy Bank","latency":"24-48 hrs","uptime":"99.0%","fee":"Varies"}]}},{"type":"quiz","transitionPreset":"zoom-in","id":"slide-8","data":{"heading":"FinTech Compliance & SLA Assessment","icon":"🛡️","questions":[{"question":"What is the industry standard requirement for High Availability (HA) in critical financial infrastructure?","correct":2,"options":["99.0% Uptime (Down 3.65 days/year)","99.9% Uptime (Down 8.76 hours/year)","99.999% Uptime (Down 5.26 minutes/year)","100% Guaranteed Uptime"],"explanation":"Five nines (99.999%) is the gold standard for critical infrastructure, allowing only about 5 minutes of downtime per year."}]}},{"id":"slide-9","type":"bullets","transitionPreset":"fade","data":{"heading":"Regulatory & Compliance Milestones","icon":"⚖️","items":[{"text":"SOC 2 Type II Certification","detail":"Completed audit verifying security, availability, and processing integrity."},{"text":"GDPR & CCPA Compliant","detail":"Robust data privacy frameworks implemented across all regions."},{"text":"PCI-DSS Level 1","detail":"Highest level of certification for handling credit card data securely."},{"text":"ISO 27001","detail":"Information security management system standard achieved."}]}},{"id":"slide-10","type":"code-diff","transitionPreset":"zoom-in","data":{"heading":"Optimizing Payment Latency","icon":"⚡","leftTitle":"Legacy Synchronous DB Call","leftLang":"javascript","leftCode":"async function processPayment(req) {\n  const user = await db.getUser(req.userId);\n  const balance = await db.getBalance(user.id);\n  if (balance >= req.amount) {\n    await db.updateBalance(user.id, -req.amount);\n    return success;\n  }\n}","rightTitle":"Modern Async Event Stream","rightLang":"javascript","rightCode":"async function processPayment(req) {\n  // In-memory Redis check, async event emit\n  if (await cache.hasFunds(req.userId, req.amount)) {\n    kafka.emit('payment_intent', req);\n    return accepted_for_processing;\n  }\n}"}},{"type":"stats","transitionPreset":"zoom-in","id":"slide-11","data":{"heading":"Global Transaction Projections","icon":"🌍","stats":[{"trendUp":true,"value":"150+","label":"Countries Supported","trend":"+12 this quarter"},{"trendUp":true,"value":"5B+","label":"Projected Volume (Q1)","trend":"Exponential"},{"trendUp":true,"value":"45","label":"Fiat Currencies","trend":"Native Settlement"}]}},{"id":"slide-12","type":"summary","transitionPreset":"zoom-in","data":{"heading":"Strategic Wealth Recap","icon":"🎯","items":["Our architecture scales horizontally to meet exponential demand.","Latency optimization directly correlates to increased conversion rates.","Compliance is built into the pipeline, not bolted on afterward.","We are positioned to capture significant market share in emerging regions."],"callToAction":"Review the full technical whitepaper in the appendix.","resources":[{"label":"Architecture Whitepaper","url":"#"},{"label":"Q4 Financials Detailed Report","url":"#"}]}}]}</script>
+  <script type="application/json" id="slide-data">{"meta":{"title":"FinTech 2026: Hyper-Growth","subtitle":"Live Wealth & Market Intelligence","author":"Global FinTech Exec Team","date":"2026","theme":"blueprint","duration":20,"context":{"audience":"Executive Board","topic":"Company Performance & Infrastructure","lessonLength":20,"tone":"professional","pace":"fast","rhythmPreset":"executive-brief","textDensity":"medium","exampleDensity":"high","primaryColor":"#5eadd6","stylePack":"tech-blueprint"}},"slides":[{"id":"slide-1","type":"title","transitionPreset":"zoom-in","data":{"heading":"FinTech 2026: Hyper-Growth Performance","subtitle":"A technical and financial review of our live transaction pipeline.","badge":"Q4 Executive Review","speakerNotes":"Welcome board members. Today we review our staggering Q4 growth and the underlying architecture supporting it."}},{"type":"stats","transitionPreset":"zoom-in","id":"slide-2","data":{"heading":"Key Milestones & Growth Metrics","icon":"📈","stats":[{"trendUp":true,"value":"$12.45M","label":"Annual Recurring Revenue","trend":"+145% YoY"},{"trendUp":true,"value":"99.999%","label":"SLA Uptime","trend":"Consistent"},{"trendUp":true,"value":"12.5M","label":"Transactions Processed","trend":"+320% YoY"}],"speakerNotes":"Notice the live count-up effect. These figures represent real-time milestones achieved as of this morning."}},{"id":"slide-3","type":"timeline","transitionPreset":"fade","data":{"heading":"Our Strategic Evolution","icon":"🗺️","events":[{"year":"2023","title":"Series A & Platform Launch","description":"Initial release of the core ledger and payment gateway APIs."},{"year":"2024","title":"International Expansion","description":"Obtained licenses in EU and APAC regions; launched multi-currency support."},{"year":"2025","title":"AI Risk Engine Integration","description":"Deployed machine learning models for real-time fraud detection."},{"year":"2026","title":"Hyper-Growth & Institutional Adoption","description":"Onboarded top-tier banks and surpassed $10B in processed volume."}]}},{"id":"slide-4","type":"compare","transitionPreset":"zoom-in","data":{"heading":"Disrupting Traditional Banking Stacks","icon":"🏢","left":{"title":"Legacy Core Systems","color":"danger","items":["Batch processing overnight (T+1/T+2)","Siloed mainframe architecture","Manual compliance interventions","Prohibitive cross-border fees"]},"right":{"title":"Our FinTech Pipeline","color":"success","items":["Real-time event streaming (<50ms)","Distributed ledger technology","AI-driven automated compliance","Fractional micro-transaction viability"]},"verdict":"Migrating to the modern event-driven stack reduces operational costs by up to 80% while scaling globally."}},{"type":"flow","transitionPreset":"fade","id":"slide-5","data":{"heading":"Real-time Transaction Pipeline","icon":"⚙️","nodes":[{"id":"gateway","label":"API Gateway","details":"Ingests payment requests."},{"id":"risk","label":"Risk Engine (AI)","details":"Fraud analysis < 5ms."},{"id":"ledger","label":"Core Ledger","details":"Atomic transaction commit."},{"id":"settle","label":"Settlement Network","details":"Funds routed to destination."}],"connections":[{"from":"gateway","to":"risk"},{"from":"risk","to":"ledger"},{"from":"ledger","to":"settle"}]}},{"type":"bento","transitionPreset":"zoom-in","id":"slide-6","data":{"heading":"Dashboard Components Blueprint","icon":"📱","gridTemplate":"large | small small","items":[{"size":"large","title":"Command Center View","content":"Aggregate view of global transaction volume, system health, and active threat mitigation.","badge":"Primary Interface","bgGradient":"oklch(40% 0.1 250) to oklch(30% 0.1 230)"},{"size":"small","title":"Live Ledger","content":"Streaming feed of settled transactions.","icon":"🧾"},{"size":"small","title":"Alert Matrix","content":"Prioritized security and operational alerts.","icon":"⚠️"}]}},{"type":"table","transitionPreset":"fade","id":"slide-7","data":{"heading":"Comparative Market Analytics","icon":"📊","columns":[{"key":"provider","label":"Provider"},{"key":"latency","label":"Avg Latency"},{"key":"uptime","label":"Uptime"},{"key":"fee","label":"Fee Structure"}],"rows":[{"provider":"Our Platform","latency":"42ms","uptime":"99.999%","fee":"0.5% + $0.10"},{"provider":"Competitor A","latency":"250ms","uptime":"99.9%","fee":"2.9% + $0.30"},{"provider":"Competitor B","latency":"120ms","uptime":"99.95%","fee":"1.5% + $0.25"},{"provider":"Legacy Bank","latency":"24-48 hrs","uptime":"99.0%","fee":"Varies"}]}},{"id":"slide-8","type":"advanced-quiz","transitionPreset":"slide-up","data":{"heading":"Institutional Compliance Exam","icon":"🔐","questions":[{"question":"What is the industry standard requirement for High Availability (HA) in critical financial infrastructure?","correct":2,"options":["99.0% Uptime (Down 3.65 days/year)","99.9% Uptime (Down 8.76 hours/year)","99.999% Uptime (Down 5.26 minutes/year)","100% Guaranteed Uptime"],"explanation":"Five nines (99.999%) is the gold standard for critical infrastructure, allowing only about 5 minutes of downtime per year."},{"question":"Which security standard is mandatory for processing credit card transactions?","correct":1,"options":["SOC 2 Type II","PCI-DSS Level 1","ISO 9001","HIPAA"],"explanation":"PCI-DSS is the Payment Card Industry Data Security Standard."}]}},{"id":"slide-9","type":"tabs","transitionPreset":"fade","data":{"heading":"Global Regulatory Operations","icon":"⚖️","tabs":[{"label":"🇺🇸 US Operations","content":"Fully compliant with CCPA. Core data centers audited and achieved SOC 2 Type II Certification for security, availability, and processing integrity."},{"label":"🇪🇺 EU Operations","content":"Strict adherence to GDPR data privacy frameworks. Localized data sharding ensures European customer data never leaves the EU zones."},{"label":"🌏 APAC Expansion","content":"Acquired Major Payment Institution licenses in Singapore (MAS) and Hong Kong (HKMA) to process cross-border B2B transactions."}]}},{"id":"slide-10","type":"code-diff","transitionPreset":"zoom-in","data":{"heading":"Optimizing Payment Latency","icon":"⚡","leftTitle":"Legacy Synchronous DB Call","leftLang":"javascript","leftCode":"async function processPayment(req) {\n  const user = await db.getUser(req.userId);\n  const balance = await db.getBalance(user.id);\n  if (balance >= req.amount) {\n    await db.updateBalance(user.id, -req.amount);\n    return success;\n  }\n}","rightTitle":"Modern Async Event Stream","rightLang":"javascript","rightCode":"async function processPayment(req) {\n  // In-memory Redis check, async event emit\n  if (await cache.hasFunds(req.userId, req.amount)) {\n    kafka.emit('payment_intent', req);\n    return accepted_for_processing;\n  }\n}"}},{"type":"stats","transitionPreset":"zoom-in","id":"slide-11","data":{"heading":"Global Transaction Projections","icon":"🌍","stats":[{"trendUp":true,"value":"150+","label":"Countries Supported","trend":"+12 this quarter"},{"trendUp":true,"value":"5B+","label":"Projected Volume (Q1)","trend":"Exponential"},{"trendUp":true,"value":"45","label":"Fiat Currencies","trend":"Native Settlement"}]}},{"id":"slide-12","type":"summary","transitionPreset":"zoom-in","data":{"heading":"Strategic Wealth Recap","icon":"🎯","items":["Our architecture scales horizontally to meet exponential demand.","Latency optimization directly correlates to increased conversion rates.","Compliance is built into the pipeline, not bolted on afterward.","We are positioned to capture significant market share in emerging regions."],"callToAction":"Review the full technical whitepaper in the appendix.","resources":[{"label":"Architecture Whitepaper","url":"#"},{"label":"Q4 Financials Detailed Report","url":"#"}]}}]}</script>
   <script type="application/json" id="template-library-data">{"categories":[{"id":"concept-intro","label":"Concept Intro","description":"Define a new AI concept with a crisp takeaway and one supporting example.","templates":[{"id":"concept-hero","title":"Concept Hero","useCase":"Explain a concept","tags":["beginner","definition","clarity"],"slide":{"$ref":"slide-bullets","data":{"heading":"What is a Transformer?","icon":"AI","items":[{"text":"A model that learns attention between tokens","detail":"Self-attention lets each token look at the rest of the sequence."},{"text":"Scales well with large data","detail":"Parallel training enables huge model sizes."},{"text":"Used in GPT, BERT, and T5","detail":"It is the backbone of modern NLP systems."}]},"flow":[{"label":"Reveal definition","action":"reveal","preset":"fade-up","targets":["[data-flow-id='bullet-1']"]},{"label":"Reveal scaling","action":"reveal","preset":"fade-up","targets":["[data-flow-id='bullet-2']"]},{"label":"Reveal examples","action":"reveal","preset":"fade-up","targets":["[data-flow-id='bullet-3']"]}]}}]},{"id":"pipeline","label":"Pipeline / Workflow","description":"Walk through an AI workflow or data pipeline step-by-step.","templates":[{"id":"pipeline-flow","title":"AI Pipeline Walkthrough","useCase":"Walk through a pipeline","tags":["workflow","step-by-step"],"slide":{"$ref":"slide-flow","data":{"heading":"Training Pipeline","icon":"FLOW","nodes":[{"id":"data","label":"Data"},{"id":"clean","label":"Clean"},{"id":"train","label":"Train"},{"id":"eval","label":"Evaluate"},{"id":"deploy","label":"Deploy"}],"connections":[{"from":"data","to":"clean"},{"from":"clean","to":"train"},{"from":"train","to":"eval"},{"from":"eval","to":"deploy"}]}}}]},{"id":"comparison","label":"Comparison","description":"Show before/after or method A vs method B with a clear verdict.","templates":[{"id":"compare-methods","title":"Method Comparison","useCase":"Compare two methods","tags":["comparison","decision"],"slide":{"$ref":"slide-compare","data":{"heading":"Bag-of-Words vs. Transformer","icon":"COMPARE","left":{"title":"Bag-of-Words","items":["Order ignored","Simple features","Fast but shallow"],"color":"blue"},"right":{"title":"Transformer","items":["Context-aware","Scales better","State-of-the-art"],"color":"green"},"verdict":"Transformers win when context matters."},"flow":[{"label":"Reveal left","action":"reveal","preset":"slide-in","targets":[".compare-side.side-blue"]},{"label":"Reveal right","action":"reveal","preset":"slide-in","targets":[".compare-side.side-green"]},{"label":"Highlight verdict","action":"highlight","preset":"highlight-pulse","targets":[".compare-verdict"]}]}}]},{"id":"example-breakdown","label":"Example Breakdown","description":"Step-by-step example with highlights for key moments.","templates":[{"id":"example-steps","title":"Example Walkthrough","useCase":"Teach with example","tags":["example","step-by-step"],"slide":{"type":"stepper","data":{"heading":"Prompt -> Output","icon":"EXAMPLE","steps":[{"title":"Step 1","content":"Write a clear prompt with constraints.","tip":"Be explicit about format."},{"title":"Step 2","content":"Model generates candidate output.","tip":"Check for hallucinations."},{"title":"Step 3","content":"Refine with a follow-up prompt.","tip":"Use critique + rewrite."}]}}}]},{"id":"misconception","label":"Common Mistakes","description":"Highlight misconceptions or pitfalls with a fix.","templates":[{"id":"mistake-callout","title":"Misconception Callout","useCase":"Mistake / misconception","tags":["mistakes","clarity"],"slide":{"type":"bullets","data":{"heading":"Common Misconceptions","icon":"WARN","items":[{"text":"Bigger model = always better","detail":"Data quality and evaluation matter more than size alone."},{"text":"LLMs understand like humans","detail":"They predict tokens; understanding is not guaranteed."},{"text":"Prompting replaces evaluation","detail":"You still need tests and metrics."}]}}}]},{"id":"recap","label":"Recap / Cheat Sheet","description":"Summarize takeaways for quick recall.","templates":[{"id":"recap-summary","title":"Cheat Sheet","useCase":"Recap","tags":["recap","cheat-sheet"],"slide":{"$ref":"slide-summary","data":{"heading":"Key Takeaways","icon":"RECAP","items":["Attention is the core idea.","Data quality > model size.","Evaluate with real tasks."]}}}]},{"id":"code-explain","label":"Code + Explanation","description":"Split view: short code snippet with explanation.","templates":[{"id":"code-split","title":"Code + Explanation Split","useCase":"Teach with code example","tags":["code","explain"],"slide":{"type":"split","data":{"heading":"Tokenization Example","icon":"CODE","layout":"split-50-50","left":{"type":"code","data":{"language":"python","code":"text = 'AI for beginners'\nprint(text.split())"}},"right":{"type":"bullets","data":{"items":["Split into tokens","Tokens feed into the model","Small step, huge impact"]}}}}}]},{"id":"chapter-opener","label":"Chapter Opener","description":"Reset attention before a new section.","templates":[{"id":"chapter-title","title":"Chapter Title","useCase":"Chapter opener","tags":["section","transition"],"slide":{"type":"title","data":{"heading":"Chapter 2: How Models Learn","subtitle":"From data to gradients to generalization","badge":"Chapter Opener"}}}]}]}</script>
 
   <script>
