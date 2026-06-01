@@ -215,6 +215,202 @@ ${allCSS}
     <p>All available design blocks, UI elements, and interactive patterns. Pick any component, modify it, and use it in your slides.</p>
   </div>
 
+<!-- ===== 0. PREMIUM DECK SAMPLES GALLERY ===== -->
+<h2 class="section-title"><span class="sec-icon">🌟</span> Premium Presentation Decks <span class="sec-id">SEC-00</span></h2>
+<div class="component-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+
+  <!-- Sample 1 -->
+  <div class="comp-card sample-deck-card" style="display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--color-border-light); background: var(--color-surface); transition: all var(--transition-base); border-radius: var(--radius-lg); padding: var(--space-lg);">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-sm);">
+        <span class="badge" style="background: color-mix(in oklch, var(--color-primary) 15%, transparent); color: var(--color-primary);">Sample 1</span>
+        <span style="font-size: 0.8rem; color: var(--color-text-muted);">💻 Core Web</span>
+      </div>
+      <h3 style="margin: 0 0 var(--space-xs); font-size: 1.15rem; font-weight: 700; color: var(--color-text);">Modern Web Development</h3>
+      <p style="margin: 0 0 var(--space-md); font-size: 0.85rem; color: var(--color-text-secondary); line-height: 1.4;">A comprehensive, beginner-friendly introduction to modern HTML, CSS, and JS foundations.</p>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
+      <div style="display: flex; gap: var(--space-xs); flex-wrap: wrap; margin-bottom: var(--space-xs);">
+        <span class="badge" style="font-size: 0.75rem; background: var(--color-bg-alt);">theme: ocean</span>
+        <span class="badge" style="font-size: 0.75rem; background: var(--color-bg-alt);">style: soft-glass</span>
+      </div>
+      <a href="sample1.html" target="_blank" class="btn btn-primary btn-sm" style="text-align: center; text-decoration: none; display: block; width: 100%; box-sizing: border-box;">Open Presentation Deck ↗</a>
+    </div>
+  </div>
+
+  <!-- Sample 2 -->
+  <div class="comp-card sample-deck-card" style="display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--color-border-light); background: var(--color-surface); transition: all var(--transition-base); border-radius: var(--radius-lg); padding: var(--space-lg);">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-sm);">
+        <span class="badge" style="background: color-mix(in oklch, var(--color-primary) 15%, transparent); color: var(--color-primary);">Sample 2</span>
+        <span style="font-size: 0.8rem; color: var(--color-text-muted);">🎨 Styling</span>
+      </div>
+      <h3 style="margin: 0 0 var(--space-xs); font-size: 1.15rem; font-weight: 700; color: var(--color-text);">CSS & Visual Aesthetics</h3>
+      <p style="margin: 0 0 var(--space-md); font-size: 0.85rem; color: var(--color-text-secondary); line-height: 1.4;">Deep dive into wide-gamut OKLCH colors, fluid layout patterns, and modern web aesthetics.</p>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
+      <div style="display: flex; gap: var(--space-xs); flex-wrap: wrap; margin-bottom: var(--space-xs);">
+        <span class="badge" style="font-size: 0.75rem; background: var(--color-bg-alt);">theme: sunset</span>
+        <span class="badge" style="font-size: 0.75rem; background: var(--color-bg-alt);">style: pastel-pop</span>
+      </div>
+      <a href="sample2.html" target="_blank" class="btn btn-primary btn-sm" style="text-align: center; text-decoration: none; display: block; width: 100%; box-sizing: border-box;">Open Presentation Deck ↗</a>
+    </div>
+  </div>
+
+  <!-- Sample 3 -->
+  <div class="comp-card sample-deck-card" style="display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--color-border-light); background: var(--color-surface); transition: all var(--transition-base); border-radius: var(--radius-lg); padding: var(--space-lg);">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-sm);">
+        <span class="badge" style="background: color-mix(in oklch, var(--color-primary) 15%, transparent); color: var(--color-primary);">Sample 3</span>
+        <span style="font-size: 0.8rem; color: var(--color-text-muted);">📊 Data Viz</span>
+      </div>
+      <h3 style="margin: 0 0 var(--space-xs); font-size: 1.15rem; font-weight: 700; color: var(--color-text);">Technical Dashboards</h3>
+      <p style="margin: 0 0 var(--space-md); font-size: 0.85rem; color: var(--color-text-secondary); line-height: 1.4;">Native interactive SVG charts and data grids rendering microservices cluster health metrics.</p>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
+      <div style="display: flex; gap: var(--space-xs); flex-wrap: wrap; margin-bottom: var(--space-xs);">
+        <span class="badge" style="font-size: 0.75rem; background: var(--color-bg-alt);">theme: midnight</span>
+        <span class="badge" style="font-size: 0.75rem; background: var(--color-bg-alt);">style: dark-contrast</span>
+      </div>
+      <a href="sample3.html" target="_blank" class="btn btn-primary btn-sm" style="text-align: center; text-decoration: none; display: block; width: 100%; box-sizing: border-box;">Open Presentation Deck ↗</a>
+    </div>
+  </div>
+
+  <!-- Sample 4 -->
+  <div class="comp-card sample-deck-card" style="display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--color-border-light); background: var(--color-surface); transition: all var(--transition-base); border-radius: var(--radius-lg); padding: var(--space-lg);">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-sm);">
+        <span class="badge" style="background: color-mix(in oklch, var(--color-primary) 15%, transparent); color: var(--color-primary);">Sample 4</span>
+        <span style="font-size: 0.8rem; color: var(--color-text-muted);">🚶 Choreography</span>
+      </div>
+      <h3 style="margin: 0 0 var(--space-xs); font-size: 1.15rem; font-weight: 700; color: var(--color-text);">Slide Choreography</h3>
+      <p style="margin: 0 0 var(--space-md); font-size: 0.85rem; color: var(--color-text-secondary); line-height: 1.4;">Asymmetric wireframes, interactive timers, timeline progressions, and responsive quiz components.</p>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
+      <div style="display: flex; gap: var(--space-xs); flex-wrap: wrap; margin-bottom: var(--space-xs);">
+        <span class="badge" style="font-size: 0.75rem; background: var(--color-bg-alt);">theme: volcano</span>
+        <span class="badge" style="font-size: 0.75rem; background: var(--color-bg-alt);">style: editorial-clean</span>
+      </div>
+      <a href="sample4.html" target="_blank" class="btn btn-primary btn-sm" style="text-align: center; text-decoration: none; display: block; width: 100%; box-sizing: border-box;">Open Presentation Deck ↗</a>
+    </div>
+  </div>
+
+  <!-- Sample 5 -->
+  <div class="comp-card sample-deck-card" style="display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--color-border-light); background: var(--color-surface); transition: all var(--transition-base); border-radius: var(--radius-lg); padding: var(--space-lg);">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-sm);">
+        <span class="badge" style="background: color-mix(in oklch, var(--color-primary) 15%, transparent); color: var(--color-primary);">Sample 5</span>
+        <span style="font-size: 0.8rem; color: var(--color-text-muted);">⚡ Next-Gen</span>
+      </div>
+      <h3 style="margin: 0 0 var(--space-xs); font-size: 1.15rem; font-weight: 700; color: var(--color-text);">Next-Gen Architecture</h3>
+      <p style="margin: 0 0 var(--space-md); font-size: 0.85rem; color: var(--color-text-secondary); line-height: 1.4;">Unlocking P2P teaching panels, live drawing canvas, and real-time student interaction pipelines.</p>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
+      <div style="display: flex; gap: var(--space-xs); flex-wrap: wrap; margin-bottom: var(--space-xs);">
+        <span class="badge" style="font-size: 0.75rem; background: var(--color-bg-alt);">theme: volcano</span>
+        <span class="badge" style="font-size: 0.75rem; background: var(--color-bg-alt);">style: soft-glass</span>
+      </div>
+      <a href="sample5.html" target="_blank" class="btn btn-primary btn-sm" style="text-align: center; text-decoration: none; display: block; width: 100%; box-sizing: border-box;">Open Presentation Deck ↗</a>
+    </div>
+  </div>
+
+  <!-- Sample 6 -->
+  <div class="comp-card sample-deck-card" style="display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--color-border-light); background: var(--color-surface); transition: all var(--transition-base); border-radius: var(--radius-lg); padding: var(--space-lg);">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-sm);">
+        <span class="badge" style="background: color-mix(in oklch, var(--color-primary) 15%, transparent); color: var(--color-primary);">Sample 6</span>
+        <span style="font-size: 0.8rem; color: var(--color-text-muted);">🎬 Cinematic</span>
+      </div>
+      <h3 style="margin: 0 0 var(--space-xs); font-size: 1.15rem; font-weight: 700; color: var(--color-text);">Cinematic Masterclass</h3>
+      <p style="margin: 0 0 var(--space-md); font-size: 0.85rem; color: var(--color-text-secondary); line-height: 1.4;">Bold Brutalist aesthetic layout presenting video storytelling techniques and cinematic transitions.</p>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
+      <div style="display: flex; gap: var(--space-xs); flex-wrap: wrap; margin-bottom: var(--space-xs);">
+        <span class="badge" style="font-size: 0.75rem; background: var(--color-bg-alt); font-weight: 600;">theme: brutalist</span>
+        <span class="badge" style="font-size: 0.75rem; background: var(--color-bg-alt); font-weight: 600;">style: brutalist-bold</span>
+      </div>
+      <a href="sample6.html" target="_blank" class="btn btn-primary btn-sm" style="text-align: center; text-decoration: none; display: block; width: 100%; box-sizing: border-box;">Open Presentation Deck ↗</a>
+    </div>
+  </div>
+
+  <!-- Sample 7 -->
+  <div class="comp-card sample-deck-card" style="display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--color-border-light); background: var(--color-surface); transition: all var(--transition-base); border-radius: var(--radius-lg); padding: var(--space-lg);">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-sm);">
+        <span class="badge" style="background: color-mix(in oklch, var(--color-primary) 15%, transparent); color: var(--color-primary);">Sample 7</span>
+        <span style="font-size: 0.8rem; color: var(--color-text-muted);">📈 FinTech</span>
+      </div>
+      <h3 style="margin: 0 0 var(--space-xs); font-size: 1.15rem; font-weight: 700; color: var(--color-text);">FinTech 2026</h3>
+      <p style="margin: 0 0 var(--space-md); font-size: 0.85rem; color: var(--color-text-secondary); line-height: 1.4;">Technical blueprint aesthetic detailing next-gen micro-transactions and secure transaction nodes.</p>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
+      <div style="display: flex; gap: var(--space-xs); flex-wrap: wrap; margin-bottom: var(--space-xs);">
+        <span class="badge" style="font-size: 0.75rem; background: var(--color-bg-alt); font-weight: 600;">theme: blueprint</span>
+        <span class="badge" style="font-size: 0.75rem; background: var(--color-bg-alt); font-weight: 600;">style: tech-blueprint</span>
+      </div>
+      <a href="sample7.html" target="_blank" class="btn btn-primary btn-sm" style="text-align: center; text-decoration: none; display: block; width: 100%; box-sizing: border-box;">Open Presentation Deck ↗</a>
+    </div>
+  </div>
+
+  <!-- Sample 8 -->
+  <div class="comp-card sample-deck-card" style="display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--color-border-light); background: var(--color-surface); transition: all var(--transition-base); border-radius: var(--radius-lg); padding: var(--space-lg);">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-sm);">
+        <span class="badge" style="background: color-mix(in oklch, var(--color-primary) 15%, transparent); color: var(--color-primary);">Sample 8</span>
+        <span style="font-size: 0.8rem; color: var(--color-text-muted);">🤖 Multi-Agent</span>
+      </div>
+      <h3 style="margin: 0 0 var(--space-xs); font-size: 1.15rem; font-weight: 700; color: var(--color-text);">Multi-Agent Systems</h3>
+      <p style="margin: 0 0 var(--space-md); font-size: 0.85rem; color: var(--color-text-secondary); line-height: 1.4;">Retro terminal aesthetic visualizing high-performance inter-agent orchestrations and workloads.</p>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
+      <div style="display: flex; gap: var(--space-xs); flex-wrap: wrap; margin-bottom: var(--space-xs);">
+        <span class="badge" style="font-size: 0.75rem; background: var(--color-bg-alt); font-weight: 600;">theme: terminal</span>
+        <span class="badge" style="font-size: 0.75rem; background: var(--color-bg-alt); font-weight: 600;">style: retro-terminal</span>
+      </div>
+      <a href="sample8.html" target="_blank" class="btn btn-primary btn-sm" style="text-align: center; text-decoration: none; display: block; width: 100%; box-sizing: border-box;">Open Presentation Deck ↗</a>
+    </div>
+  </div>
+
+  <!-- Sample 9 -->
+  <div class="comp-card sample-deck-card" style="display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--color-border-light); background: var(--color-surface); transition: all var(--transition-base); border-radius: var(--radius-lg); padding: var(--space-lg);">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-sm);">
+        <span class="badge" style="background: color-mix(in oklch, var(--color-primary) 15%, transparent); color: var(--color-primary);">Sample 9</span>
+        <span style="font-size: 0.8rem; color: var(--color-text-muted);">🥞 Web Stack</span>
+      </div>
+      <h3 style="margin: 0 0 var(--space-xs); font-size: 1.15rem; font-weight: 700; color: var(--color-text);">Web Stack 2026</h3>
+      <p style="margin: 0 0 var(--space-md); font-size: 0.85rem; color: var(--color-text-secondary); line-height: 1.4;">Editorial poster layout outlining full-stack framework comparisons and runtime metrics.</p>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
+      <div style="display: flex; gap: var(--space-xs); flex-wrap: wrap; margin-bottom: var(--space-xs);">
+        <span class="badge" style="font-size: 0.75rem; background: var(--color-bg-alt); font-weight: 600;">theme: editorial</span>
+        <span class="badge" style="font-size: 0.75rem; background: var(--color-bg-alt); font-weight: 600;">style: editorial-poster</span>
+      </div>
+      <a href="sample9.html" target="_blank" class="btn btn-primary btn-sm" style="text-align: center; text-decoration: none; display: block; width: 100%; box-sizing: border-box;">Open Presentation Deck ↗</a>
+    </div>
+  </div>
+
+  <!-- Sample 10 -->
+  <div class="comp-card sample-deck-card" style="display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--color-border-light); background: var(--color-surface); transition: all var(--transition-base); border-radius: var(--radius-lg); padding: var(--space-lg);">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-sm);">
+        <span class="badge" style="background: color-mix(in oklch, var(--color-primary) 15%, transparent); color: var(--color-primary);">Sample 10</span>
+        <span style="font-size: 0.8rem; color: var(--color-text-muted);">🗺️ Roadmap</span>
+      </div>
+      <h3 style="margin: 0 0 var(--space-xs); font-size: 1.15rem; font-weight: 700; color: var(--color-text);">Enterprise Expansion</h3>
+      <p style="margin: 0 0 var(--space-md); font-size: 0.85rem; color: var(--color-text-secondary); line-height: 1.4;">Museum label parchment layout mapping out Q1-Q4 global SaaS infrastructure expansion.</p>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
+      <div style="display: flex; gap: var(--space-xs); flex-wrap: wrap; margin-bottom: var(--space-xs);">
+        <span class="badge" style="font-size: 0.75rem; background: var(--color-bg-alt); font-weight: 600;">theme: newspaper</span>
+        <span class="badge" style="font-size: 0.75rem; background: var(--color-bg-alt); font-weight: 600;">style: museum-label</span>
+      </div>
+      <a href="sample10.html" target="_blank" class="btn btn-primary btn-sm" style="text-align: center; text-decoration: none; display: block; width: 100%; box-sizing: border-box;">Open Presentation Deck ↗</a>
+    </div>
+  </div>
+
+</div>
+
 <!-- ===== 1. BUTTONS ===== -->
 <h2 class="section-title"><span class="sec-icon">🔘</span> Buttons <span class="sec-id">SEC-01</span></h2>
 <div class="component-grid">
@@ -319,12 +515,55 @@ ${allCSS}
       <div style="font-size:0.8rem;color:var(--color-text-muted);margin-bottom:0.3rem;margin-top:0.75rem">Quiz score — 80%</div>
       <div class="progress-bar"><div class="progress-fill" style="width:80%;background:var(--color-success)"></div></div>
     </div></div>
-  <div class="comp-card"><div class="comp-card-header">Stat Cards <span class="card-type">stat</span></div>
-    <div class="comp-card-body"><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem">
-      <div class="stat-card"><div class="stat-value">10</div><div class="stat-label">Slides</div></div>
-      <div class="stat-card"><div class="stat-value">45m</div><div class="stat-label">Duration</div></div>
-      <div class="stat-card"><div class="stat-value">3</div><div class="stat-label">Quizzes</div></div>
-    </div></div></div>
+  <div class="comp-card"><div class="comp-card-header">Stat Cards & Interactive Dropdowns <span class="card-type">stat</span></div>
+    <div class="comp-card-body">
+      <div style="font-size:0.85rem;font-weight:600;color:var(--color-text-muted);margin-bottom:0.5rem">Standard Stat Cards</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;margin-bottom:1.5rem">
+        <div class="stat-card"><div class="stat-value">10</div><div class="stat-label">Slides</div></div>
+        <div class="stat-card"><div class="stat-value">45m</div><div class="stat-label">Duration</div></div>
+        <div class="stat-card"><div class="stat-value">3</div><div class="stat-label">Quizzes</div></div>
+      </div>
+      
+      <div style="font-size:0.85rem;font-weight:600;color:var(--color-text-muted);margin-bottom:0.5rem">Interactive Dropdown Stat Cards (Click cards to toggle details)</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem">
+        <div class="stat-card expandable">
+          <div class="stat-value">42</div>
+          <div class="stat-label">Acquisition Rate</div>
+          <div class="stat-toggle-btn trend-up" aria-label="Toggle Details">
+            <span class="stat-toggle-icon">↑</span>
+          </div>
+          <div class="stat-dropdown">
+            <div class="stat-dropdown-inner">
+              <span class="stat-dropdown-text">+15% YoY Growth</span>
+            </div>
+          </div>
+        </div>
+        <div class="stat-card expandable">
+          <div class="stat-value">1,800%</div>
+          <div class="stat-label">Sign-up Volume</div>
+          <div class="stat-toggle-btn trend-up" aria-label="Toggle Details">
+            <span class="stat-toggle-icon">↑</span>
+          </div>
+          <div class="stat-dropdown">
+            <div class="stat-dropdown-inner">
+              <span class="stat-dropdown-text">Based on signed LOIs</span>
+            </div>
+          </div>
+        </div>
+        <div class="stat-card expandable">
+          <div class="stat-value">50</div>
+          <div class="stat-label">Active Deployments</div>
+          <div class="stat-toggle-btn trend-down" aria-label="Toggle Details">
+            <span class="stat-toggle-icon">↓</span>
+          </div>
+          <div class="stat-dropdown">
+            <div class="stat-dropdown-inner">
+              <span class="stat-dropdown-text">-4% under quota</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div></div>
 </div>
 
 <div class="component-grid two-col">
