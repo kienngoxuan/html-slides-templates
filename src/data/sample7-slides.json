@@ -4,7 +4,7 @@
     "subtitle": "Live Wealth & Market Intelligence",
     "author": "Global FinTech Exec Team",
     "date": "2026",
-    "theme": "ocean",
+    "theme": "blueprint",
     "duration": 20,
     "context": {
       "audience": "Executive Board",
@@ -15,8 +15,8 @@
       "rhythmPreset": "executive-brief",
       "textDensity": "medium",
       "exampleDensity": "high",
-      "primaryColor": "#0284c7",
-      "stylePack": "editorial-clean"
+      "primaryColor": "#5eadd6",
+      "stylePack": "tech-blueprint"
     }
   },
   "slides": [
