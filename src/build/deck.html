@@ -1,4 +1,4 @@
-`<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="{{THEME}}">
 <head>
   <meta charset="UTF-8">
@@ -64,7 +64,7 @@
   <!-- PRESENTATION CONTAINER -->
   <div class="slides-viewport">
     <div class="slides-track">
-      ${slidesHTML}
+      {{SLIDES_HTML}}
     </div>
   </div>
 
@@ -81,7 +81,7 @@
   <!-- SLIDES NAVIGATION -->
   <div class="nav-bar">
     <button class="nav-btn prev" aria-label="Previous slide" disabled>←</button>
-    <span class="nav-counter">1 / ${slideData.slides.length}</span>
+    <span class="nav-counter">1 / {{SLIDE_COUNT}}</span>
     <button class="nav-btn next" aria-label="Next slide">→</button>
   </div>
 
@@ -108,7 +108,7 @@
       <div class="sidebar-panel active" data-panel="overview">
         <div class="sidebar-divider">SLIDE SECTIONS</div>
         <div class="slide-thumbnails">
-          ${thumbsHTML}
+          {{THUMBS_HTML}}
         </div>
       </div>
 
@@ -141,13 +141,13 @@
           </div>
           <div class="context-form">
             <label class="context-label">Audience</label>
-            <input class="context-input" data-field="audience" type="text" value="${escapeAttr(lessonContext.audience)}" placeholder="AI beginner" />
+            <input class="context-input" data-field="audience" type="text" value="{{CTX_AUDIENCE}}" placeholder="AI beginner" />
 
             <label class="context-label">Topic</label>
-            <input class="context-input" data-field="topic" type="text" value="${escapeAttr(lessonContext.topic)}" placeholder="Lesson topic" />
+            <input class="context-input" data-field="topic" type="text" value="{{CTX_TOPIC}}" placeholder="Lesson topic" />
 
             <label class="context-label">Lesson Length (mins)</label>
-            <input class="context-input" data-field="lessonLength" type="number" min="5" max="180" value="${lessonContext.lessonLength}" />
+            <input class="context-input" data-field="lessonLength" type="number" min="5" max="180" value="{{CTX_LESSON_LENGTH}}" />
 
             <div class="context-row">
               <div>
@@ -202,7 +202,7 @@
             <div class="context-row">
               <div>
                 <label class="context-label">Primary Color</label>
-                <input class="context-input" data-field="primaryColor" type="text" value="${escapeAttr(lessonContext.primaryColor)}" placeholder="#3b82f6" />
+                <input class="context-input" data-field="primaryColor" type="text" value="{{CTX_PRIMARY_COLOR}}" placeholder="#3b82f6" />
               </div>
               <div>
                 <label class="context-label">Style Pack</label>
@@ -230,7 +230,7 @@
             <div class="template-title">Use-case Templates</div>
             <div class="template-subtitle">Copy a slide JSON snippet and reuse it in new decks.</div>
           </div>
-          ${templateLibraryHTML}
+          {{TEMPLATE_LIBRARY_HTML}}
         </div>
       </div>
 
@@ -487,15 +487,17 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error('Failed to hydrate template library:', err);
     }
   }
-  SidebarModule.init();
-  SlideEngine.init();
-  InteractiveBlocks.init();
-  SpeakerNotes.init();
-  if (window.SlideHealth) {
-    window.SlideHealth.init();
-  }
-  if (window.LessonStudio) {
-    window.LessonStudio.init();
+  try {
+    SidebarModule.init();
+    SlideEngine.init();
+    InteractiveBlocks.init();
+    SpeakerNotes.init();
+    if (window.SlideHealth) window.SlideHealth.init();
+    if (window.LessonStudio) window.LessonStudio.init();
+  } catch (initErr) {
+    console.error('Lecta AI initialization failed:', initErr);
+    document.body.insertAdjacentHTML('afterbegin',
+      '<div style="position:fixed;top:0;left:0;right:0;padding:1rem;background:#dc2626;color:#fff;z-index:99999;font-family:system-ui;text-align:center">⚠️ Presentation failed to initialize. Check the console for details.</div>');
   }
 
   // Sync speaker notes to sidebar panel on slide change

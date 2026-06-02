@@ -130,7 +130,7 @@
   --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  /* Annotation Drawing Brushes */
+  /* Annotation Drawing Brushes (Legacy drawing brushes kept for compatibility with custom overlays) */
   --brush-red: #ef4444;
   --brush-blue: #3b82f6;
   --brush-yellow: #eab308;
@@ -10210,8 +10210,8 @@ const SidebarModule = (function () {
   const MODE_KEY  = 'lecta-mode';
   const NOTES_KEY = 'lecta-notes';
   
-  const LIGHT_THEMES = ['ocean','forest','berry','slate','paper','nordic','sunset','editorial','newspaper','brutalist','pastel','monochrome'];
-  const DARK_THEMES  = ['neon','midnight','evergreen','volcano','terminal','blueprint','blackboard'];
+  const LIGHT_THEMES = (window.LECTA_CONFIG && window.LECTA_CONFIG.LIGHT_THEMES) || ['ocean','forest','berry','slate','paper','nordic','sunset','editorial','newspaper','brutalist','pastel','monochrome'];
+  const DARK_THEMES  = (window.LECTA_CONFIG && window.LECTA_CONFIG.DARK_THEMES) || ['neon','midnight','evergreen','volcano','terminal','blueprint','blackboard'];
   
   let timerInterval = null;
   let timerSeconds = 0;
