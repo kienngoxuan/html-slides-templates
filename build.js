@@ -70,7 +70,7 @@ function buildLessonContext(meta) {
 function buildSlideDeck(dataFile, outputFile) {
   // Phase 2: Registry-first pipeline — resolve aliases, validate, analyze dependencies
   const { slideData, dependencies, report } = resolveManifest(dataFile, ROOT);
-  
+
   const meta = slideData.meta;
   const lessonContext = buildLessonContext(meta);
   const templateLibrary = loadTemplateLibrary(ROOT);
@@ -99,7 +99,7 @@ function buildSlideDeck(dataFile, outputFile) {
   const deckIdAttr = ` data-deck-id="${escapeAttr(deckId)}"`;
   const lessonContextJSON = JSON.stringify(lessonContext).replace(/<\/script/gi, '<\\/script');
 
-  
+
   const templateHtml = fs.readFileSync(path.join(ROOT, 'src/build/deck.html'), 'utf-8');
   const faviconTag = faviconDataURI ? `<link rel="icon" type="image/png" href="${faviconDataURI}">` : '';
   const progressWidth = Math.round(100 / slideData.slides.length);
@@ -136,10 +136,10 @@ function buildSlideDeck(dataFile, outputFile) {
     .replace('{{CTX_PRIMARY_COLOR}}', escapeAttr(lessonContext.primaryColor))
     .replace('{{LESSON_DURATION}}', lessonDuration)
     .replace('{{LESSON_AVG}}', lessonAvg)
-    .replace('{{LESSON_CONTEXT_JSON}}', lessonContextJSON)
-    .replace('{{SLIDE_DATA_JSON}}', slideDataJSON)
-    .replace('{{TEMPLATE_LIBRARY_JSON}}', templateLibraryJSON)
-    .replace('{{ALL_JS}}', configJS + '\n' + allJS);
+    .replace('{{LESSON_CONTEXT_JSON}}', () => lessonContextJSON)
+    .replace('{{SLIDE_DATA_JSON}}', () => slideDataJSON)
+    .replace('{{TEMPLATE_LIBRARY_JSON}}', () => templateLibraryJSON)
+    .replace('{{ALL_JS}}', () => configJS + '\n' + allJS);
 
   const outDir = path.dirname(outputFile);
   fs.mkdirSync(outDir, { recursive: true });
@@ -153,7 +153,7 @@ if (process.argv[2] && process.argv[3]) {
   buildSlideDeck(process.argv[2], process.argv[3]);
 } else {
   console.log('🚀 Running Full Lecta AI Presentation Build Suite...');
-  
+
   buildSlideDeck(
     path.join(ROOT, 'src/data/sample-slides.json'),
     path.join(ROOT, 'output/templates/sample1.html')
