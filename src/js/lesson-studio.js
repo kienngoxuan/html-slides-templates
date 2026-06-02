@@ -23,7 +23,8 @@ const LessonStudio = (function () {
 
   function safeJSONParse(raw, fallback) {
     try {
-      return JSON.parse(raw);
+      const parsed = JSON.parse(raw);
+      return parsed !== null ? parsed : fallback;
     } catch (e) {
       return fallback;
     }
@@ -611,6 +612,8 @@ const LessonStudio = (function () {
   function applySafeZoneState(state) {
     const body = document.body;
     body.classList.remove('safe-zone-enabled', 'safe-zone-camera-left', 'safe-zone-camera-right', 'safe-zone-subtitle-on');
+
+    if (!state) return;
 
     const camera = state.camera || 'off';
     const subtitle = state.subtitle || 'off';
