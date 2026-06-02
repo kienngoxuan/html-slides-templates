@@ -69,10 +69,11 @@ const SlideEngine = (function () {
 
   function cacheNotes() {
     // Try to load localStorage overrides written by the sidebar notes panel.
-    // Key matches the NOTES_KEY constant used in sidebar.js ('lecta-notes').
+    // Key is namespaced by deck ID to prevent collisions between decks.
+    const deckId = (document.body && document.body.dataset.deckId) || 'default';
     let savedNotes = {};
     try {
-      savedNotes = JSON.parse(safeGetItem('lecta-notes') || '{}');
+      savedNotes = JSON.parse(safeGetItem(`lecta-notes-${deckId}`) || '{}');
     } catch (e) { /* ignore */ }
 
     slides.forEach((s, idx) => {

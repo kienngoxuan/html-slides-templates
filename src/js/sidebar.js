@@ -6,9 +6,11 @@ const SidebarModule = (function () {
   if (window.SidebarModule) return window.SidebarModule;
 
   // ===== STATE =====
-  const THEME_KEY = 'lecta-theme';
-  const MODE_KEY  = 'lecta-mode';
-  const NOTES_KEY = 'lecta-notes';
+  // Namespace localStorage keys by deck ID to prevent collisions between decks
+  const DECK_ID = (document.body && document.body.dataset.deckId) || 'default';
+  const THEME_KEY = `lecta-theme-${DECK_ID}`;
+  const MODE_KEY  = `lecta-mode-${DECK_ID}`;
+  const NOTES_KEY = `lecta-notes-${DECK_ID}`;
   
   const LIGHT_THEMES = (window.LECTA_CONFIG && window.LECTA_CONFIG.LIGHT_THEMES) || ['ocean','forest','berry','slate','paper','nordic','sunset','editorial','newspaper','brutalist','pastel','monochrome'];
   const DARK_THEMES  = (window.LECTA_CONFIG && window.LECTA_CONFIG.DARK_THEMES) || ['neon','midnight','evergreen','volcano','terminal','blueprint','blackboard'];
