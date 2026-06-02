@@ -75,6 +75,16 @@
 .stagger > *:nth-child(8) { animation-delay: calc(var(--flow-stagger) * 8); }
 .stagger > *:nth-child(9) { animation-delay: calc(var(--flow-stagger) * 9); }
 .stagger > *:nth-child(10) { animation-delay: calc(var(--flow-stagger) * 10); }
+.stagger > *:nth-child(11) { animation-delay: calc(var(--flow-stagger) * 11); }
+.stagger > *:nth-child(12) { animation-delay: calc(var(--flow-stagger) * 12); }
+.stagger > *:nth-child(13) { animation-delay: calc(var(--flow-stagger) * 13); }
+.stagger > *:nth-child(14) { animation-delay: calc(var(--flow-stagger) * 14); }
+.stagger > *:nth-child(15) { animation-delay: calc(var(--flow-stagger) * 15); }
+.stagger > *:nth-child(16) { animation-delay: calc(var(--flow-stagger) * 16); }
+.stagger > *:nth-child(17) { animation-delay: calc(var(--flow-stagger) * 17); }
+.stagger > *:nth-child(18) { animation-delay: calc(var(--flow-stagger) * 18); }
+.stagger > *:nth-child(19) { animation-delay: calc(var(--flow-stagger) * 19); }
+.stagger > *:nth-child(20) { animation-delay: calc(var(--flow-stagger) * 20); }
 
 /* Gradient animated background for title slides */
 .animated-gradient {
@@ -287,6 +297,16 @@
 .stagger-spring > *:nth-child(8)  { animation-delay: calc(var(--flow-stagger) * 8); }
 .stagger-spring > *:nth-child(9)  { animation-delay: calc(var(--flow-stagger) * 9); }
 .stagger-spring > *:nth-child(10) { animation-delay: calc(var(--flow-stagger) * 10); }
+.stagger-spring > *:nth-child(11) { animation-delay: calc(var(--flow-stagger) * 11); }
+.stagger-spring > *:nth-child(12) { animation-delay: calc(var(--flow-stagger) * 12); }
+.stagger-spring > *:nth-child(13) { animation-delay: calc(var(--flow-stagger) * 13); }
+.stagger-spring > *:nth-child(14) { animation-delay: calc(var(--flow-stagger) * 14); }
+.stagger-spring > *:nth-child(15) { animation-delay: calc(var(--flow-stagger) * 15); }
+.stagger-spring > *:nth-child(16) { animation-delay: calc(var(--flow-stagger) * 16); }
+.stagger-spring > *:nth-child(17) { animation-delay: calc(var(--flow-stagger) * 17); }
+.stagger-spring > *:nth-child(18) { animation-delay: calc(var(--flow-stagger) * 18); }
+.stagger-spring > *:nth-child(19) { animation-delay: calc(var(--flow-stagger) * 19); }
+.stagger-spring > *:nth-child(20) { animation-delay: calc(var(--flow-stagger) * 20); }
 
 
 /* ============================================
