@@ -26,7 +26,7 @@
     },
     {
       "id": "slide-2",
-      "$ref": "slide-timeline",
+      "$ref": "slide-timeline-horizontal",
       "data": {
         "heading": "Horizontal Timeline of Phased Expansion",
         "icon": "📈",
@@ -127,7 +127,7 @@
     },
     {
       "id": "slide-8",
-      "$ref": "slide-code",
+      "$ref": "slide-code-diff",
       "data": {
         "heading": "Automated Deploy Script Refactoring",
         "icon": "💻",

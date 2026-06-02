@@ -59,12 +59,20 @@ const SlideEngine = (function () {
     initBroadcastReceiver();
   }
 
+  function safeGetItem(key) {
+    try {
+      return localStorage.getItem(key);
+    } catch (e) {
+      return null;
+    }
+  }
+
   function cacheNotes() {
     // Try to load localStorage overrides written by the sidebar notes panel.
     // Key matches the NOTES_KEY constant used in sidebar.js ('lecta-notes').
     let savedNotes = {};
     try {
-      savedNotes = JSON.parse(localStorage.getItem('lecta-notes') || '{}');
+      savedNotes = JSON.parse(safeGetItem('lecta-notes') || '{}');
     } catch (e) { /* ignore */ }
 
     slides.forEach((s, idx) => {
@@ -112,14 +120,14 @@ const SlideEngine = (function () {
             <div style="display:flex; flex-direction:column; gap:4px; flex: 1;">
               <div style="font-size:0.75rem; font-weight:700; color:#64748b; text-transform:uppercase; margin-left:4px;">Current Slide</div>
               <div class="presenter-preview-frame active">
-                <iframe id="pres-iframe-curr" src="${location.href.split('?')[0]}?embed=true#slide-0"></iframe>
+                <iframe id="pres-iframe-curr" src="${location.origin}${location.pathname}?embed=true#slide-0"></iframe>
               </div>
             </div>
             
             <div style="display:flex; flex-direction:column; gap:4px; flex: 1;">
               <div style="font-size:0.75rem; font-weight:700; color:#64748b; text-transform:uppercase; margin-left:4px;">Next Slide</div>
               <div class="presenter-preview-frame">
-                <iframe id="pres-iframe-next" src="${location.href.split('?')[0]}?embed=true#slide-1"></iframe>
+                <iframe id="pres-iframe-next" src="${location.origin}${location.pathname}?embed=true#slide-1"></iframe>
               </div>
             </div>
           </div>
@@ -192,7 +200,7 @@ const SlideEngine = (function () {
     const iframeCurr = document.getElementById('pres-iframe-curr');
     const iframeNext = document.getElementById('pres-iframe-next');
     
-    const baseUrl = location.href.split('?')[0];
+    const baseUrl = location.origin + location.pathname;
     if (iframeCurr) iframeCurr.src = `${baseUrl}?embed=true#${cachedPresenterNotes[index] ? cachedPresenterNotes[index].id : ''}`;
     if (iframeNext) {
       if (index + 1 < cachedPresenterNotes.length) {
@@ -221,9 +229,17 @@ const SlideEngine = (function () {
             } else {
               updateSlide(e.data.index, false); // Update locally without animation, do not rebroadcast
             }
+          } else if (e.data.type === 'request_state' && !location.search.includes('presenter=true')) {
+            // Main window replies with current state
+            broadcastSlide(currentSlide);
           }
         }
       };
+
+      // If we are the presenter view, request current state from main window
+      if (location.search.includes('presenter=true')) {
+        broadcast.postMessage({ type: 'request_state' });
+      }
     }
   }
 
@@ -419,7 +435,7 @@ const SlideEngine = (function () {
     // Prefer any custom note saved by the sidebar panel over the built-in default.
     let notes = '';
     try {
-      const saved = JSON.parse(localStorage.getItem('lecta-notes') || '{}');
+      const saved = JSON.parse(safeGetItem('lecta-notes') || '{}');
       notes = saved[slideId] !== undefined
         ? saved[slideId]
         : (currentEl ? currentEl.dataset.speakerNotes || '' : '');

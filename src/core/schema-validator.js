@@ -126,6 +126,9 @@ function validateSlideSchema(slideData, dataFile, root) {
   if (typeof slideData.meta.title !== 'string') {
     console.warn(`[Warning] ${dataFile}: "meta.title" is recommended to be a string`);
   }
+  if (!slideData.meta.schemaVersion || (slideData.meta.schemaVersion !== '1.0' && slideData.meta.schemaVersion !== '1.0.0')) {
+    console.warn(`[Warning] ${dataFile}: "meta.schemaVersion" is missing or incompatible. Expected "1.0" or "1.0.0".`);
+  }
   if (!Array.isArray(slideData.slides)) {
     throw new Error(`Validation failed for ${dataFile}: "slides" must be an array`);
   }

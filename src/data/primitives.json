@@ -26,14 +26,8 @@
     "type": "compare",
     "transitionPreset": "wipe-right"
   },
-  "slide-timeline": {
-    "type": "timeline-horizontal",
-    "transitionPreset": "wipe-right"
-  },
-  "slide-code": {
-    "type": "code-diff",
-    "transitionPreset": "fade"
-  },
+
+
   "slide-table": {
     "type": "table",
     "transitionPreset": "fade"

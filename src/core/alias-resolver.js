@@ -7,11 +7,7 @@
 const fs = require('fs');
 const path = require('path');
 
-// Duplicate primitive aliases to canonical block types
-const BLOCK_ALIASES = {
-  'slide-code': 'code-diff',
-  'slide-timeline': 'timeline-horizontal',
-};
+
 
 /**
  * Load primitives.json from disk
@@ -59,27 +55,11 @@ function expandRefs(obj, primitives) {
 }
 
 /**
- * Normalize block type aliases to canonical names.
- * e.g. if a primitive resolved to type "slide-code", map it to "code-diff"
- */
-function normalizeBlockTypes(slideData) {
-  if (!slideData || !Array.isArray(slideData.slides)) return slideData;
-  slideData.slides.forEach(slide => {
-    if (slide.type && BLOCK_ALIASES[slide.type]) {
-      slide.type = BLOCK_ALIASES[slide.type];
-    }
-  });
-  return slideData;
-}
-
-/**
- * Full alias resolution pipeline: load primitives → expand $refs → normalize aliases
+ * Full alias resolution pipeline: load primitives → expand $refs
  */
 function resolveAliases(slideData, root) {
   const primitives = loadPrimitives(root);
-  let resolved = expandRefs(JSON.parse(JSON.stringify(slideData)), primitives);
-  resolved = normalizeBlockTypes(resolved);
-  return resolved;
+  return expandRefs(JSON.parse(JSON.stringify(slideData)), primitives);
 }
 
-module.exports = { loadPrimitives, expandRefs, normalizeBlockTypes, resolveAliases, BLOCK_ALIASES };
+module.exports = { loadPrimitives, expandRefs, resolveAliases };

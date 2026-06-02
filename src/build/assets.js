@@ -25,6 +25,7 @@ const EMULATOR_CSS = [
 ];
 
 const BASE_JS = [
+  'src/js/engine.js',
   'src/primitives/atoms.js',
   'src/primitives/composites.js',
   'src/recipes/blocks.recipes.js',
@@ -41,7 +42,6 @@ const BLOCK_JS_MAPPING = {
 };
 
 const SYSTEM_JS = [
-  'src/js/engine.js',
   'src/js/slide-health.js',
   'src/js/lesson-studio.js',
   'src/js/themes.js',
@@ -63,8 +63,10 @@ function getDeckCssFiles(dependencies) {
       }
     });
   } else {
-    // Fallback: include all css blocks if no dependencies provided
-    Object.values(BLOCK_CSS_MAPPING).forEach(file => cssList.push(file));
+    // Fallback: include all css blocks except overlays if no dependencies provided
+    Object.keys(BLOCK_CSS_MAPPING).forEach(mod => {
+      if (mod !== 'overlays') cssList.push(BLOCK_CSS_MAPPING[mod]);
+    });
   }
   
   return [...cssList, ...EMULATOR_CSS];
@@ -76,9 +78,6 @@ function getDeckCssFiles(dependencies) {
 function getDeckJsFiles(dependencies) {
   const jsList = [];
   
-  // Base core block JS
-  BASE_JS.forEach(file => jsList.push(file));
-
   if (dependencies && dependencies.jsModules) {
     // Only include js modules that are in active dependencies set
     dependencies.jsModules.forEach(mod => {
@@ -92,13 +91,9 @@ function getDeckJsFiles(dependencies) {
   }
 
   return [
-    'src/js/engine.js',
+    ...BASE_JS,
     ...jsList,
-    'src/js/slide-health.js',
-    'src/js/lesson-studio.js',
-    'src/js/themes.js',
-    'src/js/sidebar.js',
-    'src/emulator/emulator.js',
+    ...SYSTEM_JS
   ];
 }
 
