@@ -50,6 +50,16 @@
   --brush-blue: #3b82f6;
   --brush-yellow: #eab308;
   --brush-green: #10b981;
+
+  /* Presenter View Tokens — centralizes the dark control-room palette */
+  --presenter-bg: #0b0f19;
+  --presenter-surface: #1e293b;
+  --presenter-surface-alt: #111827;
+  --presenter-border: #334155;
+  --presenter-text: #f1f5f9;
+  --presenter-text-secondary: #e2e8f0;
+  --presenter-text-muted: #94a3b8;
+  --presenter-accent: #38bdf8;
 }
 
 /* === THEME: Ocean Lecture === */
