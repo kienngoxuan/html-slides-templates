@@ -135,6 +135,16 @@
   --brush-blue: #3b82f6;
   --brush-yellow: #eab308;
   --brush-green: #10b981;
+
+  /* Presenter View Tokens — centralizes the dark control-room palette */
+  --presenter-bg: #0b0f19;
+  --presenter-surface: #1e293b;
+  --presenter-surface-alt: #111827;
+  --presenter-border: #334155;
+  --presenter-text: #f1f5f9;
+  --presenter-text-secondary: #e2e8f0;
+  --presenter-text-muted: #94a3b8;
+  --presenter-accent: #38bdf8;
 }
 
 /* === THEME: Ocean Lecture === */
@@ -797,6 +807,7 @@ pre code {
 
 .slides-track {
   display: flex;
+  width: 100%;
   height: 100%;
   transition: transform var(--transition-slow);
   will-change: transform;
@@ -814,6 +825,18 @@ pre code {
   position: relative;
   overflow-y: auto;
   contain: style;
+}
+
+@media (max-width: 768px) {
+  .slide {
+    padding: var(--space-lg) var(--space-xl);
+    padding-bottom: 80px;
+  }
+}
+
+body.mobile-preview .slide {
+  padding: var(--space-lg) var(--space-xl);
+  padding-bottom: 80px;
 }
 
 .slide-inner {
@@ -1092,8 +1115,8 @@ pre code {
   grid-template-columns: 60% 40%;
   height: 100vh;
   width: 100vw;
-  background: #0b0f19;
-  color: #f1f5f9;
+  background: var(--presenter-bg);
+  color: var(--presenter-text);
   font-family: var(--font-body);
   overflow: hidden;
   box-sizing: border-box;
@@ -1104,7 +1127,7 @@ pre code {
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
-  border-right: 1px solid #1e293b;
+  border-right: 1px solid var(--presenter-border);
   height: 100%;
   box-sizing: border-box;
   overflow-y: auto;
@@ -1121,7 +1144,7 @@ pre code {
 }
 
 .presenter-header-card {
-  background: #1e293b;
+  background: var(--presenter-surface);
   border-radius: var(--radius-md);
   padding: var(--space-md);
   display: flex;
@@ -1139,13 +1162,13 @@ pre code {
   font-family: var(--font-mono);
   font-size: 1.6rem;
   font-weight: 700;
-  color: #38bdf8;
+  color: var(--presenter-accent);
 }
 
 .presenter-rehearse-timer-progress {
   width: 100%;
   height: 6px;
-  background: #334155;
+  background: var(--presenter-border);
   border-radius: var(--radius-full);
   overflow: hidden;
   margin-top: 4px;
@@ -1164,8 +1187,8 @@ pre code {
 }
 
 .presenter-notes-box {
-  background: #111827;
-  border: 1px solid #1e293b;
+  background: var(--presenter-surface-alt);
+  border: 1px solid var(--presenter-surface);
   border-radius: var(--radius-lg);
   padding: var(--space-lg);
   flex-grow: 1;
@@ -1174,7 +1197,7 @@ pre code {
 }
 
 .presenter-notes-box h3 {
-  color: #94a3b8;
+  color: var(--presenter-text-muted);
   margin-bottom: var(--space-sm);
   font-family: var(--font-heading);
 }
@@ -1182,7 +1205,7 @@ pre code {
 .presenter-notes-content {
   font-size: 1.1rem;
   line-height: 1.6;
-  color: #e2e8f0;
+  color: var(--presenter-text-secondary);
   white-space: pre-wrap;
   overflow-y: auto;
 }
@@ -1194,8 +1217,8 @@ pre code {
 }
 
 .presenter-preview-frame {
-  background: #1e293b;
-  border: 2px solid #334155;
+  background: var(--presenter-surface);
+  border: 2px solid var(--presenter-border);
   border-radius: var(--radius-md);
   aspect-ratio: 16/9;
   overflow: hidden;
@@ -1206,7 +1229,7 @@ pre code {
 }
 
 .presenter-preview-frame.active {
-  border-color: #38bdf8;
+  border-color: var(--presenter-accent);
   box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
 }
 
@@ -1237,8 +1260,8 @@ pre code {
 }
 
 .presenter-btn {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--presenter-surface);
+  border: 1px solid var(--presenter-border);
   color: #fff;
   border-radius: var(--radius-md);
   padding: 0.6rem 1.2rem;
@@ -1249,7 +1272,7 @@ pre code {
 }
 
 .presenter-btn:hover {
-  background: #334155;
+  background: var(--presenter-border);
 }
 
 .presenter-btn.primary {
@@ -1447,6 +1470,16 @@ pre code {
 .stagger > *:nth-child(8) { animation-delay: calc(var(--flow-stagger) * 8); }
 .stagger > *:nth-child(9) { animation-delay: calc(var(--flow-stagger) * 9); }
 .stagger > *:nth-child(10) { animation-delay: calc(var(--flow-stagger) * 10); }
+.stagger > *:nth-child(11) { animation-delay: calc(var(--flow-stagger) * 11); }
+.stagger > *:nth-child(12) { animation-delay: calc(var(--flow-stagger) * 12); }
+.stagger > *:nth-child(13) { animation-delay: calc(var(--flow-stagger) * 13); }
+.stagger > *:nth-child(14) { animation-delay: calc(var(--flow-stagger) * 14); }
+.stagger > *:nth-child(15) { animation-delay: calc(var(--flow-stagger) * 15); }
+.stagger > *:nth-child(16) { animation-delay: calc(var(--flow-stagger) * 16); }
+.stagger > *:nth-child(17) { animation-delay: calc(var(--flow-stagger) * 17); }
+.stagger > *:nth-child(18) { animation-delay: calc(var(--flow-stagger) * 18); }
+.stagger > *:nth-child(19) { animation-delay: calc(var(--flow-stagger) * 19); }
+.stagger > *:nth-child(20) { animation-delay: calc(var(--flow-stagger) * 20); }
 
 /* Gradient animated background for title slides */
 .animated-gradient {
@@ -1659,6 +1692,16 @@ pre code {
 .stagger-spring > *:nth-child(8)  { animation-delay: calc(var(--flow-stagger) * 8); }
 .stagger-spring > *:nth-child(9)  { animation-delay: calc(var(--flow-stagger) * 9); }
 .stagger-spring > *:nth-child(10) { animation-delay: calc(var(--flow-stagger) * 10); }
+.stagger-spring > *:nth-child(11) { animation-delay: calc(var(--flow-stagger) * 11); }
+.stagger-spring > *:nth-child(12) { animation-delay: calc(var(--flow-stagger) * 12); }
+.stagger-spring > *:nth-child(13) { animation-delay: calc(var(--flow-stagger) * 13); }
+.stagger-spring > *:nth-child(14) { animation-delay: calc(var(--flow-stagger) * 14); }
+.stagger-spring > *:nth-child(15) { animation-delay: calc(var(--flow-stagger) * 15); }
+.stagger-spring > *:nth-child(16) { animation-delay: calc(var(--flow-stagger) * 16); }
+.stagger-spring > *:nth-child(17) { animation-delay: calc(var(--flow-stagger) * 17); }
+.stagger-spring > *:nth-child(18) { animation-delay: calc(var(--flow-stagger) * 18); }
+.stagger-spring > *:nth-child(19) { animation-delay: calc(var(--flow-stagger) * 19); }
+.stagger-spring > *:nth-child(20) { animation-delay: calc(var(--flow-stagger) * 20); }
 
 
 /* ============================================
@@ -3865,62 +3908,6 @@ body.sidebar-open .slides-viewport {
   word-break: break-word;
 }
 
-/* === Expandable Stats Card Dropdown === */
-.stat-card.expandable {
-  cursor: pointer;
-  user-select: none;
-}
-
-.stat-toggle-btn {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin: var(--space-md) auto 0;
-  transition: transform var(--transition-base), background var(--transition-fast);
-  font-weight: bold;
-  font-size: 0.85rem;
-}
-
-.stat-card.expanded .stat-toggle-btn {
-  transform: rotate(180deg);
-}
-
-.stat-dropdown {
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height var(--transition-slow), opacity var(--transition-slow), margin-top var(--transition-slow);
-  margin-top: 0;
-}
-
-.stat-card.expanded .stat-dropdown {
-  max-height: 120px;
-  opacity: 1;
-  margin-top: var(--space-md);
-}
-
-.stat-dropdown-inner {
-  background: color-mix(in oklch, var(--color-primary) 5%, var(--color-bg-alt));
-  padding: var(--space-xs) var(--space-md);
-  border-radius: var(--radius-sm);
-  border-left: 3px solid var(--color-primary);
-  text-align: left;
-  display: inline-block;
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-.stat-dropdown-text {
-  font-size: 0.8rem;
-  color: var(--color-text-secondary);
-  font-weight: 550;
-  line-height: 1.4;
-  word-break: break-word;
-}
-
 /* === CHECKLIST === */
 .checklist {
   list-style: none;
@@ -5600,10 +5587,7 @@ body.viewport-mode-mobile .table-actions {
     </div>
   </div>
 
-  <!-- Notes Toggle (top-left) -->
-  <div class="presenter-toggle">
-    <button class="toggle-btn toggle-notes">📝 Notes</button>
-  </div>
+  <!-- Notes Toggle Removed per user request -->
 
   <!-- SPEAKER NOTES (POPUP) -->
   <div class="speaker-notes-panel">
@@ -5618,15 +5602,7 @@ body.viewport-mode-mobile .table-actions {
     </div>
   </div>
 
-  <!-- Safe-zone Overlay -->
-  <div class="safe-zone-overlay" aria-hidden="true">
-    <div class="safe-zone-box safe-zone-camera">
-      <span class="safe-zone-label">Camera Safe Zone</span>
-    </div>
-    <div class="safe-zone-box safe-zone-subtitle">
-      <span class="safe-zone-label">Subtitle Safe Zone</span>
-    </div>
-  </div>
+  <!-- Safe-zone Overlay Removed per user request -->
 
   <!-- SLIDES NAVIGATION -->
   <div class="nav-bar">
@@ -5825,19 +5801,7 @@ body.viewport-mode-mobile .table-actions {
             <div class="recording-save-msg">Checkpoint saved.</div>
           </div>
 
-          <div class="recording-card">
-            <div class="recording-label">Camera Safe Zone</div>
-            <div class="recording-toggle-group" data-recording-group="camera">
-              <button class="recording-toggle" type="button" data-value="off">Off</button>
-              <button class="recording-toggle" type="button" data-value="left">Left</button>
-              <button class="recording-toggle" type="button" data-value="right">Right</button>
-            </div>
-            <div class="recording-label" style="margin-top:0.6rem;">Subtitle Safe Zone</div>
-            <div class="recording-toggle-group" data-recording-group="subtitle">
-              <button class="recording-toggle" type="button" data-value="off">Off</button>
-              <button class="recording-toggle" type="button" data-value="on">On</button>
-            </div>
-          </div>
+          <!-- Safe-zone Controls Removed per user request -->
 
           <div class="recording-card">
             <label class="recording-label" for="recording-jump">Quick Jump</label>
@@ -6039,10 +6003,11 @@ const SlideEngine = (function () {
 
   function cacheNotes() {
     // Try to load localStorage overrides written by the sidebar notes panel.
-    // Key matches the NOTES_KEY constant used in sidebar.js ('lecta-notes').
+    // Key is namespaced by deck ID to prevent collisions between decks.
+    const deckId = (document.body && document.body.dataset.deckId) || 'default';
     let savedNotes = {};
     try {
-      savedNotes = JSON.parse(safeGetItem('lecta-notes') || '{}');
+      savedNotes = JSON.parse(safeGetItem(`lecta-notes-${deckId}`) || '{}');
     } catch (e) { /* ignore */ }
 
     slides.forEach((s, idx) => {
@@ -7126,10 +7091,13 @@ window.SlideEngine = window.SlideEngine || SlideEngine;
     const labelsJSON = A.esc(JSON.stringify(d.labels || []));
     const datasetsJSON = A.esc(JSON.stringify(d.datasets || []));
 
+    const chartW = d.width || 600;
+    const chartH = d.height || 320;
+
     return `    ${A.blockHeading(d.icon, d.heading)}
-    <div class="chart-block-container" data-chart-type="${d.chartType}" data-labels="${labelsJSON}" data-datasets="${datasetsJSON}">
+    <div class="chart-block-container" data-chart-type="${d.chartType}" data-labels="${labelsJSON}" data-datasets="${datasetsJSON}" data-chart-w="${chartW}" data-chart-h="${chartH}">
       <div class="chart-canvas-wrapper">
-        <svg class="svg-chart" viewBox="0 0 600 320"></svg>
+        <svg class="svg-chart" viewBox="0 0 ${chartW} ${chartH}"></svg>
       </div>
       <div class="chart-legend"></div>
     </div>`;
@@ -7292,19 +7260,17 @@ window.SlideEngine = window.SlideEngine || SlideEngine;
     const d = slide.data || {};
     return `    ${A.blockHeading(d.icon || '💡', d.heading)}
     <div class="analogy-container stagger">
-      <div class="analogy-split">
-        <div class="analogy-side side-technical stagger-item">
-          <span class="analogy-label-badge badge-blue">⚙️ Technical Concept</span>
-          <p>${A.esc(d.technicalConcept)}</p>
-        </div>
-        <div class="analogy-bridge stagger-item">
-          <div class="analogy-bridge-line"></div>
-          <div class="analogy-bridge-text">${A.esc(d.bridgeText || 'Is Like...')}</div>
-        </div>
-        <div class="analogy-side side-realworld stagger-item">
-          <span class="analogy-label-badge badge-amber">🌾 Real-world Analogy</span>
-          <p>${A.esc(d.analogy)}</p>
-        </div>
+      <div class="analogy-card analogy-technical stagger-item">
+        <div class="analogy-card-label">⚙️ Technical Concept</div>
+        <p>${A.esc(d.technicalConcept)}</p>
+      </div>
+      <div class="analogy-bridge stagger-item">
+        <div class="analogy-bridge-text">${A.esc(d.bridgeText || 'Is Like...')}</div>
+        <div class="analogy-bridge-arrow">↔</div>
+      </div>
+      <div class="analogy-card analogy-realworld stagger-item">
+        <div class="analogy-card-label">🌾 Real-world Analogy</div>
+        <p>${A.esc(d.analogy)}</p>
       </div>
     </div>`;
   }
@@ -7800,207 +7766,9 @@ const LazyLoaders = (function () {
         try {
           window.renderMathInElement(el, {
             delimiters: [
-              { left: '$', right: '$', display: true },
+              { left: '$$', right: '$$', display: true },
               { left: '\\[', right: '\\]', display: true },
-              { left: '
-
-document.addEventListener('DOMContentLoaded', () => {
-  // --- Client-Side Hydration ---
-  const slideDataEl = document.getElementById('slide-data');
-  if (slideDataEl && window.LectaRenderer) {
-    try {
-      const slideData = JSON.parse(slideDataEl.textContent);
-      
-      // Hydrate Slides
-      const track = document.querySelector('.slides-track');
-      if (track) {
-        track.innerHTML = slideData.slides.map(s => window.LectaRenderer.renderSlideHTML(s)).join('\\n');
-      }
-
-      // Hydrate Sidebar Thumbnails
-      const TYPES = { title:'🎬', bullets:'📌', accordion:'📚', tabs:'🗂', stepper:'🚶', cards:'🃏', quiz:'❓', compare:'⚔️', timeline:'📅', summary:'🎓', image:'🖼️', chart:'📊', table:'🧮', bento:'🍱', flow:'🌿' };
-      const thumbnailsContainer = document.querySelector('.slide-thumbnails');
-      if (thumbnailsContainer) {
-        thumbnailsContainer.innerHTML = slideData.slides.map((s, i) => \`
-          <div class="slide-thumb${i === 0 ? ' active' : ''}" data-slide="${i}">
-            <span class="slide-thumb-num">${i + 1}</span>
-            <div class="slide-thumb-info">
-              <div class="slide-thumb-title">${(s.data.heading || s.data.title || 'Slide ' + (i+1)).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
-              <div class="slide-thumb-type">${TYPES[s.type] || '📄'} ${s.type}</div>
-            </div>
-          </div>\`).join('');
-      }
-    } catch (err) {
-      console.error('Failed to hydrate slides from JSON:', err);
-    }
-  }
-
-  // --- Hydrate Template Library ---
-  const templateLibraryEl = document.getElementById('template-library-data');
-  const templateLibraryContainer = document.getElementById('template-library-container');
-  if (templateLibraryEl && templateLibraryContainer) {
-    try {
-      const library = JSON.parse(templateLibraryEl.textContent);
-      const categories = Array.isArray(library.categories) ? library.categories : [];
-      if (categories.length === 0) {
-        templateLibraryContainer.innerHTML = '<div class="template-empty">No templates available.</div>';
-      } else {
-        templateLibraryContainer.innerHTML = categories.map(category => {
-          const templates = Array.isArray(category.templates) ? category.templates : [];
-          const categoryAttr = category.id ? \` data-category-id="${category.id.replace(/"/g, '&quot;')}"\` : '';
-          const cardsHTML = templates.map(tmpl => {
-            const payload = JSON.stringify(tmpl.slide || {}).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-            const tagsHTML = Array.isArray(tmpl.tags)
-              ? tmpl.tags.map(tag => \`<span class="template-tag">${tag.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</span>\`).join('')
-              : '';
-            return \`
-              <div class="template-card" data-template="${payload}">
-                <div class="template-card-title">${(tmpl.title || 'Template').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
-                <div class="template-card-use">${(tmpl.useCase || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
-                <div class="template-card-tags">${tagsHTML}</div>
-                <div class="template-card-actions">
-                  <button class="template-copy-btn" type="button">Copy JSON</button>
-                </div>
-              </div>\`;
-          }).join('');
-          return \`
-            <div class="template-category"${categoryAttr}>
-              <div class="template-category-header">
-                <div class="template-category-title">${(category.label || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
-                <div class="template-category-desc">${(category.description || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
-              </div>
-              <div class="template-card-grid">${cardsHTML}</div>
-            </div>\`;
-        }).join('');
-      }
-    } catch (err) {
-      console.error('Failed to hydrate template library:', err);
-    }
-  }
-  try {
-    SidebarModule.init();
-    SlideEngine.init();
-    InteractiveBlocks.init();
-    SpeakerNotes.init();
-    if (window.SlideHealth) window.SlideHealth.init();
-    if (window.LessonStudio) window.LessonStudio.init();
-  } catch (initErr) {
-    console.error('Lecta AI initialization failed:', initErr);
-    document.body.insertAdjacentHTML('afterbegin',
-      '<div style="position:fixed;top:0;left:0;right:0;padding:1rem;background:#dc2626;color:#fff;z-index:99999;font-family:system-ui;text-align:center">⚠️ Presentation failed to initialize. Check the console for details.</div>');
-  }
-
-  // Sync speaker notes to sidebar panel on slide change
-  document.addEventListener('slideChanged', (e) => {
-    const slides = document.querySelectorAll('.slide');
-    const slide = slides[e.detail.index];
-    const notes = slide ? slide.dataset.speakerNotes : '';
-    const el = document.getElementById('sidebar-speaker-notes');
-    if (el) el.textContent = notes || 'No speaker notes for this slide.';
-  });
-});
-  </script>
-</body>
-</html>, right: '
-
-document.addEventListener('DOMContentLoaded', () => {
-  // --- Client-Side Hydration ---
-  const slideDataEl = document.getElementById('slide-data');
-  if (slideDataEl && window.LectaRenderer) {
-    try {
-      const slideData = JSON.parse(slideDataEl.textContent);
-      
-      // Hydrate Slides
-      const track = document.querySelector('.slides-track');
-      if (track) {
-        track.innerHTML = slideData.slides.map(s => window.LectaRenderer.renderSlideHTML(s)).join('\\n');
-      }
-
-      // Hydrate Sidebar Thumbnails
-      const TYPES = { title:'🎬', bullets:'📌', accordion:'📚', tabs:'🗂', stepper:'🚶', cards:'🃏', quiz:'❓', compare:'⚔️', timeline:'📅', summary:'🎓', image:'🖼️', chart:'📊', table:'🧮', bento:'🍱', flow:'🌿' };
-      const thumbnailsContainer = document.querySelector('.slide-thumbnails');
-      if (thumbnailsContainer) {
-        thumbnailsContainer.innerHTML = slideData.slides.map((s, i) => \`
-          <div class="slide-thumb${i === 0 ? ' active' : ''}" data-slide="${i}">
-            <span class="slide-thumb-num">${i + 1}</span>
-            <div class="slide-thumb-info">
-              <div class="slide-thumb-title">${(s.data.heading || s.data.title || 'Slide ' + (i+1)).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
-              <div class="slide-thumb-type">${TYPES[s.type] || '📄'} ${s.type}</div>
-            </div>
-          </div>\`).join('');
-      }
-    } catch (err) {
-      console.error('Failed to hydrate slides from JSON:', err);
-    }
-  }
-
-  // --- Hydrate Template Library ---
-  const templateLibraryEl = document.getElementById('template-library-data');
-  const templateLibraryContainer = document.getElementById('template-library-container');
-  if (templateLibraryEl && templateLibraryContainer) {
-    try {
-      const library = JSON.parse(templateLibraryEl.textContent);
-      const categories = Array.isArray(library.categories) ? library.categories : [];
-      if (categories.length === 0) {
-        templateLibraryContainer.innerHTML = '<div class="template-empty">No templates available.</div>';
-      } else {
-        templateLibraryContainer.innerHTML = categories.map(category => {
-          const templates = Array.isArray(category.templates) ? category.templates : [];
-          const categoryAttr = category.id ? \` data-category-id="${category.id.replace(/"/g, '&quot;')}"\` : '';
-          const cardsHTML = templates.map(tmpl => {
-            const payload = JSON.stringify(tmpl.slide || {}).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-            const tagsHTML = Array.isArray(tmpl.tags)
-              ? tmpl.tags.map(tag => \`<span class="template-tag">${tag.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</span>\`).join('')
-              : '';
-            return \`
-              <div class="template-card" data-template="${payload}">
-                <div class="template-card-title">${(tmpl.title || 'Template').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
-                <div class="template-card-use">${(tmpl.useCase || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
-                <div class="template-card-tags">${tagsHTML}</div>
-                <div class="template-card-actions">
-                  <button class="template-copy-btn" type="button">Copy JSON</button>
-                </div>
-              </div>\`;
-          }).join('');
-          return \`
-            <div class="template-category"${categoryAttr}>
-              <div class="template-category-header">
-                <div class="template-category-title">${(category.label || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
-                <div class="template-category-desc">${(category.description || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
-              </div>
-              <div class="template-card-grid">${cardsHTML}</div>
-            </div>\`;
-        }).join('');
-      }
-    } catch (err) {
-      console.error('Failed to hydrate template library:', err);
-    }
-  }
-  try {
-    SidebarModule.init();
-    SlideEngine.init();
-    InteractiveBlocks.init();
-    SpeakerNotes.init();
-    if (window.SlideHealth) window.SlideHealth.init();
-    if (window.LessonStudio) window.LessonStudio.init();
-  } catch (initErr) {
-    console.error('Lecta AI initialization failed:', initErr);
-    document.body.insertAdjacentHTML('afterbegin',
-      '<div style="position:fixed;top:0;left:0;right:0;padding:1rem;background:#dc2626;color:#fff;z-index:99999;font-family:system-ui;text-align:center">⚠️ Presentation failed to initialize. Check the console for details.</div>');
-  }
-
-  // Sync speaker notes to sidebar panel on slide change
-  document.addEventListener('slideChanged', (e) => {
-    const slides = document.querySelectorAll('.slide');
-    const slide = slides[e.detail.index];
-    const notes = slide ? slide.dataset.speakerNotes : '';
-    const el = document.getElementById('sidebar-speaker-notes');
-    if (el) el.textContent = notes || 'No speaker notes for this slide.';
-  });
-});
-  </script>
-</body>
-</html>, display: false },
+              { left: '$', right: '$', display: false },
               { left: '\\(', right: '\\)', display: false },
             ],
             throwOnError: false,
@@ -8909,11 +8677,11 @@ const InteractiveBlocksData = (function () {
     svg.appendChild(defs);
 
     if (type === 'bar') {
-      renderBarChart(svg, labels, datasets);
+      renderBarChart(svg, labels, datasets, container);
     } else if (type === 'line') {
-      renderLineChart(svg, labels, datasets);
+      renderLineChart(svg, labels, datasets, container);
     } else if (type === 'donut') {
-      renderDonutChart(svg, labels, datasets);
+      renderDonutChart(svg, labels, datasets, container);
     }
 
     const legend = container.querySelector('.chart-legend');
@@ -8965,9 +8733,9 @@ const InteractiveBlocksData = (function () {
     });
   }
 
-  function renderBarChart(svg, labels, datasets) {
-    const W = 600;
-    const H = 320;
+  function renderBarChart(svg, labels, datasets, container) {
+    const W = parseInt(container && container.dataset.chartW, 10) || 600;
+    const H = parseInt(container && container.dataset.chartH, 10) || 320;
     const padding = 50;
     const chartW = W - padding * 2;
     const chartH = H - padding * 2;
@@ -9071,9 +8839,9 @@ const InteractiveBlocksData = (function () {
     svg.appendChild(baseline);
   }
 
-  function renderLineChart(svg, labels, datasets) {
-    const W = 600;
-    const H = 320;
+  function renderLineChart(svg, labels, datasets, container) {
+    const W = parseInt(container && container.dataset.chartW, 10) || 600;
+    const H = parseInt(container && container.dataset.chartH, 10) || 320;
     const padding = 50;
     const chartW = W - padding * 2;
     const chartH = H - padding * 2;
@@ -9219,9 +8987,9 @@ const InteractiveBlocksData = (function () {
     svg.appendChild(baseline);
   }
 
-  function renderDonutChart(svg, labels, datasets) {
-    const W = 600;
-    const H = 320;
+  function renderDonutChart(svg, labels, datasets, container) {
+    const W = parseInt(container && container.dataset.chartW, 10) || 600;
+    const H = parseInt(container && container.dataset.chartH, 10) || 320;
     const cx = W / 2 - 80;
     const cy = H / 2;
     const r = 70;
@@ -9845,7 +9613,8 @@ const LessonStudio = (function () {
 
   function safeJSONParse(raw, fallback) {
     try {
-      return JSON.parse(raw);
+      const parsed = JSON.parse(raw);
+      return parsed !== null ? parsed : fallback;
     } catch (e) {
       return fallback;
     }
@@ -10434,6 +10203,8 @@ const LessonStudio = (function () {
     const body = document.body;
     body.classList.remove('safe-zone-enabled', 'safe-zone-camera-left', 'safe-zone-camera-right', 'safe-zone-subtitle-on');
 
+    if (!state) return;
+
     const camera = state.camera || 'off';
     const subtitle = state.subtitle || 'off';
     if (camera === 'left') body.classList.add('safe-zone-camera-left');
@@ -10589,9 +10360,11 @@ const SidebarModule = (function () {
   if (window.SidebarModule) return window.SidebarModule;
 
   // ===== STATE =====
-  const THEME_KEY = 'lecta-theme';
-  const MODE_KEY  = 'lecta-mode';
-  const NOTES_KEY = 'lecta-notes';
+  // Namespace localStorage keys by deck ID to prevent collisions between decks
+  const DECK_ID = (document.body && document.body.dataset.deckId) || 'default';
+  const THEME_KEY = `lecta-theme-${DECK_ID}`;
+  const MODE_KEY  = `lecta-mode-${DECK_ID}`;
+  const NOTES_KEY = `lecta-notes-${DECK_ID}`;
   
   const LIGHT_THEMES = (window.LECTA_CONFIG && window.LECTA_CONFIG.LIGHT_THEMES) || ['ocean','forest','berry','slate','paper','nordic','sunset','editorial','newspaper','brutalist','pastel','monochrome'];
   const DARK_THEMES  = (window.LECTA_CONFIG && window.LECTA_CONFIG.DARK_THEMES) || ['neon','midnight','evergreen','volcano','terminal','blueprint','blackboard'];
@@ -11193,21 +10966,21 @@ document.addEventListener('DOMContentLoaded', () => {
       // Hydrate Slides
       const track = document.querySelector('.slides-track');
       if (track) {
-        track.innerHTML = slideData.slides.map(s => window.LectaRenderer.renderSlideHTML(s)).join('\\n');
+        track.innerHTML = slideData.slides.map(s => window.LectaRenderer.renderSlideHTML(s)).join('\n');
       }
 
       // Hydrate Sidebar Thumbnails
       const TYPES = { title:'🎬', bullets:'📌', accordion:'📚', tabs:'🗂', stepper:'🚶', cards:'🃏', quiz:'❓', compare:'⚔️', timeline:'📅', summary:'🎓', image:'🖼️', chart:'📊', table:'🧮', bento:'🍱', flow:'🌿' };
       const thumbnailsContainer = document.querySelector('.slide-thumbnails');
       if (thumbnailsContainer) {
-        thumbnailsContainer.innerHTML = slideData.slides.map((s, i) => \`
+        thumbnailsContainer.innerHTML = slideData.slides.map((s, i) => `
           <div class="slide-thumb${i === 0 ? ' active' : ''}" data-slide="${i}">
             <span class="slide-thumb-num">${i + 1}</span>
             <div class="slide-thumb-info">
               <div class="slide-thumb-title">${(s.data.heading || s.data.title || 'Slide ' + (i+1)).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
               <div class="slide-thumb-type">${TYPES[s.type] || '📄'} ${s.type}</div>
             </div>
-          </div>\`).join('');
+          </div>`).join('');
       }
     } catch (err) {
       console.error('Failed to hydrate slides from JSON:', err);
@@ -11226,13 +10999,13 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         templateLibraryContainer.innerHTML = categories.map(category => {
           const templates = Array.isArray(category.templates) ? category.templates : [];
-          const categoryAttr = category.id ? \` data-category-id="${category.id.replace(/"/g, '&quot;')}"\` : '';
+          const categoryAttr = category.id ? ` data-category-id="${category.id.replace(/"/g, '&quot;')}"` : '';
           const cardsHTML = templates.map(tmpl => {
             const payload = JSON.stringify(tmpl.slide || {}).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
             const tagsHTML = Array.isArray(tmpl.tags)
-              ? tmpl.tags.map(tag => \`<span class="template-tag">${tag.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</span>\`).join('')
+              ? tmpl.tags.map(tag => `<span class="template-tag">${tag.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</span>`).join('')
               : '';
-            return \`
+            return `
               <div class="template-card" data-template="${payload}">
                 <div class="template-card-title">${(tmpl.title || 'Template').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
                 <div class="template-card-use">${(tmpl.useCase || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
@@ -11240,16 +11013,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="template-card-actions">
                   <button class="template-copy-btn" type="button">Copy JSON</button>
                 </div>
-              </div>\`;
+              </div>`;
           }).join('');
-          return \`
+          return `
             <div class="template-category"${categoryAttr}>
               <div class="template-category-header">
                 <div class="template-category-title">${(category.label || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
                 <div class="template-category-desc">${(category.description || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
               </div>
               <div class="template-card-grid">${cardsHTML}</div>
-            </div>\`;
+            </div>`;
         }).join('');
       }
     } catch (err) {
