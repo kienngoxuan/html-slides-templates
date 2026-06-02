@@ -3,4 +3,5 @@ node_modules/
 .env
 .env.*
 .DS_Store
-Thumbs.db
+Thumbs.dbimplement-plan.txt
+extract_html.js
