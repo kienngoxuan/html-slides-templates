@@ -411,62 +411,6 @@
   word-break: break-word;
 }
 
-/* === Expandable Stats Card Dropdown === */
-.stat-card.expandable {
-  cursor: pointer;
-  user-select: none;
-}
-
-.stat-toggle-btn {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin: var(--space-md) auto 0;
-  transition: transform var(--transition-base), background var(--transition-fast);
-  font-weight: bold;
-  font-size: 0.85rem;
-}
-
-.stat-card.expanded .stat-toggle-btn {
-  transform: rotate(180deg);
-}
-
-.stat-dropdown {
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height var(--transition-slow), opacity var(--transition-slow), margin-top var(--transition-slow);
-  margin-top: 0;
-}
-
-.stat-card.expanded .stat-dropdown {
-  max-height: 120px;
-  opacity: 1;
-  margin-top: var(--space-md);
-}
-
-.stat-dropdown-inner {
-  background: color-mix(in oklch, var(--color-primary) 5%, var(--color-bg-alt));
-  padding: var(--space-xs) var(--space-md);
-  border-radius: var(--radius-sm);
-  border-left: 3px solid var(--color-primary);
-  text-align: left;
-  display: inline-block;
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-.stat-dropdown-text {
-  font-size: 0.8rem;
-  color: var(--color-text-secondary);
-  font-weight: 550;
-  line-height: 1.4;
-  word-break: break-word;
-}
-
 /* === CHECKLIST === */
 .checklist {
   list-style: none;
