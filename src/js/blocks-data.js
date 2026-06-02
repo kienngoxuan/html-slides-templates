@@ -128,11 +128,11 @@ const InteractiveBlocksData = (function () {
     svg.appendChild(defs);
 
     if (type === 'bar') {
-      renderBarChart(svg, labels, datasets);
+      renderBarChart(svg, labels, datasets, container);
     } else if (type === 'line') {
-      renderLineChart(svg, labels, datasets);
+      renderLineChart(svg, labels, datasets, container);
     } else if (type === 'donut') {
-      renderDonutChart(svg, labels, datasets);
+      renderDonutChart(svg, labels, datasets, container);
     }
 
     const legend = container.querySelector('.chart-legend');
@@ -184,9 +184,9 @@ const InteractiveBlocksData = (function () {
     });
   }
 
-  function renderBarChart(svg, labels, datasets) {
-    const W = 600;
-    const H = 320;
+  function renderBarChart(svg, labels, datasets, container) {
+    const W = parseInt(container && container.dataset.chartW, 10) || 600;
+    const H = parseInt(container && container.dataset.chartH, 10) || 320;
     const padding = 50;
     const chartW = W - padding * 2;
     const chartH = H - padding * 2;
@@ -290,9 +290,9 @@ const InteractiveBlocksData = (function () {
     svg.appendChild(baseline);
   }
 
-  function renderLineChart(svg, labels, datasets) {
-    const W = 600;
-    const H = 320;
+  function renderLineChart(svg, labels, datasets, container) {
+    const W = parseInt(container && container.dataset.chartW, 10) || 600;
+    const H = parseInt(container && container.dataset.chartH, 10) || 320;
     const padding = 50;
     const chartW = W - padding * 2;
     const chartH = H - padding * 2;
@@ -438,9 +438,9 @@ const InteractiveBlocksData = (function () {
     svg.appendChild(baseline);
   }
 
-  function renderDonutChart(svg, labels, datasets) {
-    const W = 600;
-    const H = 320;
+  function renderDonutChart(svg, labels, datasets, container) {
+    const W = parseInt(container && container.dataset.chartW, 10) || 600;
+    const H = parseInt(container && container.dataset.chartH, 10) || 320;
     const cx = W / 2 - 80;
     const cy = H / 2;
     const r = 70;

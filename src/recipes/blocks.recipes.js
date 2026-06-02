@@ -211,10 +211,13 @@
     const labelsJSON = A.esc(JSON.stringify(d.labels || []));
     const datasetsJSON = A.esc(JSON.stringify(d.datasets || []));
 
+    const chartW = d.width || 600;
+    const chartH = d.height || 320;
+
     return `    ${A.blockHeading(d.icon, d.heading)}
-    <div class="chart-block-container" data-chart-type="${d.chartType}" data-labels="${labelsJSON}" data-datasets="${datasetsJSON}">
+    <div class="chart-block-container" data-chart-type="${d.chartType}" data-labels="${labelsJSON}" data-datasets="${datasetsJSON}" data-chart-w="${chartW}" data-chart-h="${chartH}">
       <div class="chart-canvas-wrapper">
-        <svg class="svg-chart" viewBox="0 0 600 320"></svg>
+        <svg class="svg-chart" viewBox="0 0 ${chartW} ${chartH}"></svg>
       </div>
       <div class="chart-legend"></div>
     </div>`;
