@@ -380,19 +380,17 @@
     const d = slide.data || {};
     return `    ${A.blockHeading(d.icon || '💡', d.heading)}
     <div class="analogy-container stagger">
-      <div class="analogy-split">
-        <div class="analogy-side side-technical stagger-item">
-          <span class="analogy-label-badge badge-blue">⚙️ Technical Concept</span>
-          <p>${A.esc(d.technicalConcept)}</p>
-        </div>
-        <div class="analogy-bridge stagger-item">
-          <div class="analogy-bridge-line"></div>
-          <div class="analogy-bridge-text">${A.esc(d.bridgeText || 'Is Like...')}</div>
-        </div>
-        <div class="analogy-side side-realworld stagger-item">
-          <span class="analogy-label-badge badge-amber">🌾 Real-world Analogy</span>
-          <p>${A.esc(d.analogy)}</p>
-        </div>
+      <div class="analogy-card analogy-technical stagger-item">
+        <div class="analogy-card-label">⚙️ Technical Concept</div>
+        <p>${A.esc(d.technicalConcept)}</p>
+      </div>
+      <div class="analogy-bridge stagger-item">
+        <div class="analogy-bridge-text">${A.esc(d.bridgeText || 'Is Like...')}</div>
+        <div class="analogy-bridge-arrow">↔</div>
+      </div>
+      <div class="analogy-card analogy-realworld stagger-item">
+        <div class="analogy-card-label">🌾 Real-world Analogy</div>
+        <p>${A.esc(d.analogy)}</p>
       </div>
     </div>`;
   }
