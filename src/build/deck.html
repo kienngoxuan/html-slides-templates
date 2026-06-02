@@ -50,10 +50,7 @@
     </div>
   </div>
 
-  <!-- Notes Toggle (top-left) -->
-  <div class="presenter-toggle">
-    <button class="toggle-btn toggle-notes">📝 Notes</button>
-  </div>
+  <!-- Notes Toggle Removed per user request -->
 
   <!-- SPEAKER NOTES (POPUP) -->
   <div class="speaker-notes-panel">
@@ -68,15 +65,7 @@
     </div>
   </div>
 
-  <!-- Safe-zone Overlay -->
-  <div class="safe-zone-overlay" aria-hidden="true">
-    <div class="safe-zone-box safe-zone-camera">
-      <span class="safe-zone-label">Camera Safe Zone</span>
-    </div>
-    <div class="safe-zone-box safe-zone-subtitle">
-      <span class="safe-zone-label">Subtitle Safe Zone</span>
-    </div>
-  </div>
+  <!-- Safe-zone Overlay Removed per user request -->
 
   <!-- SLIDES NAVIGATION -->
   <div class="nav-bar">
@@ -275,19 +264,7 @@
             <div class="recording-save-msg">Checkpoint saved.</div>
           </div>
 
-          <div class="recording-card">
-            <div class="recording-label">Camera Safe Zone</div>
-            <div class="recording-toggle-group" data-recording-group="camera">
-              <button class="recording-toggle" type="button" data-value="off">Off</button>
-              <button class="recording-toggle" type="button" data-value="left">Left</button>
-              <button class="recording-toggle" type="button" data-value="right">Right</button>
-            </div>
-            <div class="recording-label" style="margin-top:0.6rem;">Subtitle Safe Zone</div>
-            <div class="recording-toggle-group" data-recording-group="subtitle">
-              <button class="recording-toggle" type="button" data-value="off">Off</button>
-              <button class="recording-toggle" type="button" data-value="on">On</button>
-            </div>
-          </div>
+          <!-- Safe-zone Controls Removed per user request -->
 
           <div class="recording-card">
             <label class="recording-label" for="recording-jump">Quick Jump</label>
@@ -424,21 +401,21 @@ document.addEventListener('DOMContentLoaded', () => {
       // Hydrate Slides
       const track = document.querySelector('.slides-track');
       if (track) {
-        track.innerHTML = slideData.slides.map(s => window.LectaRenderer.renderSlideHTML(s)).join('\\n');
+        track.innerHTML = slideData.slides.map(s => window.LectaRenderer.renderSlideHTML(s)).join('\n');
       }
 
       // Hydrate Sidebar Thumbnails
       const TYPES = { title:'🎬', bullets:'📌', accordion:'📚', tabs:'🗂', stepper:'🚶', cards:'🃏', quiz:'❓', compare:'⚔️', timeline:'📅', summary:'🎓', image:'🖼️', chart:'📊', table:'🧮', bento:'🍱', flow:'🌿' };
       const thumbnailsContainer = document.querySelector('.slide-thumbnails');
       if (thumbnailsContainer) {
-        thumbnailsContainer.innerHTML = slideData.slides.map((s, i) => \`
+        thumbnailsContainer.innerHTML = slideData.slides.map((s, i) => `
           <div class="slide-thumb${i === 0 ? ' active' : ''}" data-slide="${i}">
             <span class="slide-thumb-num">${i + 1}</span>
             <div class="slide-thumb-info">
               <div class="slide-thumb-title">${(s.data.heading || s.data.title || 'Slide ' + (i+1)).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
               <div class="slide-thumb-type">${TYPES[s.type] || '📄'} ${s.type}</div>
             </div>
-          </div>\`).join('');
+          </div>`).join('');
       }
     } catch (err) {
       console.error('Failed to hydrate slides from JSON:', err);
@@ -457,13 +434,13 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         templateLibraryContainer.innerHTML = categories.map(category => {
           const templates = Array.isArray(category.templates) ? category.templates : [];
-          const categoryAttr = category.id ? \` data-category-id="${category.id.replace(/"/g, '&quot;')}"\` : '';
+          const categoryAttr = category.id ? ` data-category-id="${category.id.replace(/"/g, '&quot;')}"` : '';
           const cardsHTML = templates.map(tmpl => {
             const payload = JSON.stringify(tmpl.slide || {}).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
             const tagsHTML = Array.isArray(tmpl.tags)
-              ? tmpl.tags.map(tag => \`<span class="template-tag">${tag.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</span>\`).join('')
+              ? tmpl.tags.map(tag => `<span class="template-tag">${tag.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</span>`).join('')
               : '';
-            return \`
+            return `
               <div class="template-card" data-template="${payload}">
                 <div class="template-card-title">${(tmpl.title || 'Template').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
                 <div class="template-card-use">${(tmpl.useCase || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
@@ -471,16 +448,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="template-card-actions">
                   <button class="template-copy-btn" type="button">Copy JSON</button>
                 </div>
-              </div>\`;
+              </div>`;
           }).join('');
-          return \`
+          return `
             <div class="template-category"${categoryAttr}>
               <div class="template-category-header">
                 <div class="template-category-title">${(category.label || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
                 <div class="template-category-desc">${(category.description || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
               </div>
               <div class="template-card-grid">${cardsHTML}</div>
-            </div>\`;
+            </div>`;
         }).join('');
       }
     } catch (err) {
