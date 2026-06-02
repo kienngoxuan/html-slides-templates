@@ -10,8 +10,8 @@ const SidebarModule = (function () {
   const MODE_KEY  = 'lecta-mode';
   const NOTES_KEY = 'lecta-notes';
   
-  const LIGHT_THEMES = ['ocean','forest','berry','slate','paper','nordic','sunset','editorial','newspaper','brutalist','pastel','monochrome'];
-  const DARK_THEMES  = ['neon','midnight','evergreen','volcano','terminal','blueprint','blackboard'];
+  const LIGHT_THEMES = (window.LECTA_CONFIG && window.LECTA_CONFIG.LIGHT_THEMES) || ['ocean','forest','berry','slate','paper','nordic','sunset','editorial','newspaper','brutalist','pastel','monochrome'];
+  const DARK_THEMES  = (window.LECTA_CONFIG && window.LECTA_CONFIG.DARK_THEMES) || ['neon','midnight','evergreen','volcano','terminal','blueprint','blackboard'];
   
   let timerInterval = null;
   let timerSeconds = 0;
