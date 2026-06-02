@@ -80,7 +80,7 @@ const SlideHealth = (function () {
     document.addEventListener('slideChanged', () => setTimeout(runAll, 50));
   }
 
-  return { init, runAll, computeForSlide };
+  return { init, runAll, getReport: runAll, computeForSlide };
 })();
 
 window.SlideHealth = window.SlideHealth || SlideHealth;

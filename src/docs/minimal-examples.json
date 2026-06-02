@@ -1,0 +1,268 @@
+{
+  "title": {
+    "type": "title",
+    "data": {
+      "heading": "Introduction to AI",
+      "subtitle": "A gentle overview",
+      "badge": "Module 1"
+    }
+  },
+  "splash": {
+    "type": "splash",
+    "data": {
+      "title": "Welcome to the Course"
+    }
+  },
+  "bullets": {
+    "type": "bullets",
+    "data": {
+      "heading": "Key Points",
+      "items": [
+        { "text": "First point", "icon": "👉" },
+        { "text": "Second point", "icon": "👉" }
+      ]
+    }
+  },
+  "accordion": {
+    "type": "accordion",
+    "data": {
+      "heading": "FAQ",
+      "items": [
+        { "title": "What is AI?", "content": "Artificial Intelligence is..." },
+        { "title": "How does it work?", "content": "By using algorithms..." }
+      ]
+    }
+  },
+  "tabs": {
+    "type": "tabs",
+    "data": {
+      "heading": "Course Outline",
+      "tabs": [
+        { "title": "Week 1", "content": "Introduction to Python" },
+        { "title": "Week 2", "content": "Data Structures" }
+      ]
+    }
+  },
+  "stepper": {
+    "type": "stepper",
+    "data": {
+      "heading": "Deployment Process",
+      "steps": [
+        { "title": "Build", "description": "Compile the code" },
+        { "title": "Test", "description": "Run unit tests" },
+        { "title": "Deploy", "description": "Push to production" }
+      ]
+    }
+  },
+  "cards": {
+    "type": "cards",
+    "data": {
+      "heading": "Features",
+      "cards": [
+        { "title": "Fast", "description": "High performance", "icon": "⚡" },
+        { "title": "Secure", "description": "Encrypted data", "icon": "🔒" }
+      ]
+    }
+  },
+  "quiz": {
+    "type": "quiz",
+    "data": {
+      "heading": "Knowledge Check",
+      "questions": [
+        {
+          "question": "What does CPU stand for?",
+          "options": ["Central Process Unit", "Computer Personal Unit", "Central Processing Unit"],
+          "correct": 2,
+          "explanation": "CPU stands for Central Processing Unit."
+        }
+      ]
+    }
+  },
+  "advanced-quiz": {
+    "type": "advanced-quiz",
+    "data": {
+      "heading": "Advanced Knowledge Check",
+      "questions": [
+        {
+          "question": "Which of these is a front-end framework?",
+          "options": ["Django", "React", "Spring Boot"],
+          "correct": 1
+        }
+      ]
+    }
+  },
+  "compare": {
+    "type": "compare",
+    "data": {
+      "heading": "React vs Vue",
+      "left": {
+        "title": "React",
+        "items": ["JSX", "Unidirectional Data Flow", "Hooks"],
+        "theme": "primary"
+      },
+      "right": {
+        "title": "Vue",
+        "items": ["Templates", "Two-way Binding", "Composition API"],
+        "theme": "success"
+      }
+    }
+  },
+  "timeline-horizontal": {
+    "type": "timeline-horizontal",
+    "data": {
+      "heading": "Project Roadmap",
+      "events": [
+        { "year": "2024", "title": "Planning", "description": "Requirements gathering" },
+        { "year": "2025", "title": "Launch", "description": "Public release" }
+      ]
+    }
+  },
+  "summary": {
+    "type": "summary",
+    "data": {
+      "heading": "Executive Summary",
+      "items": [
+        { "title": "Revenue", "description": "+20% YoY", "icon": "📈" },
+        { "title": "Users", "description": "1M Active", "icon": "👥" }
+      ]
+    }
+  },
+  "image": {
+    "type": "image",
+    "data": {
+      "url": "https://example.com/image.jpg",
+      "caption": "A beautiful landscape"
+    }
+  },
+  "chart": {
+    "type": "chart",
+    "data": {
+      "heading": "Sales Data",
+      "chartType": "bar",
+      "labels": ["Jan", "Feb", "Mar"],
+      "datasets": [
+        { "label": "Sales", "data": [10, 20, 30], "color": "#3498db" }
+      ]
+    }
+  },
+  "table": {
+    "type": "table",
+    "data": {
+      "columns": [
+        { "key": "id", "label": "ID" },
+        { "key": "name", "label": "Name" }
+      ],
+      "rows": [
+        { "id": 1, "name": "Alice" },
+        { "id": 2, "name": "Bob" }
+      ]
+    }
+  },
+  "bento": {
+    "type": "bento",
+    "data": {
+      "heading": "Dashboard",
+      "items": [
+        { "title": "Active Users", "value": "1,200", "icon": "👥", "colSpan": 2, "rowSpan": 1, "color": "blue" },
+        { "title": "Conversion Rate", "value": "4.5%", "icon": "📈", "colSpan": 1, "rowSpan": 1, "color": "green" }
+      ]
+    }
+  },
+  "flow": {
+    "type": "flow",
+    "data": {
+      "heading": "Authentication Flow",
+      "nodes": [
+        { "id": "start", "label": "Login Page", "x": 10, "y": 50, "type": "start" },
+        { "id": "end", "label": "Dashboard", "x": 90, "y": 50, "type": "end" }
+      ],
+      "connections": [
+        { "from": "start", "to": "end", "label": "Success" }
+      ]
+    }
+  },
+  "split": {
+    "type": "split",
+    "data": {
+      "heading": "Split View Example",
+      "left": {
+        "type": "bullets",
+        "data": {
+          "heading": "Pros",
+          "items": [{ "text": "Fast" }]
+        }
+      },
+      "right": {
+        "type": "image",
+        "data": {
+          "url": "https://example.com/image.jpg"
+        }
+      }
+    }
+  },
+  "math": {
+    "type": "math",
+    "data": {
+      "latex": "E = mc^2"
+    }
+  },
+  "mermaid": {
+    "type": "mermaid",
+    "data": {
+      "code": "graph TD; A-->B; A-->C;"
+    }
+  },
+  "code-diff": {
+    "type": "code-diff",
+    "data": {
+      "leftCode": "function add(a, b) {\n  return a + b;\n}",
+      "rightCode": "const add = (a, b) => a + b;",
+      "leftTitle": "Old Syntax",
+      "leftLang": "javascript",
+      "rightTitle": "New Syntax",
+      "rightLang": "javascript"
+    }
+  },
+  "stats": {
+    "type": "stats",
+    "data": {
+      "heading": "Performance metrics",
+      "stats": [
+        { "value": "99.9%", "label": "Uptime", "icon": "⏱️" }
+      ]
+    }
+  },
+  "checklist": {
+    "type": "checklist",
+    "data": {
+      "heading": "Launch Checklist",
+      "items": [
+        { "text": "Verify DNS records", "checked": true },
+        { "text": "Warm up cache", "checked": false }
+      ]
+    }
+  },
+  "analogy": {
+    "type": "analogy",
+    "data": {
+      "technicalConcept": "Docker Container",
+      "analogy": "Shipping Container",
+      "explanation": "Just like physical shipping containers standardize cargo transport, Docker containers standardize code transport."
+    }
+  },
+  "quote-card": {
+    "type": "quote-card",
+    "data": {
+      "quote": "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
+      "author": "Martin Fowler",
+      "role": "Software Engineer"
+    }
+  },
+  "definition-card": {
+    "type": "definition-card",
+    "data": {
+      "term": "Idempotence",
+      "definition": "The property of certain operations in mathematics and computer science whereby they can be applied multiple times without changing the result beyond the initial application."
+    }
+  }
+}

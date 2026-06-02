@@ -1,0 +1,7 @@
+# Lecta AI — Future Ideas
+
+1. **Theme Editor GUI**: Create a standalone tool to configure `variables.css` using visual color pickers.
+2. **Presenter Hub Sync**: Implement WebRTC or WebSockets for real remote controlling, upgrading from local `BroadcastChannel`.
+3. **Advanced Flow Builder**: Improve flowchart block to allow interactive node collapsing and sub-graphs.
+4. **Audio Narration**: Integrate Web Audio API for synced audio playback linked to `slide-health.js` timing checkpoints.
+5. **PDF Export Refinements**: Optimize print stylesheets for auto-generated slide handouts with inline speaker notes.

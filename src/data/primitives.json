@@ -4,104 +4,150 @@
   },
   "slide-quiz": {
     "type": "quiz",
-    "transitionPreset": "zoom-in"
+    "transitionPreset": "zoom-in",
+    "description": "Interactive self-correcting quiz",
+    "bestFor": "Testing student knowledge"
   },
   "slide-flow": {
     "type": "flow",
-    "transitionPreset": "fade"
+    "transitionPreset": "fade",
+    "description": "Base configuration for flow block",
+    "bestFor": "Use when you want to display flow content"
   },
   "slide-bullets": {
     "type": "bullets",
-    "transitionPreset": "wipe-right"
+    "transitionPreset": "wipe-right",
+    "description": "Progressive disclosure bullet points",
+    "bestFor": "Lists with icons"
   },
   "slide-bento": {
     "type": "bento",
-    "transitionPreset": "zoom-in"
+    "transitionPreset": "zoom-in",
+    "description": "Asymmetrical grid layout",
+    "bestFor": "Dashboards and statistics"
   },
   "slide-stats": {
     "type": "stats",
-    "transitionPreset": "zoom-in"
+    "transitionPreset": "zoom-in",
+    "description": "Base configuration for stats block",
+    "bestFor": "Use when you want to display stats content"
   },
   "slide-compare": {
     "type": "compare",
-    "transitionPreset": "wipe-right"
+    "transitionPreset": "wipe-right",
+    "description": "Side-by-side split comparison",
+    "bestFor": "Pros/Cons, Before/After"
   },
-
-
   "slide-table": {
     "type": "table",
-    "transitionPreset": "fade"
+    "transitionPreset": "fade",
+    "description": "Base configuration for table block",
+    "bestFor": "Use when you want to display table content"
   },
   "slide-summary": {
     "type": "summary",
-    "transitionPreset": "wipe-right"
+    "transitionPreset": "wipe-right",
+    "description": "Base configuration for summary block",
+    "bestFor": "Use when you want to display summary content"
   },
   "slide-title": {
     "type": "title",
-    "transitionPreset": "wipe-right"
+    "transitionPreset": "wipe-right",
+    "description": "Base configuration for title block",
+    "bestFor": "Use when you want to display title content"
   },
   "trend-up": {
     "trendUp": true
   },
   "slide-timeline-horizontal": {
     "type": "timeline-horizontal",
-    "transitionPreset": "wipe-right"
+    "transitionPreset": "wipe-right",
+    "description": "Base configuration for timeline-horizontal block",
+    "bestFor": "Use when you want to display timeline-horizontal content"
   },
   "slide-split": {
     "type": "split",
-    "transitionPreset": "wipe-right"
+    "transitionPreset": "wipe-right",
+    "description": "Base configuration for split block",
+    "bestFor": "Use when you want to display split content"
   },
   "slide-code-diff": {
     "type": "code-diff",
-    "transitionPreset": "fade"
+    "transitionPreset": "fade",
+    "description": "Side-by-side code blocks",
+    "bestFor": "Comparing old vs new code"
   },
   "slide-advanced-quiz": {
     "type": "advanced-quiz",
-    "transitionPreset": "zoom-in"
+    "transitionPreset": "zoom-in",
+    "description": "Base configuration for advanced-quiz block",
+    "bestFor": "Use when you want to display advanced-quiz content"
   },
   "slide-cards": {
     "type": "cards",
-    "transitionPreset": "wipe-right"
+    "transitionPreset": "wipe-right",
+    "description": "Base configuration for cards block",
+    "bestFor": "Use when you want to display cards content"
   },
   "slide-image": {
     "type": "image",
-    "transitionPreset": "zoom-in"
+    "transitionPreset": "zoom-in",
+    "description": "Base configuration for image block",
+    "bestFor": "Use when you want to display image content"
   },
   "slide-quote-card": {
     "type": "quote-card",
-    "transitionPreset": "fade"
+    "transitionPreset": "fade",
+    "description": "Base configuration for quote-card block",
+    "bestFor": "Use when you want to display quote-card content"
   },
   "slide-definition-card": {
     "type": "definition-card",
-    "transitionPreset": "fade"
+    "transitionPreset": "fade",
+    "description": "Base configuration for definition-card block",
+    "bestFor": "Use when you want to display definition-card content"
   },
   "slide-analogy": {
     "type": "analogy",
-    "transitionPreset": "fade"
+    "transitionPreset": "fade",
+    "description": "Base configuration for analogy block",
+    "bestFor": "Use when you want to display analogy content"
   },
   "slide-checklist": {
     "type": "checklist",
-    "transitionPreset": "wipe-right"
+    "transitionPreset": "wipe-right",
+    "description": "Base configuration for checklist block",
+    "bestFor": "Use when you want to display checklist content"
   },
   "slide-splash": {
     "type": "splash",
-    "transitionPreset": "zoom-in"
+    "transitionPreset": "zoom-in",
+    "description": "Base configuration for splash block",
+    "bestFor": "Use when you want to display splash content"
   },
   "slide-stepper": {
     "type": "stepper",
-    "transitionPreset": "wipe-right"
+    "transitionPreset": "wipe-right",
+    "description": "Vertical step-by-step process",
+    "bestFor": "Workflows, recipes, pipelines"
   },
   "slide-accordion": {
     "type": "accordion",
-    "transitionPreset": "wipe-right"
+    "transitionPreset": "wipe-right",
+    "description": "Base configuration for accordion block",
+    "bestFor": "Use when you want to display accordion content"
   },
   "slide-tabs": {
     "type": "tabs",
-    "transitionPreset": "wipe-right"
+    "transitionPreset": "wipe-right",
+    "description": "Base configuration for tabs block",
+    "bestFor": "Use when you want to display tabs content"
   },
   "slide-chart": {
     "type": "chart",
-    "transitionPreset": "fade"
+    "transitionPreset": "fade",
+    "description": "Base configuration for chart block",
+    "bestFor": "Use when you want to display chart content"
   },
   "context-executive": {
     "audience": "Stakeholders & Leadership",

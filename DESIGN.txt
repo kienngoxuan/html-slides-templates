@@ -1,0 +1,7 @@
+# Lecta AI — Design Principles
+
+1. **Primitive-Based Architecture**: Use a central `primitives.json` dictionary. Use JSON `$ref` everywhere to deduplicate configs.
+2. **Client-Side Rendering**: Build lightweight static HTML files. `build.js` only scaffolds the shell. The DOM is instantiated dynamically on load via `renderer.js`.
+3. **Dynamic Resolution**: Resolve aliases and dependencies intelligently. Block features (CSS overlays) only load when the block exists.
+4. **Resilient Configuration**: Always provide fallback defaults.
+5. **Aesthetic Consistency**: Use `oklch` color spaces across light/dark themes. Maintain modern, smooth CSS animations.

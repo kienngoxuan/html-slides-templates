@@ -10,6 +10,7 @@
 Instead of static build-time HTML generation, Lecta AI employs dynamic Client-Side Rendering (CSR) to construct the DOM upon page load. This significantly reduces the size of generated HTML files by eliminating redundant UI component markup.
 - **Primitive-Based Architecture:** Uses `$ref` pointers in JSON configurations to share common patterns, reducing JSON file size by 30-50% while maintaining a highly modular, reusable component system.
 - **Embedded Base64 Favicon:** The build script automatically reads the local `src/favicon.JPG` asset and encodes it directly as an inline data-URI link inside the compiled HTML `<head>`.
+- **Local Font Loading:** Embedded `@font-face` definitions bundle the required fonts (e.g., Roboto, Inter) inline as Base64, avoiding CDN dependencies or extra files.
 - **Zero Dependencies:** No heavy frameworks, and **zero runtime dependencies**. The build system bundles modular CSS and JS components directly into highly optimized, fully standalone single-file HTML decks.
 
 ### 2. Premium Interactive Blocks
@@ -34,7 +35,7 @@ Lecta AI packs interactive learning blocks mapped through clean JSON templates:
 Activate a dedicated sidebar designed specifically for live presentation control:
 - 📋 **Visual Overview:** Real-time thumbnail navigations for quick section jumps.
 - ⏱️ **Presentation Timer:** Stopwatch tracking with built-in pacing calculators based on slide ratios.
-- 📝 **Live Speaker Notes:** Auto-saved markdown textareas mapped to the unique **Slide ID**.
+- **📝 Live Speaker Notes:** Auto-saved markdown textareas mapped to the unique **Slide ID**. *Note: Custom notes typed into the sidebar and saved in `localStorage` take priority over the default `speakerNotes` provided in the JSON file.*
 - 🔦 **Spotlight Visualizer & Laser Pointer:** Mouse-tracking glowing particle halo to draw eyes to key elements and dim backgrounds.
 - 🔒 **Blank Screen Freezer:** Lock slides to pitch-black or surface-colored screens instantly to pull focus back to the speaker.
 - 🎲 **Snappy Student Picker:** High-speed visual randomizer to select students from custom JSON datasets.
