@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lecta AI Slide Manifest",
+  "description": "Schema for a complete Lecta AI presentation deck.",
+  "type": "object",
+  "required": ["meta", "slides"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["id", "title", "theme"],
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "author": { "type": "string" },
+        "date": { "type": "string" },
+        "duration": { "type": "number" },
+        "theme": { "type": "string" },
+        "stylePack": { "type": "string" }
+      }
+    },
+    "slides": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "data"],
+        "properties": {
+          "id": { "type": "string" },
+          "type": { "type": "string" },
+          "data": { "type": "object" },
+          "flow": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["label", "action", "targets"],
+              "properties": {
+                "label": { "type": "string" },
+                "action": { "type": "string", "enum": ["reveal", "highlight"] },
+                "preset": { "type": "string" },
+                "targets": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
